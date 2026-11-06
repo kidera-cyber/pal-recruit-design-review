@@ -1,0 +1,109 @@
+/* ===========================================================================
+   PAL RECRUIT redesign ｜ PAL公式コーポレートサイト（pal-style.co.jp）準拠
+   共通デザインシステム（上書き専用・追加コンポーネント集）
+   ---------------------------------------------------------------------------
+   方針：
+   ・assets/css/style.css → redesign/assets/css/system-h.css の後に読み込む。
+   ・本文（文言・数値・リンク・構造・JSON-LD）は一切変更しない。
+   ・PAL公式サイトの分析結果（redesign/07_corporate-design-analysis.md）に基づく
+     「英語大見出し×日本語二段表記」「写真＋暗転＋白文字」「グリッド背景」
+     「色面の強いコントラストによるセクション切替」「直線的・ソリッドな装飾」を
+     redesignの既存コンポーネントに追加する形で反映する。
+   ・全ページを同じ見た目に揃えるためのものではなく、HOMEで確立した表現を
+     以後のページ展開でも「使う・使わない」を判断しながら再利用するための部品集。
+=========================================================================== */
+
+/* ---------------------------------------------------------------------
+   1. グリッド背景（公式サイトの白地セクションに多用される方眼グリッド装飾）
+   実測値ではなく画像からの推定値。過度に目立たせず、質感のみを加える。
+--------------------------------------------------------------------- */
+.gridbg{
+  background-image:
+    linear-gradient(rgba(21,22,26,.055) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(21,22,26,.055) 1px, transparent 1px);
+  background-size:56px 56px;
+  background-position:center top;
+}
+.gridbg--dark{
+  background-image:
+    linear-gradient(rgba(255,255,255,.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.07) 1px, transparent 1px);
+}
+
+/* ---------------------------------------------------------------------
+   2. 二段見出し（英語ラベルを主役に、日本語を補足として添える）
+   公式サイトの「CORPORATE INFO / 会社情報」型パターン。
+   既存の .slabel は維持しつつ、FVや主要セクションの見出し導入部のみ
+   .kicker2 を追加使用する（全セクション機械的に置き換えない）。
+--------------------------------------------------------------------- */
+.kicker2{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:10px}
+.kicker2__en{
+  font-family:var(--font-en);font-weight:900;letter-spacing:.02em;
+  font-size:clamp(13px,1.7vw,17px);color:var(--red);line-height:1;
+}
+.kicker2__ja{font-size:12.5px;font-weight:700;color:var(--gray-500)}
+
+/* ---------------------------------------------------------------------
+   3. 写真パネル（実写真＋暗転グラデーション＋白文字）
+   公式サイトの「CORPORATE INFO」セクション写真の手法を踏襲。
+--------------------------------------------------------------------- */
+.photo-panel{position:relative;overflow:hidden;background:var(--black)}
+.photo-panel img{width:100%;height:100%;object-fit:cover;display:block}
+.photo-panel::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(10,11,16,.05) 0%,rgba(10,11,16,.35) 55%,rgba(8,9,14,.82) 100%);
+}
+.photo-panel__cap{
+  position:absolute;left:0;right:0;bottom:0;z-index:1;color:#fff;
+  padding:clamp(18px,3vw,30px);
+}
+.photo-panel__cap b{display:block;font-size:clamp(15px,1.8vw,19px);font-weight:800;line-height:1.5}
+.photo-panel__cap span{display:block;font-size:12px;color:rgba(255,255,255,.72);margin-top:4px}
+
+/* ---------------------------------------------------------------------
+   4. フロー・タイムライン（接続線でつなぐ工程表示の共通部品）
+   既存の .why-flow 等とは別に、より強いビジュアル表現が必要な箇所で使用。
+--------------------------------------------------------------------- */
+.flow-timeline{position:relative}
+.flow-timeline__track{
+  display:flex;flex-wrap:wrap;gap:0;counter-reset:flowstep;
+}
+.flow-timeline__node{
+  flex:1 1 200px;position:relative;padding:22px 20px 22px 0;
+}
+.flow-timeline__node:not(:last-child)::after{
+  content:"";position:absolute;right:0;top:34px;width:28px;height:2px;background:var(--gray-300);
+  display:none;
+}
+@media(min-width:861px){
+  .flow-timeline__node:not(:last-child)::after{display:block}
+}
+.flow-timeline__no{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:30px;height:30px;background:var(--black);color:#fff;
+  font-family:var(--font-en);font-weight:800;font-size:12.5px;margin-bottom:12px;
+}
+.flow-timeline__node b{display:block;font-size:14.5px;margin-bottom:6px}
+.flow-timeline__node p{font-size:12.5px;color:var(--gray-700);margin:0}
+
+/* ---------------------------------------------------------------------
+   5. セクションの強いコントラスト切替（公式サイトの「色面で区切る」思想）
+   既存の .sec--navy / .sec--soft と組み合わせて使う追加ユーティリティ。
+--------------------------------------------------------------------- */
+.sec--hardedge{position:relative}
+.sec--hardedge::before{
+  content:"";position:absolute;left:0;right:0;top:0;height:4px;background:var(--red);
+}
+
+/* ---------------------------------------------------------------------
+   6. ユーティリティ：数値を大きく見せる（公式サイトの太いタイポ表現）
+--------------------------------------------------------------------- */
+.bignum{font-family:var(--font-en);font-weight:900;line-height:1}
+.bignum--xl{font-size:clamp(34px,5vw,56px)}
+
+/* ---------------------------------------------------------------------
+   7. アクセシビリティ共通：reduced-motionでの完全停止を担保
+--------------------------------------------------------------------- */
+@media (prefers-reduced-motion:reduce){
+  .flow-timeline *{transition:none!important;animation:none!important}
+}

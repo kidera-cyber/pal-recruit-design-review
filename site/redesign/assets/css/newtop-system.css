@@ -1,0 +1,253 @@
+/* ===========================================================================
+   PAL RECRUIT redesign ｜ 軍師モード全面再設計ラウンド
+   TOP 3案（Corporate Editorial / Visual Infographic / Corporate×Visual Hybrid）
+   共通デザインシステム（上書き専用）
+   ---------------------------------------------------------------------------
+   方針：
+   ・assets/css/style.css → redesign/assets/css/corporate-system.css の後に
+     読み込む「上書き・追加」専用スタイル。本文の文言・数値・リンク構造・
+     JSON-LDは一切変更しない（このファイルは見た目にのみ関与する）。
+   ・社員の「顔写真・アバター」をデザインの中心に据えない方針に基づき、
+     アバター画像は常に小さな「署名バッジ」として扱うユーティリティを用意する
+     （.byline__av）。既存アバター画像・インタビュー本文自体は削除しない。
+   ・9職種の俯瞰図（.roledg）、キャリアロードマップ（.roadmap）は、
+     既存ページ（about.html の xover、work.html の9職種、career.html の
+     3つの質問）に書かれている事実のみを可視化する。新しい組織構造・
+     業務フロー・上下関係は一切創作しない。
+   ・prefers-reduced-motion を全コンポーネントで尊重する。
+=========================================================================== */
+
+/* ---------------------------------------------------------------------
+   0. 試作バナー（redesign配下の全ページ共通）
+--------------------------------------------------------------------- */
+.proto-bar{background:#000;color:#fff;padding:10px 20px;font-size:12.5px;text-align:center;position:relative;z-index:600}
+.proto-bar b{color:#ff8186}
+.proto-bar a{color:#ffd9da;text-decoration:underline}
+
+/* ---------------------------------------------------------------------
+   1. 編集的タイポグラフィ・スケール（コーポレートサイト基準）
+--------------------------------------------------------------------- */
+.ta-display{
+  font-weight:900;letter-spacing:-.03em;line-height:1.08;
+  font-size:clamp(34px,6.4vw,84px);
+}
+.ta-display .ln{display:block}
+.ta-eyebrow{
+  font-family:var(--font-en);font-weight:900;letter-spacing:.14em;
+  text-transform:uppercase;font-size:clamp(11px,1.1vw,13px);color:var(--red);
+}
+.ta-num{font-family:var(--font-en);font-weight:900;line-height:1;letter-spacing:-.02em}
+
+/* 署名バッジ：アバターを「主役」にせず、小さく添える */
+.byline{display:flex;align-items:center;gap:10px}
+.byline__av{width:40px;height:40px;border-radius:50%;overflow:hidden;flex:none;background:var(--gray-100)}
+.byline__av img{width:100%;height:100%;object-fit:cover;object-position:top center}
+.byline__name{font-size:12.5px;font-weight:700;color:var(--ink)}
+.byline__role{font-size:11px;color:var(--gray-500)}
+
+/* ---------------------------------------------------------------------
+   2. 俯瞰図・分類ラベルの誤認防止キャプション（共通ルール）
+--------------------------------------------------------------------- */
+.diagram-note{
+  display:flex;gap:8px;align-items:flex-start;margin-top:14px;
+  font-size:11.5px;color:var(--gray-500);max-width:640px;
+}
+.diagram-note i{flex:none;width:14px;height:14px;margin-top:2px}
+
+/* ---------------------------------------------------------------------
+   3. 9職種 俯瞰図（.roledg）
+   既存の role-chip データ（work.html / home.html と同一の9職種・一言・
+   募集状態・リンク）のみを使用。組織上の部門・系統分けは創作せず、
+   9職種を同列のフラットなグリッドとして提示する。
+--------------------------------------------------------------------- */
+.roledg{position:relative}
+.roledg__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid var(--gray-150);border-left:1px solid var(--gray-150)}
+.roledg__node{display:block;width:100%;text-align:left;padding:16px 16px 18px;border-right:1px solid var(--gray-150);border-bottom:1px solid var(--gray-150);cursor:pointer;background:none;color:inherit;font:inherit}
+.roledg__node b{display:block;font-size:14.5px;font-weight:700}
+.roledg__node span.roledg__en{display:block;font-size:10.5px;color:var(--gray-500);font-family:var(--font-en);margin-top:3px;letter-spacing:.03em}
+.roledg__node.is-active{background:var(--gray-50)}
+.roledg__node.is-active b{color:var(--red)}
+.roledg__node .rst{display:inline-block;margin-top:8px;font-size:10px;font-weight:700;padding:2px 7px;background:var(--gray-100);color:var(--gray-700)}
+.roledg__node .rst--on{background:var(--red);color:#fff}
+.roledg__node .rst--soon{background:#2a2a2e;color:#fff}
+
+.roledg__panel{
+  margin-top:0;background:var(--navy-d);color:#fff;padding:clamp(22px,3.4vw,38px);
+  display:grid;grid-template-columns:1fr 1.4fr;gap:28px;align-items:start;
+}
+.roledg__panel__cat{font-family:var(--font-en);font-weight:900;color:var(--red);font-size:12px;letter-spacing:.08em}
+.roledg__panel__ja{font-size:clamp(20px,2.4vw,28px);font-weight:800;margin:6px 0 10px}
+.roledg__panel__one{color:#c7c9d6;font-size:14px;line-height:1.8}
+.roledg__panel__links{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+.roledg__panel__st{display:flex;flex-direction:column;gap:8px;padding-left:24px;border-left:1px solid rgba(255,255,255,.18)}
+.roledg__panel__stv{font-size:11px;color:#9496ab}
+.roledg__panel__stv b{display:block;color:#fff;font-size:14px;margin-top:2px}
+
+.roledg__xover{margin-top:26px;padding:20px 22px;border:1px solid var(--gray-150);background:var(--gray-50)}
+.roledg__xover__ttl{font-size:12.5px;font-weight:800;color:var(--ink);margin-bottom:8px}
+.roledg__xover__ttl span{color:var(--red)}
+.roledg__xover__row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.roledg__xover__chip{font-size:12px;font-weight:700;padding:6px 12px;background:#fff;border:1px solid var(--gray-300)}
+.roledg__xover__ar{color:var(--red);font-weight:900}
+.roledg__xover__p{font-size:12.5px;color:var(--gray-700);margin-top:10px;line-height:1.8}
+
+@media(max-width:980px){
+  .roledg__grid{grid-template-columns:repeat(2,1fr)}
+  .roledg__panel{grid-template-columns:1fr}
+  .roledg__panel__st{padding-left:0;border-left:none;border-top:1px solid rgba(255,255,255,.18);padding-top:14px;flex-direction:row;flex-wrap:wrap;gap:18px}
+}
+@media(max-width:600px){
+  .roledg__grid{grid-template-columns:1fr}
+}
+
+/* ---------------------------------------------------------------------
+   4. キャリアロードマップ（.roadmap）
+   career.html に存在する3つの質問（START/GROWTH PROCESS/CAREER PATH）
+   のみを「駅」として可視化する。新しい制度・ステップ数は創作しない。
+--------------------------------------------------------------------- */
+.roadmap{position:relative;padding-top:10px}
+.roadmap__track{display:flex;position:relative}
+.roadmap__track::before{
+  content:"";position:absolute;left:0;right:0;top:19px;height:2px;
+  background:repeating-linear-gradient(90deg,var(--gray-300) 0 10px,transparent 10px 18px);
+}
+.roadmap__stop{flex:1;position:relative;padding-right:10px}
+.roadmap__dot{width:38px;height:38px;border-radius:50%;background:#fff;border:2px solid var(--red);color:var(--red);display:flex;align-items:center;justify-content:center;font-family:var(--font-en);font-weight:900;font-size:13px;position:relative;z-index:1}
+.roadmap__stop a{display:block;margin-top:16px;padding-right:14px}
+.roadmap__en{display:block;font-family:var(--font-en);font-size:10.5px;font-weight:800;color:var(--red);letter-spacing:.06em;margin-bottom:4px}
+.roadmap__q{display:block;font-weight:700;font-size:14.5px;margin-bottom:4px}
+.roadmap__t{display:block;font-size:12px;color:var(--gray-500);line-height:1.6}
+.roadmap__arrow{display:none}
+@media(min-width:721px){
+  .roadmap__stop:not(:last-child) .roadmap__arrow{display:block;position:absolute;right:-6px;top:10px;color:var(--gray-300);font-size:16px;z-index:1}
+}
+@media(max-width:720px){
+  .roadmap__track{flex-direction:column;gap:0}
+  .roadmap__track::before{left:19px;top:0;bottom:0;right:auto;width:2px;height:auto;background:repeating-linear-gradient(180deg,var(--gray-300) 0 10px,transparent 10px 18px)}
+  .roadmap__stop{display:flex;gap:16px;padding:0 0 28px}
+  .roadmap__stop a{margin-top:0}
+}
+
+/* ---------------------------------------------------------------------
+   5. SVGプロセスフロー（現場→技術→改善 等、既存の3ステップのみ可視化）
+--------------------------------------------------------------------- */
+.pflow{display:flex;align-items:stretch;gap:0;position:relative}
+.pflow__i{flex:1;padding:22px 20px;position:relative}
+.pflow__no{font-family:var(--font-en);font-weight:900;color:var(--red);font-size:13px;margin-bottom:10px;display:block}
+.pflow__i b{display:block;font-size:15.5px;margin-bottom:8px}
+.pflow__i p{font-size:13px;color:var(--gray-700);margin:0;line-height:1.8}
+.pflow__ar{flex:none;width:34px;display:flex;align-items:center;justify-content:center;color:var(--gray-300)}
+.pflow__ar svg{width:22px;height:22px}
+.pflow__ar path{stroke:var(--gray-300);stroke-width:2;fill:none;stroke-dasharray:40;stroke-dashoffset:40;transition:stroke-dashoffset 1s ease, stroke 0.3s}
+.pflow__ar.is-drawn path{stroke-dashoffset:0;stroke:var(--red)}
+@media(max-width:860px){
+  .pflow{flex-direction:column}
+  .pflow__ar{width:auto;height:28px;transform:rotate(90deg)}
+}
+
+/* ---------------------------------------------------------------------
+   6. フォトバンド（職種を顔写真ではなく現場環境で見せる）
+--------------------------------------------------------------------- */
+.photoband{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--black)}
+.photoband__i{position:relative;aspect-ratio:4/5;overflow:hidden}
+.photoband__i img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
+.photoband__i:hover img{transform:scale(1.045)}
+.photoband__i::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,11,16,0) 50%,rgba(8,9,14,.82) 100%)}
+.photoband__cap{position:absolute;left:0;right:0;bottom:0;z-index:1;color:#fff;padding:16px}
+.photoband__cap b{display:block;font-size:14px;font-weight:800}
+.photoband__cap span{display:block;font-size:10.5px;color:rgba(255,255,255,.72);font-family:var(--font-en);margin-top:3px;letter-spacing:.05em}
+@media(max-width:760px){
+  .photoband{grid-template-columns:1fr}
+}
+
+/* ---------------------------------------------------------------------
+   7.5 FV補足情報（本番 .hero-v2__chip / .hero-v2__note 相当）
+   本番TOPのFVには「現場を、自分たちで運営する」「技術で仕組みをつくる」
+   という2つの短い補足と「※画像はイメージです」の注記がある。
+   3案では、この情報量を保ったまま、各案のビジュアル言語（タイポ中心 /
+   図解中心 / 統合）に合わせて再構成する。文章は増やさず、見出し2語＋
+   一言のみに絞って軽量に見せる。
+--------------------------------------------------------------------- */
+/* 案A：写真下のキャプションとしてさりげなく（タイポ主体のためバッジ化しない） */
+.heroflags-caption{position:relative;z-index:2;display:flex;flex-wrap:wrap;gap:10px 22px;margin-top:18px}
+.heroflags-caption .hf-i{display:flex;align-items:baseline;gap:8px;color:rgba(255,255,255,.86);font-size:12px;line-height:1.6}
+.heroflags-caption .hf-i b{color:#fff;font-weight:800;font-size:12.5px}
+.heroflags-caption .hf-i span{color:rgba(255,255,255,.62)}
+.heroflags-caption .hf-dot{color:var(--red);font-weight:900}
+
+/* 案B/C：写真の上に重ねる小さな2枚のフラグ（本番のchipに近い扱いだが
+   より薄く・小さく。見出し語＋短い説明のみ） */
+.heroflag-stack{position:absolute;z-index:2;display:flex;flex-direction:column;gap:8px;max-width:272px}
+.heroflag{background:rgba(10,11,16,.72);backdrop-filter:blur(2px);border-left:2px solid var(--red);padding:9px 14px;color:#fff}
+.heroflag b{display:block;font-size:12.5px;font-weight:800;line-height:1.4}
+.heroflag span{display:block;font-size:10.5px;color:rgba(255,255,255,.68);line-height:1.5;margin-top:2px}
+@media(max-width:760px){
+  .heroflag-stack{position:static;max-width:none;flex-direction:row;flex-wrap:wrap;margin-top:14px}
+  .heroflag{flex:1 1 180px}
+}
+
+/* 画像注記（※画像はイメージです）共通スタイル */
+.photo-note{font-size:10.5px;color:rgba(255,255,255,.5);margin-top:8px}
+.photo-note--light{color:var(--gray-500)}
+
+/* ---------------------------------------------------------------------
+   6.5 役割比較グリッド（.rolemap）｜WORK専用
+   work.html の「How roles connect」（.wflow）に既存する4つのグルーピング
+   （顧客の課題を見つける／技術で解ける形にする／現場で動かす／運用し改善
+   する）の名称・所属職種・リンク先はそのまま使用する。ただし本番の
+   .wflow 自体は矢印のないグリッド表示であり、「矢印で結ぶ一方向の業務
+   フロー」という見せ方は本番に存在しないため、ここでは矢印を使わず、
+   4グループを横に並べて「職種ごとの役割・一言（rpanel__one原文）」を
+   比較できるグリッドとして再構成する。新しい部門・系統・上下関係・
+   業務フローは一切創作しない。各ノードは既存のタブ（#rt-role-*）への
+   アンカーリンク。
+--------------------------------------------------------------------- */
+.rolemap{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--gray-150);border:1px solid var(--gray-150)}
+.rolemap__stage{background:var(--gray-50);padding:16px 14px}
+.rolemap__stage-h{font-size:12px;font-weight:800;color:var(--ink);display:flex;flex-direction:column;gap:2px;margin-bottom:12px;line-height:1.4;padding-bottom:10px;border-bottom:2px solid var(--red)}
+.rolemap__stage-h .en{font-family:var(--font-en);font-weight:900;color:var(--red);font-size:10.5px;letter-spacing:.04em}
+.rolemap__nodes{display:flex;flex-direction:column;gap:8px}
+.rolemap__node{display:block;width:100%;text-align:left;background:#fff;border:1px solid var(--gray-150);padding:10px 11px;cursor:pointer;font:inherit;color:inherit;transition:border-color .2s,transform .2s}
+.rolemap__node:hover,.rolemap__node:focus-visible{border-color:var(--red)}
+.rolemap__node:active{transform:scale(.98)}
+.rolemap__node b{display:block;font-size:12.5px;font-weight:700}
+.rolemap__node .en{display:block;font-size:9.5px;color:var(--gray-500);font-family:var(--font-en);margin-top:2px}
+.rolemap__node .one{display:block;font-size:11px;color:var(--gray-700);margin-top:5px;line-height:1.55}
+.rolemap__node .rst{display:inline-block;margin-top:6px;font-size:9px;font-weight:700;padding:2px 6px;background:var(--gray-100);color:var(--gray-700)}
+.rolemap__node .rst--on{background:var(--red);color:#fff}
+.rolemap__node .rst--soon{background:#2a2a2e;color:#fff}
+.rolemap__stage--support{grid-column:1/-1;background:var(--navy-d);color:#fff;display:flex;align-items:center;gap:14px;flex-wrap:wrap;padding:14px 18px}
+.rolemap__stage--support .rolemap__stage-h{color:#fff;margin-bottom:0;border-bottom:none;padding-bottom:0;flex-direction:row;align-items:center;gap:10px}
+.rolemap__stage--support .rolemap__t{font-size:12px;color:#c7c9d6;margin:0}
+.rolemap__corp{background:none;border:none;padding:0;font:inherit;color:#ff8186;font-weight:700;text-decoration:underline;cursor:pointer}
+.rolemap__hint{font-size:12px;color:var(--gray-500);margin-top:14px}
+.rolemap__note{font-size:11.5px;color:var(--gray-500);margin-top:8px;line-height:1.7}
+@media(max-width:900px){
+  .rolemap{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:560px){
+  .rolemap{grid-template-columns:1fr}
+}
+
+/* ---------------------------------------------------------------------
+   7. 共通モーション：reveal / reduced-motion
+--------------------------------------------------------------------- */
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.2,1)}
+.reveal.is-in{opacity:1;transform:none}
+.reveal-stagger > *{opacity:0;transform:translateY(14px);transition:opacity .55s ease,transform .55s ease}
+.reveal-stagger.is-in > *{opacity:1;transform:none}
+.reveal-stagger.is-in > *:nth-child(1){transition-delay:.02s}
+.reveal-stagger.is-in > *:nth-child(2){transition-delay:.08s}
+.reveal-stagger.is-in > *:nth-child(3){transition-delay:.14s}
+.reveal-stagger.is-in > *:nth-child(4){transition-delay:.20s}
+.reveal-stagger.is-in > *:nth-child(5){transition-delay:.26s}
+.reveal-stagger.is-in > *:nth-child(6){transition-delay:.32s}
+.reveal-stagger.is-in > *:nth-child(7){transition-delay:.38s}
+.reveal-stagger.is-in > *:nth-child(8){transition-delay:.44s}
+.reveal-stagger.is-in > *:nth-child(9){transition-delay:.50s}
+
+@media (prefers-reduced-motion:reduce){
+  .reveal,.reveal-stagger > *{transition:none!important;opacity:1!important;transform:none!important}
+  .pflow__ar path{transition:none!important;stroke-dashoffset:0!important}
+  .photoband__i img{transition:none!important}
+}

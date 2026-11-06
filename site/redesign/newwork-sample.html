@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>【試作・非公開】WORK｜Field Editorial デザインシステム適用版｜物流DXの仕事と9職種</title>
+<meta name="description" content="株式会社PALの9つの職種。BPO・現場運営、クレンリネス、FDE、システム / プロダクト、DTS・運送、エンゲージメント / セールス・BizDev、マーケティング / コンテンツ、人材派遣営業、コーポレート。（redesign試作・非公開・文言は本番work/index.htmlと完全同一）">
+<link rel="canonical" href="../work/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&family=Noto+Sans+JP:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/style.css">
+<link rel="stylesheet" href="assets/css/system-h.css">
+<link rel="stylesheet" href="assets/css/newtop-system.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"採用情報","item":"../"},{"@type":"ListItem","position":2,"name":"仕事を知る"}]}</script>
+<style>
+.proto-bar{background:#000;color:#fff;padding:10px 20px;font-size:12.5px;text-align:center;position:relative;z-index:600}
+.proto-bar b{color:#ff8186}
+/* ---- WORK専用：図解主体の演出。9職種を「つながりの地図」として見せる ---- */
+.ws-hero{position:relative}
+.ws-hero::before{content:"";position:absolute;right:0;top:0;bottom:0;width:38%;background:linear-gradient(180deg,var(--gray-50),transparent);z-index:0;display:none}
+@media(min-width:1000px){ .ws-hero::before{display:block} }
+.ws-hero .wrap{position:relative;z-index:1}
+.wflow__st{transition:border-color .2s}
+.wflow__st:hover{border-color:var(--red)}
+@media (prefers-reduced-motion:reduce){ .reveal{opacity:1!important;transform:none!important} }
+</style>
+</head>
+<body>
+<div class="proto-bar">【試作・非公開】WORK｜Field Editorialデザイン適用版｜<b>デザイン検証用プレビュー｜本番サイト未反映</b>・文言は本番work/index.htmlと完全同一　｜　<a href="newtop-compare.html" style="color:#ffd9da;text-decoration:underline">◀ 3案比較ページへ戻る</a></div>
+<a class="skip-link" href="#main">本文へスキップ</a>
+
+<header class="hdr" id="hdr">
+  <div class="hdr__inner">
+    <a class="logo" href="home.html" aria-label="PAL RECRUIT トップへ"><span class="logo__mark">PAL</span><span class="logo__txt">RECRUIT<small>株式会社PAL 採用サイト</small></span></a>
+    <nav class="gnav" aria-label="グローバルメニュー">
+      <a href="home.html">ホーム<small>HOME</small></a>
+      <a href="about.html">PALを知る<small>ABOUT</small></a>
+      <a href="work.html" aria-current="page" class="is-current">仕事を知る<small>WORK</small></a>
+      <a href="people.html">人を知る<small>PEOPLE</small></a>
+      <a href="career.html">キャリア<small>CAREER</small></a>
+      <a href="jobs.html">募集職種<small>JOBS</small></a>
+      <a href="faq.html">FAQ<small>Q&amp;A</small></a>
+    </nav>
+    <button class="btn btn--red hdr__cta btn--off" type="button" disabled>ENTRY</button>
+    <button class="hdr__toggle" id="navToggle" aria-expanded="false" aria-controls="drawer" aria-label="メニューを開く"><span></span><span></span><span></span>MENU</button>
+  </div>
+</header>
+<div class="drawer" id="drawer">
+  <a href="home.html">ホーム<span>HOME</span></a>
+  <a href="about.html">PALを知る<span>ABOUT</span></a>
+  <a href="work.html" aria-current="page" class="is-current">仕事を知る<span>WORK</span></a>
+  <a href="people.html">人を知る<span>PEOPLE</span></a>
+  <a href="career.html">キャリア<span>CAREER</span></a>
+  <a href="jobs.html">募集職種<span>JOBS</span></a>
+  <a href="faq.html">FAQ<span>Q&amp;A</span></a>
+  <button class="btn btn--red btn--off" type="button" disabled>エントリーする</button>
+</div>
+
+<main id="main">
+<nav class="crumb" aria-label="パンくず"><div class="wrap"><a href="home.html">採用情報</a><span aria-current="page">仕事を知る</span></div></nav>
+
+<section class="phead ws-hero">
+  <div class="wrap">
+    <p class="slabel">Work is Impact</p>
+    <h1 class="ptitle">自分の仕事が、現場の変化になる。</h1>
+    <p class="plead">現場を安定して動かす。技術で仕組みをつくる。顧客の課題に向き合う。<br>それぞれの専門性が、物流の仕事を前に進めています。</p>
+    <p class="ws-hero__nav"><a href="#roles">9職種の仕事内容を見る</a><a href="jobs.html">募集中の職種を見る</a></p>
+  </div>
+</section>
+
+<section class="sec sec--soft sec--tight" id="why">
+  <div class="wrap">
+    <div class="shead reveal" style="margin-bottom:30px">
+      <p class="slabel">Why this work matters</p>
+      <h2 class="stitle" style="font-size:clamp(24px,3vw,38px)">考えたことが、現場で動く。その手応えがある。</h2>
+      <p class="slead">現場・システム・設備・データの分断を、自分たちの手でひとつの流れにつないでいく。<br>そこに、PALで働く面白さがあります。</p>
+    </div>
+    <p class="wsw__st"><span class="en">PAL</span><b>物流DXを、現場で動く形にする</b></p>
+    <ul class="wsw wsw--a reveal">
+      <li class="wsw__item"><p class="wsw__no en">01</p><svg class="wsw__ic" aria-hidden="true"><use href="#ic2-field"></use></svg><b class="wsw__h">現場に近い</b><p class="wsw__t">机上で考えるだけではなく、実際の物流現場を見ながら仕事を進めます。</p></li>
+      <li class="wsw__item"><p class="wsw__no en">02</p><svg class="wsw__ic" aria-hidden="true"><use href="#ic2-fde"></use></svg><b class="wsw__h">自分たちで仕組みをつくれる</b><p class="wsw__t">提案して引き渡すのではなく、つくったものが現場で動くところまで自分の担当範囲になります。</p></li>
+      <li class="wsw__item"><p class="wsw__no en">03</p><svg class="wsw__ic" aria-hidden="true"><use href="#ic2-system"></use></svg><b class="wsw__h">職種を越えて仕事ができる</b><p class="wsw__t">BPO、FDE、システム、営業、DTS、衛生清掃、コーポレート。異なる専門性を持つ人と一緒に進めます。</p></li>
+      <li class="wsw__item"><p class="wsw__no en">04</p><svg class="wsw__ic" aria-hidden="true"><use href="#ic2-improve"></use></svg><b class="wsw__h">変化を自分の目で見られる</b><p class="wsw__t">自分たちが関わった改善が、現場の動きや仕事の進め方として返ってきます。</p></li>
+    </ul>
+  </div>
+</section>
+
+<section class="sec sec--tight" id="roles">
+  <div class="wrap">
+    <div class="shead reveal" style="margin-bottom:24px">
+      <p class="slabel">Find your role</p>
+      <h2 class="stitle" style="font-size:clamp(22px,2.6vw,31px)">あなたの専門性で、どんな仕事を支える？</h2>
+      <p class="slead">現場運営、開発、配送、営業、バックオフィス。それぞれの役割から、PALの仕事を支えています。</p>
+    </div>
+    <div class="rpick" id="rolepick">
+      <div class="rtabs" role="tablist" aria-label="職種を選ぶ">
+        <button class="rtab" type="button" role="tab" id="rt-role-bpo" aria-controls="role-bpo" aria-selected="true" tabindex="0"><svg class="rtab__ic" aria-hidden="true"><use href="#ic2-field"></use></svg><b class="rtab__n">物流センター運営</b></button>
+        <button class="rtab" type="button" role="tab" id="rt-role-clean" aria-controls="role-clean" aria-selected="false" tabindex="-1"><svg class="rtab__ic" aria-hidden="true"><use href="#ic-handy"></use></svg><b class="rtab__n">衛生清掃・クレンリネス</b></button>
+        <button class="rtab" type="button" role="tab" id="rt-role-fde" aria-controls="role-fde" aria-selected="false" tabindex="-1"><svg class="rtab__ic" aria-hidden="true"><use href="#ic2-fde"></use></svg><b class="rtab__n">FDE</b></button>
+        <button class="rtab" type="button" role="tab" id="rt-role-system" aria-controls="role-system" aria-selected="false" tabindex="-1"><svg class="rtab__ic" aria-hidden="true"><use href="#ic2-system"></use></svg><b class="rtab__n">システム・プロダクト開発</b></button>
+        <button class="rtab" type="button" role="tab" id="rt-role-dts" aria-controls="role-dts" aria-selected="false" tabindex="-1"><svg class="rtab__ic" aria-hidden="true"><use href="#ic2-transport"></use></svg><b class="rtab__n">配送・運行</b></button>
+        <button class="rtab" type="button" role="tab" id="rt-role-sales" aria-controls="role-sales" aria-selected="false" tabindex="-1"><svg class="rtab__ic" aria-hidden="true"><use href="#ic-meeting"></use></svg><b class="rtab__n">営業・事業開発</b></button>
+        <button class="rtab" type="button" role="tab" id="rt-role-mkt" aria-controls="role-mkt" aria-selected="false" tabindex="-1"><svg class="rtab__ic" aria-hidden="true"><use href="#ic2-data"></use></svg><b class="rtab__n">マーケティング・コンテンツ制作</b></button>
+        <button class="rtab" type="button" role="tab" id="rt-role-staffing" aria-controls="role-staffing" aria-selected="false" tabindex="-1"><svg class="rtab__ic" aria-hidden="true"><use href="#ic-worker"></use></svg><b class="rtab__n">人材派遣営業</b></button>
+        <button class="rtab" type="button" role="tab" id="rt-role-corp" aria-controls="role-corp" aria-selected="false" tabindex="-1"><svg class="rtab__ic" aria-hidden="true"><use href="#ic-office"></use></svg><b class="rtab__n">コーポレート</b></button>
+      </div>
+      <p class="rpick__hint">職種を選ぶと、下に仕事の内容が表示されます（JavaScript非対応環境ではすべて表示されます）。</p>
+      <div class="rpanels">
+
+      <article class="rpanel is-active" role="tabpanel" id="role-bpo" aria-labelledby="rt-role-bpo" tabindex="0">
+        <div class="rpanel__top"><svg class="rpanel__ic" aria-hidden="true"><use href="#ic2-field"></use></svg><div><h3 class="rpanel__n">物流センター運営</h3><p class="rpanel__en en">BPO / Operation</p><p class="rpanel__one">現場を安定させ、改善を進める</p></div></div>
+        <div class="rpanel__body">
+          <div class="rpanel__main"><p class="rpanel__ch">主な仕事</p>
+            <ul class="role-points"><li>各拠点の稼働状況の確認と、人員配置</li><li>作業進捗・品質・安全の管理</li><li>生産性・収支の確認と、業務改善の推進</li><li>取引先との打ち合わせ、現場確認</li><li>拠点間の調整と、改善施策の横展開</li></ul>
+          </div>
+          <div class="rpanel__side"><p class="rpanel__ch">この仕事らしさ</p><p class="rpanel__t">現場を安定して回しながら、より良い運営へ改善していくこと。改善が、そのまま現場の変化になります。</p>
+            <p class="rpanel__ch">関わる相手</p><ul class="role-people"><li>現場スタッフ</li><li>拠点責任者</li><li>取引先</li><li>DX・システム部門</li></ul>
+          </div>
+        </div>
+        <div class="rdeep">
+          <h4 class="rdeep__h">現場を止めずに、やり方を変えていく。</h4>
+          <p class="rdeep__lead">物流センターの運営を預かる仕事です。日々の稼働を安定させながら、人員配置・作業進捗・品質・安全・生産性・収支を見て、現場の改善まで担当します。拠点によって顧客の業態、取り扱う商品、勤務シフトが異なります。</p>
+          <p class="rpanel__ch">仕事の進め方</p>
+          <ol class="rdeep__flow">
+            <li><span class="en">01</span><b>現場の状況を把握する</b><p><span>稼働を見る</span>各拠点の稼働状況を確認し、その日の作業量をつかむ。</p></li>
+            <li><span class="en">02</span><b>人員と作業を組む</b><p><span>人員を配置する</span>作業量に合わせて人員を配置する。</p><p><span>進捗を見る</span>作業の進み方を管理し、滞りがあれば手を打つ。</p></li>
+            <li><span class="en">03</span><b>数値で確かめる</b><p><span>品質と安全</span>作業品質と安全を保つための確認を行う。</p><p><span>生産性と収支</span>生産性・売上・原価を確認し、課題の優先順位を決める。</p></li>
+            <li><span class="en">04</span><b>改善につなげる</b><p><span>やり方を変える</span>作業方法の見直しや機械化を進める。</p><p><span>取引先と話す</span>取引先との打ち合わせや現場確認を重ね、改善提案につなげる。</p></li>
+          </ol>
+          <p class="rdeep__note">新しく受託する拠点では、立ち上げから関わることもあります。</p>
+          <p class="rpanel__ch">この仕事で大切にしていること</p>
+          <ul class="rdeep__pts">
+            <li><i>01</i><div><b>人を増やす前に、作業そのものを疑う</b><p>課題に対して人を増やすだけで解決するのではなく、作業そのものを変えられないか、機械やシステムに置き換えられないかを考えます。</p></div></li>
+            <li><i>02</i><div><b>現場のメンバーの意見から始める</b><p>現場で働くメンバーの意見を大切にしながら、既存のやり方にとらわれない改善を考えます。</p></div></li>
+            <li><i>03</i><div><b>数字と現場の両方から判断する</b><p>生産性や収支の数字と、現場で実際に起きていることの両方を見て決めます。</p></div></li>
+            <li><i>04</i><div><b>顧客と条件を話す（責任者候補の役割）</b><p>拠点によっては、クライアントとの物量・単価・オペレーションの交渉を通じて、拠点の収益改善を担当します。</p></div></li>
+          </ul>
+        </div>
+        <div class="rpanel__foot">
+          <a class="rcbtn rcbtn--main" href="people/bpo.html">この仕事をしている社員の声を読む<i aria-hidden="true">→</i></a>
+          <a class="rcbtn rcbtn--sub" href="jobs/logistics-operation.html">募集要項を見る<i aria-hidden="true">→</i></a>
+        </div>
+      </article>
+
+      <article class="rpanel" role="tabpanel" id="role-clean" aria-labelledby="rt-role-clean" tabindex="0">
+        <div class="rpanel__top"><svg class="rpanel__ic" aria-hidden="true"><use href="#ic-handy"></use></svg><div><h3 class="rpanel__n">衛生清掃・クレンリネス</h3><p class="rpanel__en en">Cleanliness</p><p class="rpanel__one">清掃を、計画と運用で支える</p></div></div>
+        <div class="rpanel__body">
+          <div class="rpanel__main"><p class="rpanel__ch">主な仕事</p>
+            <ul class="role-points"><li>食品プロセスセンターなどの日常清掃・特別清掃</li><li>汚れ方と頻度から考える清掃計画づくり</li><li>各現場の巡回と、清掃状態の確認</li><li>複数センターの進捗・作業終了報告の管理</li><li>見積・請求の作成と、協力会社との連絡</li></ul>
+          </div>
+          <div class="rpanel__side"><p class="rpanel__ch">この仕事らしさ</p><p class="rpanel__t">清掃を実施するだけでなく、計画を考え、複数の現場の運営まで含めて支えること。</p>
+            <p class="rpanel__ch">関わる相手</p><ul class="role-people"><li>各センターの現場</li><li>協力会社</li><li>取引先</li></ul>
+          </div>
+        </div>
+        <div class="rdeep">
+          <h4 class="rdeep__h">清掃をして終わり、ではない。</h4>
+          <p class="rdeep__lead">食品プロセスセンターなどの現場で、日常清掃と特別清掃を行います。汚れの状態と頻度を確認して清掃計画を立て、現場との連携まで担当します。</p>
+          <p class="rpanel__ch">仕事の進め方</p>
+          <ol class="rdeep__flow">
+            <li><span class="en">01</span><b>現場で清掃する</b><p><span>日常清掃・特別清掃</span>食品プロセスセンターなどの現場で清掃を行う。</p></li>
+            <li><span class="en">02</span><b>汚れ方から計画を立てる</b><p><span>清掃計画をつくる</span>汚れの状態と頻度を確認し、どこをどの頻度で清掃するかを考える。</p></li>
+            <li><span class="en">03</span><b>現場を回って確かめる</b><p><span>巡回する</span>各現場を巡回し、清掃状態を確認する。</p><p><span>報告を管理する</span>複数センターの進捗と作業終了報告を管理する。</p></li>
+          </ol>
+          <p class="rdeep__note">見積・請求の作成や協力会社との連絡、クレンリネス課の運営、清掃案件の営業に関わる場合もあります。</p>
+          <p class="rpanel__ch">この仕事で大切にしていること</p>
+          <ul class="rdeep__pts">
+            <li><i>01</i><div><b>困りごとを早くつかむ</b><p>各センターの困りごとをいち早くキャッチし、改善につなげて信頼関係を築きます。</p></div></li>
+            <li><i>02</i><div><b>安全衛生は当然のこととして</b><p>安全衛生を前提としたうえで、現場の状態に常にアンテナを張ります。</p></div></li>
+          </ul>
+        </div>
+        <div class="rpanel__foot"><a class="rcbtn rcbtn--main" href="people/cleaning.html">この仕事をしている社員の声を読む<i aria-hidden="true">→</i></a></div>
+        <p class="rpanel__note">※ クレンリネスは現在募集していません。仕事内容の紹介として掲載しています。</p>
+      </article>
+
+      <article class="rpanel" role="tabpanel" id="role-fde" aria-labelledby="rt-role-fde" tabindex="0">
+        <div class="rpanel__top"><svg class="rpanel__ic" aria-hidden="true"><use href="#ic2-fde"></use></svg><div><h3 class="rpanel__n">FDE</h3><p class="rpanel__en en">Forward Deployed Engineer</p><p class="rpanel__one">現場課題を技術につなぎ、実装まで進める仕事</p></div></div>
+        <div class="rpanel__body">
+          <div class="rpanel__main"><p class="rpanel__ch">主な仕事</p>
+            <ul class="role-points"><li>物流現場での業務課題のヒアリングと整理</li><li>課題を技術要件へ翻訳する</li><li>システム・設備・データとの接続を設計する</li><li>開発・改修と、現場での動作確認</li><li>運用後の問い合わせ対応と改善</li></ul>
+          </div>
+          <div class="rpanel__side"><p class="rpanel__ch">この仕事らしさ</p><p class="rpanel__t">現場の課題を技術要件へ整理し、実際に動く仕組みまで持っていくこと。つくった仕組みが、現場に定着します。</p>
+            <p class="rpanel__ch">関わる相手</p><ul class="role-people"><li>物流現場のスタッフ</li><li>BPO / 現場運営</li><li>システム / プロダクト企画</li></ul>
+          </div>
+        </div>
+        <div class="rdeep">
+          <h4 class="rdeep__h">仕様書だけでは、現場は動かない。だから、現場に入り込む。</h4>
+          <p class="rdeep__lead">FDE（Forward Deployed Engineer）は、顧客の業務課題と技術の間をつなぐエンジニアの職種です。立ち位置は、顧客に近い場所。課題を整理して提案するだけでなく、技術を実際に使える形へ落とし込むところまで関わります。生み出すものは提案書や計画ではなく、現場で使われる仕組みです。</p>
+          <p class="rpanel__ch">仕事の流れ</p>
+          <ol class="rdeep__flow">
+            <li><span class="en">01</span><b>現場を知る</b><p><span>現場へ行く</span>倉庫や配送の現場に入り、実際の動きを見る。</p><p><span>話を聞く</span>現場責任者や作業者に、何に困っているかを聞く。</p></li>
+            <li><span class="en">02</span><b>課題を技術へつなぐ</b><p><span>課題を整理する</span>帳票外の判断や例外処理を書き出し、論点を絞る。</p><p><span>技術要件へ翻訳する</span>現場の言葉を、画面・帳票・データの要件に置き換える。</p></li>
+            <li><span class="en">03</span><b>仕組みをつくる</b><p><span>設計する</span>平常時の運用と、止まったときの切り替えを設計する。</p><p><span>実装する</span>エンジニアと組み、自社プロダクトを現場に合わせて形にする。</p></li>
+            <li><span class="en">04</span><b>使われ方を見て改善する</b><p><span>使われ方を見る</span>導入後に現場へ戻り、実際に使われているかを確認する。</p><p><span>改善する</span>訓練を重ね、手順とシステムを更新し続ける。</p></li>
+          </ol>
+          <p class="rdeep__note">設計・実装・運用は、システム / プロダクト企画やBPO・現場運営などの専門部門と分担して進めます。</p>
+          <p class="rpanel__ch">FDEが大切にしていること</p>
+          <ul class="rdeep__pts">
+            <li><i>01</i><div><b>例外処理を、業務観察から拾い上げる</b><p>仕様書に現れない現場の判断を可視化する。</p></div></li>
+            <li><i>02</i><div><b>暗黙知を、代替運用の設計へ</b><p>属人化していた手順を、ほかの人でも動かせる形にする。</p></div></li>
+            <li><i>03</i><div><b>効率化と、止まったときの切り替えを設計する</b><p>平常時の運用だけでなく、止まったときの手順まで含めて考える。</p></div></li>
+            <li><i>04</i><div><b>訓練を通じて、手順を更新し続ける</b><p>設計して終わりにせず、現場に伴走しながら手順を直していく。</p></div></li>
+          </ul>
+        </div>
+        <div class="rpanel__foot">
+          <a class="rcbtn rcbtn--main" href="people/fde.html">FDEとして働く社員の声を見る<i aria-hidden="true">→</i></a>
+          <a class="rcbtn rcbtn--sub" href="career.html#cp-fde">FDEのキャリアを見る<i aria-hidden="true">→</i></a>
+          <a class="rcbtn rcbtn--sub" href="jobs/fde.html">FDEの募集要項を見る<i aria-hidden="true">→</i></a>
+        </div>
+      </article>
+
+      <article class="rpanel" role="tabpanel" id="role-system" aria-labelledby="rt-role-system" tabindex="0">
+        <div class="rpanel__top"><svg class="rpanel__ic" aria-hidden="true"><use href="#ic2-system"></use></svg><div><h3 class="rpanel__n">システム・プロダクト開発</h3><p class="rpanel__en en">System / Product</p><p class="rpanel__one">現場で使われる仕組みをつくる</p></div></div>
+        <div class="rpanel__body">
+          <div class="rpanel__main"><p class="rpanel__ch">主な仕事</p>
+            <ul class="role-points"><li>現場ヒアリングと要件整理</li><li>物流センター向けAndroidアプリの設計・開発</li><li>OCR・バーコード読み取り、ダッシュボードの開発</li><li>倉庫での実機確認と、改善対応</li><li>現場フィードバックの反映と、活用推進</li></ul>
+          </div>
+          <div class="rpanel__side"><p class="rpanel__ch">この仕事らしさ</p><p class="rpanel__t">つくって引き渡すのではなく、現場で使われる状態まで関わること。見えなかったデータが、判断を変えます。</p>
+            <p class="rpanel__ch">関わる相手</p><ul class="role-people"><li>物流現場</li><li>FDE</li><li>プロダクト企画</li></ul>
+          </div>
+        </div>
+        <div class="rdeep">
+          <h4 class="rdeep__h">つくったものが、どう使われるかを見に行く。</h4>
+          <p class="rdeep__lead">物流センターの現場で使われるプロダクトを、自社で企画・開発します。仕分け作業で使うAndroidアプリ、バーコードの読取、カンバンのOCR読取、出荷日ごとの採番、仕分け状況のダッシュボードなどを、現場の課題に合わせてつくり、リリース後も改善を続けます。</p>
+          <p class="rpanel__ch">仕事の進め方</p>
+          <ol class="rdeep__flow">
+            <li><span class="en">01</span><b>現場の要望を聞く</b><p><span>ヒアリングする</span>現場の要望を聞き、要件を整理する。</p></li>
+            <li><span class="en">02</span><b>設計・開発する</b><p><span>機能をつくる</span>Androidアプリ、読み取り機能、ダッシュボードなどを設計・開発する。</p></li>
+            <li><span class="en">03</span><b>倉庫で確かめる</b><p><span>実機で確認する</span>倉庫で実際に動かして確認し、改善に対応する。</p></li>
+            <li><span class="en">04</span><b>リリース後も直し続ける</b><p><span>反映する</span>現場からのフィードバックを機能追加や改善として反映する。</p><p><span>使われる状態にする</span>活用推進まで関わる。</p></li>
+          </ol>
+          <p class="rpanel__ch">この仕事で大切にしていること</p>
+          <ul class="rdeep__pts">
+            <li><i>01</i><div><b>止められない現場に出すということ</b><p>現場の作業は止められない一方で、改善のスピードも同時に求められます。不具合が出たときの切り戻しや修正方法を事前に用意したうえでリリースします。</p></div></li>
+            <li><i>02</i><div><b>使う人の顔が見える距離でつくる</b><p>つくって引き渡すのではなく、現場で使われる状態まで関わります。</p></div></li>
+            <li><i>03</i><div><b>FDEとの役割の違い</b><p>FDEは現場の課題を技術要件へ整理し、各部門と連携して実装・改善につなぐ役割です。System / Product は自社プロダクトそのものの企画・開発を担当します。同じ案件で連携します。</p></div></li>
+          </ul>
+        </div>
+        <div class="rpanel__foot">
+          <a class="rcbtn rcbtn--main" href="people/system.html">この仕事をしている社員の声を読む<i aria-hidden="true">→</i></a>
+          <a class="rcbtn rcbtn--sub" href="jobs/openings/system-engineer.html">募集要項を見る<i aria-hidden="true">→</i></a>
+        </div>
+      </article>
+
+      <article class="rpanel" role="tabpanel" id="role-dts" aria-labelledby="rt-role-dts" tabindex="0">
+        <div class="rpanel__top"><svg class="rpanel__ic" aria-hidden="true"><use href="#ic2-transport"></use></svg><div><h3 class="rpanel__n">配送・運行</h3><p class="rpanel__en en">DTS / Transport</p><p class="rpanel__one">安全・品質・時間を守って届ける</p></div></div>
+        <div class="rpanel__body">
+          <div class="rpanel__main"><p class="rpanel__ch">主な仕事</p>
+            <ul class="role-points"><li>配送業務・納品対応</li><li>車両点検と、運行前後の確認</li><li>安全運転・配送品質の維持</li><li>配車と運行状況の確認・調整</li><li>配送先・物流センターとの連携</li></ul>
+          </div>
+          <div class="rpanel__side"><p class="rpanel__ch">この仕事らしさ</p><p class="rpanel__t">届けるだけでなく、安全・品質・時間を同時に守ること。組み直した計画が、そのとおり回ります。</p>
+            <p class="rpanel__ch">関わる相手</p><ul class="role-people"><li>配送先</li><li>物流センター</li><li>ドライバー</li></ul>
+          </div>
+        </div>
+        <div class="rdeep">
+          <h4 class="rdeep__h">運ぶ人と、運行を組む人。</h4>
+          <p class="rdeep__lead">DTS事業部・運送課には、実際に配送を担当するドライバーの仕事と、配車・運行を組む営業所の仕事があります。現在募集しているのは、千葉県船橋市のafs船橋センターを拠点とする4t・10tルート配送ドライバーです。</p>
+          <p class="rpanel__ch">配送ドライバーの仕事の流れ</p>
+          <ol class="rdeep__flow">
+            <li><span class="en">01</span><b>出勤・出発準備</b><p><span>点検する</span>営業所に出勤し、アルコールチェックと車両の点検を行う。</p></li>
+            <li><span class="en">02</span><b>積み込み・確認</b><p><span>確認する</span>用意されたカゴ車と、専用端末で配送先を確認する。</p><p><span>積み込む</span>カゴ車をトラックに積み込み、配送先へ出発する。</p></li>
+            <li><span class="en">03</span><b>店舗へ配送</b><p><span>降ろす</span>店舗に到着し、パワーゲートを使ってカゴ車を降ろす。</p></li>
+            <li><span class="en">04</span><b>回収・帰庫</b><p><span>回収する</span>納品後、サンテナやカゴ車を回収する。</p><p><span>戻る</span>すべてのルートを回り終えたら営業所に戻り、片付けて退勤する。</p></li>
+          </ol>
+          <p class="rdeep__note">※ 上は現在募集中の配送ドライバーの仕事です。営業所の管理の仕事（顧客とのやり取り、配車・配送計画、売上管理、ドライバー管理、新規営業）は、社員インタビューで紹介している役割で、この募集の仕事内容とは異なります。</p>
+          <p class="rpanel__ch">この仕事で大切にしていること</p>
+          <ul class="rdeep__pts">
+            <li><i>01</i><div><b>安全・品質・時間を同時に守る</b><p>届けるだけでなく、安全運転と配送品質、時間の3つを同時に守ります。</p></div></li>
+            <li><i>02</i><div><b>その日の配送が成立する組み方を決める（営業所の管理の役割）</b><p>どの車両をどう動かせば、その日の顧客の配送が成立するのか。営業所では、そこを決めることが仕事になります。</p></div></li>
+            <li><i>03</i><div><b>まずやってみて、相談する（営業所の管理の役割）</b><p>運行については、まずやってみる。そのうえで、本部長やほかの管理者に相談する。</p></div></li>
+          </ul>
+        </div>
+        <div class="rpanel__foot">
+          <a class="rcbtn rcbtn--main" href="people/dts.html">運送部の社員インタビューを見る<i aria-hidden="true">→</i></a>
+          <a class="rcbtn rcbtn--sub" href="jobs/dts.html">配送ドライバーの募集要項を見る<i aria-hidden="true">→</i></a>
+        </div>
+        <p class="rpanel__note">※ 現在の募集職種は配送ドライバー（4t・10t）です。</p>
+      </article>
+
+      <article class="rpanel" role="tabpanel" id="role-sales" aria-labelledby="rt-role-sales" tabindex="0">
+        <div class="rpanel__top"><svg class="rpanel__ic" aria-hidden="true"><use href="#ic-meeting"></use></svg><div><h3 class="rpanel__n">営業・事業開発</h3><p class="rpanel__en en">Engagement / Sales・BizDev</p><p class="rpanel__one">顧客課題を次の提案につなげる</p></div></div>
+        <div class="rpanel__body">
+          <div class="rpanel__main"><p class="rpanel__ch">主な仕事</p>
+            <ul class="role-points"><li>既存顧客への定期的な連絡と、関係づくり</li><li>新しい顧客との接点づくり</li><li>現場見学・課題のヒアリングと整理</li><li>新たな提案・事業機会づくり</li><li>現場・組織の状態把握と、各部門との連携</li><li>顧客課題と市場機会の整理</li><li>新しい事業・サービスの可能性を形にする</li></ul>
+          </div>
+          <div class="rpanel__side"><p class="rpanel__ch">この仕事らしさ</p><p class="rpanel__t">要望の裏にある、本当の課題を探すこと。一つの相談が、プロジェクトになります。顧客課題や市場機会をもとに、新しい事業・サービスの可能性を形にすることもあります。</p>
+            <p class="rpanel__ch">関わる相手</p><ul class="role-people"><li>顧客</li><li>センター長</li><li>FDE</li><li>BPO</li><li>システム / プロダクト</li><li>DTS</li><li>社内の各専門部門</li></ul>
+          </div>
+        </div>
+        <div class="rdeep">
+          <h4 class="rdeep__h">要望の裏にある、本当の課題を探す。</h4>
+          <p class="rdeep__lead">顧客との接点をつくり、現場を見て課題を整理し、社内の専門部門へつなぐ仕事です。あわせて、顧客課題や市場機会をもとに新しい事業・サービスの可能性を検討する事業開発（BizDev）も、同じ枠組みのなかにあります。営業と事業開発は、それぞれの役割を持ちながら連携します。</p>
+          <p class="rpanel__ch">営業と事業開発、それぞれの役割</p>
+          <ol class="rdeep__flow">
+            <li><span class="en">SALES</span><b>Engagement / Sales</b><p><span>担うこと</span>顧客との関係づくりと課題の把握、提案機会の創出を担当する。</p></li>
+            <li><span class="en">BIZDEV</span><b>BizDev</b><p><span>担うこと</span>顧客課題や市場機会をもとに、新しい事業・サービスの可能性を検討し、形にする。</p></li>
+          </ol>
+          <p class="rpanel__ch">仕事の進め方</p>
+          <ol class="rdeep__flow">
+            <li><span class="en">01</span><b>接点をつくる</b><p><span>会う</span>会社紹介から始め、顧客を実際の現場に招く。</p><p><span>掘り起こす</span>休眠顧客・潜在顧客へ訪問・面談でアプローチする。</p></li>
+            <li><span class="en">02</span><b>現場を見て、課題を聞く</b><p><span>見学する</span>現場見学をしながら課題をヒアリングする。</p></li>
+            <li><span class="en">03</span><b>提案できる範囲を見極める</b><p><span>特定する</span>PALが提案できる範疇を特定する。</p><p><span>整理する</span>課題に必要なデータを分析し、初回提案の方向性を整理する。</p></li>
+            <li><span class="en">04</span><b>社内へつなぐ</b><p><span>トスアップする</span>設計部門や社内の提案専門組織へつなぐ。</p><p><span>還元する</span>顧客の反応をマーケティング部門へ戻し、施策の精度を高める。</p></li>
+          </ol>
+          <p class="rdeep__note">提案から現場導入までは、FDE・BPO・システム / プロダクト・DTSと分担して進めます。</p>
+          <p class="rpanel__ch">この仕事で大切にしていること</p>
+          <ul class="rdeep__pts">
+            <li><i>01</i><div><b>すぐ受注にならなくても、関係を続ける</b><p>長期的な視点でお客様との関係構築を続ける工夫を大切にしています。</p></div></li>
+            <li><i>02</i><div><b>現場と経営の両方の視点で見る</b><p>現場の課題だけでなく、経営的な視点での課題も深く理解します。</p></div></li>
+            <li><i>03</i><div><b>一次情報を社内へ戻す</b><p>現場で得た顧客の反応をマーケティング部門へ還元し、施策の精度を高めます。</p></div></li>
+          </ul>
+        </div>
+        <div class="rpanel__foot">
+          <a class="rcbtn rcbtn--main" href="people/sales.html">この仕事をしている社員の声を読む<i aria-hidden="true">→</i></a>
+          <a class="rcbtn rcbtn--sub" href="jobs/openings/engagement-member.html">募集要項を見る<i aria-hidden="true">→</i></a>
+        </div>
+        <p class="rpanel__note">※ 募集職種は「エンゲージメント・新規営業」です。</p>
+      </article>
+
+      <article class="rpanel" role="tabpanel" id="role-mkt" aria-labelledby="rt-role-mkt" tabindex="0">
+        <div class="rpanel__top"><svg class="rpanel__ic" aria-hidden="true"><use href="#ic2-data"></use></svg><div><h3 class="rpanel__n">マーケティング・コンテンツ制作</h3><p class="rpanel__en en">Marketing / Content</p><p class="rpanel__one">市場と現場の情報を、顧客との接点に変える</p></div></div>
+        <div class="rpanel__body">
+          <div class="rpanel__main"><p class="rpanel__ch">主な仕事</p>
+            <ul class="role-points"><li>コーポレートサイト・LPの企画、制作、運用、改善</li><li>コラム・動画・SNS・メールマガジンなどの企画・制作</li><li>広告・販促物の企画、制作、運用</li><li>アクセス解析や検索データをもとにした改善</li><li>問い合わせ・資料ダウンロードなどの反応分析</li><li>市場・顧客ニーズ・検索ニーズの情報収集</li><li>各部署へのヒアリングと情報整理</li><li>営業部門への反応共有・施策連携</li></ul>
+          </div>
+          <div class="rpanel__side"><p class="rpanel__ch">この仕事らしさ</p><p class="rpanel__t">市場・顧客・現場から情報を集め、それをWebやコンテンツに落とし込み、新しい接点や営業機会へつなげていくこと。制作して終わりではなく、アクセスや反応を見ながら改善を続けます。</p>
+            <p class="rpanel__ch">関わる相手</p>
+            <p class="rpeople__g">顧客</p><ul class="role-people"><li>潜在顧客</li><li>既存顧客</li></ul>
+            <p class="rpeople__g">社内各部署</p><ul class="role-people"><li>Engagement / Sales</li><li>BizDev</li><li>BPO / 現場運営</li><li>DTS</li><li>FDE</li><li>System / Product</li><li>Cleanliness</li><li>Corporate</li></ul>
+            <p class="rpeople__g">外部パートナー</p><ul class="role-people"><li>広告代理店</li><li>制作パートナー</li></ul>
+          </div>
+        </div>
+        <div class="rdeep">
+          <h4 class="rdeep__h">情報を集め、伝わる形に変え、新しい接点をつくる。</h4>
+          <p class="rdeep__lead">マーケティング・コンテンツ制作は、Webサイト・LP・コラム・動画・SNS・メールマガジン・広告などを企画し、制作・運用・改善まで担当する仕事です。</p>
+          <p class="rdeep__lead">施策をつくる前には、顧客の反応や検索データ、市場の変化だけでなく、BPO・DTS・FDE・営業など社内各部署から現場の情報を集めます。</p>
+          <p class="rdeep__lead">集めた情報を、誰に何をどう伝えるか整理し、Webやコンテンツとして形にしたうえで、公開後のアクセスや問い合わせの反応を見ながら改善していきます。担当する媒体と範囲は役割によって異なります。</p>
+          <p class="rpanel__ch">仕事の進め方</p>
+          <ol class="rdeep__flow">
+            <li><span class="en">01 INFORMATION</span><b>集める</b><p>顧客の反応、市場動向、検索データ、社内各部署から現場の情報を集める。</p></li>
+            <li><span class="en">02 STRUCTURE</span><b>整理する</b><p>誰に、何を、どう伝えるべきかを整理し、施策の目的を決める。</p></li>
+            <li><span class="en">03 PLAN</span><b>企画する</b><p>LP、Webサイト、コラム、動画、SNS、メルマガ、広告など、最適な手段を考える。</p></li>
+            <li><span class="en">04 CREATE</span><b>つくる・届ける</b><p>コンテンツを制作し、Web・広告・メールなどを通じて公開・配信する。</p></li>
+            <li><span class="en">05 IMPROVE</span><b>分析して改善する</b><p>アクセス、検索、問い合わせ、資料ダウンロードなどの反応を確認し、次の改善へつなげる。</p></li>
+          </ol>
+        </div>
+        <p class="rpanel__note">※ マーケティング・コンテンツ制作は現在募集していません。仕事内容の紹介として掲載しています。</p>
+      </article>
+
+      <article class="rpanel" role="tabpanel" id="role-staffing" aria-labelledby="rt-role-staffing" tabindex="0">
+        <div class="rpanel__top"><svg class="rpanel__ic" aria-hidden="true"><use href="#ic-worker"></use></svg><div><h3 class="rpanel__n">人材派遣営業</h3><p class="rpanel__en en">Staffing Sales</p><p class="rpanel__one">人材の提案から、物流現場の改善につなげる</p></div></div>
+        <div class="rpanel__body">
+          <div class="rpanel__main"><p class="rpanel__ch">主な仕事</p>
+            <ul class="role-points"><li>求人を出している企業へのアプローチ</li><li>既存顧客からの他拠点紹介</li><li>欠員や業務ボトルネックのヒアリング</li><li>物流倉庫への人材派遣の提案</li><li>自社開発の勤怠管理システム・作業可視化システムの導入提案</li></ul>
+          </div>
+          <div class="rpanel__side"><p class="rpanel__ch">この仕事らしさ</p><p class="rpanel__t">物流現場の人員課題に向き合いながら、勤怠管理や作業可視化の仕組みを活用し、自動化・省人化につながる提案にも関われること。</p>
+            <p class="rpanel__ch">関わる相手</p><ul class="role-people"><li>物流倉庫の顧客企業</li><li>既存顧客</li><li>営業事務</li></ul>
+          </div>
+        </div>
+        <div class="rdeep">
+          <h4 class="rdeep__h">人材の提案だけで、終わらない。</h4>
+          <p class="rdeep__lead">物流倉庫への人材派遣の法人営業です。労働力の提供にとどまらず、顧客の課題に応じて、社内の専門部署と連携しながらシステムの活用や省人化につながる提案までを行います。求職者対応は営業事務が担当しているため、営業は企業への提案に時間を使えます。</p>
+          <p class="rpanel__ch">仕事の進め方</p>
+          <ol class="rdeep__flow">
+            <li><span class="en">01</span><b>顧客との接点をつくる</b><p><span>案件を獲得する</span>求人を出している企業へアプローチする。</p><p><span>広げる</span>既存顧客から、ほかの拠点を紹介してもらう。</p></li>
+            <li><span class="en">02</span><b>現場の課題を聞く</b><p><span>欠員を確認する</span>人員の欠員状況を確認する。</p><p><span>詰まりを探す</span>業務上のボトルネックをヒアリングする。</p></li>
+            <li><span class="en">03</span><b>人材・仕組みを提案する</b><p><span>人材を提案する</span>顧客の人員課題に応じた人材派遣を提案する。</p><p><span>仕組みを提案する</span>課題に応じて、社内の専門部署と連携しながら、自社開発の勤怠管理や作業可視化のシステムを提案する。</p></li>
+            <li><span class="en">04</span><b>営業活動を管理・改善する</b><p><span>逆算する</span>目標から逆算した行動計画を立てる。</p><p><span>見直す</span>営業行動の量と質を高め、プロセス管理を自ら実践する。</p></li>
+          </ol>
+          <p class="rdeep__note">4段階は仕事の流れを理解しやすくするための整理で、すべての案件がこの順に進むわけではありません。</p>
+          <p class="rpanel__ch">この仕事で大切にしていること</p>
+          <ul class="rdeep__pts">
+            <li><i>01</i><div><b>人の課題を入口に、現場の課題を見る</b><p>欠員だけでなく、どこに時間がかかっているのかまで聞きにいきます。</p></div></li>
+            <li><i>02</i><div><b>自社のシステムを提案に使う</b><p>作業可視化システムなどで現場の状況をデータにし、社内の専門部署とともに自動化・省人化につながる提案へつなげます。</p></div></li>
+            <li><i>03</i><div><b>目標から逆算して動く</b><p>組織の営業行動量と質を高め、目標達成に向けたプロセス管理を自ら実践します。</p></div></li>
+            <li><i>04</i><div><b>店舗運営・労務管理の経験が活きる</b><p>店長・副店長などで労務管理を経験した方が、その経験を活かして働いています。</p></div></li>
+          </ul>
+        </div>
+        <div class="rpanel__foot"><a class="rcbtn rcbtn--main" href="jobs/openings/staffing-sales-leader.html">募集要項を見る<i aria-hidden="true">→</i></a></div>
+        <p class="rpanel__note">応募条件・勤務地・給与は<a class="textlink textlink--sm" href="jobs/openings/staffing-sales-leader.html">募集要項</a>をご覧ください。</p>
+      </article>
+
+      <article class="rpanel" role="tabpanel" id="role-corp" aria-labelledby="rt-role-corp" tabindex="0">
+        <div class="rpanel__top"><svg class="rpanel__ic" aria-hidden="true"><use href="#ic-office"></use></svg><div><h3 class="rpanel__n">コーポレート</h3><p class="rpanel__en en">Corporate</p><p class="rpanel__one">人・組織・会社運営を支える</p></div></div>
+        <div class="rpanel__body">
+          <div class="rpanel__main"><p class="rpanel__ch">主な仕事</p>
+            <ul class="role-points"><li>経理・総務・労務・法務など、事業と組織を支える仕事</li><li>採用などの人事業務（労務が担当）</li><li>社宅・社用車・通信・資産管理などの日常業務（総務）</li><li>社内申請のシステム化</li><li>業務フロー改善</li><li>関係部署との打ち合わせと、中長期的な課題への対応</li></ul>
+          </div>
+          <div class="rpanel__side"><p class="rpanel__ch">この仕事らしさ</p><p class="rpanel__t">日常業務を支えながら、社内の仕組み自体も改善していくこと。</p>
+            <p class="rpanel__ch">関わる相手</p><ul class="role-people"><li>各部署のメンバー</li><li>社員</li></ul>
+          </div>
+        </div>
+        <div class="rdeep">
+          <h4 class="rdeep__h">社員が働くための業務と、会社運営の業務。</h4>
+          <p class="rdeep__lead">経理・総務・労務・法務の4領域があり、事業と組織を支える仕事です。採用などの人事業務は労務が担当しています。社員が日々働くために必要な業務と、会社運営に関わる業務の両方があり、担当する領域は部署や役割によって異なります。ここで紹介しているのは総務課の仕事です。</p>
+          <p class="rpanel__ch">仕事の進め方</p>
+          <ol class="rdeep__flow">
+            <li><span class="en">01</span><b>日常業務を管理する</b><p><span>進捗を見る</span>社宅・社用車・通信・各種保険・事故対応・資産管理などの進捗を管理する。</p></li>
+            <li><span class="en">02</span><b>会社運営の業務を進める</b><p><span>手続きを担う</span>会社の登記関連業務や、プライバシーマークの維持などを担当する。</p></li>
+            <li><span class="en">03</span><b>仕組みを改善する</b><p><span>直す</span>社内申請のシステム化や、業務フローの見直しに取り組む。</p></li>
+          </ol>
+          <p class="rdeep__note">ここで紹介しているのは総務課の業務です。</p>
+          <p class="rpanel__ch">この仕事で大切にしていること</p>
+          <ul class="rdeep__pts">
+            <li><i>01</i><div><b>離れた場所の人に、早く返す</b><p>リモート勤務や各拠点の現場担当者との連絡は基本的にチャットが中心となるため、できるだけ迅速に回答することを心がけています。</p></div></li>
+            <li><i>02</i><div><b>正確に進めたうえで、仕組みをつくる</b><p>日常業務を正確に進めるだけでなく、会社全体の生産性向上につながる仕組みづくりにも取り組みます。</p></div></li>
+          </ul>
+        </div>
+        <div class="rpanel__foot">
+          <a class="rcbtn rcbtn--main" href="people/corporate.html">この仕事をしている社員の声を読む<i aria-hidden="true">→</i></a>
+          <a class="rcbtn rcbtn--sub" href="jobs.html#job-hr">人事の募集状況を見る<i aria-hidden="true">→</i></a>
+        </div>
+      </article>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec sec--tight" id="connect">
+  <div class="wrap">
+    <div class="shead reveal" style="margin-bottom:24px">
+      <p class="slabel">How roles connect</p>
+      <h2 class="stitle" style="font-size:clamp(22px,2.6vw,31px)">職種は、つながって一つの仕事になる。</h2>
+      <p class="slead">課題を見つける人、現場で動く形にする人、専門領域で支える人。関わる場面は違っても、ひとつの流れのなかでつながっています。</p>
+    </div>
+    <div class="rolemap reveal" aria-label="9職種の役割比較">
+      <div class="rolemap__stage">
+        <p class="rolemap__stage-h"><span class="en">01 ／ 顧客の課題を見つける</span></p>
+        <div class="rolemap__nodes">
+          <a class="rolemap__node" href="#role-sales"><b>営業・事業開発</b><span class="en">Engagement / Sales・BizDev</span><span class="one">顧客課題を次の提案につなげる</span><span class="rst rst--on">募集中</span></a>
+          <a class="rolemap__node" href="#role-mkt"><b>マーケティング・コンテンツ制作</b><span class="en">Marketing / Content</span><span class="one">市場と現場の情報を、顧客との接点に変える</span><span class="rst">募集なし</span></a>
+          <a class="rolemap__node" href="#role-staffing"><b>人材派遣営業</b><span class="en">Staffing Sales</span><span class="one">人材の提案から、物流現場の改善につなげる</span><span class="rst rst--on">募集中</span></a>
+        </div>
+      </div>
+      <div class="rolemap__stage">
+        <p class="rolemap__stage-h"><span class="en">02 ／ 技術で解ける形にする</span></p>
+        <div class="rolemap__nodes">
+          <a class="rolemap__node" href="#role-fde"><b>FDE</b><span class="en">Forward Deployed Engineer</span><span class="one">現場課題を技術につなぎ、実装まで進める仕事</span><span class="rst rst--on">募集中</span></a>
+          <a class="rolemap__node" href="#role-system"><b>システム・プロダクト開発</b><span class="en">System / Product</span><span class="one">現場で使われる仕組みをつくる</span><span class="rst rst--on">募集中</span></a>
+        </div>
+      </div>
+      <div class="rolemap__stage">
+        <p class="rolemap__stage-h"><span class="en">03 ／ 現場で動かす</span></p>
+        <div class="rolemap__nodes">
+          <a class="rolemap__node" href="#role-bpo"><b>物流センター運営</b><span class="en">BPO / Operation</span><span class="one">現場を安定させ、改善を進める</span><span class="rst rst--on">募集中</span></a>
+          <a class="rolemap__node" href="#role-clean"><b>衛生清掃・クレンリネス</b><span class="en">Cleanliness</span><span class="one">清掃を、計画と運用で支える</span><span class="rst">募集なし</span></a>
+          <a class="rolemap__node" href="#role-dts"><b>配送・運行</b><span class="en">DTS / 運送・運行</span><span class="one">安全・品質・時間を守って届ける</span><span class="rst rst--on">募集中</span></a>
+        </div>
+      </div>
+      <div class="rolemap__stage">
+        <p class="rolemap__stage-h"><span class="en">04 ／ 運用し、改善する</span></p>
+        <p class="rolemap__note">現場で出た声が、次の提案と改善に戻っていきます（01〜03は固定の順路ではなく、現場での気づきが随時フィードバックされます）。</p>
+      </div>
+      <div class="rolemap__stage rolemap__stage--support">
+        <p class="rolemap__stage-h"><span class="en">SUPPORT</span></p>
+        <p class="rolemap__t"><a class="rolemap__corp" href="#role-corp">Corporate</a>が、各部門の働く環境を支えます。<span class="rst rst--soon" style="margin-left:8px">募集予定</span></p>
+      </div>
+    </div>
+    <p class="rolemap__hint">各カードは work.html の「How roles connect」にある既存の4グループ分け（本番 .wflow と同一のグルーピング・リンク先）をもとにした一覧比較です。矢印による一方向の業務フローとしては表現していません。職種名をクリックすると、上の「あなたの専門性で、どんな仕事を支える？」の該当する仕事内容が開きます。</p>
+  </div>
+</section>
+</main>
+
+<section class="entry">
+  <div class="entry__media"><img src="../assets/images/hero-bg.jpg" alt="" width="2752" height="1536" loading="lazy" aria-hidden="true"></div>
+  <div class="entry__inner wrap--narrow reveal">
+    <p class="entry__label en">NEXT STEP</p>
+    <h2>この仕事に興味を持った方へ。</h2>
+    <p>募集中の職種と条件は募集要項に掲載しています。選考時のWeb面接にも対応しています。</p>
+    <div class="entry__ctas"><a class="btn btn--red btn--lg" href="jobs.html">募集中の職種を見る<span class="btn__ico" aria-hidden="true">▶</span></a></div>
+    <p class="entry__sec"><a href="faq.html">よくある質問を見る</a></p>
+  </div>
+</section>
+
+<footer class="ftr">
+  <div class="wrap">
+    <div class="ftr__top">
+      <div class="ftr__about">
+        <a class="logo" href="home.html" style="color:#fff"><span class="logo__mark" style="background:#fff;color:var(--navy-d)">PAL</span><span class="logo__txt">RECRUIT<small style="color:#a2a2a2">株式会社PAL 採用サイト</small></span></a>
+        <p>株式会社PAL｜DXソリューションカンパニー。「物流をコストから、戦略資産に。」を掲げ、分断された物流現場・システム・設備・データをつなぎ、物流DXの設計・実装・運用・改善までを担います。</p>
+        <dl class="ftr__info"><dt>会社名</dt><dd>株式会社PAL</dd><dt>設立</dt><dd>2000年12月</dd><dt>代表</dt><dd>辻 有吾</dd><dt>資本金</dt><dd>9,000万円</dd><dt>従業員</dt><dd>120名<br>アルバイト・パートを含めると約1,600名</dd><dt>拠点</dt><dd>大阪本社 / 東京オフィス</dd></dl>
+      </div>
+      <div><h3>RECRUIT</h3><nav aria-label="採用サイト内ナビゲーション"><a href="about.html">PALを知る</a><a href="work.html">仕事を知る</a><a href="career.html">キャリアパス</a><a href="people.html">社員インタビュー・1日の流れ</a><a href="jobs.html">募集要項</a><a href="faq.html">よくある質問</a><span class="applyoff">エントリー（準備中）</span></nav></div>
+      <div><h3>COMPANY</h3><nav aria-label="コーポレートサイトへのリンク">
+        <a href="https://www.pal-style.co.jp/about/mission/" target="_blank" rel="noopener">ミッション・バリュー</a>
+        <a href="https://www.pal-style.co.jp/about/message/" target="_blank" rel="noopener">トップメッセージ</a>
+        <a href="https://www.pal-style.co.jp/about/role/" target="_blank" rel="noopener">私たちの役割</a>
+        <a href="https://www.pal-style.co.jp/service/" target="_blank" rel="noopener">サービス・事業</a>
+        <a href="https://www.pal-style.co.jp/case/" target="_blank" rel="noopener">物流DX事例</a>
+        <a href="https://www.pal-style.co.jp/company/" target="_blank" rel="noopener">会社概要</a>
+        <a href="https://www.pal-style.co.jp/contact-service/" target="_blank" rel="noopener">お問い合わせ（サービスについて）</a>
+      </nav></div>
+    </div>
+    <div class="ftr__bottom"><small>© 2026 PAL Co., Ltd.</small><small>株式会社PAL コーポレートサイト：<a href="https://www.pal-style.co.jp/" target="_blank" rel="noopener" style="color:#e2e2e2;text-decoration:underline;text-underline-offset:3px">www.pal-style.co.jp</a></small></div>
+  </div>
+</footer>
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+<defs><style>.s{fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}.a{fill:none;stroke:#cf131b;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}</style></defs>
+<symbol id="ic-handy" viewBox="0 0 32 32"><rect class="s" x="9" y="3" width="14" height="22" rx="3"/><path class="s" d="M13 8h6M13 12h6"/><path class="a" d="M12 17h8"/><path class="s" d="M16 25v4"/></symbol>
+<symbol id="ic-worker" viewBox="0 0 32 32"><path class="a" d="M9 11a7 7 0 0114 0"/><path class="s" d="M7 11h18"/><circle class="s" cx="16" cy="17" r="3.5"/><path class="s" d="M8 29c0-4.4 3.6-8 8-8s8 3.6 8 8"/></symbol>
+<symbol id="ic-office" viewBox="0 0 32 32"><circle class="s" cx="16" cy="10" r="4.5"/><path class="s" d="M6 28c0-5.5 4.5-10 10-10s10 4.5 10 10"/><path class="a" d="M16 20v8"/></symbol>
+<symbol id="ic-meeting" viewBox="0 0 32 32"><path class="s" d="M4 6h17a2 2 0 012 2v8a2 2 0 01-2 2H11l-5 4v-4H4a2 2 0 01-2-2V8a2 2 0 012-2z" transform="translate(2 1)"/><path class="a" d="M10 12h10"/><path class="s" d="M10 16h6"/></symbol>
+<symbol id="ic2-field" viewBox="0 0 32 32"><path class="s" d="M3 6v21M11 6v21M3 13h8M3 20h8"/><rect class="a" x="4.5" y="14.5" width="5" height="4"/><circle class="s" cx="22" cy="12" r="3.5"/><path class="s" d="M15.5 27c0-3.6 2.9-6.5 6.5-6.5s6.5 2.9 6.5 6.5"/></symbol>
+<symbol id="ic2-data" viewBox="0 0 32 32"><rect class="s" x="4" y="4" width="24" height="15" rx="2"/><path class="a" d="M10 15v-4M15 15v-7M20 15v-3"/><circle class="s" cx="16" cy="24" r="2.6"/><path class="s" d="M10.5 30c0-3 2.5-5.5 5.5-5.5s5.5 2.5 5.5 5.5"/></symbol>
+<symbol id="ic2-fde" viewBox="0 0 32 32"><path class="s" d="M2 9v14M6.5 9v14M2 16h4.5"/><rect class="s" x="24" y="10" width="7" height="10" rx="1.5"/><circle class="s" cx="16" cy="10" r="3.5"/><path class="s" d="M10.5 22c0-3 2.5-5.5 5.5-5.5s5.5 2.5 5.5 5.5"/><path class="a" d="M8.5 16h3M20.5 16h3"/></symbol>
+<symbol id="ic2-system" viewBox="0 0 32 32"><rect class="s" x="9" y="7" width="18" height="13" rx="2"/><path class="s" d="M5 25h26l-2-5H9z"/><path class="a" d="M15 11l-2.5 2.5L15 16M21 11l2.5 2.5L21 16"/></symbol>
+<symbol id="ic2-transport" viewBox="0 0 32 32"><path class="s" d="M2 8h13v11H2zM15 11h4.5l4 4v4H15z"/><circle class="s" cx="8" cy="22.5" r="2.2"/><circle class="s" cx="21" cy="22.5" r="2.2"/><path class="a" d="M3 28h26"/><path class="s" d="M5 13h6"/></symbol>
+<symbol id="ic2-improve" viewBox="0 0 32 32"><path class="s" d="M4 27h25"/><path class="a" d="M7 22l6-6 4 3 8-9"/><path class="a" d="M21 10h4v4"/><circle class="s" cx="9" cy="8" r="2.6"/><path class="s" d="M4 16c0-2.8 2.2-5 5-5s5 2.2 5 5"/></symbol>
+</svg>
+<script src="../assets/js/app.js" defer></script>
+<script>
+(function(){
+  "use strict";
+  var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion:reduce)').matches;
+  var targets = document.querySelectorAll('.reveal');
+  if(reduce){ targets.forEach(function(el){ el.classList.add('is-in'); }); return; }
+  if('IntersectionObserver' in window && targets.length){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){ if(en.isIntersecting){ en.target.classList.add('is-in'); io.unobserve(en.target); } });
+    },{threshold:.12, rootMargin:'0px 0px -6% 0px'});
+    targets.forEach(function(t){ io.observe(t); });
+  } else { targets.forEach(function(t){ t.classList.add('is-in'); }); }
+})();
+</script>
+</body>
+</html>

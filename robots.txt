@@ -1,0 +1,11 @@
+# 社内デザインレビュー用のプレビュー。
+#
+# 【方針】クロールは許可し、各ページの <meta name="robots" content="noindex,nofollow">
+# で検索結果への登録を防ぐ。
+# Disallow: / でクロール自体を止めると、クローラーが noindex を読み取れず、
+# 外部リンク経由でURLだけが検索結果に載る場合がある（Google の案内による）。
+# そのため、ここでは Disallow を使わない。
+#
+# 【注意】noindex はアクセス制限ではない。URLを知っていれば誰でも閲覧できる。
+User-agent: *
+Allow: /

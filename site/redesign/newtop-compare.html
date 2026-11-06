@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>【試作・非公開】TOP 3案比較（操作可能プレビュー版）｜PAL採用サイト リデザイン検証</title>
+<link rel="stylesheet" href="../assets/css/style.css">
+<style>
+body{background:var(--gray-50)}
+.cmp-notice{background:#000;color:#fff;padding:10px 20px;font-size:12.5px;text-align:center;line-height:1.7}
+.cmp-notice b{color:#ff8186}
+.cmp-head{background:var(--black);color:#fff;padding:32px 24px 26px}
+.cmp-head .wrap{max-width:1320px;margin:0 auto}
+.cmp-head h1{font-size:clamp(20px,2.6vw,27px);font-weight:900;margin-bottom:8px}
+.cmp-head p{color:#c7c9d6;font-size:13px;line-height:1.85;max-width:980px}
+.cmp-head .notapproved{display:inline-block;margin-top:12px;background:var(--red);color:#fff;font-weight:800;font-size:12px;padding:6px 14px;letter-spacing:.03em}
+.cmp-entrynav{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;margin-top:16px;padding-top:14px;border-top:1px solid rgba(255,255,255,.18)}
+.cmp-entrynav__lbl{font-size:11.5px;color:#9496ab;font-weight:700}
+.cmp-entrynav a{font-size:12.5px;font-weight:700;color:#fff;background:rgba(255,255,255,.12);padding:7px 13px;border-radius:3px;text-decoration:none}
+.cmp-entrynav a:hover{background:var(--red)}
+.wrap{max-width:1320px;margin:0 auto;padding:0 24px}
+
+/* ---- 操作バー：全iframe共通のビューポート切替 ---- */
+.cmp-toolbar{position:sticky;top:0;z-index:50;background:#fff;border-bottom:1px solid var(--gray-150);padding:14px 24px;display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:space-between}
+.cmp-toolbar__grp{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.cmp-toolbar__lbl{font-size:12px;font-weight:800;color:var(--gray-700)}
+.cmp-vwbtns{display:flex;border:1px solid var(--gray-300);overflow:hidden;border-radius:4px}
+.cmp-vwbtns button{appearance:none;border:none;background:#fff;color:var(--ink);font-size:12.5px;font-weight:700;padding:8px 14px;cursor:pointer;border-right:1px solid var(--gray-300)}
+.cmp-vwbtns button:last-child{border-right:none}
+.cmp-vwbtns button.is-active{background:var(--red);color:#fff}
+.cmp-toolbar__note{font-size:11.5px;color:var(--gray-500)}
+
+.cmp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;padding:26px 24px}
+@media(max-width:1180px){.cmp-grid{grid-template-columns:1fr;max-width:720px;margin:0 auto}}
+.cmp-card{background:#fff;border:1px solid var(--gray-150);display:flex;flex-direction:column}
+.cmp-card--c{border-color:var(--red);box-shadow:0 0 0 1px var(--red)}
+.cmp-card__head{padding:16px 18px;border-bottom:1px solid var(--gray-150)}
+.cmp-card__tag{font-family:var(--font-en);font-weight:900;font-size:11px;color:var(--red);letter-spacing:.08em;display:block;margin-bottom:4px}
+.cmp-card__ttl{font-size:16px;font-weight:800}
+.cmp-card__sub{font-size:11.5px;color:var(--gray-500);margin-top:3px}
+.cmp-card__frame{position:relative;background:#e8e8ec;overflow:auto;height:760px;display:flex;justify-content:center}
+.cmp-card__frame iframe{border:0;height:5200px;flex:none;transition:width .15s ease;background:#fff}
+.cmp-card__frame.is-loading::after{content:"読み込み中…";position:absolute;top:10px;left:10px;font-size:11px;color:var(--gray-500);background:#fff;padding:3px 8px;z-index:2}
+.cmp-card__foot{padding:12px 18px;border-top:1px solid var(--gray-150);display:flex;gap:10px;flex-wrap:wrap;align-items:center;justify-content:space-between}
+.cmp-card__foot a{font-size:12px;font-weight:700;color:var(--ink);text-decoration:underline;text-underline-offset:3px}
+.cmp-card__scrollhint{font-size:10.5px;color:var(--gray-500)}
+
+.cmp-reco{background:#fff;border:2px solid var(--red);margin:0 24px 36px;padding:26px 26px;max-width:1272px}
+.cmp-reco h2{font-size:16px;font-weight:900;color:var(--red);margin-bottom:12px}
+.cmp-reco p{font-size:13px;color:var(--gray-900);line-height:1.9;margin-bottom:10px}
+.cmp-reco ul{padding-left:20px;margin:10px 0}
+.cmp-reco li{font-size:12.5px;color:var(--gray-700);line-height:1.85;margin-bottom:8px}
+.cmp-reco li b{color:var(--ink)}
+
+.cmp-table{width:100%;border-collapse:collapse;margin:0 24px 36px;max-width:1272px;font-size:12px}
+.cmp-table th,.cmp-table td{border:1px solid var(--gray-150);padding:9px 11px;text-align:left;vertical-align:top}
+.cmp-table th{background:var(--gray-100);font-weight:800}
+.cmp-table td:first-child{font-weight:700;white-space:nowrap;background:var(--gray-50)}
+
+.cmp-verify{margin:0 24px 36px;max-width:1272px;background:#fff7f7;border:1px solid #f3c7c9;padding:20px 24px}
+.cmp-verify h2{font-size:14.5px;font-weight:900;color:var(--red-d);margin-bottom:10px}
+.cmp-verify p{font-size:12.5px;color:var(--gray-900);line-height:1.9;margin-bottom:8px}
+.cmp-verify ul{padding-left:20px;margin:8px 0}
+.cmp-verify li{font-size:12px;color:var(--gray-700);line-height:1.8;margin-bottom:5px}
+
+.cmp-note{margin:0 24px 60px;max-width:1272px;font-size:11.5px;color:var(--gray-500);line-height:1.9}
+</style>
+</head>
+<body>
+<div class="cmp-notice">【試作・非公開】TOP 3案比較（操作可能プレビュー版）｜<b>デザイン検証用プレビュー｜本番サイト未反映</b>・<b>3案ともまだ承認されていません</b>・3案とも既存コンテンツ（文言・数値・CTA・リンク先）は本番index.htmlと同一（詳細は末尾の検証ログ参照）</div>
+
+<header class="cmp-head">
+  <div class="wrap">
+    <h1>HOME 全面再設計：TOP 3案 操作可能プレビュー（軍師モード・最新ラウンド）</h1>
+    <p>下の各カードは newtop-a.html / newtop-b.html / newtop-c.html をそのままiframeで表示しています。カード内で実際にスクロールしてファーストビューから最下部（フッター）まで確認できます。上部ツールバーでPC幅／スマホ幅を切り替えて、同じ操作で3案を横並び比較できます。</p>
+    <span class="notapproved">現時点でA・B・Cいずれも未承認（続けて全28ページ展開はしません）</span>
+    <nav class="cmp-entrynav" aria-label="プレビュー内ナビゲーション（確認用・本番コンテンツではありません）">
+      <span class="cmp-entrynav__lbl">このプレビューから移動：</span>
+      <a href="newtop-a.html" target="_blank" rel="noopener">A案を単独で開く ▶</a>
+      <a href="newtop-b.html" target="_blank" rel="noopener">B案を単独で開く ▶</a>
+      <a href="newtop-c.html" target="_blank" rel="noopener">C案を単独で開く ▶</a>
+      <a href="newwork-sample.html" target="_blank" rel="noopener">WORK図解サンプルを見る ▶</a>
+      <a href="newcareer-sample.html" target="_blank" rel="noopener">CAREERロードマップサンプルを見る ▶</a>
+    </nav>
+  </div>
+</header>
+
+<div class="cmp-toolbar">
+  <div class="cmp-toolbar__grp">
+    <span class="cmp-toolbar__lbl">表示幅：</span>
+    <div class="cmp-vwbtns" role="group" aria-label="プレビュー表示幅切替">
+      <button type="button" data-w="1280" class="is-active">PC（1280px）</button>
+      <button type="button" data-w="768">タブレット（768px）</button>
+      <button type="button" data-w="390">スマホ（390px）</button>
+    </div>
+  </div>
+  <span class="cmp-toolbar__note">※ カード内を直接スクロールすると、各案のファーストビュー〜フッターまで確認できます。別タブで開く場合は各カード下のリンクから。</span>
+</div>
+
+<div class="cmp-grid">
+  <div class="cmp-card">
+    <div class="cmp-card__head">
+      <span class="cmp-card__tag en">PLAN A</span>
+      <div class="cmp-card__ttl">Corporate Editorial</div>
+      <div class="cmp-card__sub">大判写真1点＋巨大タイポグラフィ、目次型インデックス</div>
+    </div>
+    <div class="cmp-card__frame is-loading" id="frameWrapA"><iframe class="cmp-ifr" data-w="1280" src="newtop-a.html" title="案A プレビュー"></iframe></div>
+    <div class="cmp-card__foot">
+      <a href="newtop-a.html" target="_blank" rel="noopener">別タブで開く ▶</a>
+      <span class="cmp-card__scrollhint">カード内スクロールで最下部まで確認可</span>
+    </div>
+  </div>
+
+  <div class="cmp-card">
+    <div class="cmp-card__head">
+      <span class="cmp-card__tag en">PLAN B</span>
+      <div class="cmp-card__ttl">Visual Infographic</div>
+      <div class="cmp-card__sub">SVG俯瞰図・クリック連動・相関図の可視化</div>
+    </div>
+    <div class="cmp-card__frame is-loading" id="frameWrapB"><iframe class="cmp-ifr" data-w="1280" src="newtop-b.html" title="案B プレビュー"></iframe></div>
+    <div class="cmp-card__foot">
+      <a href="newtop-b.html" target="_blank" rel="noopener">別タブで開く ▶</a>
+      <span class="cmp-card__scrollhint">カード内スクロールで最下部まで確認可</span>
+    </div>
+  </div>
+
+  <div class="cmp-card cmp-card--c">
+    <div class="cmp-card__head">
+      <span class="cmp-card__tag en">PLAN C</span>
+      <div class="cmp-card__ttl">Corporate × Visual Hybrid</div>
+      <div class="cmp-card__sub">目次＋ミニ俯瞰図の連動、ブランド感と図解の統合</div>
+    </div>
+    <div class="cmp-card__frame is-loading" id="frameWrapC"><iframe class="cmp-ifr" data-w="1280" src="newtop-c.html" title="案C プレビュー"></iframe></div>
+    <div class="cmp-card__foot">
+      <a href="newtop-c.html" target="_blank" rel="noopener">別タブで開く ▶</a>
+      <span class="cmp-card__scrollhint">カード内スクロールで最下部まで確認可</span>
+    </div>
+  </div>
+</div>
+
+<div class="cmp-verify">
+  <h2>③ モバイル検証について（技術的制約の開示）</h2>
+  <p>この環境にはローカルPlaywrightやシェル実行環境は存在せず、提供されている唯一のブラウザ検証手段は、プラットフォームが用意した自動スクリーンショットツールです。このツールはバックエンドで外部の browserless.io というスクリーンショットサービスに接続しており、本検証中も断続的に 429 Too Many Requests やタイムアウトが発生しています。</p>
+  <ul>
+    <li><b>案A（デスクトップ・フルページ）</b>：検証成功。レイアウト崩れなし、職種リストの繰り返し感をやや指摘（詳細は下の評価）。</li>
+    <li><b>案C（デスクトップ・フルページ）</b>：1回目429エラー、2回目成功。レイアウト崩れなし、ブランド感・俯瞰図の連動を高評価（詳細は下の評価）。</li>
+    <li><b>案B（デスクトップ・フルページ／モバイル）</b>：前ラウンドで検証成功済み。</li>
+    <li><b>案C（モバイル）</b>：検証成功。ファーストビューの文字視認性・レイアウトに問題なし。</li>
+    <li><b>案A（モバイル）</b>：<b>取得に失敗（タイムアウト）。同一引数での再試行は行っていません。</b>現時点でPC版のレイアウト構造は案B・Cと共通のCSS基盤（newtop-system.css）を使っており、1カラム化のブレークポイントも揃えていますが、実機でのスマートフォン表示は<b>未検証</b>です。「問題なし」と断定することはできません。承認のご判断にあたっては、この一点が未確認であることをご承知おきください。</li>
+  </ul>
+  <p>本カード内のiframeをスマホ幅（390px）に切り替えて手動で確認いただくことも可能です（自動ツールに依存しない、お手元のブラウザでの目視確認）。</p>
+</div>
+
+<table class="cmp-table">
+  <tr><th style="width:150px">評価観点</th><th>案A：Corporate Editorial</th><th>案B：Visual Infographic</th><th>案C：Hybrid</th></tr>
+  <tr><td>ブランド統一感</td><td>◎ 写真1点＋大胆タイポでコーポレートサイトに最も近い</td><td>○ 図解が主役でやや独自色が強い</td><td>◎ 案Aのブランド感を保ちつつ図解を統合</td></tr>
+  <tr><td>9職種の理解しやすさ</td><td>○ 目次で全件見えるが関係性の図解はない</td><td>◎ クリックで詳細と状態が即切替、関係性も見える</td><td>◎ 目次＋ミニ俯瞰図が連動し一覧性と関係性を両立</td></tr>
+  <tr><td>情報密度・メリハリ</td><td>○ 文章主体の箇所がやや続き単調に見える瞬間がある（職種リストの行の繰り返し）</td><td>△ 図解要素が多く、相関図はミニマルすぎてやや物足りない</td><td>○ 図解を絞り込み、密度のバランスは良い</td></tr>
+  <tr><td>デスクトップ実機確認</td><td>◎ フルページ確認済み（崩れなし）</td><td>◎ フルページ確認済み（崩れなし）</td><td>◎ フルページ確認済み（崩れなし）</td></tr>
+  <tr><td>モバイル実機確認</td><td>✕ 未検証（技術的制約により失敗）</td><td>◎ 確認済み・良好</td><td>◎ 確認済み・良好</td></tr>
+</table>
+
+<div class="cmp-reco">
+  <h2>現時点の所見（※いずれも承認待ち・この所見で確定するものではありません）</h2>
+  <p>案Cは「9職種の目次とミニ俯瞰図が連動する」仕組みにより、案A（一覧性）と案B（関係性の可視化）の長所を両立している点で、実機評価上も具体的な優位性が確認できました。一方で以下の弱点が残っています。</p>
+  <ul>
+    <li><b>案Aに対する優位性</b>：案Aは9職種を目次として一覧できる反面、関係性やクリック操作による情報の掘り下げがなく、リスト行が単調に続く印象がある。案Cは同じ目次にミニ俯瞰図を連動させることで、単調さを緩和し情報理解を助けている。</li>
+    <li><b>案Bに対する優位性</b>：案Bの相関図（xovervis）はミニマルで整っているが、やや「あっさり」とした印象になりうる。案Cは相関図をコンパクトにまとめつつ、ブランドトーン（黒・赤・白、大判写真、大胆タイポ）を前面に出しているため、PALコーポレートサイトとの統一感は案Bより強い。</li>
+    <li><b>案Cの弱点</b>：①モバイル実機検証は完了したが、案A同様にスクロール量が多く、読み込み負荷がやや高い。②9職種の「目次＋ミニマップ」という2つの情報表現を1画面に同居させているため、画面が縦に長くなりやすい。③SVGミニマップ自体は非常にシンプルな線画のため、「インフォグラフィックとしての完成度」という観点では、より精緻なビジュアル表現の余地がある（安っぽさは無いが、装飾としての密度はまだ上げられる）。</li>
+    <li><b>既存ルールとの整合</b>：9職種の「系統」や新しい上下関係は創作していない。案Cのミニ俯瞰図も、本番index.html / work.htmlのrole-chipデータのみを使用し、ABOUTのxoverに明記されている「3つの領域に上下関係はない」という注記をそのまま転記している（新規の数値・関係性は追加していない）。</li>
+  </ul>
+  <p><b>結論：</b>この所見は参考情報であり、最終判断はユーザー自身が行うものとします。承認をいただくまで、下層ページへの展開（Phase 3）には進みません。</p>
+</div>
+
+<div class="cmp-note">
+  ※ このページ、および newtop-a.html / newtop-b.html / newtop-c.html はいずれも redesign/ 配下の試作ファイルであり、本番サイト・GitHub・Pagesには一切反映していません。<br>
+  ※ 本番index.htmlとの内容差分検証の結果は redesign/README.md の「軍師モード 全面再設計ラウンド」セクションに記録しています（9職種データ・7名インタビュー・CTA文言・キャリア3問は完全一致を確認。FV直下の2つの訴求キャプション「現場を、自分たちで運営する」「技術で仕組みをつくる」の文言、および「※画像はイメージです」の注記は、3案とも本番とは異なる構成で表現されており、承認時にあわせてご確認ください）。
+</div>
+
+<script>
+(function(){
+  "use strict";
+  var btns = document.querySelectorAll('.cmp-vwbtns button');
+  var frames = document.querySelectorAll('.cmp-ifr');
+  btns.forEach(function(btn){
+    btn.addEventListener('click', function(){
+      btns.forEach(function(b){ b.classList.remove('is-active'); });
+      btn.classList.add('is-active');
+      var w = btn.dataset.w;
+      frames.forEach(function(f){ f.style.width = w + 'px'; });
+    });
+  });
+  frames.forEach(function(f){
+    f.addEventListener('load', function(){
+      var wrap = f.closest('.cmp-card__frame');
+      if(wrap){ wrap.classList.remove('is-loading'); }
+    });
+  });
+})();
+</script>
+</body>
+</html>
