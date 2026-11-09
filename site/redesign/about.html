@@ -19,8 +19,13 @@
 .reveal-stagger{display:grid}
 @media (prefers-reduced-motion:reduce){ .reveal{opacity:1!important;transform:none!important} }
 </style>
+<!-- ===== LIGHTSURFACE v2：濃紺で埋めていた面を白・淡グレーにする。
+     body に ls が付いたページだけに効く。共通CSSは変更していないので
+     このファイルを読み込んでいない他ページには影響しない。
+     元に戻すときは、この link と body の ls を外すだけでよい。 ===== -->
+<link rel="stylesheet" href="assets/css/lightsurface.css?v=20261110m">
 </head>
-<body>
+<body class="ls">
 <div class="proto-bar">【試作・非公開】ABOUT｜Field Editorialデザイン適用版｜<b>デザイン検証用プレビュー｜本番サイト未反映</b>・文言は本番about/index.htmlと完全同一</div>
 <a class="skip-link" href="#main">本文へスキップ</a>
 
@@ -175,7 +180,9 @@
   </div>
 </section>
 
-<section class="sec sec--navy sec--tight" id="values">
+<!-- ===== LIGHTSURFACE v2：Our Values の濃紺面をやめ、淡グレー面＋白カードにした。
+     3つの価値観の文言・CTA文言・リンク先は変えていない。 ===== -->
+<section class="sec sec--tight" id="values">
   <div class="wrap">
     <div class="shead reveal" style="margin-bottom:22px">
       <p class="slabel">Our Values</p>

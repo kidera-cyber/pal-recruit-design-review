@@ -1,0 +1,341 @@
+/* =====================================================================
+   LIGHTSURFACE v2：濃紺の面を白・淡グレーに置き換える
+   ---------------------------------------------------------------------
+   【キャッシュ運用】読み込み側は必ず lightsurface.css?v=YYYYMMDDx の形で
+   バージョンを付ける。中身を直したら v= を必ず上げる。
+   現在のバージョン：20261110m
+
+   【効く範囲】<body> に ls が付いたページだけ。
+   読み込んでいるのは newtop-c-v2.html / home.html / about.html の3つだけで、
+   共通CSS（style.css / corporate-system.css / newtop-system.css /
+   system-h.css）には一切手を入れていないため、他の62ページは変わらない。
+
+   【読み込み順】共通CSS →（HOMEのみ pal-v2.css）→ ページ内 <style>
+   → このファイル。ページ内 <style> より後に読むので、同じ詳細度でも後勝ち。
+   HTML の style="" 属性には勝てないため、濃色前提のインライン指定は
+   HTML側（正本 newtop-c-v2.html / about.html）から外してある。
+
+   【色（コーポレートサイト実測値）】
+     背景   #FFFFFF / #F7F8F9 / #F2F3F6
+     罫線   #DAE1F2
+     文字   #262946（主） #6B6D81（説明）
+     強調   #CF131B（PALレッド）
+   【対象】
+     A HOME 数値・企業紹介（.hcbelow）
+     B HOME 9職種の円形図解（.hybrole__map ＋ 一覧 .hybrole__idx）
+     C HOME 入社後の仕事・キャリア（#after）
+     D ABOUT ハブ帯（.force4__hub）と Our Values（#values）
+   【濃紺のまま残すもの】
+     ・ページ末尾の JOIN PAL / NEXT STEP（.entry）
+       …説明・図解・数値・業務フローではなく、応募導線を締める1ブロック。
+         写真の上に重ねる構成で、既に AA を満たしている（DARKSURFACE v1）。
+     ・グローバルヘッダー／フッター（全65ページ共通のため）
+   ===================================================================== */
+
+.ls{
+  --ls-red:#CF131B;
+  --ls-red-deep:#A50F16;
+  --ls-red-tint:#FCEEEF;
+  --ls-ink:#262946;
+  --ls-mid:#6B6D81;
+  --ls-bg:#FFFFFF;
+  --ls-soft:#F2F3F6;
+  --ls-soft2:#F7F8F9;
+  --ls-line:#DAE1F2;
+  --ls-line2:#E6EAF4;
+  --ls-dot-off:#C3C8D8;
+}
+
+/* =====================================================================
+   A. HOME：数値・企業紹介（9職種／120名／2000年〜）
+   濃紺ベタ（var(--navy-d) + color:#fff）→ 淡グレー面に白カードを並べる
+   ===================================================================== */
+.ls .hcbelow{
+  background:var(--ls-soft);color:var(--ls-ink);
+  border-top:1px solid var(--ls-line);border-bottom:1px solid var(--ls-line);
+}
+.ls .hcbelow h1,.ls .hcbelow h2,.ls .hcbelow h3{color:var(--ls-ink)}
+.ls .hcbelow__lead{padding-block:clamp(26px,4.4vh,38px) 4px}
+.ls .hcbelow__lead p{color:var(--ls-ink);font-size:15px;line-height:1.9}
+/* カードで囲わず、縦の細罫で3つを区切る。コーポレートサイトの数値表現に合わせる。 */
+.ls .hcstrip{display:grid;grid-template-columns:repeat(3,1fr);gap:0;padding-block:24px 36px}
+.ls .hcstrip__i{
+  flex:none;margin:0;padding:2px 36px;
+  background:none;border:none;border-left:1px solid var(--ls-line);border-radius:0;
+}
+.ls .hcstrip__i:first-child{padding-left:0;border-left:none}
+.ls .hcstrip__v{color:var(--ls-red);font-size:34px;font-weight:900;line-height:1.1}
+.ls .hcstrip__v span{color:var(--ls-ink);font-size:12px;font-weight:700;margin-left:5px}
+.ls .hcstrip__k{display:block;max-width:none;margin-top:10px;font-size:12.5px;line-height:1.8;color:var(--ls-mid)}
+@media(max-width:700px){
+  .ls .hcstrip{grid-template-columns:1fr;gap:0}
+  .ls .hcstrip__i{
+    margin:0;padding:18px 0;border-left:none;border-bottom:1px solid var(--ls-line);
+  }
+  .ls .hcstrip__i:last-child{border-bottom:none}
+}
+
+/* =====================================================================
+   B. HOME：9職種の円形図解と職種情報
+   「図解」と「職種情報」を別々の黒い面にせず、1枚の明るいカードにまとめる
+   ===================================================================== */
+.ls .hybrole__idx{border-top:1px solid var(--ls-line)}
+.ls .hybrole__row{
+  border-bottom:1px solid var(--ls-line);
+  border-left:3px solid transparent;padding:16px 12px 16px 14px;
+  transition:background-color .18s,border-color .18s;
+}
+.ls .hybrole__row:hover{background:var(--ls-soft2)}
+.ls .hybrole__row.is-active{background:var(--ls-soft);border-left-color:var(--ls-red)}
+.ls .hybrole__no{color:var(--ls-mid)}
+.ls .hybrole__ja{color:var(--ls-ink)}
+.ls .hybrole__row.is-active .hybrole__ja{color:var(--ls-red)}
+.ls .hybrole__one{color:var(--ls-mid)}
+.ls .hybrole__st{
+  background:var(--ls-bg);border:1px solid var(--ls-line);color:var(--ls-mid);
+  border-radius:9999px;padding:4px 11px;
+}
+.ls .hybrole__st--on{background:var(--ls-red);border-color:var(--ls-red);color:#fff}
+.ls .hybrole__st--soon{background:var(--ls-ink);border-color:var(--ls-ink);color:#fff}
+
+/* 図解パネル本体：濃紺 → 白カード */
+/* カードの枠は付けず、淡い面でまとめるだけにする。
+   円形図解と職種情報を1つの明るい面に統合した状態は保つ。 */
+.ls .hybrole__map{
+  background:var(--ls-soft2);color:var(--ls-ink);
+  border:none;border-top:2px solid var(--ls-red);border-radius:0;
+  padding:clamp(24px,3vw,30px);
+}
+/* 図解のラベル（人材派遣・コーポレート・システム）は viewBox(0-280) の外側
+   −29〜287 まで伸びるため、そのままだと左右が切れる。SVGを内側に寄せる。 */
+.ls .hybrole__map svg{overflow:visible;display:block;width:calc(100% - 92px);margin:0 auto}
+/* 共通CSS（pal-v2.css）が濃紺パネル前提で白／淡色を当てているので、同じ強さで戻す */
+.ls .hybrole__map h1,.ls .hybrole__map h2,.ls .hybrole__map h3,
+.ls .hybrole__map .hybrole__mapja{color:var(--ls-ink)}
+.ls .hybrole__map p,.ls .hybrole__map .hybrole__mapone{color:var(--ls-mid)}
+.ls .hybrole__map .hybrole__mapcat{color:var(--ls-red)}
+.ls .hybrole__maplinks .btn--ghost{background:var(--ls-bg);color:var(--ls-red);border-color:var(--ls-red)}
+.ls .hybrole__maplinks .btn--ghost:hover{background:var(--ls-red-tint)}
+.ls .hybrole__maplinks .btn--red{background:var(--ls-red);color:#fff;border-color:var(--ls-red)}
+.ls .hybrole__maplinks .btn--red:hover{background:var(--ls-red-deep);border-color:var(--ls-red-deep)}
+
+/* =====================================================================
+   C. HOME：入社後の仕事・キャリア（#after）
+   濃紺ベタ → 白面。前後が淡グレー（#voices / #before-apply）なので白にして
+   面の色が3つ続かないようにしている。
+   ===================================================================== */
+.ls #after{background:var(--ls-bg);color:var(--ls-ink)}
+.ls #after h1,.ls #after h2,.ls #after h3,.ls #after .ta-display,.ls #after .stitle{color:var(--ls-ink)}
+.ls #after p,.ls #after .slead{color:var(--ls-mid)}
+.ls #after .slabel{color:var(--ls-ink)}
+.ls #after .slabel::before{background:var(--ls-red)}
+.ls #after .kicker2__en{color:var(--ls-ink)}
+
+/* 01 A Day in the Life：罫線だけの一覧 → 白カードの一覧 */
+/* カードで囲わず、上下の細罫と列のグリッドで整理する。 */
+.ls .aday{
+  list-style:none;display:grid;grid-template-columns:repeat(3,1fr);gap:0;
+  margin:14px 0 0;padding:0;border-top:1px solid var(--ls-line);
+}
+.ls .aday li{margin:0;border:none;border-bottom:1px solid var(--ls-line)}
+.ls .aday a{
+  display:flex;flex-direction:column;gap:6px;height:100%;
+  padding:16px 28px 16px 0;background:none;border:none;border-radius:0;
+  color:var(--ls-ink);text-decoration:none;transition:color .2s;
+}
+.ls .aday a:hover{color:var(--ls-red)}
+.ls .aday a:hover .aday__en{color:var(--ls-red)}
+.ls .aday .aday__en{font-size:10px;font-weight:800;letter-spacing:.1em;color:var(--ls-red)}
+.ls .aday b{font-size:13.5px;font-weight:700;color:var(--ls-ink)}
+@media(max-width:860px){.ls .aday{grid-template-columns:1fr}}
+@media(min-width:861px) and (max-width:1100px){.ls .aday{grid-template-columns:repeat(2,1fr)}}
+
+/* 02 Career Path：タイムラインは薄グレー、STEPの丸だけ赤 */
+.ls .roadmap__track::before{background:repeating-linear-gradient(90deg,var(--ls-line) 0 6px,transparent 6px 12px)}
+@media(min-width:861px){.ls .roadmap__track::before{right:calc(33.333% - 19px)}}
+@media(max-width:860px){
+  .ls .roadmap__track::before{background:repeating-linear-gradient(180deg,var(--ls-line) 0 6px,transparent 6px 12px)}
+}
+.ls .roadmap__dot{background:var(--ls-red);border-color:var(--ls-red);color:#fff}
+.ls .roadmap__stop a{color:var(--ls-ink);text-decoration:none}
+.ls .roadmap__en{color:var(--ls-red)}
+.ls .roadmap__q{color:var(--ls-ink)}
+.ls .roadmap__t{color:var(--ls-mid)}
+/* 矢印は装飾（aria-hidden）だが、白地で 2.53:1 と薄すぎたので AA を満たす濃さにする */
+.ls .roadmap__stop:not(:last-child) .roadmap__arrow{color:var(--ls-mid)}
+
+/* =====================================================================
+   フッターの補助ラベル
+   共通の style.css が #777A90 を使っており、濃紺地（#11141F）で 4.35:1 と
+   AA（4.5:1）にわずかに届かない。共通CSSは他の62ページも使うため触らず、
+   このファイルを読み込む3ページだけ少し明るくする（5.61:1）。
+   ===================================================================== */
+.ls .ftr dt,.ls .ftr small,.ls footer dt,.ls footer small{color:#8A8DA2}
+
+/* =====================================================================
+   D. ABOUT：ハブ帯と Our Values
+   ===================================================================== */
+/* ハブ帯（PAL／現場から改善まで、ひとつながりで関わる） */
+.ls .force4__hub{
+  background:var(--ls-soft);color:var(--ls-ink);
+  border:1px solid var(--ls-line);border-radius:8px;
+}
+.ls .force4__hub .en{color:var(--ls-red)}
+.ls .force4__hub b{color:var(--ls-ink)}
+
+/* Our Values：濃紺セクション → 淡グレー面＋白カード */
+.ls #values{background:var(--ls-soft);color:var(--ls-ink)}
+.ls #values h1,.ls #values h2,.ls #values h3,.ls #values .stitle{color:var(--ls-ink)}
+.ls #values p,.ls #values .slead{color:var(--ls-mid)}
+.ls #values .slabel{color:var(--ls-ink)}
+.ls #values .slabel::before{background:var(--ls-red)}
+/* カードで囲わず、赤い上罫で3つを並べる。 */
+.ls #values .val3{gap:24px}
+.ls #values .val3 li{
+  background:none;border:none;border-top:2px solid var(--ls-red);border-radius:0;
+  padding:16px 0 0;
+}
+.ls #values .val3__no{color:var(--ls-red)}
+.ls #values .val3 b{color:var(--ls-ink)}
+.ls #values .whonote{
+  background:none;border:none;border-left:3px solid var(--ls-line);border-radius:0;
+  color:var(--ls-mid);padding:2px 0 2px 18px;
+}
+.ls #values .whonote p{color:var(--ls-mid)}
+.ls #values .whonote a{color:var(--ls-red)}
+/* 濃紺の上に置く前提のボタン → 白地・赤文字・赤枠（PAL公式の形） */
+.ls #values .btn--onnavy{
+  background:var(--ls-bg);color:var(--ls-red);border:1px solid var(--ls-red);
+}
+.ls #values .btn--onnavy:hover{background:var(--ls-red-tint)}
+
+/* =====================================================================
+   E. 明色面の補助テキスト（このファイルを読む3ページのみ）
+   共通CSSの --gray-500（#80818A）は白地で 3.65:1、--ls-soft 地で 3.29:1 と
+   AA（4.5:1）に届かない。共通CSSは他の62ページも使うため触らず、
+   ここで同じ色役割を #6B6D81（白地 5.09:1／淡グレー地 4.58:1）に置き換える。
+   ===================================================================== */
+.ls .note,
+.ls .force4__en,.ls .force4__k,.ls .force4__note,
+.ls .fdeline__en,.ls .xover__note,.ls .num2__s{color:var(--ls-mid)}
+/* 赤いチップの上の英字 #FFD3D4 は 4.13:1 なので白にする（5.87:1） */
+.ls .fdeline__i--key .fdeline__en{color:#fff}
+/* フッターの見出し #777A90 は濃紺地で 4.35:1 */
+.ls .ftr h3{color:#8A8DA2}
+
+/* =====================================================================
+   検証用の帯（本番には出ない）
+   ===================================================================== */
+.ls .proto-bar{background:#1B1D31;color:#fff}
+.ls .proto-bar b{color:#FF9CA0}
+
+/* =====================================================================
+   HERO-FULL v1：FV動画をコピーの背面まで広げる
+   ---------------------------------------------------------------------
+   【変更前】左＝コピー（白地）／右＝動画、の2カラム。左右が分かれて見える。
+   【変更後】動画をFV全体の背景として敷き、その上にコピーとCTAを置く。
+   　　　　　読みやすさは、左を強めた白のグラデーションで確保する。
+   ・DOM は変更していない（.heroC__art を絶対配置に変えているだけ）
+   ・動画ファイル・再生仕様（autoplay / muted / loop / playsinline /
+     poster / preload）は一切変えていない
+   ・コピー「現場に立ち、／自分の手で、／変えていく。」と
+     「自分の手で、」の PALレッド強調、CTA2本もそのまま
+   ・prefers-reduced-motion:reduce のときは JS が動画を止めて poster を
+     表示する。poster も同じ object-fit で敷かれるので崩れない。
+   元に戻すときは、このブロックを消すだけでよい。
+   ===================================================================== */
+.ls .heroC{
+  position:relative;isolation:isolate;overflow:hidden;
+  min-height:clamp(430px,45vw,660px);
+  display:flex;flex-direction:column;justify-content:center;
+  padding:clamp(40px,5vw,72px) 0 clamp(72px,8vw,96px);
+}
+/* 絶対配置の基準を .heroC にするため、ラッパーの position を外す。
+   あわせて z-index も auto に戻すこと。
+   .heroC を display:flex にしたことで .heroC__wrap は「フレックスアイテム」になり、
+   フレックスアイテムは position:static でも z-index が効く＝重ね順の文脈をつくる。
+   共通CSSが付けている z-index:2 を残したままだと、その文脈ごと
+   .heroC::before / ::after（z-index:1）より手前に来てしまい、
+   動画の上に白いオーバーレイが乗らない。 */
+.ls .heroC__wrap{
+  position:static;z-index:auto;
+  grid-template-columns:minmax(0,1fr);
+  grid-template-areas:"lead" "act";
+  width:100%;
+}
+.ls .heroC__lead,.ls .heroC__act{position:relative;z-index:2;max-width:660px}
+
+/* 動画：FV全面に敷く。16:9 の素材を 1440×約660 に載せるため上下が
+   わずかに切れるだけで、構図は大きく損なわれない。 */
+.ls .heroC__art{
+  position:absolute;inset:0;z-index:0;margin:0;align-self:stretch;
+  pointer-events:none;
+}
+/* FVの高さ（約790px）と素材の 16:9 はほぼ同じ比率なので、cover でも
+   上下が 3% 程度しか切れない。構図は保たれる。 */
+.ls .heroC__video{
+  width:100%;height:100%;aspect-ratio:auto;
+  object-fit:cover;object-position:center center;background:var(--ls-bg);
+}
+/* コピーとCTAの背面に白い面を敷く。右へ向かって完全に透明になるので、
+   面の境目が線として見えない。pal-v2 の方眼背景は動画の下になるため差し替える。 */
+.ls .heroC::before{
+  content:"";position:absolute;left:0;top:0;bottom:0;z-index:1;pointer-events:none;
+  width:min(58%,820px);
+  background:linear-gradient(90deg,
+    rgba(255,255,255,.70) 0%,
+    rgba(255,255,255,.66) 52%,
+    rgba(255,255,255,.38) 80%,
+    rgba(255,255,255,0) 100%);
+}
+/* 可読性：左を強く、右へ抜ける白のグラデーション。
+   全体に薄い白もかけて、背景が主張しすぎないようにする。 */
+.ls .heroC::after{
+  content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:
+    linear-gradient(90deg,
+      rgba(255,255,255,.55) 0%,
+      rgba(255,255,255,.45) 45%,
+      rgba(255,255,255,.22) 75%,
+      rgba(255,255,255,.14) 100%),
+    linear-gradient(180deg, rgba(255,255,255,.10) 0%, rgba(255,255,255,.04) 44%, rgba(255,255,255,.10) 100%);
+  /* 合成すると、コピーの背面は白 約87%（動画が約13%見える＝動きが分かる）、
+     中央で 約61%、右端で 約22%。文字のコントラストは AA を満たしたまま、
+     画面の左から右まで動画がつながって見える。
+     スマートフォンは下の @media で別に調整している。 */
+}
+/* FV下の補助文（現場を、自分たちで運営する／技術で仕組みをつくる） */
+/* FV内の小さい文字は、背面に素材がうっすら乗るぶん濃くする。
+   最悪ケース（素材の暗部が5%見える＝背面 #F6F6F6 相当）でも 5.8:1 を確保する。 */
+/* FV内の小さい文字は、背面に動画が約13%見えるぶん濃くする。
+   素材の暗部が透けた最悪ケースでも 5.4:1 以上を確保する。 */
+.ls .heroC__eyebrow span{color:#4E5168}
+.ls .heroC__flags .hf-i span{color:#4E5168}
+.ls .heroC__flags{border-top-color:rgba(38,41,70,.18)}
+.ls .heroC__credit{
+  position:absolute;left:0;right:0;bottom:0;z-index:2;margin:0;
+  padding:9px clamp(200px,20vw,280px) 9px clamp(20px,5vw,40px);text-align:right;
+  background:rgba(255,255,255,.84);color:var(--ls-mid);
+  border-top:1px solid rgba(38,41,70,.08);
+}
+.ls .heroC__credit br{display:none}
+
+/* CTAが背景に沈まないよう、白ボタンには薄い影ではなく輪郭を足す */
+.ls .heroC__ctas .btn--ghost{background:#fff;border-color:var(--ls-red);color:var(--ls-red)}
+
+@media(max-width:860px){
+  .ls .heroC{min-height:clamp(430px,96vw,560px);padding:36px 0 56px}
+  .ls .heroC__video{object-position:center center}
+  /* スマートフォンは文字とCTAが画面いっぱいに広がるため、横方向のグラデーションでは
+     守りきれない。面全体をほぼ均一に白くして、素材は「かすかな地模様」の濃さにする。
+     合成すると白 約95%（素材の見え方 約5%）。読みやすさを最優先した設定。 */
+  .ls .heroC::before{
+    width:100%;
+    background:linear-gradient(180deg,rgba(255,255,255,.86) 0%,rgba(255,255,255,.84) 100%);
+  }
+  .ls .heroC::after{
+    background:linear-gradient(180deg,rgba(255,255,255,.28) 0%,rgba(255,255,255,.34) 100%);
+  }
+  .ls .heroC__lead,.ls .heroC__act{max-width:none}
+  .ls .heroC__credit{text-align:left;font-size:10.5px;line-height:1.6;padding:8px 20px}
+}

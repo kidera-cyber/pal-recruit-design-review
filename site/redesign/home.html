@@ -147,8 +147,13 @@
 
 .secC{padding:clamp(52px,8vh,84px) 0}
 </style>
+<!-- ===== LIGHTSURFACE v2：濃紺で埋めていた面を白・淡グレーにする。
+     body に ls が付いたページだけに効く。共通CSSは変更していないので
+     このファイルを読み込んでいない他ページには影響しない。
+     元に戻すときは、この link と body の ls を外すだけでよい。 ===== -->
+<link rel="stylesheet" href="assets/css/lightsurface.css?v=20261110m">
 </head>
-<body class="pv2">
+<body class="pv2 ls">
 
 <a class="skip-link" href="#main">本文へスキップ</a>
 
@@ -330,10 +335,10 @@
            9職種の名称・説明・リンク先は変更していない。 ===== -->
       <div class="hybrole__map" id="hybRolePanel" role="region" aria-live="polite" aria-labelledby="hybRoleTab0">
         <svg viewBox="0 0 280 280" aria-hidden="true">
-          <circle cx="140" cy="140" r="104" fill="none" stroke="rgba(255,255,255,.16)"/>
-          <circle cx="140" cy="140" r="62" fill="none" stroke="rgba(255,255,255,.16)"/>
+          <circle cx="140" cy="140" r="104" fill="none" stroke="#DAE1F2"/>
+          <circle cx="140" cy="140" r="62" fill="none" stroke="#DAE1F2"/>
           <circle cx="140" cy="140" r="5" fill="#cf131b"/>
-          <g id="hybDots" font-family="Noto Sans JP" font-size="9.5" fill="#fff">
+          <g id="hybDots" font-family="Noto Sans JP" font-size="9.5" fill="#262946">
             <g data-i="0"><circle cx="140" cy="36" r="5"/><text x="140" y="24" text-anchor="middle">BPO運営</text></g>
             <g data-i="1"><circle cx="212" cy="58" r="5"/><text x="220" y="56" text-anchor="start">清掃</text></g>
             <g data-i="2"><circle cx="248" cy="118" r="5"/><text x="256" y="122" text-anchor="start">FDE</text></g>
@@ -349,7 +354,7 @@
         <h3 class="hybrole__mapja" id="hc-ja">物流センター運営</h3>
         <p class="hybrole__mapone" id="hc-one">現場を安定させ、改善を進める</p>
         <div class="hybrole__maplinks">
-          <a class="btn btn--ghost" id="hc-go" href="work.html#role-bpo" style="background:rgba(255,255,255,.12);color:#fff">仕事内容<span class="btn__ico" aria-hidden="true">▶</span></a>
+          <a class="btn btn--ghost" id="hc-go" href="work.html#role-bpo">仕事内容<span class="btn__ico" aria-hidden="true">▶</span></a>
           <a class="btn btn--red" id="hc-apply" href="jobs.html#job-bpo">募集要項<span class="btn__ico" aria-hidden="true">▶</span></a>
         </div>
       </div>
@@ -400,32 +405,34 @@
 </section>
 
 <!-- ⑤ 入社後のキャリア：ロードマップ図解＋タイポ -->
-<section class="secC sec--navy" id="after">
+<!-- ===== LIGHTSURFACE v2：濃紺の面（sec--navy）をやめ、白面＋白カードにした。
+     文言・リンク先・並び順・CTAは変えていない。 ===== -->
+<section class="secC" id="after">
   <div class="wrap">
     <div class="shead reveal" style="margin-bottom:10px;max-width:760px">
-      <p class="slabel" style="color:#ff6b6f">After Joining PAL — Work Life &amp; Career</p>
-      <h2 class="ta-display" style="font-size:clamp(24px,3.2vw,40px);color:#fff">入社後の自分を、<span style="color:var(--red)">想像</span>できていますか。</h2>
+      <p class="slabel">After Joining PAL — Work Life &amp; Career</p>
+      <h2 class="ta-display" style="font-size:clamp(24px,3.2vw,40px)">入社後の自分を、<span style="color:var(--red)">想像</span>できていますか。</h2>
       <p class="slead">実際の仕事の1日から、経験を重ねた先のキャリアまで。気になる職種から、PALで働く毎日を見てみませんか。</p>
     </div>
 
-    <p class="slabel reveal" style="color:#ff6b6f;margin-top:30px">01 A Day in the Life — まずは、実際の1日をのぞいてみる。</p>
+    <p class="slabel reveal" style="margin-top:30px">01 A Day in the Life — まずは、実際の1日をのぞいてみる。</p>
     <nav aria-label="職種ごとの1日の流れ" class="reveal-stagger">
-      <ul style="display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:0;border-top:1px solid rgba(255,255,255,.16);margin-top:10px">
-        <li style="border-bottom:1px solid rgba(255,255,255,.16)"><a href="people/fde.html#a-day" style="display:block;padding:14px 10px 14px 0;color:#fff"><span style="font-family:var(--font-en);font-size:10px;color:#ff8186;display:block;margin-bottom:5px">FDE</span><b style="font-size:13.5px;font-weight:700">FDEの1日。</b></a></li>
-        <li style="border-bottom:1px solid rgba(255,255,255,.16)"><a href="people/system.html#a-day" style="display:block;padding:14px 10px 14px 0;color:#fff"><span style="font-family:var(--font-en);font-size:10px;color:#ff8186;display:block;margin-bottom:5px">ENGINEER</span><b style="font-size:13.5px;font-weight:700">DXプロダクト開発の1日。</b></a></li>
-        <li style="border-bottom:1px solid rgba(255,255,255,.16)"><a href="people/bpo.html#a-day" style="display:block;padding:14px 10px 14px 0;color:#fff"><span style="font-family:var(--font-en);font-size:10px;color:#ff8186;display:block;margin-bottom:5px">BPO / 現場運営</span><b style="font-size:13.5px;font-weight:700">BPO / 現場運営の1日。</b></a></li>
-        <li style="border-bottom:1px solid rgba(255,255,255,.16)"><a href="people/dts.html#a-day" style="display:block;padding:14px 10px 14px 0;color:#fff"><span style="font-family:var(--font-en);font-size:10px;color:#ff8186;display:block;margin-bottom:5px">DTS / 運送</span><b style="font-size:13.5px;font-weight:700">DTSドライバーの1日。</b></a></li>
-        <li style="border-bottom:1px solid rgba(255,255,255,.16)"><a href="people/cleaning.html#a-day" style="display:block;padding:14px 10px 14px 0;color:#fff"><span style="font-family:var(--font-en);font-size:10px;color:#ff8186;display:block;margin-bottom:5px">CLEANLINESS</span><b style="font-size:13.5px;font-weight:700">クレンリネスの一日。</b></a></li>
-        <li style="border-bottom:1px solid rgba(255,255,255,.16)"><a href="people/corporate.html#a-day" style="display:block;padding:14px 10px 14px 0;color:#fff"><span style="font-family:var(--font-en);font-size:10px;color:#ff8186;display:block;margin-bottom:5px">CORPORATE / 総務</span><b style="font-size:13.5px;font-weight:700">総務の1日。</b></a></li>
+      <ul class="aday">
+        <li><a href="people/fde.html#a-day"><span class="aday__en en">FDE</span><b>FDEの1日。</b></a></li>
+        <li><a href="people/system.html#a-day"><span class="aday__en en">ENGINEER</span><b>DXプロダクト開発の1日。</b></a></li>
+        <li><a href="people/bpo.html#a-day"><span class="aday__en en">BPO / 現場運営</span><b>BPO / 現場運営の1日。</b></a></li>
+        <li><a href="people/dts.html#a-day"><span class="aday__en en">DTS / 運送</span><b>DTSドライバーの1日。</b></a></li>
+        <li><a href="people/cleaning.html#a-day"><span class="aday__en en">CLEANLINESS</span><b>クレンリネスの一日。</b></a></li>
+        <li><a href="people/corporate.html#a-day"><span class="aday__en en">CORPORATE / 総務</span><b>総務の1日。</b></a></li>
       </ul>
     </nav>
 
-    <p class="slabel reveal" style="color:#ff6b6f;margin-top:40px">02 Career Path — その先、どんな経験が待っている？</p>
+    <p class="slabel reveal" style="margin-top:40px">02 Career Path — その先、どんな経験が待っている？</p>
     <div class="roadmap reveal" style="margin-top:14px">
       <div class="roadmap__track">
-        <div class="roadmap__stop"><span class="roadmap__dot en">01</span><a href="career.html#start" style="color:#fff"><span class="roadmap__en">CAREER / START</span><span class="roadmap__q">入社して最初に、何をする？</span><span class="roadmap__t" style="color:#9496ab">最初に関わる仕事や、現場との関わり方</span></a><i class="roadmap__arrow" aria-hidden="true">→</i></div>
-        <div class="roadmap__stop"><span class="roadmap__dot en">02</span><a href="career.html#growth" style="color:#fff"><span class="roadmap__en">CAREER / GROWTH PROCESS</span><span class="roadmap__q">どんな経験を積んでいく？</span><span class="roadmap__t" style="color:#9496ab">仕事を覚え、役割が広がっていく過程</span></a><i class="roadmap__arrow" aria-hidden="true">→</i></div>
-        <div class="roadmap__stop"><span class="roadmap__dot en">03</span><a href="career.html#career" style="color:#fff"><span class="roadmap__en">CAREER / CAREER PATH</span><span class="roadmap__q">その先に、どんな道がある？</span><span class="roadmap__t" style="color:#9496ab">職種ごとのキャリアや専門性の広がり</span></a></div>
+        <div class="roadmap__stop"><span class="roadmap__dot en">01</span><a href="career.html#start"><span class="roadmap__en">CAREER / START</span><span class="roadmap__q">入社して最初に、何をする？</span><span class="roadmap__t">最初に関わる仕事や、現場との関わり方</span></a><i class="roadmap__arrow" aria-hidden="true">→</i></div>
+        <div class="roadmap__stop"><span class="roadmap__dot en">02</span><a href="career.html#growth"><span class="roadmap__en">CAREER / GROWTH PROCESS</span><span class="roadmap__q">どんな経験を積んでいく？</span><span class="roadmap__t">仕事を覚え、役割が広がっていく過程</span></a><i class="roadmap__arrow" aria-hidden="true">→</i></div>
+        <div class="roadmap__stop"><span class="roadmap__dot en">03</span><a href="career.html#career"><span class="roadmap__en">CAREER / CAREER PATH</span><span class="roadmap__q">その先に、どんな道がある？</span><span class="roadmap__t">職種ごとのキャリアや専門性の広がり</span></a></div>
       </div>
     </div>
     <p style="margin-top:30px"><a class="btn btn--red btn--lg" href="career.html">入社後の仕事とキャリアを知る<span class="btn__ico" aria-hidden="true">▶</span></a></p>
@@ -584,9 +591,11 @@
       var i = row.dataset.i;
       dots.forEach(function(g){
         var on = g.dataset.i === i;
-        g.querySelector('circle').setAttribute('fill', on ? '#cf131b' : '#fff');
+        /* ===== LIGHTSURFACE v2：図解パネルを白にしたので、点と文字を明色面向けの色にする。
+           選択中＝PALレッド、未選択＝薄いグレーの点／読める濃さの文字。 ===== */
+        g.querySelector('circle').setAttribute('fill', on ? '#CF131B' : '#C3C8D8');
         g.querySelector('circle').setAttribute('r', on ? 7 : 5);
-        g.querySelector('text').setAttribute('fill', on ? '#ff8186' : '#fff');
+        g.querySelector('text').setAttribute('fill', on ? '#CF131B' : '#6B6D81');
         g.querySelector('text').style.fontWeight = on ? '700' : '400';
       });
       catEl.textContent = row.dataset.cat;
@@ -611,6 +620,9 @@
       if(panel && row.id){ panel.setAttribute('aria-labelledby', row.id); }
     }
     sync(idx.querySelector('[aria-pressed="true"]') || rows[0]);
+    /* ===== LIGHTSURFACE v2：読み込み直後は図解の点に色が付かず、一覧で選択中の
+       職種（01）がハイライトされていなかったので、最初に一度だけ反映する。 ===== */
+    activate(idx.querySelector('[aria-pressed="true"]') || rows[0]);
     rows.forEach(function(row){
       row.addEventListener('click', function(){ activate(row); sync(row); });
     });

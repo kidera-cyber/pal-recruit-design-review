@@ -17,6 +17,10 @@
 .proto-bar{background:#000;color:#fff;padding:10px 20px;font-size:12.5px;text-align:center;position:relative;z-index:600}
 .proto-bar b{color:#ff8186}
 @media (prefers-reduced-motion:reduce){ .reveal{opacity:1!important;transform:none!important} }
+/* ===== DEDUPE-PH v1：写真を外した行（03）だけ1カラムにして、
+   右半分に大きな空白が残らないようにする。共通CSSは変更していない。 ===== */
+.vrow--noph{grid-template-columns:1fr;gap:0}
+.vrow--noph .vrow__b{max-width:780px}
 </style>
 </head>
 <body>
@@ -128,8 +132,15 @@
         <figure class="vrow__ill vrow__ill--ph"><img src="../assets/images/person-corporate.jpg" alt="オフィスのテーブルで、立場の違うメンバーが資料を見ながら話し合う様子" width="1600" height="1200" loading="lazy"></figure>
         <div class="vrow__b"><p class="vrow__no en">02</p><h3>個を尊重し、平等に接する</h3><p>上下や勤続年数で判断されない。互いを個として尊重し合う土台があるから、誰もが対等に意見を出せます。</p></div>
       </div>
-      <div class="vrow c-03 reveal">
-        <figure class="vrow__ill vrow__ill--ph"><img src="../assets/images/person-eng.jpg" alt="コードと業務データの画面に向かい、現場で使う仕組みをつくる社員" width="1600" height="1200" loading="lazy"></figure>
+      <!-- ===== DEDUPE-PH v1：03の写真（person-eng.jpg）を削除。
+           同じ写真を about.html のファーストビューでも使っており、重複するため。
+           ・削除したのはこの figure 1つだけ。見出し・本文・番号・リンクは変えていない
+           ・代わりの写真やイラストは足していない
+           ・写真が1枚減って右半分が空くので、この行だけ1カラム（.vrow--noph）にして
+             不自然な空白が残らないようにしている
+           ・画像ファイル person-eng.jpg は削除していない（about.html で使用中）
+           復元するときは、この figure を戻して .vrow--noph を外す。 ===== -->
+      <div class="vrow c-03 vrow--noph reveal">
         <div class="vrow__b"><p class="vrow__no en">03</p><h3>自分の「手」で変えていく</h3><p>提案するだけでなく、自分たちが現場に立ち、データと技術で変えていく。考える・つくる・動かすが地続きです。</p></div>
       </div>
     </div>
