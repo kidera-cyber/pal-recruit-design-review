@@ -1,0 +1,322 @@
+@charset "utf-8";
+/* ============================================================
+   ===== PAL-V2 v1：採用サイト C案v2 デザインシステム =====
+   PALコーポレートサイト（www.pal-style.co.jp）の実測値を出典とする。
+   色・書体・角丸・赤の使用比率は推測ではなく、実際の画面から計測した値。
+
+     計測値（2026-11-09 実測）
+       主要赤          rgb(207,19,27)  = #CF131B（CTA・強調文・アクセント）
+       本文インク      rgb(38,41,70)   = #262946
+       濃色面          rgb(27,29,49)   = #1B1D31
+       中間グレー文字  rgb(107,109,129)= #6B6D81
+       淡グレー文字    rgb(121,125,172)= #797DAC
+       背景            #FFFFFF 41.1% ／ #F2F3F6 42.7% ／ #F4F5F8 11.3%
+       赤の背景面積    1.9%（＝赤はベタ塗りで多用しない）
+       ボタン角丸      9999px（ピル型）
+       書体            "Noto Sans JP" ＋ Lato（欧文）
+       見出し          h1 48px/700 ／ h2 30-38px/500 ／ letter-spacing 0.04em
+
+     添付イラスト「企業物流オペレーション網」の実測
+       赤の面積 5.13% ／ 無彩色 85.5% ／ 赤の代表色 #EC2334
+       → 画面全体でも「白と余白が主役、赤は要所」という比率を踏襲する。
+
+   既存の style.css / corporate-system.css / newtop-system.css の後に読み込み、
+   必要な箇所だけ後勝ちで上書きする。既存ファイルは変更しない。
+   ============================================================ */
+
+:root{
+  /* --- ブランド（コーポレートサイト実測） --- */
+  --v2-red:#CF131B;
+  --v2-red-deep:#A50F16;
+  --v2-red-tint:#FCEEEF;
+  --v2-red-line:rgba(207,19,27,.22);
+  --v2-ink:#262946;
+  --v2-ink-deep:#1B1D31;
+  --v2-ink-mid:#6B6D81;
+  /* ===== A11Y v1：旧 #797DAC は白地で 3.93:1 と小さい文字のAA（4.5:1）に届かないため、
+     コーポレートサイトの補助文字色 #6B6D81（白地 5.09:1 / 淡グレー地 4.58:1）に変更。 ===== */
+  --v2-ink-soft:#6B6D81;
+  --v2-bg:#FFFFFF;
+  --v2-soft:#F2F3F6;
+  --v2-soft-2:#F4F5F8;
+  --v2-line:#E4E6EC;
+  --v2-line-strong:#CDD1DC;
+  /* --- 形 --- */
+  --v2-pill:9999px;
+  --v2-r:4px;
+  /* --- 余白のリズム（8の倍数） --- */
+  --v2-s1:8px; --v2-s2:16px; --v2-s3:24px; --v2-s4:32px;
+  --v2-s5:48px; --v2-s6:64px; --v2-s7:96px; --v2-s8:128px;
+  --v2-gut:clamp(20px,5vw,40px);
+  --v2-max:1180px;
+  /* --- 等角（アイソメ）30度：図解と背景モチーフで共通に使う --- */
+  --v2-iso:30deg;
+}
+
+/* ============================================================
+   土台：書体・インク・背景
+   ============================================================ */
+body.pv2{
+  background:var(--v2-bg);
+  color:var(--v2-ink);
+  font-family:"Noto Sans JP",-apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN",sans-serif;
+  font-feature-settings:"palt" 1;
+}
+.pv2 .en,.pv2 .ta-en{font-family:Lato,"Noto Sans JP",sans-serif}
+.pv2 h1,.pv2 h2,.pv2 h3{color:var(--v2-ink);letter-spacing:.04em}
+.pv2 h2,.pv2 h3{font-weight:500}
+.pv2 p{color:var(--v2-ink-mid)}
+
+/* セクションの縦リズム：白 → 淡グレー → 白 を基本に、濃色は意味のある1箇所だけ */
+.pv2 .secC,.pv2 .sec{padding-block:clamp(56px,8vw,104px)}
+.pv2 .secC{background:var(--v2-bg)}
+.pv2 .secC.sec--soft{background:var(--v2-soft)}
+.pv2 .wrap{max-width:var(--v2-max);padding-inline:var(--v2-gut)}
+
+/* 見出しの作り：赤の極小マークで始める（赤枠の繰り返しを避ける） */
+.pv2 .kicker2__en{
+  display:inline-flex;align-items:center;gap:10px;
+  font-size:11.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--v2-ink-soft);
+}
+.pv2 .kicker2__en::before{
+  content:"";width:22px;height:2px;background:var(--v2-red);flex:none;
+}
+.pv2 .stitle,.pv2 .ta-display{
+  font-weight:700;line-height:1.38;letter-spacing:.02em;color:var(--v2-ink);
+}
+.pv2 .slead{
+  color:var(--v2-ink-mid);line-height:2;font-size:clamp(14px,1.15vw,15.5px);
+}
+
+/* ボタン：コーポレートサイト実測のピル型に統一 */
+.pv2 .btn{
+  border-radius:var(--v2-pill);font-weight:500;letter-spacing:.04em;
+  padding:16px 20px 16px 30px;border:1px solid transparent;transition:.18s;
+}
+.pv2 .btn--red{background:var(--v2-red);color:#fff;border-color:var(--v2-red)}
+.pv2 .btn--red:hover{background:var(--v2-red-deep);border-color:var(--v2-red-deep)}
+.pv2 .btn--ghost{background:#fff;color:var(--v2-red);border-color:var(--v2-red)}
+.pv2 .btn--ghost:hover{background:var(--v2-red-tint)}
+.pv2 .btn__ico{margin-left:12px;font-size:.72em;opacity:.9}
+.pv2 .textlink{color:var(--v2-red);text-underline-offset:3px}
+
+/* ============================================================
+   ファーストビュー：写真主体 → アイソメトリックイラスト主体
+   左にコピーとCTA、右に大型イラスト。背景は白。
+   ============================================================ */
+.pv2 .heroC{
+  position:relative;background:var(--v2-bg);color:var(--v2-ink);
+  min-height:0;padding:clamp(22px,3.4vw,40px) 0 clamp(26px,3.4vw,44px);
+  overflow:hidden;display:block;
+}
+/* 背景：イラストと同じ30度の等角グリッドを、ごく薄く敷く */
+.pv2 .heroC::before{
+  content:"";position:absolute;inset:0;z-index:0;pointer-events:none;
+  background:
+    linear-gradient(var(--v2-iso),transparent 0 calc(50% - .5px),#EDEFF4 50%,transparent calc(50% + .5px) 100%),
+    linear-gradient(calc(180deg - var(--v2-iso)),transparent 0 calc(50% - .5px),#EDEFF4 50%,transparent calc(50% + .5px) 100%);
+  background-size:76px 44px,76px 44px;
+  -webkit-mask-image:linear-gradient(100deg,#000 0%,rgba(0,0,0,.35) 48%,transparent 78%);
+          mask-image:linear-gradient(100deg,#000 0%,rgba(0,0,0,.35) 48%,transparent 78%);
+  opacity:.9;
+}
+.pv2 .heroC__img,.pv2 .heroC__scrim{display:none}
+.pv2 .heroC__wrap{
+  position:relative;z-index:2;max-width:1330px;margin:0 auto;
+  padding-inline:var(--v2-gut);
+  display:grid;
+  grid-template-columns:minmax(0,.76fr) minmax(0,1.24fr);
+  grid-template-areas:"lead art" "act art";
+  grid-template-rows:auto auto;
+  column-gap:clamp(20px,3.2vw,48px);row-gap:clamp(22px,3vw,34px);
+  align-items:center;
+}
+.pv2 .heroC__lead{grid-area:lead;align-self:end;min-width:0}
+.pv2 .heroC__act{grid-area:act;align-self:start;min-width:0}
+.pv2 .heroC__art{grid-area:art;align-self:center}
+.pv2 .heroC__eyebrow{
+  display:flex;align-items:center;gap:12px;margin:0 0 20px;
+  font-size:11.5px;font-weight:700;letter-spacing:.17em;color:var(--v2-ink-soft);
+}
+.pv2 .heroC__eyebrow .ln{width:30px;height:2px;background:var(--v2-red);flex:none}
+.pv2 .heroC__title{
+  margin:0;color:var(--v2-ink);font-weight:700;
+  font-size:clamp(31px,4.45vw,60px);line-height:1.3;letter-spacing:.012em;
+}
+.pv2 .heroC__title .ln{display:block;text-shadow:none}
+.pv2 .heroC__title .hl-red{color:var(--v2-red)}
+.pv2 .heroC__ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:0}
+.pv2 .heroC__ctas .btn--ghost{background:#fff!important;color:var(--v2-red)!important;border-color:var(--v2-red)!important}
+.pv2 .heroC__ctas .btn--ghost:hover{background:var(--v2-red-tint)!important}
+
+/* FV直下の2つの訴求キャプション：本番と同じ文言を保持したまま、白地で読める形に */
+.pv2 .heroC__flags{
+  display:flex;flex-wrap:wrap;gap:10px 26px;margin-top:clamp(24px,3vw,34px);
+  padding-top:20px;border-top:1px solid var(--v2-line);
+}
+.pv2 .heroC__flags .hf-dot{display:none}
+.pv2 .heroC__flags .hf-i{display:block;max-width:300px}
+.pv2 .heroC__flags .hf-i b{
+  display:block;font-size:13.5px;font-weight:700;color:var(--v2-ink);letter-spacing:.03em;margin-bottom:4px;
+}
+.pv2 .heroC__flags .hf-i b::before{
+  content:"";display:inline-block;width:6px;height:6px;margin-right:8px;
+  background:var(--v2-red);transform:rotate(45deg);vertical-align:middle;
+}
+.pv2 .heroC__flags .hf-i span{display:block;font-size:12.5px;line-height:1.75;color:var(--v2-ink-mid)}
+
+/* 大型イラスト */
+.pv2 .heroC__art{position:relative;z-index:1;margin:0}
+.pv2 .heroC__art img{display:block;width:100%;height:auto}
+.pv2 .heroC__credit{
+  position:static;z-index:2;max-width:1330px;margin:18px auto 0;
+  padding-inline:var(--v2-gut);
+  font-size:11px;line-height:1.75;color:var(--v2-ink-soft);text-align:right;text-shadow:none;
+}
+@media(max-width:980px){
+  .pv2 .heroC__wrap{
+    grid-template-columns:1fr;
+    grid-template-areas:"lead" "art" "act";
+    row-gap:clamp(18px,4vw,26px);
+  }
+  .pv2 .heroC__art{margin-inline:calc(var(--v2-gut) * -1)}
+  .pv2 .heroC__credit{text-align:left}
+  .pv2 .heroC::before{-webkit-mask-image:linear-gradient(180deg,#000,transparent 60%);mask-image:linear-gradient(180deg,#000,transparent 60%)}
+}
+
+/* ============================================================
+   Why PAL：3つの観点を「独立した3つの面」として見せる
+   矢印による一方向フロー（旧 .hyb-flow__ar）は使わない。
+   等角の面を1枚ずつ立てて、赤は番号と稜線だけに使う。
+   ============================================================ */
+.pv2 .hyb-flow{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(14px,1.8vw,22px);
+  margin-top:clamp(30px,4vw,44px);
+}
+.pv2 .hyb-flow::before{content:none}
+.pv2 .hyb-flow__ar{display:none!important}
+.pv2 .hyb-flow__i{
+  position:relative;background:#fff;border:1px solid var(--v2-line);
+  border-radius:var(--v2-r);padding:clamp(22px,2.4vw,30px) clamp(18px,2vw,26px) clamp(24px,2.6vw,32px);
+  display:flex;flex-direction:column;overflow:hidden;isolation:isolate;
+}
+/* 等角の面（イラストと同じ30度）を角に1枚だけ置く。赤枠の繰り返しは作らない。 */
+.pv2 .hyb-flow__i::before{
+  content:"";position:absolute;right:-30px;top:-30px;width:132px;height:132px;z-index:-1;
+  background:var(--v2-soft-2);
+  transform:rotate(45deg) skewX(-14deg);
+}
+/* 左端の赤い稜線。JSに依存せず常時表示する（付与されないクラスに頼らない）。 */
+.pv2 .hyb-flow__i::after{
+  content:"";position:absolute;left:0;top:0;width:3px;height:62px;background:var(--v2-red);
+}
+.pv2 .hyb-flow__no{
+  font-family:Lato,sans-serif;font-size:30px;font-weight:900;line-height:1;
+  color:var(--v2-red);letter-spacing:.02em;margin-bottom:16px;
+}
+.pv2 .hyb-flow__i b{
+  display:block;font-size:clamp(15px,1.3vw,17px);font-weight:700;line-height:1.6;
+  color:var(--v2-ink);letter-spacing:.03em;margin-bottom:10px;
+}
+.pv2 .hyb-flow__i p{font-size:13.5px;line-height:1.95;color:var(--v2-ink-mid);margin:0}
+/* 3面の下に、等角の細い稜線を1本だけ通す（工程ではなく「同じ土台の上の3つ」の意） */
+.pv2 .whyv2-base{
+  position:relative;height:1px;background:var(--v2-line);margin-top:clamp(26px,3vw,36px);
+}
+.pv2 .whyv2-base::before{
+  content:"";position:absolute;left:0;top:-1px;height:3px;width:68px;background:var(--v2-red);
+}
+@media(max-width:860px){.pv2 .hyb-flow{grid-template-columns:1fr}}
+
+/* ============================================================
+   セクション共通：カードの連続と赤枠の繰り返しから抜ける
+   ============================================================ */
+.pv2 .note{font-size:12.5px;line-height:2;color:var(--v2-ink-mid)}
+.pv2 .note b{color:var(--v2-ink)}
+.pv2 .secC.sec--navy{background:var(--v2-ink-deep)}
+.pv2 .sec--navy h2,.pv2 .sec--navy h3,.pv2 .sec--navy b{color:#fff}
+.pv2 .sec--navy p,.pv2 .sec--navy .slead{color:#B9BCCB}
+.pv2 .sec--navy .kicker2__en{color:#A9ADBE}  /* 濃色面 #1B1D31 上で 7.35:1（AAA） */
+
+/* 等角グリッドの帯（淡グレー面に薄く敷いて、単調なグレーの連続を避ける） */
+.pv2 .secC.sec--soft{position:relative;overflow:hidden}
+.pv2 .secC.sec--soft::before{
+  content:"";position:absolute;inset:0;pointer-events:none;z-index:0;
+  background:
+    linear-gradient(var(--v2-iso),transparent 0 calc(50% - .5px),#E7E9F0 50%,transparent calc(50% + .5px) 100%),
+    linear-gradient(calc(180deg - var(--v2-iso)),transparent 0 calc(50% - .5px),#E7E9F0 50%,transparent calc(50% + .5px) 100%);
+  background-size:76px 44px,76px 44px;
+  -webkit-mask-image:radial-gradient(120% 90% at 92% 8%,#000,transparent 72%);
+          mask-image:radial-gradient(120% 90% at 92% 8%,#000,transparent 72%);
+  opacity:.75;
+}
+.pv2 .secC.sec--soft > .wrap{position:relative;z-index:1}
+
+
+
+/* FVの左カラム（コピー＋CTA＋訴求キャプション） */
+
+
+/* ============================================================
+   下層ページ共通（WORK v2 / CAREER v2）
+   TOPで確定したビジュアル言語（白主役・赤は要所・等角モチーフ・ピル型CTA）を
+   そのまま持ち込む。職種名・説明文・タブの挙動には触れない。
+   ============================================================ */
+.pv2 .phead{
+  position:relative;background:var(--v2-bg);overflow:hidden;
+  padding-block:clamp(40px,6vw,76px) clamp(30px,4vw,52px);
+}
+.pv2 .phead::before{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:
+    linear-gradient(var(--v2-iso),transparent 0 calc(50% - .5px),#EDEFF4 50%,transparent calc(50% + .5px) 100%),
+    linear-gradient(calc(180deg - var(--v2-iso)),transparent 0 calc(50% - .5px),#EDEFF4 50%,transparent calc(50% + .5px) 100%);
+  background-size:76px 44px,76px 44px;
+  -webkit-mask-image:radial-gradient(110% 100% at 100% 0%,#000,transparent 66%);
+          mask-image:radial-gradient(110% 100% at 100% 0%,#000,transparent 66%);
+}
+.pv2 .phead > .wrap{position:relative;z-index:1}
+.pv2 .ptitle{font-weight:700;color:var(--v2-ink);letter-spacing:.02em;line-height:1.34}
+.pv2 .plead{color:var(--v2-ink-mid);line-height:2}
+.pv2 .slabel{
+  display:inline-flex;align-items:center;gap:10px;background:none;color:var(--v2-ink-soft);
+  font-size:11.5px;font-weight:700;letter-spacing:.16em;padding:0;
+}
+.pv2 .slabel::before{content:"";width:22px;height:2px;background:var(--v2-red);flex:none}
+
+/* 職種タブ・キャリアタブ：赤枠の繰り返しをやめ、選択中だけを赤で示す */
+.pv2 .rtab,.pv2 .cp-tab{
+  background:#fff;border:1px solid var(--v2-line);color:var(--v2-ink);
+  border-radius:var(--v2-pill);font-weight:500;letter-spacing:.03em;transition:.16s;
+}
+.pv2 .rtab:hover,.pv2 .cp-tab:hover{border-color:var(--v2-line-strong);background:var(--v2-soft-2)}
+.pv2 .rtab[aria-selected="true"],.pv2 .cp-tab[aria-selected="true"]{
+  background:var(--v2-red);border-color:var(--v2-red);color:#fff;
+}
+.pv2 .rtab[aria-selected="true"] *,.pv2 .cp-tab[aria-selected="true"] *{color:#fff}
+.pv2 .rtab:focus-visible,.pv2 .cp-tab:focus-visible{outline:2px solid var(--v2-red);outline-offset:3px}
+
+/* パネル：カードの連続に見せず、面と余白で区切る */
+.pv2 .rpanel,.pv2 .cp-panel{background:transparent;border:none;padding-top:clamp(22px,2.6vw,32px)}
+.pv2 .rpanel h3,.pv2 .cp-panel h3{color:var(--v2-ink);font-weight:700;letter-spacing:.03em}
+
+/* 図解まわりのアイコン・線は、イラストと同じインク色＋赤の要所使いに寄せる */
+.pv2 svg [stroke="var(--red)"],.pv2 svg [stroke="#cf131b"]{stroke:var(--v2-red)}
+.pv2 svg [fill="var(--red)"],.pv2 svg [fill="#cf131b"]{fill:var(--v2-red)}
+
+/* 下層ページのFVに等角イラストを小さく添える（主役はテキスト、イラストは補助） */
+.pv2 .phead--art > .wrap{
+  display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.88fr);
+  gap:clamp(20px,3.4vw,46px);align-items:center;
+}
+.pv2 .phead__art{margin:0}
+.pv2 .phead__art img{display:block;width:100%;height:auto}
+@media(max-width:860px){
+  .pv2 .phead--art > .wrap{grid-template-columns:1fr;gap:20px}
+  .pv2 .phead__art{margin-inline:calc(var(--v2-gut) * -1)}
+}
+
+/* ===== A11Y v1：9職種セレクタのフォーカス視認性とパネルの輪郭 ===== */
+.pv2 .hybrole__row:focus-visible{outline:3px solid var(--v2-red);outline-offset:-3px}
+.pv2 #hybRolePanel:focus-visible{outline:3px solid var(--v2-red);outline-offset:4px}
