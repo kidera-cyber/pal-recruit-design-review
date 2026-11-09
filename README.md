@@ -1,4 +1,4 @@
-# PAL採用サイト｜TOPデザイン3案 比較プレビュー
+# PAL採用サイト｜TOPデザイン2案 比較プレビュー
 
 社内のデザイン確認用プレビューです。**本番サイト・既存の採用サイトには反映していません。**
 
@@ -7,8 +7,7 @@
 | ページ | パス |
 |---|---|
 | 入口（6ページへのハブ） | `index.html` |
-| TOP 3案 比較 | `site/redesign/newtop-compare.html` |
-| TOP A案（Corporate Editorial） | `site/redesign/newtop-a.html` |
+| TOP 2案 比較 | `site/redesign/newtop-compare.html` |
 | TOP B案（Visual Infographic） | `site/redesign/newtop-b.html` |
 | TOP C案（Corporate × Visual Hybrid） | `site/redesign/newtop-c.html` |
 | WORK 9職種図解 | `site/redesign/newwork-sample.html` |
@@ -39,7 +38,7 @@ URLを知っていれば誰でも閲覧できます。社外への共有はお�
 
 ## デザイン評価時の記録（公開前の検証結果）
 
-### A案 スマートフォン表示の文字重なり
+### A案 スマートフォン表示の文字重なり（※ A案は2026-11-09に不採用・削除済み）
 Phase 4 のスクリーンショットでファーストビューの文字が重なって見えたため、再検証しました。
 
 - 375×812px で、読み込み 0 / 150 / 400 / 800 / 1500 / 2500ms の各時点を実測 → **重なり 0 件**
@@ -53,4 +52,22 @@ Phase 4 のスクリーンショットでファーストビューの文字が重
 - 幅 375px（スマートフォン）／デスクトップ幅で確認
 - 全63ページ・84URL のリンクとアセットが HTTP 200（404 ゼロ）
 - WORK 9職種タブ・CAREER 6タブ：全切替動作を確認
-- 3案比較ページの iframe 3枚：描画・幅切替（PC / タブレット / スマホ）動作を確認
+- 比較ページの iframe 2枚：描画・幅切替（PC / タブレット / スマホ）動作を確認
+
+## 変更履歴
+
+### 2026-11-09：TOP A案を削除
+TOP A案（Corporate Editorial）が不採用となったため、比較対象から外しました。
+
+- 削除したファイル：`site/redesign/newtop-a.html`
+- 入口ページ・比較ページから A案のカードとリンクを削除
+- 比較ページのグリッドを3列から2列に変更
+- 「3案」の表記を「2案」に更新（入口・比較ページ・各試作ページの戻るリンク）
+- 比較ページ末尾の検証ログは、当時の評価記録として本文を残し、冒頭に削除の経緯を追記
+- B案・C案のデザイン、文言、数値、求人条件、インタビュー、JSON-LD は変更していません
+
+復元する場合：
+
+```sh
+git checkout 07bccc6 -- site/redesign/newtop-a.html
+```

@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
-<title>【試作・非公開】TOP 3案比較（操作可能プレビュー版）｜PAL採用サイト リデザイン検証</title>
+<title>【試作・非公開】TOP 2案比較（操作可能プレビュー版）｜PAL採用サイト リデザイン検証</title>
 <link rel="stylesheet" href="../assets/css/style.css">
 <style>
 body{background:var(--gray-50)}
@@ -31,7 +31,7 @@ body{background:var(--gray-50)}
 .cmp-vwbtns button.is-active{background:var(--red);color:#fff}
 .cmp-toolbar__note{font-size:11.5px;color:var(--gray-500)}
 
-.cmp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;padding:26px 24px}
+.cmp-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;padding:26px 24px}
 @media(max-width:1180px){.cmp-grid{grid-template-columns:1fr;max-width:720px;margin:0 auto}}
 .cmp-card{background:#fff;border:1px solid var(--gray-150);display:flex;flex-direction:column}
 .cmp-card--c{border-color:var(--red);box-shadow:0 0 0 1px var(--red)}
@@ -68,16 +68,15 @@ body{background:var(--gray-50)}
 </style>
 </head>
 <body>
-<div class="cmp-notice">【試作・非公開】TOP 3案比較（操作可能プレビュー版）｜<b>デザイン検証用プレビュー｜本番サイト未反映</b>・<b>3案ともまだ承認されていません</b>・3案とも既存コンテンツ（文言・数値・CTA・リンク先）は本番index.htmlと同一（詳細は末尾の検証ログ参照）</div>
+<div class="cmp-notice">【試作・非公開】TOP 2案比較（操作可能プレビュー版）｜<b>デザイン検証用プレビュー｜本番サイト未反映</b>・<b>2案ともまだ承認されていません</b>・2案とも既存コンテンツ（文言・数値・CTA・リンク先）は本番index.htmlと同一（詳細は末尾の検証ログ参照）</div>
 
 <header class="cmp-head">
   <div class="wrap">
-    <h1>HOME 全面再設計：TOP 3案 操作可能プレビュー（軍師モード・最新ラウンド）</h1>
-    <p>下の各カードは newtop-a.html / newtop-b.html / newtop-c.html をそのままiframeで表示しています。カード内で実際にスクロールしてファーストビューから最下部（フッター）まで確認できます。上部ツールバーでPC幅／スマホ幅を切り替えて、同じ操作で3案を横並び比較できます。</p>
-    <span class="notapproved">現時点でA・B・Cいずれも未承認（続けて全28ページ展開はしません）</span>
+    <h1>HOME 全面再設計：TOP 2案 操作可能プレビュー（軍師モード・最新ラウンド）</h1>
+    <p>下の各カードは newtop-b.html / newtop-c.html をそのままiframeで表示しています。カード内で実際にスクロールしてファーストビューから最下部（フッター）まで確認できます。上部ツールバーでPC幅／スマホ幅を切り替えて、同じ操作で2案を横並び比較できます。</p>
+    <span class="notapproved">現時点でB・Cいずれも未承認（続けて全28ページ展開はしません）</span>
     <nav class="cmp-entrynav" aria-label="プレビュー内ナビゲーション（確認用・本番コンテンツではありません）">
       <span class="cmp-entrynav__lbl">このプレビューから移動：</span>
-      <a href="newtop-a.html" target="_blank" rel="noopener">A案を単独で開く ▶</a>
       <a href="newtop-b.html" target="_blank" rel="noopener">B案を単独で開く ▶</a>
       <a href="newtop-c.html" target="_blank" rel="noopener">C案を単独で開く ▶</a>
       <a href="newwork-sample.html" target="_blank" rel="noopener">WORK図解サンプルを見る ▶</a>
@@ -99,19 +98,9 @@ body{background:var(--gray-50)}
 </div>
 
 <div class="cmp-grid">
-  <div class="cmp-card">
-    <div class="cmp-card__head">
-      <span class="cmp-card__tag en">PLAN A</span>
-      <div class="cmp-card__ttl">Corporate Editorial</div>
-      <div class="cmp-card__sub">大判写真1点＋巨大タイポグラフィ、目次型インデックス</div>
-    </div>
-    <div class="cmp-card__frame is-loading" id="frameWrapA"><iframe class="cmp-ifr" data-w="1280" src="newtop-a.html" title="案A プレビュー"></iframe></div>
-    <div class="cmp-card__foot">
-      <a href="newtop-a.html" target="_blank" rel="noopener">別タブで開く ▶</a>
-      <span class="cmp-card__scrollhint">カード内スクロールで最下部まで確認可</span>
-    </div>
-  </div>
-
+  <!-- ===== DROP-PLAN-A v1：PLAN A（Corporate Editorial）のカードを削除。
+       A案が不採用となったため、本体ファイル newtop-a.html ごと取り除いた。
+       グリッドは3列→2列に変更。復元は git 履歴 07bccc6 から。 ===== -->
   <div class="cmp-card">
     <div class="cmp-card__head">
       <span class="cmp-card__tag en">PLAN B</span>
@@ -170,11 +159,12 @@ body{background:var(--gray-50)}
     <li><b>案Cの弱点</b>：①モバイル実機検証は完了したが、案A同様にスクロール量が多く、読み込み負荷がやや高い。②9職種の「目次＋ミニマップ」という2つの情報表現を1画面に同居させているため、画面が縦に長くなりやすい。③SVGミニマップ自体は非常にシンプルな線画のため、「インフォグラフィックとしての完成度」という観点では、より精緻なビジュアル表現の余地がある（安っぽさは無いが、装飾としての密度はまだ上げられる）。</li>
     <li><b>既存ルールとの整合</b>：9職種の「系統」や新しい上下関係は創作していない。案Cのミニ俯瞰図も、本番index.html / work.htmlのrole-chipデータのみを使用し、ABOUTのxoverに明記されている「3つの領域に上下関係はない」という注記をそのまま転記している（新規の数値・関係性は追加していない）。</li>
   </ul>
+  <p><b>【2026-11-09 追記】</b>この検証ログは、A案・B案・C案の3案で比較していた時点の記録です。その後 A案は不採用となり、プレビューから削除しました。以下の記述に残る案Aへの言及は、当時の評価記録としてそのままにしています。</p>
   <p><b>結論：</b>この所見は参考情報であり、最終判断はユーザー自身が行うものとします。承認をいただくまで、下層ページへの展開（Phase 3）には進みません。</p>
 </div>
 
 <div class="cmp-note">
-  ※ このページ、および newtop-a.html / newtop-b.html / newtop-c.html はいずれも redesign/ 配下の試作ファイルであり、本番サイト・GitHub・Pagesには一切反映していません。<br>
+  ※ このページ、および newtop-b.html / newtop-c.html はいずれも試作ファイルであり、本番の採用サイトには反映していません（デザイン検証用のプレビューにのみ掲載しています）。<br>
   ※ 本番index.htmlとの内容差分検証の結果は redesign/README.md の「軍師モード 全面再設計ラウンド」セクションに記録しています（9職種データ・7名インタビュー・CTA文言・キャリア3問は完全一致を確認。FV直下の2つの訴求キャプション「現場を、自分たちで運営する」「技術で仕組みをつくる」の文言、および「※画像はイメージです」の注記は、3案とも本番とは異なる構成で表現されており、承認時にあわせてご確認ください）。
 </div>
 
