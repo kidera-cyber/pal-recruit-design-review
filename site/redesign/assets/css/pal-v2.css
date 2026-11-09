@@ -1,3 +1,10 @@
+/* ============================================================
+   【キャッシュについて】このファイルを編集したら、参照している各HTMLの
+   href="assets/css/pal-v2.css?v=YYYYMMDDx" のバージョンを必ず上げること。
+   上げないと、以前ページを開いた環境で古いCSSが使われ、旧デザインのまま表示される。
+   参照元：newtop-c-v2.html / newwork-sample-v2.html / newcareer-sample-v2.html
+   現在のバージョン：v=20261109h
+   ============================================================ */
 @charset "utf-8";
 /* ============================================================
    ===== PAL-V2 v1：採用サイト C案v2 デザインシステム =====
@@ -378,4 +385,60 @@ body.pv2{
 @media(max-width:860px){
   .pv2 #why .svgflow__line{display:none}
   .pv2 #why .svgflow__items{grid-template-columns:1fr;gap:28px}
+}
+
+/* ===== A11Y v3：#voices を淡グレー面（#F2F3F6）にしたことで、
+   社員インタビューの肩書き（.byline__role）が --gray-500 #80818A で 3.49:1 となり
+   AA（4.5:1）を下回ったため、#voices 配下だけ #6B6D81 に変更する（4.58:1）。
+   白地のときも 3.73:1 で元々AA未満だったので、あわせて底上げしている。
+   文言・リンク・レイアウトは変更していない。 ===== */
+.pv2 #voices .byline__role{color:var(--v2-ink-mid)}
+
+/* ===== A11Y v4：FVを濃色の写真から白背景のイラストに変えた際、
+   旧C案の .heroC__eyebrow span{color:#fff} が残り、
+   小見出し「PAL RECRUIT — キャリア採用」が白地に白で見えなくなっていた。
+   内側の span を直接指定して本文インク系の色に戻す（白地 5.09:1／AA）。
+   文言・配置は変更していない。 ===== */
+.pv2 .heroC__eyebrow span{color:var(--v2-ink-soft)}
+.pv2 .heroC__eyebrow .ln{background:var(--v2-red)}
+
+/* ===== A11Y v5：PAL-V2 の見出し色指定（.pv2 h1,h2,h3{color:var(--v2-ink)}）が
+   濃色面の上にも効いてしまい、次の見出しが読めなくなっていた（1.30:1）。
+     ・9職種の詳細パネルの職種名（.hybrole__mapja） 濃色面 #11141F の上
+     ・フッターの見出し（RECRUIT / COMPANY）
+   濃い面の上では白に戻す。文言・配置は変更していない。 ===== */
+.pv2 .hybrole__map h3,
+.pv2 .hybrole__mapja{color:#fff}
+.pv2 footer h2,
+.pv2 footer h3{color:#fff}
+
+/* ===== A11Y v6：同じく濃色パネル（.hybrole__map）の上で、PAL-V2 の
+   本文色（--v2-ink-mid #6B6D81）が 3.61:1 と AA を下回っていたため明るくする。
+   #B9BCCB は濃色面 #11141F の上で 10.9:1（AAA）。文言は変更していない。 ===== */
+.pv2 .hybrole__map p,
+.pv2 .hybrole__mapcat,
+.pv2 .hybrole__mapone{color:#B9BCCB}
+
+/* ===== A11Y v7：濃色のフッターでも PAL-V2 の本文色（--v2-ink-mid）が効いてしまい
+   3.61:1 と AA を下回っていたため、濃色面用の明るい色に戻す（10.9:1）。
+   フッターの文言・リンク構成は変更していない。 ===== */
+.pv2 footer p{color:#B9BCCB}
+
+/* ===== HERO-VIDEO v1：FVの動画。静止画と同じ枠・同じ余白に置く。
+   16:9 を保ち、トリミングしない（上下左右を切らない）。
+   コントロールは出さず、文字・CTAとは重ならない（左右2カラムのまま）。 ===== */
+.pv2 .heroC__art{position:relative;margin:0}
+.pv2 .heroC__video{
+  display:block;width:100%;height:auto;aspect-ratio:16/9;
+  object-fit:contain;background:var(--v2-bg);
+}
+.pv2 .heroC__video::-webkit-media-controls{display:none!important}
+/* 動画が読めなかったとき：poster がそのまま残るよう、高さだけ確保しておく */
+.pv2 .heroC__video.is-failed{min-height:0}
+@media(max-width:980px){
+  /* SPでは左右の余白ぶんだけ広げて、動画を少しでも大きく見せる。
+     aspect-ratio:16/9 と object-fit:contain を保っているので、
+     幅を広げてもトラックや施設が切れることはない。 */
+  .pv2 .heroC__art{margin-inline:calc(var(--v2-gut) * -1)}
+  .pv2 .heroC__video{width:100%;max-width:none}
 }
