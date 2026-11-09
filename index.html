@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
-<title>PAL採用サイト｜TOPデザイン2案 比較プレビュー</title>
+<title>PAL採用サイト｜デザインプレビュー</title>
 <meta name="description" content="社内レビュー用の非公開プレビュー。TOPデザイン2案とWORK図解・CAREERロードマップの試作ページを比較できます。">
 <!-- ===== REVIEW-HUB v1：入口ページ。Genspark成果物 0-COMPARE-PREVIEW.html を基に、
      GitHub Pages 用にリンク先を site/ 配下へ付け替えた。試作ページ本体の文言・数値・
@@ -24,7 +24,9 @@
   .cta{display:inline-block;background:var(--red);color:#fff;font-weight:800;padding:17px 34px;
     text-decoration:none;border-radius:4px;font-size:15px;line-height:1.3}
   .cta:hover{opacity:.88}
-  h2{font-size:13px;letter-spacing:.06em;color:var(--mute);margin:44px 0 14px;font-weight:700}
+  h2{font-size:13px;letter-spacing:.06em;color:var(--mute);margin:44px 0 6px;font-weight:700}
+  .h2note{font-size:12px;line-height:1.85;color:var(--mute);margin:0 0 14px}
+  .h2note b{color:var(--txt)}
   .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;margin:0;padding:0;list-style:none}
   .grid a{display:block;background:var(--card);border:1px solid #272c3f;border-radius:7px;
     padding:18px 20px;text-decoration:none;color:var(--txt);transition:border-color .15s}
@@ -39,31 +41,37 @@
 <body>
 <div class="wrap">
   <p class="tag">デザイン検証用プレビュー｜本番サイト未反映</p>
-  <h1>PAL採用サイト<br>TOPデザイン2案 比較プレビュー</h1>
+  <h1>PAL採用サイト<br>デザインプレビュー</h1>
   <p class="lead">
-    採用サイトTOPの再設計2案（B／C）と、WORK図解・CAREERロードマップの試作ページです。<br>
+    採用サイトTOPの再設計と、WORK図解・CAREERロードマップの試作ページです。<br>
     掲載している文言・数値・求人条件・インタビューは現行サイトと同一で、変更していません。
   </p>
-  <a class="cta" href="site/redesign/newtop-compare.html">▶ TOP 2案の比較ページを開く</a>
+  <!-- ===== ENTRY-V2 v1：旧デザイン（B/C案）と最新デザイン（C案v2）が混同されないよう、
+       最上部の主CTAを C案v2 に変更し、旧3案比較ページは「参考用」と明示した。
+       旧ページは削除していない（比較・復元用に残置）。 ===== -->
+  <a class="cta" href="site/redesign/newtop-c-v2.html">▶ 最新デザイン｜C案v2（イラスト採用版）を開く</a>
 
   <!-- ===== PAL-V2 v1：C案を正式ベースとしたデザイン刷新版（v2）への入口を追加。
        既存のB案・C案はそのまま比較用に残している。 ===== -->
-  <h2>デザイン刷新版（C案 v2）</h2>
+  <h2>最新デザイン｜C案v2（イラスト採用版）</h2>
+  <p class="h2note">現在の検討対象です。ファーストビューは<b>アイソメトリックイラストが主役</b>で、写真は使っていません。</p>
   <ul class="grid">
     <li><a href="site/redesign/newtop-c-v2.html"><b>TOP C案 v2</b><span>コーポレートサイト準拠の配色<br>アイソメトリックイラスト主体のFV</span></a></li>
     <li><a href="site/redesign/newwork-sample-v2.html"><b>WORK v2</b><span>9職種（変更なし）<br>同じビジュアル言語を適用</span></a></li>
     <li><a href="site/redesign/newcareer-sample-v2.html"><b>CAREER v2</b><span>6つのキャリアタブ（変更なし）<br>同じビジュアル言語を適用</span></a></li>
   </ul>
 
-  <h2>個別ページを直接開く</h2>
+  <h2>旧デザイン比較｜参考用</h2>
+  <p class="h2note">以前のラウンドの試作です。<b>TOP C案（旧）は写真のファーストビュー</b>のままで、これは仕様どおりです。最新デザインは上の「C案v2」をご覧ください。</p>
   <ul class="grid">
     <!-- ===== DROP-PLAN-A v1：TOP A案（Corporate Editorial）は不採用となったため、
          カードと本体ファイル site/redesign/newtop-a.html を削除した。
          復元する場合： git checkout 07bccc6 -- site/redesign/newtop-a.html ===== -->
-    <li><a href="site/redesign/newtop-b.html"><b>TOP B案</b><span>Visual Infographic<br>図解と数字で見せる</span></a></li>
-    <li><a href="site/redesign/newtop-c.html"><b>TOP C案</b><span>Corporate × Visual Hybrid<br>ブランド感と図解の統合</span></a></li>
-    <li><a href="site/redesign/newwork-sample.html"><b>WORK 図解サンプル</b><span>9職種の関係を図で示す案</span></a></li>
-    <li><a href="site/redesign/newcareer-sample.html"><b>CAREER ロードマップ</b><span>職種別キャリアの道すじを示す案</span></a></li>
+    <li><a href="site/redesign/newtop-compare.html"><b>旧 TOP 2案の比較ページ</b><span>B案・C案（旧）をiframeで並べて比較</span></a></li>
+    <li><a href="site/redesign/newtop-b.html"><b>TOP B案（旧）</b><span>Visual Infographic<br>図解と数字で見せる</span></a></li>
+    <li><a href="site/redesign/newtop-c.html"><b>TOP C案（旧）</b><span>Corporate × Visual Hybrid<br>FVは写真版（v2の前の状態）</span></a></li>
+    <li><a href="site/redesign/newwork-sample.html"><b>WORK 図解サンプル（旧）</b><span>9職種の関係を図で示す案</span></a></li>
+    <li><a href="site/redesign/newcareer-sample.html"><b>CAREER ロードマップ（旧）</b><span>職種別キャリアの道すじを示す案</span></a></li>
     <li><a href="site/"><b>現行サイト（比較用）</b><span>再設計前のHOME</span></a></li>
   </ul>
 

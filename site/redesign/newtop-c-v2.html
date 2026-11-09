@@ -227,23 +227,35 @@
 </section>
 
 <!-- ② Why PAL -->
-<section class="secC" id="why">
+<!-- ===== WHY-B v1：Why PAL を B案（newtop-b.html）のデザインに差し替えた。
+     方眼グリッド背景（.gridbg）・赤い Why PAL ラベル（.kicker2）・2行見出し・説明文・
+     赤い水平ライン（SVG #flowpathActive）・3つの赤い円形アイコン（.svgflow__ic）・
+     01/02/03 の3項目・補足文と赤いテキストリンクまで、B案の実装をそのまま持ってきている。
+     本文はもともとB案とC案で完全一致（300字）だったため、文言の変更は一切ない。
+     .svgflow 系のCSSは B案ではインライン定義だったため、pal-v2.css に
+     「#why 配下だけ」のスコープ付きで複製した（他セクション・他ページには影響しない）。
+     直前のC案v2デザイン（.hyb-flow の3カード）は git 履歴 002dddd から復元できる。 ===== -->
+<section class="secwide2 gridbg" id="why">
   <div class="wrap">
-    <div class="shead reveal" style="margin-bottom:10px;max-width:860px">
+    <div class="shead reveal" style="margin-bottom:12px">
       <p class="kicker2"><span class="kicker2__en en">Why PAL</span></p>
-      <h2 class="ta-display" style="font-size:clamp(24px,3.2vw,40px)">現場を動かす。仕組みをつくる。<br><span style="color:var(--red)">その両方が、</span>PALの仕事。</h2>
-      <p class="slead" style="margin-top:16px;max-width:640px">PALは、物流現場の運営を自ら請け負いながら、システム・設備・データを組み合わせて現場で使われる仕組みをつくる会社です。提案して終わりではなく、実装・運用・改善まで関わります。</p>
+      <h2 class="stitle" style="font-size:clamp(23px,2.7vw,32px)">現場を動かす。仕組みをつくる。<br><!-- ===== WHY-B v1：見出しの「その両方が、」だけは C案v2 の PALレッド強調を維持する。
+           （B案のデザインを基本としつつ、この箇所のみ C案v2 の表現を採用） ===== --><span style="color:var(--red)">その両方が、</span>PALの仕事。</h2>
+      <p class="slead">PALは、物流現場の運営を自ら請け負いながら、システム・設備・データを組み合わせて現場で使われる仕組みをつくる会社です。提案して終わりではなく、実装・運用・改善まで関わります。</p>
     </div>
-    <!-- ===== PAL-V2 v1：3項目をつないでいた矢印（.hyb-flow__ar）を 2 個削除。
-           3つは業務の工程ではなくPALの強みを説明する観点のため、一方向のフローに見せない。
-           見出し・本文・補足説明・リンクはB案／C案の原文のまま変更していない。 ===== -->
-      <div class="hyb-flow reveal" id="hybFlow">
-      <div class="hyb-flow__i is-key"><span class="hyb-flow__no en">01</span><b>現場を、自分たちで知っている</b><p>物流BPOとして現場運営そのものを請け負っています。</p></div>
-      <div class="hyb-flow__i is-key"><span class="hyb-flow__no en">02</span><b>技術とデータで仕組みをつくる</b><p>システム開発・自動化設備・データ活用を組み合わせます。</p></div>
-      <div class="hyb-flow__i is-key"><span class="hyb-flow__no en">03</span><b>導入して終わらない</b><p>現場で動かし、運用と効果検証を続けます。</p></div>
+
+    <div class="svgflow reveal">
+      <svg class="svgflow__line" viewBox="0 0 900 60" preserveAspectRatio="none" aria-hidden="true">
+        <path id="flowpath" d="M80 30 L820 30" fill="none" stroke="var(--gray-300)" stroke-width="2" stroke-dasharray="6 6"/>
+        <path id="flowpathActive" d="M80 30 L820 30" fill="none" stroke="var(--red)" stroke-width="2" stroke-dasharray="1000" stroke-dashoffset="1000"/>
+      </svg>
+      <div class="svgflow__items">
+        <div class="svgflow__i is-key"><span class="svgflow__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M5 21V9l7-5 7 5v12M9 21v-6h6v6"/></svg></span><b>01 現場を、自分たちで知っている</b><p>物流BPOとして現場運営そのものを請け負っています。</p></div>
+        <div class="svgflow__i is-key"><span class="svgflow__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v12H4zM9 20h6M12 16v4"/></svg></span><b>02 技術とデータで仕組みをつくる</b><p>システム開発・自動化設備・データ活用を組み合わせます。</p></div>
+        <div class="svgflow__i is-key"><span class="svgflow__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4M12 18v4M4.9 4.9l2.8 2.8M16.3 16.3l2.8 2.8M2 12h4M18 12h4M4.9 19.1l2.8-2.8M16.3 7.7l2.8-2.8"/></svg></span><b>03 導入して終わらない</b><p>現場で動かし、運用と効果検証を続けます。</p></div>
+      </div>
     </div>
-    <div class="whyv2-base reveal" aria-hidden="true"></div>
-      <p class="note reveal" style="margin-top:22px"><b>現場 × 技術</b>&nbsp;を両方知っているから、提案だけで終わらず、実装・運用・改善までを一気通貫で担えます。&nbsp;<a class="textlink" href="about.html">PALについてさらに詳しく見る</a></p>
+    <p class="note reveal" style="margin-top:22px"><b>現場 × 技術</b>&nbsp;を両方知っているから、提案だけで終わらず、実装・運用・改善までを一気通貫で担えます。&nbsp;<a class="textlink" href="about.html">PALについてさらに詳しく見る</a></p>
   </div>
 </section>
 
@@ -505,6 +517,19 @@
         entries.forEach(function(en){ if(en.isIntersecting){ arrows.forEach(function(a,i){ setTimeout(function(){ a.classList.add('is-drawn'); }, i*220); }); io2.disconnect(); } });
       },{threshold:.4});
       io2.observe(flowSec);
+    }
+  }
+
+  /* ===== WHY-B v1：Why PAL の赤い水平ラインの描画。B案 newtop-b.html と同じ実装。 ===== */
+  var whySec = document.getElementById('why');
+  var flowActive = document.getElementById('flowpathActive');
+  if(whySec && flowActive){
+    if(reduce){ flowActive.style.strokeDashoffset = 0; }
+    else if('IntersectionObserver' in window){
+      var ioW = new IntersectionObserver(function(entries){
+        entries.forEach(function(en){ if(en.isIntersecting){ flowActive.style.transition='stroke-dashoffset 1.1s ease'; flowActive.style.strokeDashoffset='0'; ioW.disconnect(); } });
+      },{threshold:.4});
+      ioW.observe(whySec);
     }
   }
 

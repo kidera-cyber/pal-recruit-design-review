@@ -320,3 +320,62 @@ body.pv2{
 /* ===== A11Y v1：9職種セレクタのフォーカス視認性とパネルの輪郭 ===== */
 .pv2 .hybrole__row:focus-visible{outline:3px solid var(--v2-red);outline-offset:-3px}
 .pv2 #hybRolePanel:focus-visible{outline:3px solid var(--v2-red);outline-offset:4px}
+
+/* ============================================================
+   ===== WHY-B v1：Why PAL を B案（newtop-b.html）の見た目に揃える =====
+   B案ではこのセクションのCSSが newtop-b.html のインライン <style> にあり、
+   共通CSSには入っていない。そのため必要な分だけをここに複製する。
+
+   スコープはすべて「.pv2 #why 配下」に限定している。
+   ・他のセクション（FV・9職種・社員の声・CAREER導線など）には影響しない
+   ・WORK v2 にも #why があるが、.svgflow を持たないため当たらない
+   ・共通CSS（style.css / corporate-system.css / newtop-system.css）は変更していない
+
+   あわせて、PAL-V2 の上書き（赤い短い罫線つきの kicker など）を #why 配下だけ
+   解除し、B案の「赤い Why PAL ラベル」を再現する。
+   ============================================================ */
+
+/* --- セクションの余白（B案 .secwide2 と同値） --- */
+.pv2 #why.secwide2{padding:clamp(52px,8vh,84px) 0}
+/* 方眼グリッド（.gridbg）は corporate-system.css の共通定義をそのまま使う。
+   PAL-V2 が .secC 向けに敷いている等角グリッドは、ここでは使わない。 */
+.pv2 #why.secwide2::before{content:none}
+/* PAL-V2 は body に font-feature-settings:"palt" を掛けているが、B案は掛けていない。
+   字詰めが変わると改行位置まで変わるため、#why 配下だけ解除してB案と同じ組みに戻す。 */
+.pv2 #why{font-feature-settings:normal;font-kerning:auto}
+
+/* --- 赤い「Why PAL」ラベル（B案 .kicker2__en の見え方に戻す） --- */
+.pv2 #why .kicker2__en{
+  display:inline;align-items:initial;gap:0;
+  font-family:var(--font-en);font-weight:900;letter-spacing:.02em;
+  font-size:clamp(13px,1.7vw,17px);color:var(--red);line-height:1;
+  text-transform:none;
+}
+.pv2 #why .kicker2__en::before{content:none}
+
+/* --- 見出し・本文・注記・内側余白も B案の計算値に合わせる ---
+   （PAL-V2 の上書きを #why 配下だけ解除する。実測で突き合わせた値） --- */
+.pv2 #why .wrap{padding-inline:24px}                      /* B案 24px（PAL-V2は40px） */
+.pv2 #why .stitle{color:var(--ink);font-weight:800;letter-spacing:normal;line-height:1.4}
+.pv2 #why .slead{color:var(--gray-700);font-size:15px;line-height:1.8}
+.pv2 #why .note{color:var(--gray-500);font-size:13px;line-height:1.8}
+
+/* --- Why PAL：SVGステップ図解（B案 newtop-b.html のインライン定義の複製） --- */
+.pv2 #why .svgflow{position:relative;margin-top:18px}
+.pv2 #why .svgflow__line{width:100%;height:60px;display:block}
+.pv2 #why .svgflow__items{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:-6px}
+.pv2 #why .svgflow__i{text-align:left}
+.pv2 #why .svgflow__ic{
+  width:46px;height:46px;border:2px solid var(--gray-300);border-radius:50%;
+  display:flex;align-items:center;justify-content:center;margin-bottom:14px;background:#fff;
+}
+.pv2 #why .svgflow__ic svg{width:22px;height:22px;color:var(--gray-700)}
+.pv2 #why .svgflow__i.is-key .svgflow__ic{border-color:var(--red)}
+.pv2 #why .svgflow__i.is-key .svgflow__ic svg{color:var(--red)}
+.pv2 #why .svgflow__i b{display:block;font-size:15px;margin-bottom:6px;color:var(--ink)}
+.pv2 #why .svgflow__i p{font-size:13px;color:var(--gray-700);margin:0;line-height:1.8}
+/* SPでは水平ラインを隠して縦1列に（B案と同じ挙動） */
+@media(max-width:860px){
+  .pv2 #why .svgflow__line{display:none}
+  .pv2 #why .svgflow__items{grid-template-columns:1fr;gap:28px}
+}
