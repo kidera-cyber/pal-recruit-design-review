@@ -3,7 +3,7 @@
    href="assets/css/pal-v2.css?v=YYYYMMDDx" のバージョンを必ず上げること。
    上げないと、以前ページを開いた環境で古いCSSが使われ、旧デザインのまま表示される。
    参照元：newtop-c-v2.html / newwork-sample-v2.html / newcareer-sample-v2.html
-   現在のバージョン：v=20261109h
+   現在のバージョン：v=20261109i
    ============================================================ */
 @charset "utf-8";
 /* ============================================================
@@ -442,3 +442,53 @@ body.pv2{
   .pv2 .heroC__art{margin-inline:calc(var(--v2-gut) * -1)}
   .pv2 .heroC__video{width:100%;max-width:none}
 }
+
+/* ============================================================
+   ===== DARKSURFACE v1：濃い面の上の文字色をまとめて守る =====
+   【原因】PAL-V2 は白背景を前提に次の2つを置いている。
+       .pv2 h1,.pv2 h2,.pv2 h3{color:var(--v2-ink)}   詳細度 (0,2,1)
+       .pv2 p{color:var(--v2-ink-mid)}                詳細度 (0,1,1)
+   元の style.css は濃い面では親に color:#fff を置き、子は継承で白にしていた。
+   継承は「直接あたる指定」に必ず負けるため、上の2つが継承の白を打ち消し、
+   濃い面の上に濃い文字が載る状態になっていた。
+     JOIN PAL の見出し #262946 … 実効背景 #36373D に対し 1.19:1（ほぼ読めない）
+     JOIN PAL の本文  #6B6D81 … 同 2.33:1
+   さらに .pv2 p (0,1,1) は .entry__label や .applynote (0,1,0) より強いため、
+   赤いラベルと注記の色まで上書きしていた。
+
+   【対処】濃い面を1か所に集めて、そこでは元の設計どおり明るい色に戻す。
+   セクション単位のスコープなので、他ページ・他セクションには影響しない。
+   今後 PAL-V2 のグローバル指定を増やすときは、ここに濃い面を追記すること。
+   ============================================================ */
+
+/* --- 対象となる濃い面 ---
+   .entry          … JOIN PAL（写真＋rgba(10,11,18,.82) のオーバーレイ）
+   .sec--navy      … 入社後セクション
+   .hcbelow        … FV直下の数値帯
+   .hybrole__map   … 9職種の詳細パネル
+   footer          … フッター
+   実効背景は、写真が最も明るい最悪条件で #36373D として検証した。 */
+
+/* 見出し：継承の白に戻す */
+.pv2 .entry h1,.pv2 .entry h2,.pv2 .entry h3,
+.pv2 .sec--navy h1,.pv2 .sec--navy h2,.pv2 .sec--navy h3,
+.pv2 .hcbelow h1,.pv2 .hcbelow h2,.pv2 .hcbelow h3{color:#fff}
+
+/* 本文：元の style.css と同じ明るいグレー（#36373D 上で 8.13:1） */
+.pv2 .entry p{color:#D4D5E0}
+
+/* JOIN PAL の英字ラベル：元の #FF6B6F は 4.28:1 で AA に届かないため少し明るくする（5.24:1） */
+.pv2 .entry .entry__label{color:#FF8A8E}
+
+/* 応募先URLの注記：元の #9496AB は 4.07:1 のため明るくする（6.28:1） */
+.pv2 .entry .applynote{color:#B9BCCB}
+
+/* 「PALで働く人を見る」リンク：白（11.86:1） */
+.pv2 .entry .entry__sec a{color:#fff;text-decoration-color:rgba(255,255,255,.6)}
+.pv2 .entry .entry__sec a:hover{text-decoration-color:#fff}
+
+/* グレーのCTA（.btn--onnavy）は白文字のまま維持（8.17:1）。赤CTAも PALレッド＋白のまま（5.58:1）。 */
+.pv2 .entry .btn--onnavy{color:#fff;border-color:rgba(255,255,255,.55)}
+/* 応募ボタンは「押せない」状態を保ったまま、文字が読める濃さにする
+   （opacity .45 では 3.07:1 だったため .65 にして 4.14:1） */
+.pv2 .entry .btn--off{opacity:.65}
