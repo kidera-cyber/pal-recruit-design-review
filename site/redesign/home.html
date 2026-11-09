@@ -1,11 +1,19 @@
 <!DOCTYPE html>
+<!-- ===== HOME-SYNC v1：このファイルは tools/build_home.py が
+     site/redesign/newtop-c-v2.html から生成しています。直接編集しないでください。
+     デザイン・構成を変えるときは newtop-c-v2.html を直し、
+       python3 -I tools/build_home.py
+     を実行して、このファイルを作り直してください。
+     正本との違いは、title / description と、検証用UI（上部の帯と
+     「比較ページへ戻る」リンク）を入れないことだけです。 ===== -->
+
 <html lang="ja">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
-<title>【試作・非公開】HOME｜Corporate Field Hero（PAL公式サイト準拠）試作版｜PAL採用サイト リデザイン検証</title>
-<meta name="description" content="採用サイトTOPページを、PAL公式コーポレートサイト（pal-style.co.jp）のデザイン基準に合わせて再設計した試作ページ（非公開・検証用）。文言・数値・CTA・JSON-LDは本番index.htmlと完全同一。">
+<title>【試作・非公開】HOME｜物流DXを現場から実装する。株式会社PAL 採用サイト</title>
+<meta name="description" content="株式会社PALの採用サイトHOME（非公開・検証用）。物流現場の運営と、システム・設備・データを組み合わせた仕組みづくりの両方を担うPALの仕事と、9職種・社員の声・キャリア・募集職種への入口を紹介します。文言・数値・CTA・JSON-LDは本番index.htmlと完全同一。">
 <link rel="canonical" href="../">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="株式会社PAL 採用サイト">
@@ -19,177 +27,128 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&family=Noto+Sans+JP:wght@400;500;700;800;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../assets/css/style.css">
-<link rel="stylesheet" href="assets/css/system-h.css">
 <link rel="stylesheet" href="assets/css/corporate-system.css">
+<link rel="stylesheet" href="assets/css/newtop-system.css">
+<!-- ===== PAL-V2 v1：コーポレートサイト実測値に基づくデザインシステム。 既存CSSの後に読み、必要箇所だけ後勝ちで上書きする。 ===== -->
+<link rel="stylesheet" href="assets/css/pal-v2.css?v=20261109i">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"株式会社PAL","alternateName":"PAL Co., Ltd.","url":"https://www.pal-style.co.jp/","foundingDate":"2000-12","numberOfEmployees":{"@type":"QuantitativeValue","value":120},"slogan":"物流をコストから、戦略資産に。","address":[{"@type":"PostalAddress","addressCountry":"JP","addressRegion":"大阪府","addressLocality":"大阪市西区","streetAddress":"新町1丁目4番26号 四ツ橋グランドビル2階","name":"大阪本社"},{"@type":"PostalAddress","addressCountry":"JP","addressRegion":"東京都","addressLocality":"千代田区","streetAddress":"神田小川町","name":"東京オフィス"}],"sameAs":["https://www.pal-style.co.jp/"]}</script>
 <style>
 /* =====================================================================
-   HOME｜Corporate Field Hero（PAL公式コーポレートサイト準拠・新デザイン）
+   HOME 案C：Corporate × Visual Hybrid
    ---------------------------------------------------------------------
-   【この版の位置づけ】
-   ユーザー指示「現在のI案を最終完成形として扱わない」に基づく全面再設計。
-   旧I案（Animated Infographic Hero）は redesign/home-i-backup.html に
-   そのままバックアップとして保持し、削除していない。
+   【思想】案A（コーポレートの大胆なタイポ・余白・写真のメリハリ）と
+   案B（SVG図解・インタラクティブな情報理解）の両方の強みを統合する。
+   ・FVは案Aの大判写真＋大胆タイポグラフィを踏襲
+   ・Why PALは「編集的な見出し」＋「最小限のSVG段階表示」を併用
+   ・9職種は「目次型インデックス」をベースにしつつ、クリックで
+     ミニ俯瞰図（案Bのドット配置）がハイライトする統合版
+   ・現場×技術の相関図、キャリアロードマップも図解として組み込みつつ、
+     全体の基調（黒・赤・白、余白、写真トーン）は案Aのブランド感を踏襲
+   ・社員の声は引用インデックス（顔は署名バッジ）
 
-   【デザイン方針（redesign/07_corporate-design-analysis.md の分析結果に基づく）】
-   PAL公式サイト（pal-style.co.jp）で確認できた特徴を、採用サイト用に翻案：
-   ・現場の実写真を主役にし、暗転グラデーション＋白文字で見せる
-     （公式サイトの「CORPORATE INFO」セクション等の手法）
-   ・英語ラベルを大きく主役にし、日本語を二段目に添える二段見出し
-   ・白地セクションには薄いグリッド背景で「コーポレートサイトらしい質感」
-   ・セクション間はソフトなグラデーションではなく、色面の強いコントラストで切替
-   ・CGやアイコン図解に頼らず、PALの実写真（person-fde.jpg / dts-yard.jpg /
-     dts-dock.jpg / person-dts.jpg。過去ラウンドで実写確認済みの素材）を
-     クロスフェード表示し、「人物・現場のリアリティ」を優先する
-   ・動画は必須としないため、本版では静止画のクロスフェード＋緩やかな
-     ケンバーンズ効果（拡大）のみを採用し、動画生成の主張は一切しない
-
-   【変更していないもの（絶対条件の遵守）】
-   ・タグライン全文「現場に立ち、自分の手で、変えていく。」は一字一句同一
-   ・「自分の手で、」は var(--red) で表示
-   ・CTA文言「募集中の職種を見る」「PALで働く人を知る」は一字一句同一
-   ・FV直下のリード文・数値（9職種／120名／2000年〜）・特徴2点は完全同一
-   ・以降のセクション（Why/Work/People/Career誘導/FAQ誘導/Entry/Footer）の
-     文言・リンク先・JSON-LDは、旧版（home-i-backup.html）から変更していない
+   【変更していないもの】
+   タグライン全文・「自分の手で、」の赤強調・CTA文言・FV直下の数値と
+   リード文・以降セクションの文言/リンク先/JSON-LDは本番と完全同一
    ===================================================================== */
 .proto-bar{background:#000;color:#fff;padding:10px 20px;font-size:12.5px;text-align:center;position:relative;z-index:600}
 .proto-bar b{color:#ff8186}
 
-/* ---------------------------------------------------------------------
-   HERO（.heroK）：Corporate Field Hero
---------------------------------------------------------------------- */
-.heroK{position:relative;overflow:hidden;isolation:isolate;background:#0b0c10;min-height:min(88vh,780px)}
+/* ---- HERO：案Aベースの大判写真＋大胆タイポ ---- */
+.heroC{position:relative;overflow:hidden;isolation:isolate;background:#0b0c10;min-height:min(90vh,820px);display:flex;align-items:flex-end}
+.heroC__img{position:absolute;inset:0;background-image:url(../assets/images/dts-dock.jpg);background-size:cover;background-position:center;z-index:0}
+.heroC__scrim{position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(9,10,14,.1) 0%,rgba(9,10,14,.32) 48%,rgba(8,9,14,.9) 100%)}
+.heroC__wrap{position:relative;z-index:2;max-width:var(--maxw);margin:0 auto;padding:clamp(96px,13vh,150px) 24px clamp(44px,6vh,64px);width:100%}
+.heroC__eyebrow{display:flex;align-items:center;gap:14px;margin-bottom:24px;opacity:0;transform:translateY(10px);animation:cIn .7s ease forwards .05s}
+.heroC__eyebrow .ln{width:36px;height:2px;background:var(--red)}
+.heroC__eyebrow span{font-family:var(--font-en);font-weight:900;letter-spacing:.18em;font-size:12px;color:#fff;text-transform:uppercase}
+.heroC__title{font-weight:900;letter-spacing:-.03em;margin:0 0 30px;color:#fff;font-size:clamp(34px,6.6vw,80px);line-height:1.12}
+.heroC__title .ln{display:block;opacity:0;transform:translateY(20px);animation:cIn .85s cubic-bezier(.2,.7,.2,1) forwards}
+.heroC__title .ln:nth-child(1){animation-delay:.16s}
+.heroC__title .ln:nth-child(2){animation-delay:.28s}
+.heroC__title .ln:nth-child(3){animation-delay:.40s}
+.heroC__title .hl-red{color:var(--red)}
+.heroC__ctas{display:flex;flex-wrap:wrap;gap:14px;opacity:0;transform:translateY(14px);animation:cIn .7s ease forwards .54s}
+@keyframes cIn{to{opacity:1;transform:none}}
+.heroC__credit{position:absolute;right:22px;bottom:12px;z-index:2;color:rgba(255,255,255,.5);font-size:10.5px;text-align:right;line-height:1.6}
+.heroC__credit-br{display:none}
+@media(max-width:760px){.heroC{min-height:82vh}.heroC__ctas .btn{width:100%;justify-content:center}.heroC__credit{position:static;padding:10px 24px 16px;text-align:left}.heroflags-caption{gap:6px 18px}}
+@media(prefers-reduced-motion:reduce){.heroC__eyebrow,.heroC__title .ln,.heroC__ctas{animation:none!important;opacity:1!important;transform:none!important}}
 
-.heroK__media{position:absolute;inset:0;z-index:0}
-.heroK__still{
-  position:absolute;inset:0;background-size:cover;background-position:center;
-  opacity:0;transform:scale(1.0);will-change:opacity,transform;
-}
-.heroK__still.is-active{opacity:1;z-index:1;animation:heroKKen 10s ease-out forwards}
-@keyframes heroKKen{0%{transform:scale(1.0)}100%{transform:scale(1.07)}}
+/* ---- 数字＋リード ---- */
+.hcbelow{background:var(--navy-d);color:#fff}
+.hcbelow__lead{padding:clamp(26px,4.4vh,38px) 0 4px}
+.hcbelow__lead p{color:#d8d9e2;font-size:15px;line-height:1.9;max-width:680px;margin:0}
+.hcstrip{display:flex;flex-wrap:wrap;padding:20px 0 28px}
+.hcstrip__i{flex:1 1 220px;padding:6px 26px 6px 0;border-right:1px solid rgba(255,255,255,.14);margin-right:26px}
+.hcstrip__i:last-child{border-right:none}
+.hcstrip__v{font-family:var(--font-en);font-weight:900;font-size:28px}
+.hcstrip__v span{font-size:11.5px;font-weight:700;color:#c7c9d6;margin-left:4px}
+.hcstrip__k{display:block;font-size:11px;color:#9496ab;margin-top:6px;max-width:210px}
+@media(max-width:700px){.hcstrip__i{flex:1 1 100%;border-right:none;margin-right:0;margin-bottom:10px}}
 
-/* 公式サイト調の薄いグリッド質感を写真の上にごく弱く重ねる（装飾の主張を抑える） */
-.heroK__gridfx{position:absolute;inset:0;z-index:1;opacity:.5;pointer-events:none;
-  background-image:linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px),linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px);
-  background-size:64px 64px;
-}
-
-.heroK__scrim{
-  position:absolute;inset:0;z-index:2;pointer-events:none;
-  background:
-    linear-gradient(180deg,rgba(9,10,14,.12) 0%,rgba(9,10,14,.28) 42%,rgba(9,10,14,.88) 100%),
-    linear-gradient(90deg,rgba(9,10,14,.58) 0%,rgba(9,10,14,.14) 55%,rgba(9,10,14,0) 80%);
-}
-
-.heroK__wrap{
-  position:relative;z-index:3;max-width:var(--maxw);margin:0 auto;padding:0 24px;
-  min-height:min(88vh,780px);display:flex;flex-direction:column;justify-content:flex-end;
-  padding-top:clamp(84px,11vh,112px);padding-bottom:clamp(48px,7vh,72px);
-}
-.heroK__copy{max-width:660px}
-
-.heroK__kick{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin:0 0 18px;
-  opacity:0;transform:translateY(10px);animation:heroKIn .7s ease forwards;animation-delay:.05s}
-.heroK__kicken{font-family:var(--font-en);font-weight:900;font-size:clamp(13px,1.6vw,16px);letter-spacing:.06em;color:#ff8186}
-.heroK__kickja{display:inline-flex;align-items:center;background:var(--red);color:#fff;font-weight:700;font-size:12px;letter-spacing:.04em;padding:5px 12px}
-
-.heroK__title{
-  font-weight:900;letter-spacing:-.025em;margin:0 0 30px;color:#fff;
-  font-size:clamp(32px,6vw,62px);line-height:1.22;text-shadow:0 2px 26px rgba(0,0,0,.4);
-}
-.heroK__title .heroK__line{display:block;opacity:0;transform:translateY(16px);animation:heroKIn .85s cubic-bezier(.2,.7,.2,1) forwards}
-.heroK__title .heroK__line:nth-child(1){animation-delay:.18s}
-.heroK__title .heroK__line:nth-child(2){animation-delay:.3s}
-.heroK__title .heroK__line:nth-child(3){animation-delay:.42s}
-.heroK__title .hl-red{color:var(--red)}
-
-.heroK__ctas{display:flex;flex-wrap:wrap;gap:14px;
-  opacity:0;transform:translateY(14px);animation:heroKIn .7s ease forwards;animation-delay:.56s}
-@keyframes heroKIn{to{opacity:1;transform:none}}
-
-.heroK__credit{position:absolute;right:18px;bottom:12px;z-index:3;color:rgba(255,255,255,.5);font-size:10.5px;pointer-events:none}
-
+/* ---- Why PAL：編集見出し＋最小限SVGの併用 ---- */
+.hyb-flow{display:flex;border-top:1px solid var(--gray-150);margin-top:8px}
+.hyb-flow__i{flex:1;padding:24px 20px 24px 0;border-right:1px solid var(--gray-150);position:relative}
+.hyb-flow__i:last-child{border-right:none;padding-right:0}
+.hyb-flow__no{font-family:var(--font-en);font-weight:900;font-size:22px;color:var(--gray-300);display:block;margin-bottom:10px}
+.hyb-flow__i.is-key .hyb-flow__no{color:var(--red)}
+.hyb-flow__i b{display:block;font-size:14.5px;margin-bottom:8px}
+.hyb-flow__i p{font-size:12.5px;color:var(--gray-700);margin:0;line-height:1.8}
+.hyb-flow__ar{position:absolute;right:-13px;top:28px;width:26px;height:26px;display:flex;align-items:center;justify-content:center;background:#fff;z-index:1}
+.hyb-flow__ar svg{width:16px;height:16px}
+.hyb-flow__ar path{stroke:var(--gray-300);stroke-width:2;fill:none;stroke-dasharray:30;stroke-dashoffset:30;transition:stroke-dashoffset .9s ease, stroke .3s}
+.hyb-flow__ar.is-drawn path{stroke-dashoffset:0;stroke:var(--red)}
 @media(max-width:860px){
-  .heroK{min-height:auto}
-  .heroK__wrap{min-height:76vh;padding-top:88px;padding-bottom:36px}
-  .heroK__title{font-size:clamp(28px,8.6vw,38px);margin-bottom:24px}
-  .heroK__copy{max-width:none}
-  .heroK__ctas .btn{width:100%;justify-content:center}
-  .heroK__credit{display:none}
+  .hyb-flow{flex-direction:column}
+  .hyb-flow__i{border-right:none;border-bottom:1px solid var(--gray-150);padding:20px 0}
+  .hyb-flow__i:last-child{border-bottom:none}
+  .hyb-flow__ar{display:none}
 }
 
-@media (prefers-reduced-motion:reduce){
-  .heroK__kick,.heroK__title .heroK__line,.heroK__ctas{animation:none!important;opacity:1!important;transform:none!important}
-  .heroK__still.is-active{animation:none!important;transform:scale(1.02)!important}
+/* ---- 9職種：統合俯瞰図（目次インデックス＋ミニマップ連動） ---- */
+.hybrole{display:grid;grid-template-columns:1.3fr 1fr;gap:40px;align-items:start}
+.hybrole__idx{border-top:1px solid var(--gray-150)}
+.hybrole__row{display:grid;grid-template-columns:30px 1fr auto;align-items:center;gap:14px;padding:14px 0;border-bottom:1px solid var(--gray-150);cursor:pointer;background:none;width:100%;text-align:left;color:inherit;font:inherit}
+.hybrole__row.is-active{background:var(--gray-50)}
+.hybrole__row.is-active .hybrole__ja{color:var(--red)}
+.hybrole__no{font-family:var(--font-en);font-weight:800;color:var(--gray-300);font-size:12.5px}
+.hybrole__ja{font-weight:800;font-size:14.5px;display:block}
+.hybrole__one{font-size:11.5px;color:var(--gray-500);display:block;margin-top:2px}
+.hybrole__st{font-size:10px;font-weight:700;padding:3px 8px;white-space:nowrap;background:var(--gray-100);color:var(--gray-700)}
+.hybrole__st--on{background:var(--red);color:#fff}
+.hybrole__st--soon{background:var(--black);color:#fff}
+
+.hybrole__map{position:sticky;top:90px;background:var(--navy-d);color:#fff;padding:clamp(22px,3vw,30px)}
+.hybrole__map svg{width:100%;height:auto}
+.hybrole__mapcat{font-family:var(--font-en);font-weight:900;color:var(--red);font-size:11.5px;margin-top:16px}
+.hybrole__mapja{font-size:19px;font-weight:800;margin:6px 0 10px}
+.hybrole__mapone{font-size:13px;color:#c7c9d6;line-height:1.8}
+.hybrole__maplinks{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+@media(max-width:960px){
+  .hybrole{grid-template-columns:1fr}
+  .hybrole__map{position:static}
 }
 
-/* ---------------------------------------------------------------------
-   FV直下：数字・特徴ストリップ（公式サイトのセクション切替に合わせ、
-   白ではなくダークネイビーの帯で「色面の強いコントラスト」を作る）
-   文言・数値・リード文は旧版から一切変更していない。
---------------------------------------------------------------------- */
-.heroK-below{background:var(--navy-d);color:#fff}
-.heroK-below__lead{padding:clamp(28px,5vh,42px) 0 4px}
-.heroK-below__lead p{color:#d8d9e2;font-size:15.5px;line-height:1.9;max-width:660px;margin:0}
-.heroK-strip__in{display:flex;flex-wrap:wrap;gap:0;padding:22px 0 30px}
-.heroK-strip__nums{display:flex;flex-wrap:wrap;flex:1 1 420px}
-.heroK-strip__num{padding:6px 28px 6px 0;border-right:1px solid rgba(255,255,255,.14);margin-right:28px}
-.heroK-strip__num:last-child{border-right:none;margin-right:0}
-.heroK-strip__v{font-family:var(--font-en);font-weight:900;font-size:30px;color:#fff;line-height:1}
-.heroK-strip__v span{font-size:12px;font-weight:700;color:#c7c9d6;margin-left:4px}
-.heroK-strip__k{display:block;font-size:11.5px;color:#9496ab;margin-top:6px;max-width:210px}
-.heroK-strip__feats{flex:1 1 420px;display:flex;flex-direction:column;gap:10px;justify-content:center;padding-top:14px;border-top:1px solid rgba(255,255,255,.14);margin-top:14px}
-@media(min-width:901px){
-  .heroK-strip__feats{padding-top:0;border-top:none;margin-top:0;padding-left:28px;border-left:1px solid rgba(255,255,255,.14)}
-}
-.heroK-strip__feat{display:flex;gap:10px;align-items:baseline;font-size:13px}
-.heroK-strip__feat b{color:#fff;font-weight:700}
-.heroK-strip__feat span{color:#9496ab}
-.heroK-strip__dash{color:#ff8186;font-weight:900}
+/* ---- 相関図（コンパクト版） ---- */
+.hybx{border:1px solid var(--gray-150);padding:clamp(20px,3vw,32px);background:#fff}
+.hybx__row{display:flex;flex-wrap:wrap;gap:0;align-items:center;justify-content:center;margin-bottom:18px}
+.hybx__chip{font-size:13px;font-weight:700;padding:10px 16px;border:1px solid var(--gray-300);background:#fff;text-align:center}
+.hybx__ar{color:var(--red);font-weight:900;padding:0 10px}
+.hybx__note{font-size:12.5px;color:var(--gray-700);line-height:1.8;border-top:1px dashed var(--gray-300);padding-top:14px}
+.hybx__note b{color:var(--ink)}
+@media(max-width:700px){.hybx__row{flex-direction:column}.hybx__ar{transform:rotate(90deg);padding:6px 0}}
 
-/* ---------------------------------------------------------------------
-   Why PAL：テキストのみの3ステップを、接続線つきフロー図解として強化
-   （図解でも同一文言をHTMLテキストとして保持。アニメ停止時も全文読める）
---------------------------------------------------------------------- */
-#why.sec{position:relative;overflow:hidden}
-.why-flow{position:relative;z-index:1}
-.why-flow__line{position:absolute;left:0;right:0;top:50%;height:2px;z-index:0;display:none}
-@media(min-width:861px){
-  .why-flow__line{display:block}
-  .why-flow__line svg{width:100%;height:2px;overflow:visible}
-  .why-flow__line path{fill:none;stroke:var(--gray-300);stroke-width:2;stroke-dasharray:6 6}
-  .why-flow__line path.active{stroke:var(--red);stroke-dasharray:1000;stroke-dashoffset:1000;transition:stroke-dashoffset 1.1s ease}
-  .why-flow__line path.active.is-drawn{stroke-dashoffset:0}
-}
-#work.ffield{position:relative;overflow:hidden}
-#work .worka__bars{position:absolute;left:0;right:0;bottom:0;height:120px;z-index:0;opacity:.5}
-#work .wrap{position:relative;z-index:1}
-#work .field-v2__photo::after{
-  background:linear-gradient(180deg,rgba(10,12,20,0) 55%,rgba(10,12,20,.55) 100%);
-}
-#work .field-v2__photo{position:relative}
-#work .field-v2__tag{z-index:1}
+/* ---- People：引用インデックス ---- */
+.hybquote{border-top:1px solid var(--gray-150)}
+.hybquote__i{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:22px 0;border-bottom:1px solid var(--gray-150);text-decoration:none;color:inherit;flex-wrap:wrap}
+.hybquote__i:hover .hybquote__q{color:var(--red)}
+.hybquote__q{font-size:clamp(15px,1.6vw,18px);font-weight:800;flex:1;min-width:260px}
+.hybquote__cat{font-family:var(--font-en);font-size:10.5px;color:var(--red);font-weight:900;display:block;margin-bottom:6px}
 
-.reveal-stagger > *{opacity:0;transform:translateY(14px);transition:opacity .5s ease,transform .5s ease}
-.reveal-stagger.is-in > *{opacity:1;transform:none}
-.reveal-stagger.is-in > *:nth-child(1){transition-delay:.02s}
-.reveal-stagger.is-in > *:nth-child(2){transition-delay:.09s}
-.reveal-stagger.is-in > *:nth-child(3){transition-delay:.16s}
-.reveal-stagger.is-in > *:nth-child(4){transition-delay:.23s}
-.reveal-stagger.is-in > *:nth-child(5){transition-delay:.30s}
-.reveal-stagger.is-in > *:nth-child(6){transition-delay:.37s}
-.reveal-stagger.is-in > *:nth-child(7){transition-delay:.44s}
-.reveal-stagger.is-in > *:nth-child(8){transition-delay:.51s}
-.reveal-stagger.is-in > *:nth-child(9){transition-delay:.58s}
-
-@media (prefers-reduced-motion:reduce){
-  .reveal-stagger > *{transition:none!important;opacity:1!important;transform:none!important}
-  .why-flow__line path.active{transition:none!important;stroke-dashoffset:0!important}
-}
+.secC{padding:clamp(52px,8vh,84px) 0}
 </style>
 </head>
-<body>
-<div class="proto-bar">【試作・非公開】HOME｜Corporate Field Hero（PAL公式サイト準拠）試作版｜<b>デザイン検証用プレビュー｜本番サイト未反映</b>・文言と数値はindex.htmlと完全同一・旧I案は home-i-backup.html に保持</div>
+<body class="pv2">
 
 <a class="skip-link" href="#main">本文へスキップ</a>
 
@@ -226,140 +185,177 @@
 </div>
 
 <main id="main">
-<section class="heroK" id="heroK">
-  <!-- PALの実写真（person-fde.jpg / dts-yard.jpg / dts-dock.jpg / person-dts.jpg。
-       前ラウンドのJ案試作で実写と確認済みの素材）をクロスフェード＋ケンバーンズで表示。
-       動画は使用せず、静止画の演出であることを偽っていない。 -->
-  <div class="heroK__media" id="heroKStills" aria-hidden="true">
-    <div class="heroK__still is-active" style="background-image:url(../assets/images/dts-yard.jpg)"></div>
-    <div class="heroK__still" style="background-image:url(../assets/images/person-fde.jpg)"></div>
-    <div class="heroK__still" style="background-image:url(../assets/images/dts-dock.jpg)"></div>
-    <div class="heroK__still" style="background-image:url(../assets/images/person-dts.jpg)"></div>
-  </div>
-  <div class="heroK__gridfx" aria-hidden="true"></div>
-  <div class="heroK__scrim" aria-hidden="true"></div>
 
-  <div class="heroK__wrap">
-    <div class="heroK__copy">
-      <p class="heroK__kick">
-        <span class="heroK__kicken en">PAL RECRUIT</span>
-        <span class="heroK__kickja">キャリア採用</span>
-      </p>
-      <h1 class="heroK__title">
-        <span class="heroK__line">現場に立ち、</span>
-        <span class="heroK__line hl-red">自分の手で、</span>
-        <span class="heroK__line nw">変えていく。</span>
+<!-- ① 採用メッセージ（FV） -->
+<!-- ===== PAL-V2 v1：ファーストビューを写真主体からアイソメトリックイラスト主体へ。
+     キャッチコピー「現場に立ち、自分の手で、変えていく。」、赤の強調位置、CTA2本、
+     FV直下の訴求キャプション2点は、C案の原文のまま変更していない。
+     旧クレジット文「PALの配送バース（DTS拠点）の実写真」は、写真を使わなくなり
+     事実と合わなくなるため、イラストの説明に差し替えた。「※画像はイメージです」は維持。
+     旧FVの復元は git 履歴の newtop-c.html から。 ===== -->
+<section class="heroC" id="heroC">
+  <div class="heroC__wrap">
+    <div class="heroC__lead">
+      <p class="heroC__eyebrow"><span class="ln" aria-hidden="true"></span><span>PAL RECRUIT — キャリア採用</span></p>
+      <h1 class="heroC__title">
+        <span class="ln">現場に立ち、</span>
+        <span class="ln hl-red">自分の手で、</span>
+        <span class="ln">変えていく。</span>
       </h1>
-      <div class="heroK__ctas">
+    </div>
+    <!-- ===== HERO-VIDEO v1：FVの静止画（iso-operations.webp）を動画に差し替え。
+         ・autoplay / muted / loop / playsinline、コントロールは出さない
+         ・poster は動画の1フレーム目から作った静止画（hero-poster.webp）。
+           読み込み中・再生できない環境ではこれがそのまま表示される
+         ・preload="metadata"。動画は moov を先頭へ移した faststart 版
+         ・prefers-reduced-motion:reduce では再生せず静止画のまま（下のJS）
+         ・16:9 を維持し、トリミングしない（object-fit:contain）
+         静止画版への差し戻しは git 履歴から。 ===== -->
+    <figure class="heroC__art">
+      <video class="heroC__video" autoplay muted loop playsinline preload="metadata"
+             poster="assets/img/hero-poster.webp" width="1600" height="900"
+             role="img"
+             aria-label="物流センターの入出荷・保管・搬送と、事務所側のシステム・データが線でつながって動いている様子を等角投影で描いた概念図">
+        <source src="assets/video/hero-operations.mp4" type="video/mp4">
+      </video>
+    </figure>
+    <div class="heroC__act">
+      <div class="heroC__ctas">
         <a class="btn btn--red btn--lg" href="jobs.html">募集中の職種を見る<span class="btn__ico" aria-hidden="true">▶</span></a>
-        <a class="btn btn--ghost btn--lg" href="people.html" style="background:rgba(255,255,255,.14);color:#fff">PALで働く人を知る<span class="btn__ico" aria-hidden="true">▶</span></a>
+        <a class="btn btn--ghost btn--lg" href="people.html">PALで働く人を知る<span class="btn__ico" aria-hidden="true">▶</span></a>
+      </div>
+      <div class="heroflags-caption heroC__flags">
+        <span class="hf-i"><b>現場を、自分たちで運営する</b><span>物流BPOとして現場運営そのものを請け負う</span></span>
+        <span class="hf-dot" aria-hidden="true">・</span>
+        <span class="hf-i"><b>技術で仕組みをつくる</b><span>FDE・システム開発が現場に立つ</span></span>
       </div>
     </div>
   </div>
-  <p class="heroK__credit">PALの物流センター・配送現場の実写真</p>
+  <p class="heroC__credit">映像は、現場の運営と、システム・設備・データが連動する関係を示した概念図です<br class="heroC__credit-br">※画像はイメージです</p>
 </section>
 
-<!-- FV直下：リード文＋数字・特徴ストリップ（文言・数値は旧版から変更なし。
-     背景をダークネイビーにし、公式サイトのような「色面の強いコントラスト」で
-     FVから本文への切り替えを明確にした） -->
-<section class="heroK-below" aria-label="PALの採用情報サマリー">
-  <div class="wrap heroK-below__lead">
+<section class="hcbelow" aria-label="PALの採用情報サマリー">
+  <div class="wrap hcbelow__lead reveal">
     <p>外から提案するのではない。顧客の現場を請け負い、自分たちの責任で回す。技術と現場の両方に立つPALだからできる、"当事者"の仕事が、ここにある。</p>
   </div>
-  <div class="wrap heroK-strip__in">
-    <div class="heroK-strip__nums">
-      <div class="heroK-strip__num"><span class="heroK-strip__v en">9<span>職種</span></span><span class="heroK-strip__k">現場・技術・輸送をつなぐ専門性</span></div>
-      <div class="heroK-strip__num"><span class="heroK-strip__v en">120<span>名</span></span><span class="heroK-strip__k">社員数（パート・アルバイト含め約1,600名）</span></div>
-      <div class="heroK-strip__num"><span class="heroK-strip__v en">2000<span>年〜</span></span><span class="heroK-strip__k">物流現場を請け負い続けてきた歴史</span></div>
-    </div>
-    <div class="heroK-strip__feats">
-      <p class="heroK-strip__feat"><span class="heroK-strip__dash">―</span><b>現場を、自分たちで運営する</b><span>物流BPOとして現場運営そのものを請け負う</span></p>
-      <p class="heroK-strip__feat"><span class="heroK-strip__dash">―</span><b>技術で仕組みをつくる</b><span>FDE・システム開発が現場に立つ</span></p>
-    </div>
+  <div class="wrap hcstrip reveal-stagger">
+    <div class="hcstrip__i"><span class="hcstrip__v en">9<span>職種</span></span><span class="hcstrip__k">現場・技術・輸送をつなぐ専門性</span></div>
+    <div class="hcstrip__i"><span class="hcstrip__v en">120<span>名</span></span><span class="hcstrip__k">社員数（パート・アルバイト含め約1,600名）</span></div>
+    <div class="hcstrip__i"><span class="hcstrip__v en">2000<span>年〜</span></span><span class="hcstrip__k">物流現場を請け負い続けてきた歴史</span></div>
   </div>
 </section>
 
-<!-- 02 PALで働く特徴（短く・ABOUTへ誘導）：3ステップを接続線フローとして強調表示 -->
-<section class="sec sec--tight gridbg" id="why">
+<!-- ② Why PAL -->
+<!-- ===== WHY-B v1：Why PAL を B案（newtop-b.html）のデザインに差し替えた。
+     方眼グリッド背景（.gridbg）・赤い Why PAL ラベル（.kicker2）・2行見出し・説明文・
+     赤い水平ライン（SVG #flowpathActive）・3つの赤い円形アイコン（.svgflow__ic）・
+     01/02/03 の3項目・補足文と赤いテキストリンクまで、B案の実装をそのまま持ってきている。
+     本文はもともとB案とC案で完全一致（300字）だったため、文言の変更は一切ない。
+     .svgflow 系のCSSは B案ではインライン定義だったため、pal-v2.css に
+     「#why 配下だけ」のスコープ付きで複製した（他セクション・他ページには影響しない）。
+     直前のC案v2デザイン（.hyb-flow の3カード）は git 履歴 002dddd から復元できる。 ===== -->
+<section class="secwide2 gridbg" id="why">
   <div class="wrap">
-    <div class="shead reveal" style="margin-bottom:22px">
+    <div class="shead reveal" style="margin-bottom:12px">
       <p class="kicker2"><span class="kicker2__en en">Why PAL</span></p>
-      <h2 class="stitle" style="font-size:clamp(23px,2.7vw,32px)">現場を動かす。仕組みをつくる。<br>その両方が、PALの仕事。</h2>
+      <h2 class="stitle" style="font-size:clamp(23px,2.7vw,32px)">現場を動かす。仕組みをつくる。<br><!-- ===== WHY-B v1：見出しの「その両方が、」だけは C案v2 の PALレッド強調を維持する。
+           （B案のデザインを基本としつつ、この箇所のみ C案v2 の表現を採用） ===== --><span style="color:var(--red)">その両方が、</span>PALの仕事。</h2>
       <p class="slead">PALは、物流現場の運営を自ら請け負いながら、システム・設備・データを組み合わせて現場で使われる仕組みをつくる会社です。提案して終わりではなく、実装・運用・改善まで関わります。</p>
     </div>
-    <div class="why-flow__line" aria-hidden="true">
-      <svg viewBox="0 0 1000 2" preserveAspectRatio="none">
-        <path class="js-whyline" d="M0 1 L1000 1"/>
+
+    <div class="svgflow reveal">
+      <svg class="svgflow__line" viewBox="0 0 900 60" preserveAspectRatio="none" aria-hidden="true">
+        <path id="flowpath" d="M80 30 L820 30" fill="none" stroke="var(--gray-300)" stroke-width="2" stroke-dasharray="6 6"/>
+        <path id="flowpathActive" d="M80 30 L820 30" fill="none" stroke="var(--red)" stroke-width="2" stroke-dasharray="1000" stroke-dashoffset="1000"/>
       </svg>
+      <div class="svgflow__items">
+        <div class="svgflow__i is-key"><span class="svgflow__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M5 21V9l7-5 7 5v12M9 21v-6h6v6"/></svg></span><b>01 現場を、自分たちで知っている</b><p>物流BPOとして現場運営そのものを請け負っています。</p></div>
+        <div class="svgflow__i is-key"><span class="svgflow__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v12H4zM9 20h6M12 16v4"/></svg></span><b>02 技術とデータで仕組みをつくる</b><p>システム開発・自動化設備・データ活用を組み合わせます。</p></div>
+        <div class="svgflow__i is-key"><span class="svgflow__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4M12 18v4M4.9 4.9l2.8 2.8M16.3 16.3l2.8 2.8M2 12h4M18 12h4M4.9 19.1l2.8-2.8M16.3 7.7l2.8-2.8"/></svg></span><b>03 導入して終わらない</b><p>現場で動かし、運用と効果検証を続けます。</p></div>
+      </div>
     </div>
-    <div class="why-flow reveal-stagger">
-      <div class="why-flow__i"><span class="en">01</span><b>現場を、自分たちで知っている</b><p>物流BPOとして現場運営そのものを請け負っています。</p></div>
-      <div class="why-flow__arrow" aria-hidden="true">→</div>
-      <div class="why-flow__i"><span class="en">02</span><b>技術とデータで仕組みをつくる</b><p>システム開発・自動化設備・データ活用を組み合わせます。</p></div>
-      <div class="why-flow__arrow" aria-hidden="true">→</div>
-      <div class="why-flow__i"><span class="en">03</span><b>導入して終わらない</b><p>現場で動かし、運用と効果検証を続けます。</p></div>
-    </div>
-    <p class="why-flow__note reveal"><b>現場 × 技術</b>&nbsp;を両方知っているから、提案だけで終わらず、実装・運用・改善までを一気通貫で担えます。</p>
-    <p class="note" style="margin-top:22px"><a class="textlink" href="about.html">PALについてさらに詳しく見る</a></p>
+    <p class="note reveal" style="margin-top:22px"><b>現場 × 技術</b>&nbsp;を両方知っているから、提案だけで終わらず、実装・運用・改善までを一気通貫で担えます。&nbsp;<a class="textlink" href="about.html">PALについてさらに詳しく見る</a></p>
   </div>
 </section>
 
-<!-- 03 仕事を知る（9職種）：写真パネル化しキャプションを強調 -->
-<section class="sec sec--soft sec--tight ffield" id="work">
-  <svg class="worka__bars" viewBox="0 0 1200 120" preserveAspectRatio="none" aria-hidden="true">
-    <g fill="#1c2030" opacity=".06">
-      <rect x="40"  y="70" width="26" height="50"/>
-      <rect x="90"  y="40" width="26" height="80"/>
-      <rect x="140" y="85" width="26" height="35"/>
-      <rect x="1000" y="55" width="26" height="65"/>
-      <rect x="1050" y="30" width="26" height="90"/>
-      <rect x="1100" y="75" width="26" height="45"/>
-    </g>
-  </svg>
+<!-- 相関図（コンパクト版） -->
+<section class="secC sec--soft">
   <div class="wrap">
-    <div class="shead reveal" style="margin-bottom:22px">
+    <div class="shead reveal" style="margin-bottom:20px;max-width:760px">
+      <p class="kicker2"><span class="kicker2__en en">Crossover</span></p>
+      <h2 class="stitle" style="font-size:clamp(19px,2vw,24px)">専門性が交わることで、仕事が動き出す。</h2>
+    </div>
+    <div class="hybx reveal">
+      <div class="hybx__row">
+        <span class="hybx__chip">BPO・現場運営</span><span class="hybx__ar" aria-hidden="true">⇄</span>
+        <span class="hybx__chip">FDE</span><span class="hybx__ar" aria-hidden="true">⇄</span>
+        <span class="hybx__chip">システム・プロダクト開発</span>
+      </div>
+      <p class="hybx__note"><b>3つの領域に上下関係はありません。</b>物流DXの進め方は案件ごとに違うため、部門間連携のかたちもそのつど変わります。<a class="textlink textlink--sm" href="about.html#crossover">相関図の詳細をABOUTで見る</a></p>
+    </div>
+  </div>
+</section>
+
+<!-- ③ 9職種：目次インデックス＋連動ミニマップ -->
+<section class="secC" id="work">
+  <div class="wrap">
+    <div class="shead reveal" style="margin-bottom:22px;max-width:860px">
       <p class="kicker2"><span class="kicker2__en en">Find Your Field</span></p>
-      <h2 class="stitle" style="font-size:clamp(23px,2.7vw,32px)">あなたの専門性が活きる仕事を探す。</h2>
-      <p class="slead">PALには9つの職種があります。それぞれ異なる専門性を持ち、必要な場面で連携しています。仕事の内容は「仕事を知る」ページでご覧いただけます。</p>
+      <h2 class="ta-display" style="font-size:clamp(24px,3.2vw,40px)">あなたの専門性が活きる仕事を探す。</h2>
+      <p class="slead" style="margin-top:16px;max-width:640px">PALには9つの職種があります。それぞれ異なる専門性を持ち、必要な場面で連携しています。左の一覧をクリックすると、右の図解がハイライトします。</p>
     </div>
-    <div class="field-v2__photos reveal-stagger">
-      <figure class="field-v2__photo"><img src="../assets/images/person-fde.jpg" alt="物流センターでタブレットの画面を見ながら、現場の状況を確認するPAL社員" width="1600" height="1200" decoding="async"><span class="field-v2__tag">現場<small class="en">FIELD</small></span></figure>
-      <figure class="field-v2__photo"><img src="../assets/images/person-eng.jpg" alt="オフィスでコードと業務データの画面に向かう開発担当の社員" width="896" height="1200" decoding="async"><span class="field-v2__tag">技術<small class="en">TECHNOLOGY</small></span></figure>
-      <figure class="field-v2__photo"><img src="../assets/images/person-dts.jpg" alt="配送バースでトラックの前に立ち、タブレットで積み込みを確認する社員" width="1600" height="1200" decoding="async"><span class="field-v2__tag">輸送<small class="en">TRANSPORT</small></span></figure>
+
+    <div class="hybrole reveal">
+      <!-- ===== A11Y v2：role="tablist" / role="tab" をやめ、ボタン群＋共有パネルに改めた。
+           この9職種は「1タブ＝1パネル」ではなく、9つのボタンが1つの詳細領域を書き換える UI。
+           タブパターンのままだと、(1) aria-controls の参照先が無く、
+           (2) 共通JS（assets/js/app.js）の汎用タブ実装が同じパネルを hidden にしてしまい、
+           (3) 矢印キーが二重に処理されて1回で2つ進む、という不整合が起きる。
+           そのため aria-pressed（押下状態）＋ aria-live の詳細領域という構成にした。
+           9職種の名称・説明・リンク先・表示内容は一切変更していない。 ===== -->
+      <nav class="hybrole__idx" id="hybRoleIdx" role="group" aria-label="9職種（クリックで図解がハイライト）">
+        <button aria-pressed="true" id="hybRoleTab0" aria-controls="hybRolePanel" class="hybrole__row is-active" data-i="0" data-cat="BPO / Operation" data-ja="物流センター運営" data-one="現場を安定させ、改善を進める" data-st="on" data-go="work.html#role-bpo" data-apply="jobs.html#job-bpo"><span class="hybrole__no en">01</span><span><span class="hybrole__ja">物流センター運営</span><span class="hybrole__one">BPO / Operation — 現場を安定させ、改善を進める</span></span><span class="hybrole__st hybrole__st--on">募集中</span></button>
+        <button aria-pressed="false" id="hybRoleTab1" aria-controls="hybRolePanel" class="hybrole__row" data-i="1" data-cat="Cleanliness" data-ja="衛生清掃・クレンリネス" data-one="清掃を、計画と運用で支える" data-st="off" data-go="work.html#role-clean" data-apply=""><span class="hybrole__no en">02</span><span><span class="hybrole__ja">衛生清掃・クレンリネス</span><span class="hybrole__one">Cleanliness — 清掃を、計画と運用で支える</span></span><span class="hybrole__st">募集なし</span></button>
+        <button aria-pressed="false" id="hybRoleTab2" aria-controls="hybRolePanel" class="hybrole__row" data-i="2" data-cat="Forward Deployed Engineer" data-ja="FDE" data-one="現場課題を技術につなぐ" data-st="on" data-go="work.html#role-fde" data-apply="jobs.html#job-fde"><span class="hybrole__no en">03</span><span><span class="hybrole__ja">FDE</span><span class="hybrole__one">Forward Deployed Engineer — 現場課題を技術につなぐ</span></span><span class="hybrole__st hybrole__st--on">募集中</span></button>
+        <button aria-pressed="false" id="hybRoleTab3" aria-controls="hybRolePanel" class="hybrole__row" data-i="3" data-cat="System / Product" data-ja="システム・プロダクト開発" data-one="現場で使われる仕組みをつくる" data-st="on" data-go="work.html#role-system" data-apply="jobs.html#job-system"><span class="hybrole__no en">04</span><span><span class="hybrole__ja">システム・プロダクト開発</span><span class="hybrole__one">System / Product — 現場で使われる仕組みをつくる</span></span><span class="hybrole__st hybrole__st--on">募集中</span></button>
+        <button aria-pressed="false" id="hybRoleTab4" aria-controls="hybRolePanel" class="hybrole__row" data-i="4" data-cat="DTS / Transport" data-ja="配送・運行" data-one="安全・品質・時間を守って届ける" data-st="on" data-go="work.html#role-dts" data-apply="jobs.html#job-driver"><span class="hybrole__no en">05</span><span><span class="hybrole__ja">配送・運行</span><span class="hybrole__one">DTS / Transport — 安全・品質・時間を守って届ける</span></span><span class="hybrole__st hybrole__st--on">募集中</span></button>
+        <button aria-pressed="false" id="hybRoleTab5" aria-controls="hybRolePanel" class="hybrole__row" data-i="5" data-cat="Engagement / Sales・BizDev" data-ja="営業・事業開発" data-one="顧客課題を次の提案につなげる" data-st="on" data-go="work.html#role-sales" data-apply="jobs.html#job-sales"><span class="hybrole__no en">06</span><span><span class="hybrole__ja">営業・事業開発</span><span class="hybrole__one">Engagement / Sales・BizDev — 顧客課題を次の提案につなげる</span></span><span class="hybrole__st hybrole__st--on">募集中</span></button>
+        <button aria-pressed="false" id="hybRoleTab6" aria-controls="hybRolePanel" class="hybrole__row" data-i="6" data-cat="Marketing / Content" data-ja="マーケティング・コンテンツ制作" data-one="市場と現場の情報を、顧客との接点に変える" data-st="off" data-go="work.html#role-mkt" data-apply=""><span class="hybrole__no en">07</span><span><span class="hybrole__ja">マーケティング・コンテンツ制作</span><span class="hybrole__one">Marketing / Content — 市場と現場の情報を、顧客との接点に変える</span></span><span class="hybrole__st">募集なし</span></button>
+        <button aria-pressed="false" id="hybRoleTab7" aria-controls="hybRolePanel" class="hybrole__row" data-i="7" data-cat="Staffing Sales" data-ja="人材派遣営業" data-one="人材の提案から、物流現場の改善につなげる" data-st="on" data-go="work.html#role-staffing" data-apply="jobs/openings/staffing-sales-leader.html"><span class="hybrole__no en">08</span><span><span class="hybrole__ja">人材派遣営業</span><span class="hybrole__one">Staffing Sales — 人材の提案から、物流現場の改善につなげる</span></span><span class="hybrole__st hybrole__st--on">募集中</span></button>
+        <button aria-pressed="false" id="hybRoleTab8" aria-controls="hybRolePanel" class="hybrole__row" data-i="8" data-cat="Corporate" data-ja="コーポレート" data-one="人・組織・会社運営を支える" data-st="soon" data-go="work.html#role-corp" data-apply="jobs.html#job-hr"><span class="hybrole__no en">09</span><span><span class="hybrole__ja">コーポレート</span><span class="hybrole__one">Corporate — 人・組織・会社運営を支える</span></span><span class="hybrole__st hybrole__st--soon">募集予定</span></button>
+      </nav>
+
+      <!-- ===== A11Y v1：role="tab" に対応する tabpanel が無く aria-controls の参照先も
+           存在しなかったため、この図解＋詳細の領域を、名前付きのライブ領域として明示した。
+           9職種の名称・説明・リンク先は変更していない。 ===== -->
+      <div class="hybrole__map" id="hybRolePanel" role="region" aria-live="polite" aria-labelledby="hybRoleTab0">
+        <svg viewBox="0 0 280 280" aria-hidden="true">
+          <circle cx="140" cy="140" r="104" fill="none" stroke="rgba(255,255,255,.16)"/>
+          <circle cx="140" cy="140" r="62" fill="none" stroke="rgba(255,255,255,.16)"/>
+          <circle cx="140" cy="140" r="5" fill="#cf131b"/>
+          <g id="hybDots" font-family="Noto Sans JP" font-size="9.5" fill="#fff">
+            <g data-i="0"><circle cx="140" cy="36" r="5"/><text x="140" y="24" text-anchor="middle">BPO運営</text></g>
+            <g data-i="1"><circle cx="212" cy="58" r="5"/><text x="220" y="56" text-anchor="start">清掃</text></g>
+            <g data-i="2"><circle cx="248" cy="118" r="5"/><text x="256" y="122" text-anchor="start">FDE</text></g>
+            <g data-i="3"><circle cx="244" cy="188" r="5"/><text x="252" y="196" text-anchor="start">システム</text></g>
+            <g data-i="4"><circle cx="198" cy="238" r="5"/><text x="202" y="254" text-anchor="middle">配送</text></g>
+            <g data-i="5"><circle cx="134" cy="256" r="5"/><text x="134" y="272" text-anchor="middle">営業</text></g>
+            <g data-i="6"><circle cx="72" cy="232" r="5"/><text x="66" y="248" text-anchor="middle">MKT</text></g>
+            <g data-i="7"><circle cx="34" cy="176" r="5"/><text x="20" y="180" text-anchor="end">人材派遣</text></g>
+            <g data-i="8"><circle cx="38" cy="100" r="5"/><text x="24" y="96" text-anchor="end">コーポレート</text></g>
+          </g>
+        </svg>
+        <p class="hybrole__mapcat en" id="hc-cat">BPO / Operation</p>
+        <h3 class="hybrole__mapja" id="hc-ja">物流センター運営</h3>
+        <p class="hybrole__mapone" id="hc-one">現場を安定させ、改善を進める</p>
+        <div class="hybrole__maplinks">
+          <a class="btn btn--ghost" id="hc-go" href="work.html#role-bpo" style="background:rgba(255,255,255,.12);color:#fff">仕事内容<span class="btn__ico" aria-hidden="true">▶</span></a>
+          <a class="btn btn--red" id="hc-apply" href="jobs.html#job-bpo">募集要項<span class="btn__ico" aria-hidden="true">▶</span></a>
+        </div>
+      </div>
     </div>
-    <p class="fphoto__cap">現場・技術・輸送。それぞれの専門性を持つ人が、同じ現場で仕事を進めています。</p>
-    <nav class="work-role-index" aria-label="職種から探す" style="margin-top:30px">
-      <ul class="role-chips--v2 reveal-stagger">
-        <li class="role-chip--v2"><a class="role-chip--v2__top" href="work.html#role-bpo" style="text-decoration:none;color:inherit"><span class="role-chip--v2__ic"><svg aria-hidden="true"><use href="#ic2-field"></use></svg></span><span class="role-chip--v2__b"><b class="role-chip--v2__ja">物流センター運営</b><span class="role-chip--v2__en en">BPO / Operation</span><span class="role-chip--v2__one">現場を安定させ、改善を進める</span></span></a>
-          <div class="role-chip--v2__foot"><span class="rc2__st"><b>募集中</b></span><a class="role-chip--v2__go" href="work.html#role-bpo">仕事内容<i aria-hidden="true">→</i></a><a class="role-chip--v2__apply" href="jobs.html#job-bpo">募集要項を見る</a></div>
-        </li>
-        <li class="role-chip--v2"><a class="role-chip--v2__top" href="work.html#role-clean" style="text-decoration:none;color:inherit"><span class="role-chip--v2__ic"><svg aria-hidden="true"><use href="#ic-handy"></use></svg></span><span class="role-chip--v2__b"><b class="role-chip--v2__ja">衛生清掃・クレンリネス</b><span class="role-chip--v2__en en">Cleanliness</span><span class="role-chip--v2__one">清掃を、計画と運用で支える</span></span></a>
-          <div class="role-chip--v2__foot"><span class="rc2__st rc2__st--off"><b>募集なし</b></span><a class="role-chip--v2__go" href="work.html#role-clean">仕事内容<i aria-hidden="true">→</i></a></div>
-        </li>
-        <li class="role-chip--v2"><a class="role-chip--v2__top" href="work.html#role-fde" style="text-decoration:none;color:inherit"><span class="role-chip--v2__ic"><svg aria-hidden="true"><use href="#ic2-fde"></use></svg></span><span class="role-chip--v2__b"><b class="role-chip--v2__ja">FDE</b><span class="role-chip--v2__en en">Forward Deployed Engineer</span><span class="role-chip--v2__one">現場課題を技術につなぐ</span></span></a>
-          <div class="role-chip--v2__foot"><span class="rc2__st"><b>募集中</b></span><a class="role-chip--v2__go" href="work.html#role-fde">仕事内容<i aria-hidden="true">→</i></a><a class="role-chip--v2__apply" href="jobs.html#job-fde">募集要項を見る</a></div>
-        </li>
-        <li class="role-chip--v2"><a class="role-chip--v2__top" href="work.html#role-system" style="text-decoration:none;color:inherit"><span class="role-chip--v2__ic"><svg aria-hidden="true"><use href="#ic2-system"></use></svg></span><span class="role-chip--v2__b"><b class="role-chip--v2__ja">システム・プロダクト開発</b><span class="role-chip--v2__en en">System / Product</span><span class="role-chip--v2__one">現場で使われる仕組みをつくる</span></span></a>
-          <div class="role-chip--v2__foot"><span class="rc2__st"><b>募集中</b></span><a class="role-chip--v2__go" href="work.html#role-system">仕事内容<i aria-hidden="true">→</i></a><a class="role-chip--v2__apply" href="jobs.html#job-system">募集要項を見る</a></div>
-        </li>
-        <li class="role-chip--v2"><a class="role-chip--v2__top" href="work.html#role-dts" style="text-decoration:none;color:inherit"><span class="role-chip--v2__ic"><svg aria-hidden="true"><use href="#ic2-transport"></use></svg></span><span class="role-chip--v2__b"><b class="role-chip--v2__ja">配送・運行</b><span class="role-chip--v2__en en">DTS / Transport</span><span class="role-chip--v2__one">安全・品質・時間を守って届ける</span></span></a>
-          <div class="role-chip--v2__foot"><span class="rc2__st"><b>募集中</b></span><a class="role-chip--v2__go" href="work.html#role-dts">仕事内容<i aria-hidden="true">→</i></a><a class="role-chip--v2__apply" href="jobs.html#job-driver">募集要項を見る</a></div>
-        </li>
-        <li class="role-chip--v2"><a class="role-chip--v2__top" href="work.html#role-sales" style="text-decoration:none;color:inherit"><span class="role-chip--v2__ic"><svg aria-hidden="true"><use href="#ic-meeting"></use></svg></span><span class="role-chip--v2__b"><b class="role-chip--v2__ja">営業・事業開発</b><span class="role-chip--v2__en en">Engagement / Sales・BizDev</span><span class="role-chip--v2__one">顧客課題を次の提案につなげる</span></span></a>
-          <div class="role-chip--v2__foot"><span class="rc2__st"><b>募集中</b></span><a class="role-chip--v2__go" href="work.html#role-sales">仕事内容<i aria-hidden="true">→</i></a><a class="role-chip--v2__apply" href="jobs.html#job-sales">募集要項を見る</a></div>
-        </li>
-        <li class="role-chip--v2"><a class="role-chip--v2__top" href="work.html#role-mkt" style="text-decoration:none;color:inherit"><span class="role-chip--v2__ic"><svg aria-hidden="true"><use href="#ic2-data"></use></svg></span><span class="role-chip--v2__b"><b class="role-chip--v2__ja">マーケティング・コンテンツ制作</b><span class="role-chip--v2__en en">Marketing / Content</span><span class="role-chip--v2__one">市場と現場の情報を、顧客との接点に変える</span></span></a>
-          <div class="role-chip--v2__foot"><span class="rc2__st rc2__st--off"><b>募集なし</b></span><a class="role-chip--v2__go" href="work.html#role-mkt">仕事内容<i aria-hidden="true">→</i></a></div>
-        </li>
-        <li class="role-chip--v2"><a class="role-chip--v2__top" href="work.html#role-staffing" style="text-decoration:none;color:inherit"><span class="role-chip--v2__ic"><svg aria-hidden="true"><use href="#ic-worker"></use></svg></span><span class="role-chip--v2__b"><b class="role-chip--v2__ja">人材派遣営業</b><span class="role-chip--v2__en en">Staffing Sales</span><span class="role-chip--v2__one">人材の提案から、物流現場の改善につなげる</span></span></a>
-          <div class="role-chip--v2__foot"><span class="rc2__st"><b>募集中</b></span><a class="role-chip--v2__go" href="work.html#role-staffing">仕事内容<i aria-hidden="true">→</i></a><a class="role-chip--v2__apply" href="jobs/openings/staffing-sales-leader.html">募集要項を見る</a></div>
-        </li>
-        <li class="role-chip--v2"><a class="role-chip--v2__top" href="work.html#role-corp" style="text-decoration:none;color:inherit"><span class="role-chip--v2__ic"><svg aria-hidden="true"><use href="#ic-office"></use></svg></span><span class="role-chip--v2__b"><b class="role-chip--v2__ja">コーポレート</b><span class="role-chip--v2__en en">Corporate</span><span class="role-chip--v2__one">人・組織・会社運営を支える</span></span></a>
-          <div class="role-chip--v2__foot"><span class="rc2__st rc2__st--soon"><b>募集予定</b></span><a class="role-chip--v2__go" href="work.html#role-corp">仕事内容<i aria-hidden="true">→</i></a><a class="role-chip--v2__apply" href="jobs.html#job-hr">人事の募集要項を見る</a></div>
-        </li>
-      </ul>
-    </nav>
-    <div class="ffield__foot">
+
+    <div class="ffield__foot" style="margin-top:26px">
       <p class="ffield__note">「募集中」は、募集職種ページに募集要項がある職種です。勤務地・応募条件は<a class="textlink textlink--sm" href="jobs.html">募集職種</a>でご確認ください。</p>
       <p class="ffield__links">
         <a class="btn btn--ghost" href="work.html">職種ごとの仕事内容を見る<span class="btn__ico" aria-hidden="true">▶</span></a>
@@ -369,92 +365,74 @@
   </div>
 </section>
 
-<!-- 04 人を知る -->
-<section class="sec sec--tight" id="voices">
+<!-- ===== PHOTOBAND v2：3分割の写真バンド（現場 FIELD ／ 技術 TECHNOLOGY ／ 輸送 TRANSPORT）を削除。
+     ファーストビューをアイソメトリックイラスト主体にしたため、ページ内で写真の扱いが
+     一貫しなくなることが理由。職種紹介（#work）から社員インタビュー（#voices）へ直接つなぐ。
+     ・使っていた画像 person-fde.jpg / person-eng.jpg / person-dts.jpg は削除していない
+       （旧C案 newtop-c.html と社員インタビューで使用中）
+     ・.photoband 系のCSSは共通の newtop-system.css にあり、旧C案も使うため変更していない
+     ・復元は git 履歴 edf010b から ===== -->
+
+<!-- ④ 社員の経験・仕事の魅力 -->
+<!-- ===== PHOTOBAND v2：写真バンドを外したことで #work（白）と #voices（白）が
+     直接つながり、セクションの境目が見えなくなったため、#voices を淡グレー面にした。
+     ページ全体の色の流れは 白→淡グレー→白→淡グレー→濃色→淡グレー となり、
+     同じ色が連続しない。余白（上下の padding）は他のセクションと同じまま変えていない。
+     社員インタビューの本文・写真・リンクは一切変更していない。 ===== -->
+<section class="secC sec--soft" id="voices">
   <div class="wrap">
-    <div class="shead reveal" style="margin-bottom:22px">
+    <div class="shead reveal" style="margin-bottom:0;max-width:860px">
       <p class="kicker2"><span class="kicker2__en en">People / Real Voices</span></p>
-      <h2 class="stitle" style="font-size:clamp(23px,2.7vw,32px)">その仕事をしている人がいる。</h2>
-      <p class="slead">異なる専門性を持つ社員の、仕事への向き合い方。本人の言葉から、その一部をご紹介します。<br>下の見出しは、本人がインタビューで語った言葉です。</p>
+      <h2 class="ta-display" style="font-size:clamp(24px,3.2vw,40px)">その仕事をしている人がいる。</h2>
+      <p class="slead" style="margin-top:16px;max-width:640px">異なる専門性を持つ社員の、仕事への向き合い方。本人の言葉から、その一部をご紹介します。下の見出しは、本人がインタビューで語った言葉です。</p>
     </div>
-    <nav aria-label="社員インタビュー">
-      <ol class="rvoices--v2 reveal-stagger">
-        <li><a class="rvoice--v2" href="people/fde.html">
-          <span class="rvoice--v2__ph"><img src="../assets/images/avatar-fde.png" alt="FDE社員 H.Y のイラスト（プロフィール画像）" width="900" height="975" loading="lazy" decoding="async"></span>
-          <span class="rvoice--v2__b"><span class="rvoice--v2__cat en">FDE</span><b class="rvoice--v2__q">現場で使われて、初めて「できた」と言える。</b><span class="rvoice--v2__foot"><span class="rvoice--v2__prof">H.Y／FDE・2023年新卒入社</span><i aria-hidden="true">→</i></span></span>
-        </a></li>
-        <li><a class="rvoice--v2" href="people/system.html">
-          <span class="rvoice--v2__ph"><img src="../assets/images/avatar-system.png" alt="DXプロダクト開発として働く M.M のイラスト（プロフィール画像）" width="900" height="975" loading="lazy" decoding="async"></span>
-          <span class="rvoice--v2__b"><span class="rvoice--v2__cat en">ENGINEER</span><b class="rvoice--v2__q">つくるのは、現場が明日から使えるもの。</b><span class="rvoice--v2__foot"><span class="rvoice--v2__prof">M.M／DXプロダクト開発・2026年中途入社</span><i aria-hidden="true">→</i></span></span>
-        </a></li>
-        <li><a class="rvoice--v2" href="people/bpo.html">
-          <span class="rvoice--v2__ph"><img src="../assets/images/avatar-bpo.png" alt="BPO／現場運営として働く I.N のイラスト（プロフィール画像）" width="900" height="975" loading="lazy" decoding="async"></span>
-          <span class="rvoice--v2__b"><span class="rvoice--v2__cat en">BPO</span><b class="rvoice--v2__q">毎日の運営の中に、次の改善がある。</b><span class="rvoice--v2__foot"><span class="rvoice--v2__prof">I.N／BPO事業部 Productivity推進部</span><i aria-hidden="true">→</i></span></span>
-        </a></li>
-        <li><a class="rvoice--v2" href="people/dts.html">
-          <span class="rvoice--v2__ph"><img src="../assets/images/avatar-dts.png" alt="DTS事業部 運送課 千葉営業所 所長 K.Y のイラスト（プロフィール画像）" width="900" height="975" loading="lazy" decoding="async"></span>
-          <span class="rvoice--v2__b"><span class="rvoice--v2__cat en">DTS</span><b class="rvoice--v2__q">運ぶだけではない。物流を、止めない仕事。</b><span class="rvoice--v2__foot"><span class="rvoice--v2__prof">K.Y／DTS事業部 運送課 千葉営業所 所長・2018年中途入社</span><i aria-hidden="true">→</i></span></span>
-        </a></li>
-        <li><a class="rvoice--v2" href="people/sales.html">
-          <span class="rvoice--v2__ph"><img src="../assets/images/avatar-sales.png" alt="エンゲージメント・新規営業として働く H.S のイラスト（プロフィール画像）" width="900" height="975" loading="lazy" decoding="async"></span>
-          <span class="rvoice--v2__b"><span class="rvoice--v2__cat en">ENGAGEMENT</span><b class="rvoice--v2__q">売る前に、まず課題を見つける。</b><span class="rvoice--v2__foot"><span class="rvoice--v2__prof">H.S／マーケティング本部 グロース戦略室</span><i aria-hidden="true">→</i></span></span>
-        </a></li>
-        <li><a class="rvoice--v2" href="people/cleaning.html">
-          <span class="rvoice--v2__ph"><img src="../assets/images/avatar-cleaning.png" alt="BPO／クレンリネス課のメンバーのイラスト（プロフィール画像）" width="900" height="975" loading="lazy" decoding="async"></span>
-          <span class="rvoice--v2__b"><span class="rvoice--v2__cat en">CLEANLINESS</span><b class="rvoice--v2__q">食品プロセスセンターの清掃を、計画から支える。</b><span class="rvoice--v2__foot"><span class="rvoice--v2__prof">S.K／BPO・クレンリネス課 MGR</span><i aria-hidden="true">→</i></span></span>
-        </a></li>
-        <li><a class="rvoice--v2" href="people/corporate.html">
-          <span class="rvoice--v2__ph"><img src="../assets/images/avatar-corporate.png" alt="コーポレート本部 総務課として働く M.K のイラスト（プロフィール画像）" width="900" height="975" loading="lazy" decoding="async"></span>
-          <span class="rvoice--v2__b"><span class="rvoice--v2__cat en">CORPORATE</span><b class="rvoice--v2__q">みんなが働きやすい環境を、仕組みから整える。</b><span class="rvoice--v2__foot"><span class="rvoice--v2__prof">M.K／コーポレート本部 総務課 課長</span><i aria-hidden="true">→</i></span></span>
-        </a></li>
-      </ol>
+    <nav class="hybquote reveal-stagger" aria-label="社員インタビュー" style="margin-top:20px">
+      <a class="hybquote__i" href="people/fde.html"><span class="hybquote__q"><span class="hybquote__cat en">FDE</span>現場で使われて、初めて「できた」と言える。</span><span class="byline"><span class="byline__av"><img src="../assets/images/avatar-fde.png" alt=""></span><span><span class="byline__name">H.Y</span><span class="byline__role">FDE・2023年新卒入社</span></span></span></a>
+      <a class="hybquote__i" href="people/system.html"><span class="hybquote__q"><span class="hybquote__cat en">ENGINEER</span>つくるのは、現場が明日から使えるもの。</span><span class="byline"><span class="byline__av"><img src="../assets/images/avatar-system.png" alt=""></span><span><span class="byline__name">M.M</span><span class="byline__role">DXプロダクト開発・2026年中途入社</span></span></span></a>
+      <a class="hybquote__i" href="people/bpo.html"><span class="hybquote__q"><span class="hybquote__cat en">BPO</span>毎日の運営の中に、次の改善がある。</span><span class="byline"><span class="byline__av"><img src="../assets/images/avatar-bpo.png" alt=""></span><span><span class="byline__name">I.N</span><span class="byline__role">BPO事業部 Productivity推進部</span></span></span></a>
+      <a class="hybquote__i" href="people/dts.html"><span class="hybquote__q"><span class="hybquote__cat en">DTS</span>運ぶだけではない。物流を、止めない仕事。</span><span class="byline"><span class="byline__av"><img src="../assets/images/avatar-dts.png" alt=""></span><span><span class="byline__name">K.Y</span><span class="byline__role">DTS事業部 運送課 千葉営業所 所長・2018年中途入社</span></span></span></a>
+      <a class="hybquote__i" href="people/sales.html"><span class="hybquote__q"><span class="hybquote__cat en">ENGAGEMENT</span>売る前に、まず課題を見つける。</span><span class="byline"><span class="byline__av"><img src="../assets/images/avatar-sales.png" alt=""></span><span><span class="byline__name">H.S</span><span class="byline__role">マーケティング本部 グロース戦略室</span></span></span></a>
+      <a class="hybquote__i" href="people/cleaning.html"><span class="hybquote__q"><span class="hybquote__cat en">CLEANLINESS</span>食品プロセスセンターの清掃を、計画から支える。</span><span class="byline"><span class="byline__av"><img src="../assets/images/avatar-cleaning.png" alt=""></span><span><span class="byline__name">S.K</span><span class="byline__role">BPO・クレンリネス課 MGR</span></span></span></a>
+      <a class="hybquote__i" href="people/corporate.html"><span class="hybquote__q"><span class="hybquote__cat en">CORPORATE</span>みんなが働きやすい環境を、仕組みから整える。</span><span class="byline"><span class="byline__av"><img src="../assets/images/avatar-corporate.png" alt=""></span><span><span class="byline__name">M.K</span><span class="byline__role">コーポレート本部 総務課 課長</span></span></span></a>
     </nav>
-    <p style="margin-top:22px"><a class="btn btn--ghost" href="people.html">社員インタビューをもっと見る<span class="btn__ico" aria-hidden="true">▶</span></a></p>
+    <p style="margin-top:26px"><a class="btn btn--ghost" href="people.html">社員インタビューをもっと見る<span class="btn__ico" aria-hidden="true">▶</span></a></p>
   </div>
 </section>
 
-<!-- 05 キャリアを知る / 1日の流れ -->
-<section class="aj" id="after">
-  <div class="aj__in wrap">
-    <div class="aj__intro reveal">
-      <p class="aj__labels"><span class="aj__label en">After Joining PAL</span><span class="aj__sub en">Work Life &amp; Career</span></p>
-      <h2 class="aj__ttl">入社後の自分を、<em>想像</em>できていますか。</h2>
-      <p class="aj__lead">実際の仕事の1日から、経験を重ねた先のキャリアまで。<br>気になる職種から、PALで働く毎日を見てみませんか。</p>
+<!-- ⑤ 入社後のキャリア：ロードマップ図解＋タイポ -->
+<section class="secC sec--navy" id="after">
+  <div class="wrap">
+    <div class="shead reveal" style="margin-bottom:10px;max-width:760px">
+      <p class="slabel" style="color:#ff6b6f">After Joining PAL — Work Life &amp; Career</p>
+      <h2 class="ta-display" style="font-size:clamp(24px,3.2vw,40px);color:#fff">入社後の自分を、<span style="color:var(--red)">想像</span>できていますか。</h2>
+      <p class="slead">実際の仕事の1日から、経験を重ねた先のキャリアまで。気になる職種から、PALで働く毎日を見てみませんか。</p>
     </div>
 
-    <div class="aj__area">
-      <div class="aj__ah">
-        <p class="aj__ano en">01</p>
-        <div class="aj__ahb"><p class="aj__aen en">A Day in the Life</p><h3 class="aj__at">まずは、実際の1日をのぞいてみる。</h3></div>
-      </div>
-      <nav aria-label="職種ごとの1日の流れ">
-        <ul class="ajcards reveal-stagger">
-          <li><a class="ajcard" href="people/fde.html#a-day"><span class="ajcard__top"><span class="ajcard__av"><img src="../assets/images/avatar-fde.png" alt="" aria-hidden="true" width="900" height="975" loading="lazy"></span><span class="ajcard__cat en">FDE</span><i class="ajcard__ar" aria-hidden="true">→</i></span><b class="ajcard__h">FDEの1日。</b><span class="ajcard__go">1日の流れを見る</span></a></li>
-          <li><a class="ajcard" href="people/system.html#a-day"><span class="ajcard__top"><span class="ajcard__av"><img src="../assets/images/avatar-system.png" alt="" aria-hidden="true" width="900" height="975" loading="lazy"></span><span class="ajcard__cat en">ENGINEER</span><i class="ajcard__ar" aria-hidden="true">→</i></span><b class="ajcard__h">DXプロダクト開発の1日。</b><span class="ajcard__go">1日の流れを見る</span></a></li>
-          <li><a class="ajcard" href="people/bpo.html#a-day"><span class="ajcard__top"><span class="ajcard__av"><img src="../assets/images/avatar-bpo.png" alt="" aria-hidden="true" width="900" height="975" loading="lazy"></span><span class="ajcard__cat en">BPO / 現場運営</span><i class="ajcard__ar" aria-hidden="true">→</i></span><b class="ajcard__h">BPO / 現場運営の1日。</b><span class="ajcard__go">1日の流れを見る</span></a></li>
-          <li><a class="ajcard" href="people/dts.html#a-day"><span class="ajcard__top"><span class="ajcard__av"><img src="../assets/images/avatar-dts.png" alt="" aria-hidden="true" width="900" height="975" loading="lazy"></span><span class="ajcard__cat en">DTS / 運送</span><i class="ajcard__ar" aria-hidden="true">→</i></span><b class="ajcard__h">DTSドライバーの1日。</b><span class="ajcard__go">1日の流れを見る</span></a></li>
-          <li><a class="ajcard" href="people/cleaning.html#a-day"><span class="ajcard__top"><span class="ajcard__av"><img src="../assets/images/avatar-cleaning.png" alt="" aria-hidden="true" width="900" height="975" loading="lazy"></span><span class="ajcard__cat en">CLEANLINESS</span><i class="ajcard__ar" aria-hidden="true">→</i></span><b class="ajcard__h">クレンリネスの一日。</b><span class="ajcard__go">1日の流れを見る</span></a></li>
-          <li><a class="ajcard" href="people/corporate.html#a-day"><span class="ajcard__top"><span class="ajcard__av"><img src="../assets/images/avatar-corporate.png" alt="" aria-hidden="true" width="900" height="975" loading="lazy"></span><span class="ajcard__cat en">CORPORATE / 総務</span><i class="ajcard__ar" aria-hidden="true">→</i></span><b class="ajcard__h">総務の1日。</b><span class="ajcard__go">1日の流れを見る</span></a></li>
-        </ul>
-      </nav>
-    </div>
+    <p class="slabel reveal" style="color:#ff6b6f;margin-top:30px">01 A Day in the Life — まずは、実際の1日をのぞいてみる。</p>
+    <nav aria-label="職種ごとの1日の流れ" class="reveal-stagger">
+      <ul style="display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:0;border-top:1px solid rgba(255,255,255,.16);margin-top:10px">
+        <li style="border-bottom:1px solid rgba(255,255,255,.16)"><a href="people/fde.html#a-day" style="display:block;padding:14px 10px 14px 0;color:#fff"><span style="font-family:var(--font-en);font-size:10px;color:#ff8186;display:block;margin-bottom:5px">FDE</span><b style="font-size:13.5px;font-weight:700">FDEの1日。</b></a></li>
+        <li style="border-bottom:1px solid rgba(255,255,255,.16)"><a href="people/system.html#a-day" style="display:block;padding:14px 10px 14px 0;color:#fff"><span style="font-family:var(--font-en);font-size:10px;color:#ff8186;display:block;margin-bottom:5px">ENGINEER</span><b style="font-size:13.5px;font-weight:700">DXプロダクト開発の1日。</b></a></li>
+        <li style="border-bottom:1px solid rgba(255,255,255,.16)"><a href="people/bpo.html#a-day" style="display:block;padding:14px 10px 14px 0;color:#fff"><span style="font-family:var(--font-en);font-size:10px;color:#ff8186;display:block;margin-bottom:5px">BPO / 現場運営</span><b style="font-size:13.5px;font-weight:700">BPO / 現場運営の1日。</b></a></li>
+        <li style="border-bottom:1px solid rgba(255,255,255,.16)"><a href="people/dts.html#a-day" style="display:block;padding:14px 10px 14px 0;color:#fff"><span style="font-family:var(--font-en);font-size:10px;color:#ff8186;display:block;margin-bottom:5px">DTS / 運送</span><b style="font-size:13.5px;font-weight:700">DTSドライバーの1日。</b></a></li>
+        <li style="border-bottom:1px solid rgba(255,255,255,.16)"><a href="people/cleaning.html#a-day" style="display:block;padding:14px 10px 14px 0;color:#fff"><span style="font-family:var(--font-en);font-size:10px;color:#ff8186;display:block;margin-bottom:5px">CLEANLINESS</span><b style="font-size:13.5px;font-weight:700">クレンリネスの一日。</b></a></li>
+        <li style="border-bottom:1px solid rgba(255,255,255,.16)"><a href="people/corporate.html#a-day" style="display:block;padding:14px 10px 14px 0;color:#fff"><span style="font-family:var(--font-en);font-size:10px;color:#ff8186;display:block;margin-bottom:5px">CORPORATE / 総務</span><b style="font-size:13.5px;font-weight:700">総務の1日。</b></a></li>
+      </ul>
+    </nav>
 
-    <div class="aj__area">
-      <div class="aj__ah">
-        <p class="aj__ano en">02</p>
-        <div class="aj__ahb"><p class="aj__aen en">Career Path</p><h3 class="aj__at">その先、どんな経験が待っている？</h3></div>
+    <p class="slabel reveal" style="color:#ff6b6f;margin-top:40px">02 Career Path — その先、どんな経験が待っている？</p>
+    <div class="roadmap reveal" style="margin-top:14px">
+      <div class="roadmap__track">
+        <div class="roadmap__stop"><span class="roadmap__dot en">01</span><a href="career.html#start" style="color:#fff"><span class="roadmap__en">CAREER / START</span><span class="roadmap__q">入社して最初に、何をする？</span><span class="roadmap__t" style="color:#9496ab">最初に関わる仕事や、現場との関わり方</span></a><i class="roadmap__arrow" aria-hidden="true">→</i></div>
+        <div class="roadmap__stop"><span class="roadmap__dot en">02</span><a href="career.html#growth" style="color:#fff"><span class="roadmap__en">CAREER / GROWTH PROCESS</span><span class="roadmap__q">どんな経験を積んでいく？</span><span class="roadmap__t" style="color:#9496ab">仕事を覚え、役割が広がっていく過程</span></a><i class="roadmap__arrow" aria-hidden="true">→</i></div>
+        <div class="roadmap__stop"><span class="roadmap__dot en">03</span><a href="career.html#career" style="color:#fff"><span class="roadmap__en">CAREER / CAREER PATH</span><span class="roadmap__q">その先に、どんな道がある？</span><span class="roadmap__t" style="color:#9496ab">職種ごとのキャリアや専門性の広がり</span></a></div>
       </div>
-      <ol class="ajq">
-        <li class="ajq__i"><a class="ajq__a" href="career.html#start"><b class="ajq__q">入社して最初に、何をする？</b><span class="ajq__t">最初に関わる仕事や、現場との関わり方</span><span class="ajq__dest en">CAREER / START</span><i class="ajq__ar" aria-hidden="true">→</i></a></li>
-        <li class="ajq__i"><a class="ajq__a" href="career.html#growth"><b class="ajq__q">どんな経験を積んでいく？</b><span class="ajq__t">仕事を覚え、役割が広がっていく過程</span><span class="ajq__dest en">CAREER / GROWTH PROCESS</span><i class="ajq__ar" aria-hidden="true">→</i></a></li>
-        <li class="ajq__i"><a class="ajq__a" href="career.html#career"><b class="ajq__q">その先に、どんな道がある？</b><span class="ajq__t">職種ごとのキャリアや専門性の広がり</span><span class="ajq__dest en">CAREER / CAREER PATH</span><i class="ajq__ar" aria-hidden="true">→</i></a></li>
-      </ol>
-      <p class="aj__cta"><a class="btn btn--red btn--lg" href="career.html">入社後の仕事とキャリアを知る<span class="btn__ico" aria-hidden="true">▶</span></a></p>
     </div>
+    <p style="margin-top:30px"><a class="btn btn--red btn--lg" href="career.html">入社後の仕事とキャリアを知る<span class="btn__ico" aria-hidden="true">▶</span></a></p>
   </div>
 </section>
 
-<!-- 06 FAQ誘導 -->
+<!-- ⑥ FAQ誘導 -->
 <section class="sec sec--soft sec--tight" id="before-apply">
   <div class="wrap">
     <div class="beforeapply reveal">
@@ -468,6 +446,7 @@
   </div>
 </section>
 
+<!-- ⑦ 募集職種・エントリー -->
 <section class="entry">
   <div class="entry__media"><img src="../assets/images/hero-bg.jpg" alt="" width="2752" height="1536" loading="lazy" aria-hidden="true"></div>
   <div class="entry__inner wrap--narrow reveal">
@@ -533,79 +512,121 @@
   </div>
 </footer>
 
-<svg xmlns="http://www.w3.org/2000/svg" style="display:none">
-<defs><style>
-  .s{fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
-  .a{fill:none;stroke:#cf131b;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
-</style></defs>
-<symbol id="ic-handy" viewBox="0 0 32 32"><rect class="s" x="9" y="3" width="14" height="22" rx="3"/><path class="s" d="M13 8h6M13 12h6"/><path class="a" d="M12 17h8"/><path class="s" d="M16 25v4"/></symbol>
-<symbol id="ic-worker" viewBox="0 0 32 32"><path class="a" d="M9 11a7 7 0 0114 0"/><path class="s" d="M7 11h18"/><circle class="s" cx="16" cy="17" r="3.5"/><path class="s" d="M8 29c0-4.4 3.6-8 8-8s8 3.6 8 8"/></symbol>
-<symbol id="ic-office" viewBox="0 0 32 32"><circle class="s" cx="16" cy="10" r="4.5"/><path class="s" d="M6 28c0-5.5 4.5-10 10-10s10 4.5 10 10"/><path class="a" d="M16 20v8"/></symbol>
-<symbol id="ic-meeting" viewBox="0 0 32 32"><path class="s" d="M4 6h17a2 2 0 012 2v8a2 2 0 01-2 2H11l-5 4v-4H4a2 2 0 01-2-2V8a2 2 0 012-2z" transform="translate(2 1)"/><path class="a" d="M10 12h10"/><path class="s" d="M10 16h6"/></symbol>
-<symbol id="ic2-field" viewBox="0 0 32 32"><path class="s" d="M3 6v21M11 6v21M3 13h8M3 20h8"/><rect class="a" x="4.5" y="14.5" width="5" height="4"/><circle class="s" cx="22" cy="12" r="3.5"/><path class="s" d="M15.5 27c0-3.6 2.9-6.5 6.5-6.5s6.5 2.9 6.5 6.5"/></symbol>
-<symbol id="ic2-data" viewBox="0 0 32 32"><rect class="s" x="4" y="4" width="24" height="15" rx="2"/><path class="a" d="M10 15v-4M15 15v-7M20 15v-3"/><circle class="s" cx="16" cy="24" r="2.6"/><path class="s" d="M10.5 30c0-3 2.5-5.5 5.5-5.5s5.5 2.5 5.5 5.5"/></symbol>
-<symbol id="ic2-fde" viewBox="0 0 32 32"><path class="s" d="M2 9v14M6.5 9v14M2 16h4.5"/><rect class="s" x="24" y="10" width="7" height="10" rx="1.5"/><circle class="s" cx="16" cy="10" r="3.5"/><path class="s" d="M10.5 22c0-3 2.5-5.5 5.5-5.5s5.5 2.5 5.5 5.5"/><path class="a" d="M8.5 16h3M20.5 16h3"/></symbol>
-<symbol id="ic2-system" viewBox="0 0 32 32"><rect class="s" x="9" y="7" width="18" height="13" rx="2"/><path class="s" d="M5 25h26l-2-5H9z"/><path class="a" d="M15 11l-2.5 2.5L15 16M21 11l2.5 2.5L21 16"/></symbol>
-<symbol id="ic2-transport" viewBox="0 0 32 32"><path class="s" d="M2 8h13v11H2zM15 11h4.5l4 4v4H15z"/><circle class="s" cx="8" cy="22.5" r="2.2"/><circle class="s" cx="21" cy="22.5" r="2.2"/><path class="a" d="M3 28h26"/><path class="s" d="M5 13h6"/></symbol>
-</svg>
-
 <script src="../assets/js/app.js" defer></script>
 <script>
-/* =============================================================================
-   HOME（Corporate Field Hero）の制御
-   ・写真のクロスフェード＋ケンバーンズ（動画は使用しない。生成の主張もしない）
-   ・prefers-reduced-motion では完全停止し、1枚目の静止画のみ表示
-   ============================================================================= */
-(function(){
-  "use strict";
-  var reduce = !!(window.matchMedia && matchMedia('(prefers-reduced-motion:reduce)').matches);
-  var stills = document.querySelectorAll('#heroKStills .heroK__still');
-  if(reduce || stills.length < 2) return;
-  var idx = 0;
-  var intervalMs = window.innerWidth <= 860 ? 6500 : 5200;
-  setInterval(function(){
-    stills[idx].classList.remove('is-active');
-    idx = (idx + 1) % stills.length;
-    stills[idx].classList.add('is-active');
-    void stills[idx].offsetWidth; /* Ken Burnsアニメーションを再始動させるためのreflow */
-  }, intervalMs);
-})();
-
 (function(){
   "use strict";
   var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion:reduce)').matches;
 
-  if(reduce){
-    document.querySelectorAll('.reveal,.reveal-stagger').forEach(function(el){ el.classList.add('is-in'); });
-    var p = document.querySelector('.js-whyline'); if(p) p.classList.add('is-drawn');
-    return;
-  }
-
   var targets = document.querySelectorAll('.reveal,.reveal-stagger');
-  if('IntersectionObserver' in window && targets.length){
+  if(reduce){
+    targets.forEach(function(el){ el.classList.add('is-in'); });
+  } else if('IntersectionObserver' in window && targets.length){
     var io = new IntersectionObserver(function(entries){
-      entries.forEach(function(en){
-        if(en.isIntersecting){
-          en.target.classList.add('is-in');
-          io.unobserve(en.target);
-        }
-      });
-    },{threshold:.18, rootMargin:'0px 0px -8% 0px'});
+      entries.forEach(function(en){ if(en.isIntersecting){ en.target.classList.add('is-in'); io.unobserve(en.target); } });
+    },{threshold:.14, rootMargin:'0px 0px -6% 0px'});
     targets.forEach(function(t){ io.observe(t); });
   } else {
     targets.forEach(function(t){ t.classList.add('is-in'); });
   }
 
-  var whyLine = document.getElementById('why');
-  var path = document.querySelector('.js-whyline');
-  if(whyLine && path && 'IntersectionObserver' in window){
-    path.classList.add('active');
-    var io2 = new IntersectionObserver(function(entries){
-      entries.forEach(function(en){
-        if(en.isIntersecting){ path.classList.add('is-drawn'); io2.disconnect(); }
+  /* Why PALの矢印描画 */
+  var flowSec = document.getElementById('hybFlow');
+  if(flowSec){
+    var arrows = flowSec.querySelectorAll('.hyb-flow__ar');
+    if(reduce){ arrows.forEach(function(a){ a.classList.add('is-drawn'); }); }
+    else if('IntersectionObserver' in window){
+      var io2 = new IntersectionObserver(function(entries){
+        entries.forEach(function(en){ if(en.isIntersecting){ arrows.forEach(function(a,i){ setTimeout(function(){ a.classList.add('is-drawn'); }, i*220); }); io2.disconnect(); } });
+      },{threshold:.4});
+      io2.observe(flowSec);
+    }
+  }
+
+  /* ===== HERO-VIDEO v1：FV動画。動きを抑える設定では再生せず、静止画（poster）のままにする。
+     読み込みに失敗した場合も poster が残るため、画が消えることはない。 ===== */
+  var heroVideo = document.querySelector('.heroC__video');
+  if(heroVideo){
+    if(reduce){
+      heroVideo.removeAttribute('autoplay');
+      heroVideo.preload = 'none';
+      try{ heroVideo.pause(); }catch(e){}
+    }
+    heroVideo.addEventListener('error', function(){ heroVideo.classList.add('is-failed'); }, true);
+  }
+
+  /* ===== WHY-B v1：Why PAL の赤い水平ラインの描画。B案 newtop-b.html と同じ実装。 ===== */
+  var whySec = document.getElementById('why');
+  var flowActive = document.getElementById('flowpathActive');
+  if(whySec && flowActive){
+    if(reduce){ flowActive.style.strokeDashoffset = 0; }
+    else if('IntersectionObserver' in window){
+      var ioW = new IntersectionObserver(function(entries){
+        entries.forEach(function(en){ if(en.isIntersecting){ flowActive.style.transition='stroke-dashoffset 1.1s ease'; flowActive.style.strokeDashoffset='0'; ioW.disconnect(); } });
+      },{threshold:.4});
+      ioW.observe(whySec);
+    }
+  }
+
+  /* 9職種：目次クリック→ミニマップ連動ハイライト */
+  var idx = document.getElementById('hybRoleIdx');
+  if(idx){
+    var rows = idx.querySelectorAll('.hybrole__row');
+    var dots = document.querySelectorAll('#hybDots > g');
+    var catEl = document.getElementById('hc-cat');
+    var jaEl = document.getElementById('hc-ja');
+    var oneEl = document.getElementById('hc-one');
+    var goEl = document.getElementById('hc-go');
+    var applyEl = document.getElementById('hc-apply');
+    function activate(row){
+      rows.forEach(function(r){ r.classList.remove('is-active'); r.setAttribute('aria-pressed','false'); });
+      row.classList.add('is-active'); row.setAttribute('aria-pressed','true');
+      var i = row.dataset.i;
+      dots.forEach(function(g){
+        var on = g.dataset.i === i;
+        g.querySelector('circle').setAttribute('fill', on ? '#cf131b' : '#fff');
+        g.querySelector('circle').setAttribute('r', on ? 7 : 5);
+        g.querySelector('text').setAttribute('fill', on ? '#ff8186' : '#fff');
+        g.querySelector('text').style.fontWeight = on ? '700' : '400';
       });
-    },{threshold:.4});
-    io2.observe(whyLine);
+      catEl.textContent = row.dataset.cat;
+      jaEl.textContent = row.dataset.ja;
+      oneEl.textContent = row.dataset.one;
+      goEl.href = row.dataset.go;
+      if(row.dataset.apply){
+        applyEl.style.display = '';
+        applyEl.href = row.dataset.apply;
+        applyEl.innerHTML = '募集要項<span class="btn__ico" aria-hidden="true">▶</span>';
+      } else {
+        applyEl.style.display = 'none';
+      }
+    }
+    /* ===== A11Y v2：ボタン群＋共有パネルとして正しく実装する。
+       ・押下状態は aria-pressed で示す（共通JSの汎用タブ実装と競合させない）
+       ・詳細領域の aria-labelledby を、押されているボタンに追従させる
+       ・←→↑↓ / Home / End でボタン間を移動し、フォーカスも移す
+       職種の表示内容・リンク先は変更していない。 ===== */
+    var panel = document.getElementById('hybRolePanel');
+    function sync(row){
+      if(panel && row.id){ panel.setAttribute('aria-labelledby', row.id); }
+    }
+    sync(idx.querySelector('[aria-pressed="true"]') || rows[0]);
+    rows.forEach(function(row){
+      row.addEventListener('click', function(){ activate(row); sync(row); });
+    });
+    idx.addEventListener('keydown', function(e){
+      var list = Array.prototype.slice.call(rows);
+      var cur = list.indexOf(document.activeElement);
+      if(cur < 0) return;
+      var to = -1;
+      if(e.key === 'ArrowRight' || e.key === 'ArrowDown') to = (cur + 1) % list.length;
+      else if(e.key === 'ArrowLeft' || e.key === 'ArrowUp') to = (cur - 1 + list.length) % list.length;
+      else if(e.key === 'Home') to = 0;
+      else if(e.key === 'End') to = list.length - 1;
+      else return;
+      e.preventDefault();
+      activate(list[to]); sync(list[to]); list[to].focus();
+    });
   }
 })();
 </script>
