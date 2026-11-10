@@ -3,7 +3,7 @@
    ---------------------------------------------------------------------
    【キャッシュ運用】読み込み側は about-figures.css?v=YYYYMMDDx の形で
    バージョンを付ける。中身を直したら v= を必ず上げる。
-   現在のバージョン：20261111g
+   現在のバージョン：20261111i
 
    【効く範囲】<body> に abt が付いたページだけ。読み込んでいるのは
    about.html の1ページのみなので、他の64ページには影響しない。
@@ -441,6 +441,222 @@
   .abt .xover__lmap{margin-bottom:2px}
 }
 
+
+/* =====================================================================
+   ⑥ FV（ABOUT-FV v2）：写真を外し、文字組みを主役にする
+   ---------------------------------------------------------------------
+   phead--photo（2カラム＋写真）を外したので、.phead の素の形に戻る。
+   右側が空かないよう、見出しと説明文を左右に組む。
+   ===================================================================== */
+.abt .phead--edi{
+  background:var(--af-bg);border-bottom:1px solid var(--af-line);
+  padding:clamp(52px,8vh,104px) 0 clamp(44px,7vh,84px);
+}
+.abt .phead--edi::after{display:none}
+.abt .phead--edi .phgrid__copy{
+  display:grid;grid-template-columns:minmax(0,1fr) minmax(260px,400px);
+  grid-template-areas:"lb lb" "ti ld";
+  align-items:end;column-gap:clamp(32px,5vw,72px);row-gap:clamp(14px,2vw,22px);
+}
+.abt .phead--edi .slabel{grid-area:lb;margin-bottom:0;color:var(--af-red)}
+.abt .phead--edi .ptitle{
+  grid-area:ti;margin:0;
+  font-size:clamp(40px,6.2vw,80px);font-weight:700;line-height:1.1;
+  letter-spacing:-.01em;color:var(--af-ink);
+}
+.abt .phead--edi .plead{
+  grid-area:ld;margin:0;padding-bottom:clamp(6px,1vw,14px);
+  font-size:clamp(14px,1.4vw,16px);line-height:2;color:var(--af-mid);
+  border-left:1px solid var(--af-line);padding-left:clamp(18px,2vw,26px);
+}
+@media(max-width:860px){
+  .abt .phead--edi{padding:clamp(34px,6vh,56px) 0 clamp(30px,5vh,44px)}
+  .abt .phead--edi .phgrid__copy{
+    grid-template-columns:minmax(0,1fr);grid-template-areas:"lb" "ti" "ld";
+    align-items:start;row-gap:14px;
+  }
+  .abt .phead--edi .ptitle{font-size:clamp(32px,9vw,44px)}
+  .abt .phead--edi .plead{border-left:none;padding-left:0;padding-bottom:0}
+}
+
+/* =====================================================================
+   ⑦ OUR VALUES：Editorial Values（言葉のデザイン）
+   ---------------------------------------------------------------------
+   3つを横に並べたカードをやめ、縦に積んだ大きな番号＋見出しにする。
+   枠・影は使わず、細い罫線と余白だけで区切る。赤は番号のみ。
+   ===================================================================== */
+.abt #values .shead{margin-bottom:clamp(24px,3vw,34px)!important}
+.abt #values .val3{
+  display:block;gap:0;margin:0;
+  border-top:2px solid var(--af-red);
+}
+.abt #values .val3 li{
+  position:relative;display:grid;
+  grid-template-columns:clamp(84px,8.6vw,124px) minmax(0,1fr);
+  align-items:baseline;column-gap:clamp(18px,2.4vw,36px);
+  background:none;border:none;border-radius:0;
+  padding:clamp(22px,3vw,34px) 0;
+  border-bottom:1px solid var(--af-line);
+  opacity:0;transform:translateY(8px);
+  transition:opacity .6s ease,transform .6s var(--af-ease);
+}
+.abt #values .val3.is-in li{opacity:1;transform:none}
+.abt #values .val3.is-in li:nth-child(1){transition-delay:.08s}
+.abt #values .val3.is-in li:nth-child(2){transition-delay:.26s}
+.abt #values .val3.is-in li:nth-child(3){transition-delay:.44s}
+/* 各行の区切り線が、上から順に伸びる */
+.abt #values .val3 li + li::before{
+  content:"";position:absolute;left:0;top:-1px;height:1px;width:100%;
+  background:var(--af-line);
+  transform:scaleX(0);transform-origin:left center;
+  transition:transform .8s var(--af-ease);
+}
+.abt #values .val3.is-in li:nth-child(1)::before{transition-delay:.10s}
+.abt #values .val3.is-in li:nth-child(2)::before{transition-delay:.28s}
+.abt #values .val3.is-in li:nth-child(3)::before{transition-delay:.46s}
+.abt #values .val3.is-in li::before{transform:scaleX(1)}
+.abt #values .val3__no{
+  display:block;margin:0;
+  font-family:var(--font-en);
+  font-size:clamp(46px,6.4vw,82px);font-weight:700;line-height:.95;
+  letter-spacing:.01em;color:var(--af-red);
+}
+.abt #values .val3 b{
+  display:block;
+  font-size:clamp(19px,2.3vw,28px);font-weight:700;line-height:1.5;
+  letter-spacing:.02em;color:var(--af-ink);
+}
+.abt #values .btn--onnavy{margin-top:clamp(8px,1.6vw,16px)}
+
+/* 応募条件の補足。小さなグレー文字に押し込めず、独立した面として置く */
+.abt #values .whonote--apply{
+  margin-top:clamp(30px,4vw,44px);
+  background:var(--af-soft2);border:1px solid var(--af-line);border-left:none;
+  border-top:2px solid var(--af-ink);border-radius:0;
+  padding:clamp(22px,3vw,30px) clamp(20px,3vw,30px);
+  color:var(--af-ink);
+}
+.abt #values .whonote__grid{
+  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:clamp(18px,3vw,36px);
+}
+.abt #values .whonote__i{
+  position:relative;margin:0;padding-left:16px;
+  font-size:14px;line-height:1.95;color:var(--af-ink);
+}
+.abt #values .whonote__i::before{
+  content:"";position:absolute;left:0;top:.7em;width:7px;height:7px;background:var(--af-red);
+}
+.abt #values .whonote__i:nth-child(2)::before{background:none;border:1.5px solid var(--af-ink)}
+.abt #values .whonote__foot{
+  margin:clamp(16px,2.4vw,22px) 0 0;padding-top:clamp(14px,2vw,18px);
+  border-top:1px solid var(--af-line);
+  font-size:13px;line-height:1.9;color:var(--af-mid);
+}
+.abt #values .whonote__foot .textlink{color:var(--af-red)}
+@media(max-width:760px){
+  .abt #values .val3 li{
+    grid-template-columns:minmax(0,1fr);row-gap:6px;align-items:start;
+    padding:20px 0;
+  }
+  .abt #values .val3__no{font-size:40px}
+  .abt #values .val3 b{font-size:19px}
+  .abt #values .whonote__grid{grid-template-columns:minmax(0,1fr);gap:16px}
+}
+
+/* =====================================================================
+   ⑧ PAL BY THE NUMBERS：Editorial Data Visualization（数字のデザイン）
+   ---------------------------------------------------------------------
+   6枚の均等カードをやめ、罫線と文字サイズで区分する。
+   数字は Lato。赤は従業員数と採用計画の到達値だけに使う。
+   数値・単位・注記・出典は本文のまま。
+   ===================================================================== */
+.abt #numbers .nums2{
+  display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.3fr) minmax(0,.85fr);
+  gap:0;margin-top:clamp(26px,3.4vw,38px);
+  border-top:1px solid var(--af-line);border-bottom:1px solid var(--af-line);
+}
+.abt #numbers .num2{
+  text-align:left;background:none;border-radius:0;
+  padding:clamp(24px,3.2vw,36px) clamp(20px,2.6vw,34px) clamp(24px,3.2vw,36px) 0;
+}
+.abt #numbers .num2 + .num2{
+  border-left:1px solid var(--af-line);
+  padding-left:clamp(22px,2.8vw,38px);
+}
+.abt #numbers .num2__v{
+  display:block;font-family:var(--font-en);
+  font-size:clamp(30px,3.6vw,46px);font-weight:700;line-height:1.05;
+  letter-spacing:0;color:var(--af-ink);
+}
+.abt #numbers .num2__v em{
+  font-family:var(--font-jp);font-size:.42em;font-style:normal;font-weight:700;
+  color:var(--af-mid);margin:0 1px 0 3px;letter-spacing:.02em;
+}
+/* 主役は従業員数。ここだけ大きく、赤を使う */
+.abt #numbers .num2:nth-child(2) .num2__v{
+  font-size:clamp(46px,6.4vw,84px);color:var(--af-red);
+}
+.abt #numbers .num2:nth-child(2) .num2__v em{font-size:.3em;color:var(--af-ink)}
+.abt #numbers .num2__k{
+  display:block;margin-top:12px;
+  font-size:12px;font-weight:700;letter-spacing:.1em;color:var(--af-mid);
+}
+.abt #numbers .num2__s{
+  display:block;margin-top:8px;padding-top:8px;
+  border-top:1px dashed var(--af-line2);
+  font-size:12.5px;line-height:1.8;color:var(--af-mid);
+}
+
+.abt #numbers .nums2sub{display:block;gap:0;margin-top:0}
+.abt #numbers .nsub{
+  display:grid;grid-template-columns:clamp(160px,22%,250px) minmax(0,1fr);
+  align-items:baseline;column-gap:clamp(20px,3.2vw,46px);
+  border:none;border-bottom:1px solid var(--af-line);border-radius:0;
+  padding:clamp(20px,2.6vw,28px) 0;
+}
+.abt #numbers .nsub dt{margin:0}
+.abt #numbers .nsub__v{
+  display:inline-block;font-family:var(--font-en);
+  font-size:clamp(26px,3vw,38px);font-weight:700;line-height:1.1;color:var(--af-ink);
+}
+.abt #numbers .nsub__v em{
+  font-family:var(--font-jp);font-size:.4em;font-style:normal;font-weight:700;
+  color:var(--af-mid);margin-left:4px;letter-spacing:.02em;
+}
+.abt #numbers .nsub__v i{font-style:normal;color:var(--af-red);margin:0 .12em}
+.abt #numbers .nsub dd{
+  margin:0;font-size:13.5px;line-height:1.95;color:var(--af-mid);
+}
+/* 採用計画は「FY2029の目標」。実績の推移と読まれないよう、
+   到達値と目標ラベルをはっきり見せる */
+.abt #numbers .nsub--goal{align-items:start}
+.abt #numbers .nsub--goal .nsub__v{
+  font-size:clamp(28px,3.4vw,44px);color:var(--af-mid);
+}
+.abt #numbers .nsub--goal .nsub__v em{color:var(--af-mid)}
+/* 120（現在）→ 230（FY2029目標）。到達値だけを赤にして目標の位置を示す */
+.abt #numbers .nsub__goalv{color:var(--af-red)}
+.abt #numbers .nsub__tag{
+  display:inline-block;margin:8px 0 0;background:none;
+  border:1px solid var(--af-red);border-radius:0;
+  padding:3px 10px;font-size:11px;font-weight:700;letter-spacing:.06em;
+  color:var(--af-red);white-space:nowrap;
+}
+.abt #numbers .nsub--goal dt{display:flex;flex-direction:column;align-items:flex-start}
+.abt #numbers .nums2__src{margin-top:clamp(16px,2.2vw,22px);font-size:12px;color:var(--af-mid)}
+@media(max-width:860px){
+  .abt #numbers .nums2{grid-template-columns:minmax(0,1fr)}
+  .abt #numbers .num2{padding:20px 0}
+  .abt #numbers .num2 + .num2{
+    border-left:none;border-top:1px solid var(--af-line);padding-left:0;
+  }
+  .abt #numbers .num2:nth-child(2) .num2__v{font-size:clamp(44px,13vw,60px)}
+  .abt #numbers .nsub{
+    grid-template-columns:minmax(0,1fr);row-gap:8px;align-items:start;padding:18px 0;
+  }
+}
+
 /* =====================================================================
    表示の保険が働いたときの最終状態
    ---------------------------------------------------------------------
@@ -454,12 +670,14 @@
 .abt.af-shown .effects--row li,
 .abt.af-shown .fdeline__i,
 .abt.af-shown .xover__node,
-.abt.af-shown .xover__card{opacity:1!important;transform:none!important;transition:none!important}
+.abt.af-shown .xover__card,
+.abt.af-shown #values .val3 li{opacity:1!important;transform:none!important;transition:none!important}
 .abt.af-shown .force4__list::before,
 .abt.af-shown .fdeline::before,
 .abt.af-shown .xover__nodes::before,
 .abt.af-shown .xover__cards::before,
-.abt.af-shown .effects--row::before{transform:none!important;transition:none!important}
+.abt.af-shown .effects--row::before,
+.abt.af-shown #values .val3 li::before{transform:none!important;transition:none!important}
 .abt.af-shown .fdeline::after,
 .abt.af-shown .xover__cards::after,
 .abt.af-shown .fdeline__i:first-child::after,
@@ -473,12 +691,14 @@
   .abt #process .fdeline::before,
   .abt #crossover .xover__nodes::before,
   .abt #crossover .xover__cards::before,
-  .abt .effects--row::before{transform:none!important;transition:none!important}
+  .abt .effects--row::before,
+  .abt #values .val3 li::before{transform:none!important;transition:none!important}
   .abt #why .force4__i,
   .abt #process .fdeline__i,
   .abt #crossover .xover__node,
   .abt #crossover .xover__card,
-  .abt .effects--row li{opacity:1!important;transform:none!important;transition:none!important}
+  .abt .effects--row li,
+  .abt #values .val3 li{opacity:1!important;transform:none!important;transition:none!important}
   .abt #process .fdeline::after,
   .abt #crossover .xover__cards::after{opacity:1!important;transition:none!important}
 }

@@ -28,7 +28,7 @@
      body に abt が付いたページにしか効かないので、他の64ページには影響しない。
      既存の .reveal / .is-in（system-h.css＋ページ内の IntersectionObserver）に
      乗せているため、JSの追加はしていない。 ===== -->
-<link rel="stylesheet" href="assets/css/about-figures.css?v=20261111g">
+<link rel="stylesheet" href="assets/css/about-figures.css?v=20261111i">
 </head>
 <body class="ls abt">
 <div class="proto-bar">【試作・非公開】ABOUT｜Field Editorialデザイン適用版｜<b>デザイン検証用プレビュー｜本番サイト未反映</b>・文言は本番about/index.htmlと完全同一</div>
@@ -64,18 +64,20 @@
 <main id="main">
 <nav class="crumb" aria-label="パンくず"><div class="wrap"><a href="home.html">採用情報</a><span aria-current="page">PALを知る</span></div></nav>
 
-<!-- ABOUT：写真主体（現場×技術の関係を直感的に伝える） -->
-<section class="phead phead--photo">
+<!-- ===== ABOUT-FV v2：エンジニア写真とキャプションを削除し、見出しを主役にした
+     文字組みのFVにする。写真・イラストの差し替えはしない。
+     ・phead--photo（2カラム＋写真）を外し、about専用の phead--edi に置き換え
+     ・右側を空けないよう、見出しと説明文を左右に組む editorial split にする
+     ・画像ファイル person-eng.jpg は削除していない
+       （site/index.html・site/people/index.html・newtop-c.html で使用中）
+     ・見出し「PALを知る。」と説明文はそのまま ===== -->
+<section class="phead phead--edi">
   <div class="wrap phgrid">
     <div class="phgrid__copy">
       <p class="slabel">About PAL</p>
       <h1 class="ptitle">PALを知る。</h1>
       <p class="plead">現場・技術・人をつなぐところから、物流の仕組みを変えていく。<br>それが、PALの仕事です。</p>
     </div>
-    <figure class="phgrid__photo">
-      <img src="../assets/images/person-eng.jpg" alt="オフィスでコードと業務データの画面に向かう開発担当の社員" width="896" height="1200">
-      <figcaption class="phgrid__cap"><i aria-hidden="true"></i>現場の課題を、技術でかたちにする</figcaption>
-    </figure>
   </div>
 </section>
 
@@ -199,8 +201,16 @@
       <li><span class="val3__no en">03</span><b>自分の「手」で変えていく</b></li>
     </ul>
     <p style="margin-top:24px"><a class="btn btn--onnavy" href="people.html#look">3つの価値観と、働く人の姿勢を見る<span class="btn__ico" aria-hidden="true">▶</span></a></p>
-    <div class="whonote">
-      <p>FDEとセンター長／候補では、入社時の高いITスキルを必須としていません。技術力よりも人物面を最優先しています。<br>一方で、自社開発 Web・アプリエンジニアは、何らかのWeb系システム開発の実務経験を応募条件としています。応募条件は職種ごとに異なるため、<a class="textlink" href="jobs.html">各募集要項</a>をご確認ください。</p>
+    <!-- ===== ABOUT-APPLY v1：応募条件の補足。
+         文章は1文字も変えず、<br> と文の切れ目で段落に分けただけ。
+         「職種によって条件が違う」ことが並べて読めるよう、
+         2つの職種を左右に、締めの一文を下段に置く。 ===== -->
+    <div class="whonote whonote--apply">
+      <div class="whonote__grid">
+        <p class="whonote__i">FDEとセンター長／候補では、入社時の高いITスキルを必須としていません。技術力よりも人物面を最優先しています。</p>
+        <p class="whonote__i">一方で、自社開発 Web・アプリエンジニアは、何らかのWeb系システム開発の実務経験を応募条件としています。</p>
+      </div>
+      <p class="whonote__foot">応募条件は職種ごとに異なるため、<a class="textlink" href="jobs.html">各募集要項</a>をご確認ください。</p>
     </div>
   </div>
 </section>
@@ -214,13 +224,13 @@
     </div>
     <div class="nums2 reveal">
       <div class="num2"><b class="num2__v">2000<em>年</em>12<em>月</em></b><span class="num2__k">設立</span></div>
-      <div class="num2"><b class="num2__v">120<em>名</em></b><span class="num2__k">従業員数</span><span class="num2__s">アルバイト・パートを含めると約1,600名</span></div>
-      <div class="num2"><b class="num2__v">9,000<em>万円</em></b><span class="num2__k">資本金</span></div>
+      <div class="num2"><b class="num2__v" data-countup>120<em>名</em></b><span class="num2__k">従業員数</span><span class="num2__s">アルバイト・パートを含めると約1,600名</span></div>
+      <div class="num2"><b class="num2__v" data-countup>9,000<em>万円</em></b><span class="num2__k">資本金</span></div>
     </div>
     <dl class="nums2sub">
-      <div class="nsub"><dt><span class="nsub__v">2<em>拠点</em></span></dt><dd>大阪本社（大阪市西区新町）／東京オフィス（千代田区神田小川町）</dd></div>
-      <div class="nsub"><dt><span class="nsub__v">4<em>領域</em></span></dt><dd>コンサルティング／ロジテックインテグレーション／システム開発＆エンジニアリング／ロジテックオペレーション</dd></div>
-      <div class="nsub"><dt><span class="nsub__v">120<i aria-hidden="true">→</i>230<em>名</em></span><span class="nsub__tag">FY2029目標</span></dt><dd>採用計画</dd></div>
+      <div class="nsub"><dt><span class="nsub__v" data-countup>2<em>拠点</em></span></dt><dd>大阪本社（大阪市西区新町）／東京オフィス（千代田区神田小川町）</dd></div>
+      <div class="nsub"><dt><span class="nsub__v" data-countup>4<em>領域</em></span></dt><dd>コンサルティング／ロジテックインテグレーション／システム開発＆エンジニアリング／ロジテックオペレーション</dd></div>
+      <div class="nsub nsub--goal"><dt><span class="nsub__v">120<i aria-hidden="true">→</i><span class="nsub__goalv">230</span><em>名</em></span><span class="nsub__tag">FY2029目標</span></dt><dd>採用計画</dd></div>
     </dl>
     <p class="note nums2__src">出典：株式会社PALの会社概要（2026年10月22日確認）</p>
     <p style="margin-top:20px"><a class="btn btn--ghost" href="https://www.pal-style.co.jp/company/" target="_blank" rel="noopener">会社概要を見る<span class="btn__ico" aria-hidden="true">▶</span></a></p>
@@ -303,6 +313,58 @@
        最終状態へ直接飛ばす（about-figures.css の .af-shown） */
     document.body.classList.add('af-shown');
   }, 1200);
+})();
+</script>
+<!-- ===== ABOUT-NUM v1：数字のカウントアップ =====
+     ・data-countup を付けた数字だけを対象にする。
+       設立「2000年12月」と採用計画「120→230名」は、推移や実績と
+       誤解されうるので対象から外し、常に原文のまま表示する。
+     ・原文の文字列を保持し、終了時は必ずその文字列へ戻す。
+     ・一度表示したら監視を外すので、繰り返し動くことはない。
+     ・prefers-reduced-motion:reduce のときは何もしない
+       （＝最初から正しい値が出ている）。
+     ・監視が発火しない環境では値に一切触れないため、
+       原文の数字がそのまま残る。 ===== -->
+<script>
+(function(){
+  "use strict";
+  if(window.matchMedia && matchMedia('(prefers-reduced-motion:reduce)').matches) return;
+  if(!('IntersectionObserver' in window) || !window.requestAnimationFrame) return;
+  var sec = document.getElementById('numbers');
+  if(!sec) return;
+  var items = [].slice.call(sec.querySelectorAll('[data-countup]')).filter(function(el){
+    return el.firstChild && el.firstChild.nodeType === 3;
+  });
+  if(!items.length) return;
+
+  function run(el){
+    var node = el.firstChild, fin = node.nodeValue;
+    var goal = parseInt(fin.replace(/[^0-9]/g,''), 10);
+    if(!isFinite(goal) || goal <= 0) return;
+    var comma = fin.indexOf(',') >= 0, dur = 900, t0 = 0, done = false;
+    function put(n){ node.nodeValue = comma ? n.toLocaleString('en-US') : String(n); }
+    function end(){ if(!done){ done = true; node.nodeValue = fin; } }
+    function step(ts){
+      if(done) return;
+      if(!t0) t0 = ts;
+      var p = Math.min(1, (ts - t0) / dur);
+      if(p < 1){ put(Math.round(goal * (1 - Math.pow(1 - p, 3)))); requestAnimationFrame(step); }
+      else { end(); }
+    }
+    put(0);
+    requestAnimationFrame(step);
+    /* 描画が止まる環境でも 0 のまま残らないようにする保険 */
+    setTimeout(end, dur + 900);
+  }
+
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if(!en.isIntersecting) return;
+      io.unobserve(en.target);
+      run(en.target);
+    });
+  }, {threshold:.35});
+  items.forEach(function(el){ io.observe(el); });
 })();
 </script>
 </body>
