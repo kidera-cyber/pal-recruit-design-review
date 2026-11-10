@@ -151,7 +151,7 @@
      body に ls が付いたページだけに効く。共通CSSは変更していないので
      このファイルを読み込んでいない他ページには影響しない。
      元に戻すときは、この link と body の ls を外すだけでよい。 ===== -->
-<link rel="stylesheet" href="assets/css/lightsurface.css?v=20261110m">
+<link rel="stylesheet" href="assets/css/lightsurface.css?v=20261111e">
 </head>
 <body class="pv2 ls">
 
@@ -283,23 +283,78 @@
   </div>
 </section>
 
-<!-- 相関図（コンパクト版） -->
-<section class="secC sec--soft">
+<!-- ===== XOVER2 v1 START：相関図を作り直した。
+     【やめたもの】白い箱3つ＋赤い双方向矢印（⇄）＋破線の注記（.hybx）。
+       記号だけで関係を表していて、図としての情報量もデザイン性も弱かった。
+     【採用した構成】案A（接続図）と案B（編集的レイアウト）を合わせたもの。
+       ・3領域を同じ大きさ・同じ構成の見出しブロックとして等間隔に並べる（対等）
+       ・その上に細い線を3本引き、1点で交差させる（独立しつつ交わる）
+       ・交差点だけを PALレッドの小さなノードにする（接点）
+       ・線は #DAE1F2 の 1px、赤は交点のみ。枠・影・アニメーションは使わない
+     【文言】領域名・注記・ABOUTリンクは従来どおり。英字ラベルと一行説明は、
+       同じページの9職種インデックス（data-cat / data-one 属性）にすでにある
+       文字列をそのまま使っている。新しい文章は書いていない。
+     【復元】git 履歴の 811ea8a にある .hybx のマークアップに戻せばよい。 ===== -->
+<section class="secC sec--soft" id="crossover">
   <div class="wrap">
-    <div class="shead reveal" style="margin-bottom:20px;max-width:760px">
+    <div class="shead reveal" style="max-width:760px">
       <p class="kicker2"><span class="kicker2__en en">Crossover</span></p>
       <h2 class="stitle" style="font-size:clamp(19px,2vw,24px)">専門性が交わることで、仕事が動き出す。</h2>
     </div>
-    <div class="hybx reveal">
-      <div class="hybx__row">
-        <span class="hybx__chip">BPO・現場運営</span><span class="hybx__ar" aria-hidden="true">⇄</span>
-        <span class="hybx__chip">FDE</span><span class="hybx__ar" aria-hidden="true">⇄</span>
-        <span class="hybx__chip">システム・プロダクト開発</span>
+
+    <div class="xv reveal">
+      <div class="xv__stage">
+        <svg class="xv__art" viewBox="0 0 1080 180" preserveAspectRatio="none" role="presentation" aria-hidden="true" focusable="false">
+          <!-- 3領域から立ち上がる3本の線が (540,60) の1点で交わり、わずかに行き過ぎる。
+               「集まって終わり」ではなく「交差して、互いの領域に入る」形にしている。
+               それを1本の細い横罫が貫く。向き・順序は持たせないので矢印は使わない。
+               横罫のグラデーションは userSpaceOnUse。水平線は高さ0の bounding box に
+               なるため、既定の objectBoundingBox では描画されない。 -->
+          <defs>
+            <linearGradient id="xvRule" gradientUnits="userSpaceOnUse" x1="20" y1="60" x2="1060" y2="60">
+              <stop offset="0" stop-color="#DAE1F2" stop-opacity="0"/>
+              <stop offset=".14" stop-color="#DAE1F2" stop-opacity="1"/>
+              <stop offset=".86" stop-color="#DAE1F2" stop-opacity="1"/>
+              <stop offset="1" stop-color="#DAE1F2" stop-opacity="0"/>
+            </linearGradient>
+          </defs>
+          <path d="M20 60 L1060 60" stroke="url(#xvRule)" stroke-width="1" fill="none" vector-effect="non-scaling-stroke"/>
+          <!-- 3本の線は #DAE1F2 だと淡グレー面（#F2F3F6）の上で沈むため、
+               同系でひとつ濃い #C2CBE0 にしている。赤は交点だけ。 -->
+          <g stroke="#C2CBE0" stroke-width="1" fill="none" vector-effect="non-scaling-stroke">
+            <path d="M180 172 L620 40"/>
+            <path d="M900 172 L460 40"/>
+            <path d="M540 172 L540 40"/>
+          </g>
+        </svg>
+        <!-- 交点のノード。SVGを横に引き伸ばすため、真円を保てるHTML側で描く -->
+        <span class="xv__node" aria-hidden="true"></span>
       </div>
-      <p class="hybx__note"><b>3つの領域に上下関係はありません。</b>物流DXの進め方は案件ごとに違うため、部門間連携のかたちもそのつど変わります。<a class="textlink textlink--sm" href="about.html#crossover">相関図の詳細をABOUTで見る</a></p>
+      <ul class="xv__fields">
+        <li class="xv__f">
+          <span class="xv__dot" aria-hidden="true"></span>
+          <span class="xv__en en">BPO / Operation</span>
+          <b class="xv__ja">BPO・現場運営</b>
+          <span class="xv__one">現場を安定させ、改善を進める</span>
+        </li>
+        <li class="xv__f">
+          <span class="xv__dot" aria-hidden="true"></span>
+          <span class="xv__en en">Forward Deployed Engineer</span>
+          <b class="xv__ja">FDE</b>
+          <span class="xv__one">現場課題を技術につなぐ</span>
+        </li>
+        <li class="xv__f">
+          <span class="xv__dot" aria-hidden="true"></span>
+          <span class="xv__en en">System / Product</span>
+          <b class="xv__ja">システム・プロダクト開発</b>
+          <span class="xv__one">現場で使われる仕組みをつくる</span>
+        </li>
+      </ul>
+      <p class="xv__note"><b>3つの領域に上下関係はありません。</b>物流DXの進め方は案件ごとに違うため、部門間連携のかたちもそのつど変わります。<a class="textlink textlink--sm" href="about.html#crossover">相関図の詳細をABOUTで見る</a></p>
     </div>
   </div>
 </section>
+<!-- ===== XOVER2 v1 END ===== -->
 
 <!-- ③ 9職種：目次インデックス＋連動ミニマップ -->
 <section class="secC" id="work">
