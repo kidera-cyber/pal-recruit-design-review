@@ -3,7 +3,7 @@
    ---------------------------------------------------------------------
    【キャッシュ運用】読み込み側は about-figures.css?v=YYYYMMDDx の形で
    バージョンを付ける。中身を直したら v= を必ず上げる。
-   現在のバージョン：20261111i
+   現在のバージョン：20261112c
 
    【効く範囲】<body> に abt が付いたページだけ。読み込んでいるのは
    about.html の1ページのみなので、他の64ページには影響しない。
@@ -657,6 +657,235 @@
   }
 }
 
+
+/* =====================================================================
+   WHY-FIG v2：Why PAL を「読む」から「見る」へ
+   ---------------------------------------------------------------------
+   背景を白にして、図のまわりを明るくする。淡グレーは区切りにだけ使う。
+   ===================================================================== */
+.abt #why.sec--soft{background:var(--af-bg)}
+
+/* --- 共通：領域タグ（本文末尾の説明文をラベルに置き換えたもの） --- */
+.abt .force4__tags,
+.abt .two-view__tags{
+  list-style:none;display:flex;flex-wrap:wrap;gap:6px;margin:12px 0 0;padding:0;
+}
+.abt .force4__tags li,
+.abt .two-view__tags li{
+  font-size:11.5px;font-weight:700;line-height:1.5;letter-spacing:.02em;
+  color:var(--af-mid);background:var(--af-soft);border:1px solid var(--af-line);
+  padding:4px 9px;white-space:nowrap;
+}
+.abt .two-view__tags li{color:var(--af-ink);background:var(--af-bg)}
+
+/* --- 共通：図の凡例（本文ではなく、図に添える注記） --- */
+.abt .figlegend{
+  display:flex;align-items:flex-start;gap:9px;
+  margin:clamp(18px,2.4vw,24px) 0 0;
+  font-size:12px;line-height:1.85;color:var(--af-mid);
+}
+.abt .figlegend i{
+  flex:none;margin-top:.55em;width:14px;height:1px;background:var(--af-node);
+}
+
+/* --- 共通：アコーディオン（初期表示から外した説明文をそのまま格納する） --- */
+.abt .amore{margin:clamp(18px,2.4vw,26px) 0 0;border-top:1px solid var(--af-line)}
+.abt .amore__s{
+  list-style:none;cursor:pointer;display:inline-flex;align-items:center;gap:9px;
+  padding:13px 0;font-size:12.5px;font-weight:700;letter-spacing:.02em;
+  color:var(--af-ink);
+}
+.abt .amore__s::-webkit-details-marker{display:none}
+.abt .amore__s::before{
+  content:"";flex:none;width:16px;height:16px;position:relative;
+  border:1px solid var(--af-red);
+  background:
+    linear-gradient(var(--af-red),var(--af-red)) center/7px 1px no-repeat,
+    linear-gradient(var(--af-red),var(--af-red)) center/1px 7px no-repeat;
+  transition:background-size .2s ease;
+}
+.abt .amore[open] .amore__s::before{
+  background:
+    linear-gradient(var(--af-red),var(--af-red)) center/7px 1px no-repeat,
+    linear-gradient(var(--af-red),var(--af-red)) center/1px 0 no-repeat;
+}
+.abt .amore__s:hover{color:var(--af-red)}
+.abt .amore__dl{margin:0 0 18px;display:grid;gap:10px}
+.abt .amore__r{
+  display:grid;grid-template-columns:clamp(96px,14%,150px) minmax(0,1fr);
+  gap:4px 18px;padding-top:10px;border-top:1px dashed var(--af-line2);
+}
+.abt .amore__r dt{
+  margin:0;font-size:12px;font-weight:700;letter-spacing:.08em;color:var(--af-red);
+}
+.abt .amore__r dd{margin:0;font-size:13px;line-height:1.95;color:var(--af-mid)}
+.abt .amore__p{margin:0 0 18px}
+.abt .amore__p p{margin:0 0 10px;font-size:13px;line-height:1.95;color:var(--af-mid)}
+.abt .amore__p p:last-child{margin-bottom:0}
+
+/* --- ① 4工程：本文を外し、見出しとタグで認識できるようにする --- */
+.abt #why .force4__i{padding-bottom:4px}
+.abt #why .force4__h{margin-bottom:0}
+
+/* --- ② 2つの入口：人物像 → 向いている領域 → 行動 の順に読ませる --- */
+.abt #why .two-view__i{padding-top:0}
+.abt #why .two-view__head{
+  display:flex;align-items:flex-start;gap:14px;
+  margin:0 -26px 16px;padding:22px 26px 18px;
+  border-bottom:1px solid var(--af-line);
+}
+.abt .two-view__ico{
+  flex:none;display:block;width:30px;height:30px;margin-top:2px;color:var(--af-red);
+}
+.abt .two-view__i--eng .two-view__ico{color:var(--af-ink)}
+.abt .two-view__ico svg{display:block;width:100%;height:100%}
+.abt #why .two-view__en{margin:0 0 7px}
+.abt #why .two-view__en::before{display:none}
+.abt #why .two-view__h{margin:0}
+.abt #why .two-view__tags{margin-top:0}
+.abt #why .two-view__t{margin:14px 0 0;font-size:13.5px;line-height:1.95}
+.abt #why .two-view__sub{
+  margin:10px 0 0;padding-left:14px;border-left:1px solid var(--af-line);
+  font-size:12.5px;line-height:1.85;color:var(--af-mid);
+}
+.abt #why .two-view__go{margin-top:clamp(18px,2.4vw,24px)}
+
+/* --- ③ ロジテックインテグレーション：長文を中心＋4要素の関係図へ --- */
+.abt .lgx{
+  margin:clamp(38px,5vw,56px) 0 0;
+  background:var(--af-soft);
+  padding:clamp(28px,4vw,44px) clamp(22px,3.4vw,40px);
+}
+.abt .lgx__en{
+  margin:0 0 10px;font-size:11px;font-weight:700;letter-spacing:.16em;color:var(--af-red);
+}
+.abt .lgx__h{
+  margin:0 0 clamp(24px,3.2vw,34px);
+  font-size:clamp(17px,2vw,23px);font-weight:700;line-height:1.55;
+  letter-spacing:.02em;color:var(--af-ink);
+}
+.abt .lgx__fig{
+  display:grid;grid-template-columns:minmax(220px,300px) minmax(0,1fr);
+  align-items:center;gap:clamp(26px,3.6vw,52px);position:relative;
+}
+.abt .lgx__hub{
+  background:var(--af-bg);border:1px solid var(--af-line);
+  border-left:3px solid var(--af-red);
+  padding:clamp(18px,2.4vw,24px);position:relative;
+}
+.abt .lgx__hubk{
+  display:block;margin-bottom:7px;
+  font-size:11px;font-weight:700;line-height:1.6;letter-spacing:.04em;color:var(--af-mid);
+}
+.abt .lgx__hub b{
+  display:block;font-size:clamp(15px,1.6vw,18px);font-weight:700;line-height:1.5;
+  letter-spacing:.02em;color:var(--af-ink);
+}
+/* 中心から4要素へ伸びる線 */
+.abt .lgx__hub::after{
+  content:"";position:absolute;left:100%;top:50%;
+  width:clamp(13px,1.8vw,26px);height:1px;background:var(--af-node);
+  transform:scaleX(0);transform-origin:left center;
+  transition:transform .7s var(--af-ease) .15s;
+}
+.abt .lgx.is-in .lgx__hub::after{transform:scaleX(1)}
+.abt .lgx__nodes{
+  list-style:none;margin:0;padding:0;position:relative;
+  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px;
+  background:var(--af-line);border:1px solid var(--af-line);
+}
+.abt .lgx__n{
+  display:flex;align-items:center;gap:11px;
+  background:var(--af-bg);padding:clamp(14px,1.8vw,19px) clamp(12px,1.6vw,18px);
+  font-size:13px;font-weight:700;line-height:1.55;letter-spacing:.02em;color:var(--af-ink);
+  opacity:0;transform:translateY(7px);
+  transition:opacity .5s ease,transform .5s var(--af-ease);
+}
+.abt .lgx.is-in .lgx__n{opacity:1;transform:none}
+.abt .lgx.is-in .lgx__n:nth-child(1){transition-delay:.30s}
+.abt .lgx.is-in .lgx__n:nth-child(2){transition-delay:.42s}
+.abt .lgx.is-in .lgx__n:nth-child(3){transition-delay:.54s}
+.abt .lgx.is-in .lgx__n:nth-child(4){transition-delay:.66s}
+.abt .lgx__ico{flex:none;display:block;width:24px;height:24px;color:var(--af-red)}
+.abt .lgx__ico svg{display:block;width:100%;height:100%}
+.abt .lgx__out{
+  display:flex;align-items:flex-start;gap:11px;
+  margin:clamp(22px,3vw,30px) 0 0;
+  font-size:13.5px;line-height:1.9;color:var(--af-ink);
+}
+.abt .lgx__out i{
+  flex:none;margin-top:.45em;width:9px;height:9px;
+  border-top:1.4px solid var(--af-red);border-right:1.4px solid var(--af-red);
+  transform:rotate(45deg);
+}
+.abt .lgx__go{margin:14px 0 0}
+.abt .lgx__go .textlink{color:var(--af-red)}
+
+/* --- ④ 3つの強み：時系列の線をやめ、見比べられる3つに --- */
+.abt .str3{
+  position:relative;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:0;margin-top:clamp(40px,5vw,58px)!important;padding-top:0;
+  border-top:1px solid var(--af-line);
+}
+.abt .str3::before{display:none}
+.abt .str3__i{
+  position:relative;padding:clamp(24px,3vw,32px) clamp(20px,2.6vw,34px) 0 0;
+  background:none;border-radius:0;
+}
+.abt .str3__i + .str3__i{
+  border-left:1px solid var(--af-line);padding-left:clamp(22px,2.8vw,36px);
+}
+.abt .str3__i .en{
+  position:static;display:block;width:auto;height:auto;margin:0 0 14px;
+  background:none;border:none;border-radius:0;
+  font-size:11px;font-weight:700;letter-spacing:.14em;color:var(--af-mid);
+}
+.abt .str3__fig{display:block;width:30px;height:30px;margin:0 0 16px;color:var(--af-red)}
+.abt .str3__fig svg{display:block;width:100%;height:100%}
+.abt .str3__i b{margin:0 0 10px;font-size:15.5px}
+.abt .str3__i p{font-size:13px;line-height:1.95;color:var(--af-mid)}
+.abt .str3__i p .hl{
+  display:inline;font-size:1.12em;font-weight:700;color:var(--af-ink);
+  padding:0 2px;background:linear-gradient(transparent 62%, rgba(207,19,27,.2) 62%);
+}
+.abt #why .note{margin-top:clamp(20px,2.6vw,26px)}
+
+/* --- ⑤ Crossover：注記を1行の読み方ガイドにする --- */
+.abt #crossover .xover__note{
+  display:flex;align-items:center;gap:10px;
+  margin:22px 0 0;padding:0;border-left:none;
+  font-size:13px;font-weight:700;line-height:1.8;color:var(--af-ink);
+}
+.abt #crossover .xover__note i{
+  flex:none;width:18px;height:1px;background:var(--af-red);
+}
+.abt #crossover .amore{margin-top:clamp(24px,3vw,32px)}
+
+/* --- タブレット・スマートフォン --- */
+@media(max-width:1000px){
+  .abt .lgx__fig{grid-template-columns:minmax(0,1fr);gap:0}
+  .abt .lgx__hub::after{
+    left:clamp(22px,8%,40px);top:100%;width:1px;height:20px;
+    transform:scaleY(0);transform-origin:top center;
+  }
+  .abt .lgx.is-in .lgx__hub::after{transform:scaleY(1)}
+  .abt .lgx__nodes{margin-top:20px}
+  .abt .str3{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .abt .str3__i:nth-child(3){border-left:none;padding-left:0;border-top:1px solid var(--af-line)}
+}
+@media(max-width:760px){
+  .abt .lgx{margin-top:30px;padding:24px 20px}
+  .abt .lgx__nodes{grid-template-columns:minmax(0,1fr)}
+  .abt .str3{grid-template-columns:minmax(0,1fr);border-top:1px solid var(--af-line)}
+  .abt .str3__i{padding:20px 0 4px}
+  .abt .str3__i + .str3__i{
+    border-left:none;border-top:1px solid var(--af-line);padding-left:0;
+  }
+  .abt .str3__i:nth-child(3){padding-left:0}
+  .abt #why .two-view__head{margin:0 -20px 14px;padding:18px 20px 16px}
+  .abt .amore__r{grid-template-columns:minmax(0,1fr);gap:4px}
+}
+
 /* =====================================================================
    表示の保険が働いたときの最終状態
    ---------------------------------------------------------------------
@@ -671,13 +900,15 @@
 .abt.af-shown .fdeline__i,
 .abt.af-shown .xover__node,
 .abt.af-shown .xover__card,
-.abt.af-shown #values .val3 li{opacity:1!important;transform:none!important;transition:none!important}
+.abt.af-shown #values .val3 li,
+.abt.af-shown .lgx__n{opacity:1!important;transform:none!important;transition:none!important}
 .abt.af-shown .force4__list::before,
 .abt.af-shown .fdeline::before,
 .abt.af-shown .xover__nodes::before,
 .abt.af-shown .xover__cards::before,
 .abt.af-shown .effects--row::before,
-.abt.af-shown #values .val3 li::before{transform:none!important;transition:none!important}
+.abt.af-shown #values .val3 li::before,
+.abt.af-shown .lgx__hub::after{transform:none!important;transition:none!important}
 .abt.af-shown .fdeline::after,
 .abt.af-shown .xover__cards::after,
 .abt.af-shown .fdeline__i:first-child::after,
@@ -692,13 +923,65 @@
   .abt #crossover .xover__nodes::before,
   .abt #crossover .xover__cards::before,
   .abt .effects--row::before,
-  .abt #values .val3 li::before{transform:none!important;transition:none!important}
+  .abt #values .val3 li::before,
+  .abt .lgx__hub::after{transform:none!important;transition:none!important}
   .abt #why .force4__i,
   .abt #process .fdeline__i,
   .abt #crossover .xover__node,
   .abt #crossover .xover__card,
   .abt .effects--row li,
-  .abt #values .val3 li{opacity:1!important;transform:none!important;transition:none!important}
+  .abt #values .val3 li,
+  .abt .lgx__n{opacity:1!important;transform:none!important;transition:none!important}
   .abt #process .fdeline::after,
   .abt #crossover .xover__cards::after{opacity:1!important;transition:none!important}
+}
+
+/* =====================================================================
+   STR3-TRIM v1 / PROC-TRIM v1：本文をアコーディオンへ移した分の調整
+   ===================================================================== */
+.abt .str3__i{padding-bottom:clamp(22px,2.8vw,30px)}
+.abt .str3__kw{
+  display:block;margin:0 0 10px;
+  font-size:clamp(21px,2.4vw,29px);font-weight:700;line-height:1.3;letter-spacing:.02em;
+  color:var(--af-ink);
+}
+.abt .str3__kw::after{
+  content:"";display:block;width:34px;height:2px;margin-top:9px;background:var(--af-red);
+}
+.abt .str3__h{
+  display:block;margin:0!important;
+  font-size:13.5px!important;font-weight:500;line-height:1.75;color:var(--af-mid)!important;
+}
+/* 「PALがつなぐことで生まれる価値。」は見出しだけなので、高さを詰める */
+.abt .val3row li{padding-bottom:clamp(14px,1.8vw,20px)}
+.abt .val3row li b{margin-bottom:0!important}
+@media(max-width:760px){
+  .abt .str3__kw{font-size:21px}
+}
+
+/* =====================================================================
+   STR3 v2：.effects--row 側の「線上の丸い番号」を確実に打ち消す
+   ---------------------------------------------------------------------
+   .abt .effects--row li .en は要素型セレクタを含むぶん詳細度が高いので、
+   .str3 を1つ挟んで上回らせる。
+   ===================================================================== */
+.abt .str3 .str3__i .en{
+  position:static;display:block;width:auto;height:auto;margin:0 0 14px;
+  background:none;border:none;border-radius:0;
+  font-size:11px;font-weight:700;letter-spacing:.14em;color:var(--af-mid);
+}
+.abt .str3 .str3__fig{display:block;width:30px;height:30px;margin:0 0 16px;color:var(--af-red)}
+.abt .str3 .str3__kw{
+  display:block;margin:0 0 10px;
+  font-size:clamp(21px,2.4vw,29px);font-weight:700;line-height:1.3;letter-spacing:.02em;
+  color:var(--af-ink);
+}
+.abt .str3 .str3__h{
+  display:block;margin:0;
+  font-size:13.5px;font-weight:500;line-height:1.75;color:var(--af-mid);
+}
+/* ハブの社名が折り返さない幅を確保する */
+.abt .lgx__fig{grid-template-columns:minmax(260px,350px) minmax(0,1fr)}
+@media(max-width:1000px){
+  .abt .lgx__fig{grid-template-columns:minmax(0,1fr)}
 }
