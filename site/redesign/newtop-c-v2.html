@@ -143,7 +143,7 @@
      body に ls が付いたページだけに効く。共通CSSは変更していないので
      このファイルを読み込んでいない他ページには影響しない。
      元に戻すときは、この link と body の ls を外すだけでよい。 ===== -->
-<link rel="stylesheet" href="assets/css/lightsurface.css?v=20261111e">
+<link rel="stylesheet" href="assets/css/lightsurface.css?v=20261111g">
 </head>
 <body class="pv2 ls">
 <div class="proto-bar">【試作・非公開】HOME 案C v2：Corporate×Visual Hybrid（デザイン刷新版）｜<b>デザイン検証用プレビュー｜本番サイト未反映</b>・文言と数値はindex.htmlと完全同一　｜　<a href="newtop-compare.html" style="color:#ffd9da;text-decoration:underline">◀ 比較ページへ戻る</a></div>
@@ -434,21 +434,112 @@
      社員インタビューの本文・写真・リンクは一切変更していない。 ===== -->
 <section class="secC sec--soft" id="voices">
   <div class="wrap">
-    <div class="shead reveal" style="margin-bottom:0;max-width:860px">
+    <div class="shead reveal" style="max-width:860px">
       <p class="kicker2"><span class="kicker2__en en">People / Real Voices</span></p>
       <h2 class="ta-display" style="font-size:clamp(24px,3.2vw,40px)">その仕事をしている人がいる。</h2>
       <p class="slead" style="margin-top:16px;max-width:640px">異なる専門性を持つ社員の、仕事への向き合い方。本人の言葉から、その一部をご紹介します。下の見出しは、本人がインタビューで語った言葉です。</p>
     </div>
-    <nav class="hybquote reveal-stagger" aria-label="社員インタビュー" style="margin-top:20px">
-      <a class="hybquote__i" href="people/fde.html"><span class="hybquote__q"><span class="hybquote__cat en">FDE</span>現場で使われて、初めて「できた」と言える。</span><span class="byline"><span class="byline__av"><img src="../assets/images/avatar-fde.png" alt=""></span><span><span class="byline__name">H.Y</span><span class="byline__role">FDE・2023年新卒入社</span></span></span></a>
-      <a class="hybquote__i" href="people/system.html"><span class="hybquote__q"><span class="hybquote__cat en">ENGINEER</span>つくるのは、現場が明日から使えるもの。</span><span class="byline"><span class="byline__av"><img src="../assets/images/avatar-system.png" alt=""></span><span><span class="byline__name">M.M</span><span class="byline__role">DXプロダクト開発・2026年中途入社</span></span></span></a>
-      <a class="hybquote__i" href="people/bpo.html"><span class="hybquote__q"><span class="hybquote__cat en">BPO</span>毎日の運営の中に、次の改善がある。</span><span class="byline"><span class="byline__av"><img src="../assets/images/avatar-bpo.png" alt=""></span><span><span class="byline__name">I.N</span><span class="byline__role">BPO事業部 Productivity推進部</span></span></span></a>
-      <a class="hybquote__i" href="people/dts.html"><span class="hybquote__q"><span class="hybquote__cat en">DTS</span>運ぶだけではない。物流を、止めない仕事。</span><span class="byline"><span class="byline__av"><img src="../assets/images/avatar-dts.png" alt=""></span><span><span class="byline__name">K.Y</span><span class="byline__role">DTS事業部 運送課 千葉営業所 所長・2018年中途入社</span></span></span></a>
-      <a class="hybquote__i" href="people/sales.html"><span class="hybquote__q"><span class="hybquote__cat en">ENGAGEMENT</span>売る前に、まず課題を見つける。</span><span class="byline"><span class="byline__av"><img src="../assets/images/avatar-sales.png" alt=""></span><span><span class="byline__name">H.S</span><span class="byline__role">マーケティング本部 グロース戦略室</span></span></span></a>
-      <a class="hybquote__i" href="people/cleaning.html"><span class="hybquote__q"><span class="hybquote__cat en">CLEANLINESS</span>食品プロセスセンターの清掃を、計画から支える。</span><span class="byline"><span class="byline__av"><img src="../assets/images/avatar-cleaning.png" alt=""></span><span><span class="byline__name">S.K</span><span class="byline__role">BPO・クレンリネス課 MGR</span></span></span></a>
-      <a class="hybquote__i" href="people/corporate.html"><span class="hybquote__q"><span class="hybquote__cat en">CORPORATE</span>みんなが働きやすい環境を、仕組みから整える。</span><span class="byline"><span class="byline__av"><img src="../assets/images/avatar-corporate.png" alt=""></span><span><span class="byline__name">M.K</span><span class="byline__role">コーポレート本部 総務課 課長</span></span></span></a>
-    </nav>
-    <p style="margin-top:26px"><a class="btn btn--ghost" href="people.html">社員インタビューをもっと見る<span class="btn__ico" aria-hidden="true">▶</span></a></p>
+    <!-- ===== PGAL v1 START：社員インタビューの見せ方を作り直した。
+         【やめたもの】1行＝1人の横並びリスト（.hybquote）。
+           似顔絵は署名バッジ扱いで約44pxしかなく、人物が主役になっていなかった。
+         【新しい構成】2カラムのエディトリアル・ギャラリー（.pg）。
+           ・似顔絵を各人のメインビジュアルとして淡グレーの面に大きく置く
+           ・その横に 職種（英字）／本人の言葉／氏名・所属 を組む
+           ・全員を同じ枠で囲わず、行ごとの細い上罫（#DAE1F2）と余白で整える
+           ・7名はすべて同じ枠・同じ大きさ・同じ構成（視覚的重要度を揃える）
+           ・7人目が孤立しないよう、8枠目に一覧への導線を置く
+         【素材】似顔絵は ../assets/images/avatar-*.png（900×975）をそのまま使用。
+           作り直しも別人物への差し替えもしていない。表示幅は最大196pxなので
+           元解像度に対して縮小のみ（引き伸ばしによるぼやけは起きない）。
+         【文言】本人の言葉・氏名・所属・入社年・リンク先は一字一句そのまま。
+         【復元】git 履歴 5a82484 の .hybquote のマークアップに戻せばよい。 ===== -->
+    <ul class="pg reveal-stagger">
+      <li class="pg__i">
+        <a class="pg__a" href="people/fde.html">
+          <span class="pg__ph"><img src="../assets/images/avatar-fde.png" alt="" width="900" height="975" loading="lazy" decoding="async"></span>
+          <span class="pg__b">
+            <span class="pg__cat en">FDE</span>
+            <span class="pg__q">現場で使われて、初めて「できた」と言える。</span>
+            <span class="pg__meta"><span class="pg__name">H.Y</span><span class="pg__role">FDE・2023年新卒入社</span></span>
+            <span class="pg__go" aria-hidden="true"></span>
+          </span>
+        </a>
+      </li>
+      <li class="pg__i">
+        <a class="pg__a" href="people/system.html">
+          <span class="pg__ph"><img src="../assets/images/avatar-system.png" alt="" width="900" height="975" loading="lazy" decoding="async"></span>
+          <span class="pg__b">
+            <span class="pg__cat en">ENGINEER</span>
+            <span class="pg__q">つくるのは、現場が明日から使えるもの。</span>
+            <span class="pg__meta"><span class="pg__name">M.M</span><span class="pg__role">DXプロダクト開発・2026年中途入社</span></span>
+            <span class="pg__go" aria-hidden="true"></span>
+          </span>
+        </a>
+      </li>
+      <li class="pg__i">
+        <a class="pg__a" href="people/bpo.html">
+          <span class="pg__ph"><img src="../assets/images/avatar-bpo.png" alt="" width="900" height="975" loading="lazy" decoding="async"></span>
+          <span class="pg__b">
+            <span class="pg__cat en">BPO</span>
+            <span class="pg__q">毎日の運営の中に、次の改善がある。</span>
+            <span class="pg__meta"><span class="pg__name">I.N</span><span class="pg__role">BPO事業部 Productivity推進部</span></span>
+            <span class="pg__go" aria-hidden="true"></span>
+          </span>
+        </a>
+      </li>
+      <li class="pg__i">
+        <a class="pg__a" href="people/dts.html">
+          <span class="pg__ph"><img src="../assets/images/avatar-dts.png" alt="" width="900" height="975" loading="lazy" decoding="async"></span>
+          <span class="pg__b">
+            <span class="pg__cat en">DTS</span>
+            <span class="pg__q">運ぶだけではない。物流を、止めない仕事。</span>
+            <span class="pg__meta"><span class="pg__name">K.Y</span><span class="pg__role">DTS事業部 運送課 千葉営業所 所長・2018年中途入社</span></span>
+            <span class="pg__go" aria-hidden="true"></span>
+          </span>
+        </a>
+      </li>
+      <li class="pg__i">
+        <a class="pg__a" href="people/sales.html">
+          <span class="pg__ph"><img src="../assets/images/avatar-sales.png" alt="" width="900" height="975" loading="lazy" decoding="async"></span>
+          <span class="pg__b">
+            <span class="pg__cat en">ENGAGEMENT</span>
+            <span class="pg__q">売る前に、まず課題を見つける。</span>
+            <span class="pg__meta"><span class="pg__name">H.S</span><span class="pg__role">マーケティング本部 グロース戦略室</span></span>
+            <span class="pg__go" aria-hidden="true"></span>
+          </span>
+        </a>
+      </li>
+      <li class="pg__i">
+        <a class="pg__a" href="people/cleaning.html">
+          <span class="pg__ph"><img src="../assets/images/avatar-cleaning.png" alt="" width="900" height="975" loading="lazy" decoding="async"></span>
+          <span class="pg__b">
+            <span class="pg__cat en">CLEANLINESS</span>
+            <span class="pg__q">食品プロセスセンターの清掃を、計画から支える。</span>
+            <span class="pg__meta"><span class="pg__name">S.K</span><span class="pg__role">BPO・クレンリネス課 MGR</span></span>
+            <span class="pg__go" aria-hidden="true"></span>
+          </span>
+        </a>
+      </li>
+      <li class="pg__i">
+        <a class="pg__a" href="people/corporate.html">
+          <span class="pg__ph"><img src="../assets/images/avatar-corporate.png" alt="" width="900" height="975" loading="lazy" decoding="async"></span>
+          <span class="pg__b">
+            <span class="pg__cat en">CORPORATE</span>
+            <span class="pg__q">みんなが働きやすい環境を、仕組みから整える。</span>
+            <span class="pg__meta"><span class="pg__name">M.K</span><span class="pg__role">コーポレート本部 総務課 課長</span></span>
+            <span class="pg__go" aria-hidden="true"></span>
+          </span>
+        </a>
+      </li>
+      <li class="pg__i pg__i--more">
+        <a class="pg__more" href="people.html">
+          <span class="pg__more-k"><span class="kicker2__en en">People</span></span>
+          <span class="pg__more-t">社員インタビューをもっと見る</span>
+          <span class="pg__go" aria-hidden="true"></span>
+        </a>
+      </li>
+    </ul>
+    <!-- ===== PGAL v1 END ===== -->
   </div>
 </section>
 

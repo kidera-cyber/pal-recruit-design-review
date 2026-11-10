@@ -3,7 +3,7 @@
    ---------------------------------------------------------------------
    【キャッシュ運用】読み込み側は必ず lightsurface.css?v=YYYYMMDDx の形で
    バージョンを付ける。中身を直したら v= を必ず上げる。
-   現在のバージョン：20261111e
+   現在のバージョン：20261111g
 
    【効く範囲】<body> に ls が付いたページだけ。
    読み込んでいるのは newtop-c-v2.html / home.html / about.html の3つだけで、
@@ -420,4 +420,91 @@
   .ls .xv__en{margin-bottom:6px}
   .ls .xv__note{text-align:left;margin-top:26px}
   .ls .xv__note .textlink{white-space:normal}
+}
+
+/* =====================================================================
+   PGAL v1：PEOPLE / REAL VOICES の人物ギャラリー
+   ---------------------------------------------------------------------
+   1行＝1人の横並びリスト（.hybquote、似顔絵は約44pxの署名バッジ）をやめ、
+   似顔絵を主役にした2カラムのエディトリアル構成にする。
+   ・全員を同じ枠で囲わない。行ごとの細い上罫と余白で整える
+   ・似顔絵は淡グレーの面に下揃えで置き、人物を立たせる
+   ・7名すべて同じ枠・同じ大きさ・同じ構成（視覚的重要度を揃える）
+   ・8枠目は社員枠ではなく、一覧への導線
+   似顔絵の原寸は 900×975。PCでも最大196px幅までしか使わないので、
+   拡大によるぼやけは起きない。
+   ===================================================================== */
+.ls .pg{
+  list-style:none;margin:clamp(28px,3.4vw,40px) 0 0;padding:0;
+  display:grid;grid-template-columns:repeat(2,1fr);gap:0 clamp(28px,3.2vw,48px);
+}
+.ls .pg__i{margin:0;display:flex;border-top:1px solid var(--ls-line)}
+.ls .pg__a{
+  display:grid;grid-template-columns:clamp(160px,36%,210px) 1fr;
+  gap:clamp(18px,2vw,26px);width:100%;min-height:244px;
+  padding:26px 0 24px;text-decoration:none;color:inherit;
+}
+/* 似顔絵：白い台に下揃え。胸から上の絵なので、台に立つ見え方になる。
+   セクションが淡グレー（#F2F3F6）なので、台は白にしないと下地が見えない。 */
+.ls .pg__ph{
+  background:var(--ls-bg);align-self:stretch;overflow:hidden;
+  display:flex;align-items:flex-end;justify-content:center;
+}
+.ls .pg__ph img{display:block;width:100%;height:auto;max-width:100%}
+.ls .pg__b{display:flex;flex-direction:column;position:relative;padding-right:40px}
+.ls .pg__cat{
+  display:block;font-size:10.5px;font-weight:700;letter-spacing:.15em;line-height:1.4;
+  color:var(--ls-red);text-transform:uppercase;margin-bottom:12px;
+}
+.ls .pg__q{
+  display:block;font-size:clamp(16px,1.55vw,19px);font-weight:700;line-height:1.68;
+  letter-spacing:.02em;color:var(--ls-ink);
+}
+.ls .pg__a:hover .pg__q{color:var(--ls-red)}
+.ls .pg__meta{
+  display:block;margin-top:auto;padding-top:16px;border-top:1px solid var(--ls-line);
+}
+.ls .pg__name{
+  display:block;font-size:15px;font-weight:700;letter-spacing:.06em;color:var(--ls-ink);
+}
+.ls .pg__role{
+  display:block;margin-top:5px;font-size:12px;line-height:1.7;letter-spacing:.02em;color:var(--ls-mid);
+}
+/* 右下の丸い矢印 */
+.ls .pg__go{
+  position:absolute;right:0;bottom:2px;width:28px;height:28px;border-radius:50%;
+  border:1px solid var(--ls-line);display:flex;align-items:center;justify-content:center;
+  transition:border-color .2s,background-color .2s;
+}
+.ls .pg__go::before{
+  content:"";width:5px;height:5px;margin-left:-2px;
+  border-top:1.4px solid var(--ls-mid);border-right:1.4px solid var(--ls-mid);transform:rotate(45deg);
+}
+.ls .pg__a:hover .pg__go,.ls .pg__more:hover .pg__go{border-color:var(--ls-red);background:var(--ls-red)}
+.ls .pg__a:hover .pg__go::before,.ls .pg__more:hover .pg__go::before{border-color:#fff}
+
+/* 8枠目：社員ではなく一覧への導線。枠は持たせない */
+.ls .pg__more{
+  display:flex;flex-direction:column;justify-content:center;gap:12px;
+  width:100%;padding:26px 40px 24px 0;position:relative;text-decoration:none;color:inherit;
+}
+.ls .pg__more-t{
+  font-size:clamp(15px,1.4vw,17px);font-weight:700;letter-spacing:.02em;color:var(--ls-ink);
+}
+.ls .pg__more:hover .pg__more-t{color:var(--ls-red)}
+.ls .pg__more .pg__go{bottom:auto;top:50%;transform:translateY(-50%)}
+
+@media(max-width:860px){
+  .ls .pg{grid-template-columns:1fr;gap:0;margin-top:24px}
+  .ls .pg__a{
+    grid-template-columns:126px 1fr;gap:16px;min-height:0;padding:20px 0 18px;
+  }
+  .ls .pg__ph{min-height:132px}
+  .ls .pg__b{padding-right:36px}
+  .ls .pg__cat{margin-bottom:8px;font-size:10px}
+  .ls .pg__q{font-size:15.5px;line-height:1.6}
+  .ls .pg__meta{padding-top:12px}
+  .ls .pg__name{font-size:14px}
+  .ls .pg__go{width:24px;height:24px;bottom:0}
+  .ls .pg__more{padding:22px 36px 20px 0}
 }
