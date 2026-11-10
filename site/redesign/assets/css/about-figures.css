@@ -1,0 +1,460 @@
+/* =====================================================================
+   ABOUT-FIG v1：ABOUT を「読むページ」から「見て分かるページ」にする
+   ---------------------------------------------------------------------
+   【キャッシュ運用】読み込み側は about-figures.css?v=YYYYMMDDx の形で
+   バージョンを付ける。中身を直したら v= を必ず上げる。
+   現在のバージョン：20261111f
+
+   【効く範囲】<body> に abt が付いたページだけ。読み込んでいるのは
+   about.html の1ページのみなので、他の64ページには影響しない。
+   共通CSS（style.css / system-h.css / lightsurface.css）は変更していない。
+
+   【方針】本文は1文字も変えず、並べ方・線・番号・余白だけで構造を見せる。
+     ① Why PAL の4項目 → 左から右へ進む「4ステップのプロセス図」
+     ② 2つの経験者向けブロック → 「2つの入口」（導線を本文から分離）
+     ③ LOGITEC INTEGRATION の3つの強み → 1本の線で束ねた「3本柱」
+     ④ Our Process の Field/FDE/Teams/Improve → 戻り線のある「循環プロセス図」
+     ⑤ Crossover の3領域・3つの関係・3つの連携 → 「対等な3点接続図」
+
+   【動き】既存の .reveal → .is-in（system-h.css ＋ ページ内の
+   IntersectionObserver）に乗せているだけで、JSは追加していない。
+   線はスケールで描画、項目は順に立ち上がる。
+   prefers-reduced-motion:reduce のときは最後のブロックで全部止める。
+
+   【色】赤 #CF131B（交点・番号・キーワードのみ）／主文字 #262946／
+         補助 #6B6D81／白 #FFFFFF／淡グレー #F2F3F6・#F7F8F9／罫 #DAE1F2
+   ===================================================================== */
+
+.abt{
+  --af-red:#CF131B;
+  --af-ink:#262946;
+  --af-mid:#6B6D81;
+  --af-line:#DAE1F2;
+  --af-line2:#E6EAF4;
+  --af-node:#C2CBE0;
+  --af-bg:#FFFFFF;
+  --af-soft:#F2F3F6;
+  --af-soft2:#F7F8F9;
+  --af-ease:cubic-bezier(.2,.7,.2,1);
+}
+
+/* 共通：線を引く演出と、項目が順に立ち上がる演出 ---------------------- */
+.abt .af-draw{transform:scaleX(0);transform-origin:left center;transition:transform 1.05s var(--af-ease) .12s}
+.abt .is-in .af-draw{transform:scaleX(1)}
+
+/* =====================================================================
+   ① Why PAL：4ステップのプロセス図
+   ===================================================================== */
+.abt #why .force4__hub{
+  display:flex;align-items:baseline;gap:16px;flex-wrap:wrap;
+  background:var(--af-soft2);border:1px solid var(--af-line);border-radius:8px;
+  padding:18px 24px;text-align:left;margin-bottom:0;
+}
+.abt #why .force4__hub .en{
+  margin:0;font-size:11px;font-weight:700;letter-spacing:.18em;color:var(--af-red);
+}
+.abt #why .force4__hub b{font-size:14.5px;font-weight:700;letter-spacing:.03em;color:var(--af-ink)}
+
+.abt #why .force4__list{
+  position:relative;display:grid;grid-template-columns:repeat(4,1fr);gap:0;
+  margin-top:46px;padding-top:34px;
+}
+/* 4つを貫く進行線（スクロールで左から引かれる） */
+.abt #why .force4__list::before{
+  content:"";position:absolute;left:17px;right:calc(25% - 17px);top:34px;height:1px;background:var(--af-line);
+  transform:scaleX(0);transform-origin:left center;transition:transform 1.05s var(--af-ease) .15s;
+}
+.abt #why .force4.is-in .force4__list::before{transform:scaleX(1)}
+
+.abt #why .force4__i{
+  position:relative;background:none;border:none;border-radius:0;padding:0 30px 0 0;
+  opacity:0;transform:translateY(10px);transition:opacity .6s ease,transform .6s var(--af-ease);
+}
+.abt #why .force4.is-in .force4__i{opacity:1;transform:none}
+.abt #why .force4.is-in .force4__i:nth-child(1){transition-delay:.30s}
+.abt #why .force4.is-in .force4__i:nth-child(2){transition-delay:.44s}
+.abt #why .force4.is-in .force4__i:nth-child(3){transition-delay:.58s}
+.abt #why .force4.is-in .force4__i:nth-child(4){transition-delay:.72s}
+.abt #why .force4__i:hover{border-color:transparent}
+
+/* ステップ番号を線上のノードにする */
+.abt #why .force4__no{
+  position:absolute;left:0;top:-17px;margin:0;width:34px;height:34px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  background:var(--af-bg);border:1px solid var(--af-line);
+  color:var(--af-red);font-size:12px;font-weight:700;letter-spacing:.04em;
+  transition:border-color .2s,background-color .2s,color .2s;
+}
+.abt #why .force4__i:hover .force4__no{background:var(--af-red);border-color:var(--af-red);color:#fff}
+/* ステップ間の進行マーク */
+.abt #why .force4__i + .force4__i::before{
+  content:"";position:absolute;left:-17px;top:-4px;width:7px;height:7px;
+  border-top:1px solid var(--af-node);border-right:1px solid var(--af-node);transform:rotate(45deg);
+}
+/* 工程を示す小さな線画 */
+.abt #why .force4__fig{display:block;width:26px;height:26px;margin:30px 0 14px;color:var(--af-red);opacity:.9}
+.abt #why .force4__fig svg{display:block;width:100%;height:100%}
+
+.abt #why .force4__en{
+  margin:0 0 9px;font-size:10px;font-weight:700;letter-spacing:.14em;
+  color:var(--af-mid);text-transform:uppercase;line-height:1.5;
+}
+.abt #why .force4__h{font-size:15.5px;font-weight:700;line-height:1.6;letter-spacing:.02em;color:var(--af-ink);margin:0 0 10px}
+.abt #why .force4__t{font-size:13px;line-height:1.95;color:var(--af-mid);margin:0 0 12px}
+.abt #why .force4__k{
+  font-size:11.5px;line-height:1.7;color:var(--af-mid);
+  padding-top:11px;border-top:1px dashed var(--af-line2);margin:0;
+}
+.abt #why .force4__note{margin-top:26px;font-size:12px;line-height:1.9;color:var(--af-mid)}
+
+/* =====================================================================
+   ② 2つの入口（経験の入口を2つに分けて見せる）
+   ===================================================================== */
+.abt #why .two-view{display:grid;grid-template-columns:repeat(2,1fr);gap:26px;margin-top:46px}
+.abt #why .two-view__i{
+  display:flex;flex-direction:column;
+  background:var(--af-bg);border:1px solid var(--af-line);border-top:2px solid var(--af-red);
+  border-radius:8px;padding:26px 26px 0;transition:border-color .2s;
+}
+/* 2つ目は性格が違うことを、上罫と記号の形で示す（赤は使わない） */
+.abt #why .two-view__i:nth-child(2){border-top-color:var(--af-ink)}
+.abt #why .two-view__en{
+  display:inline-flex;align-items:center;gap:10px;margin:0 0 12px;
+  font-size:10.5px;font-weight:700;letter-spacing:.13em;color:var(--af-mid);text-transform:uppercase;
+}
+.abt #why .two-view__en::before{content:"";width:9px;height:9px;background:var(--af-red);flex:none}
+.abt #why .two-view__i:nth-child(2) .two-view__en::before{background:none;border:1.5px solid var(--af-ink)}
+.abt #why .two-view__h{font-size:17.5px;font-weight:700;line-height:1.55;letter-spacing:.02em;color:var(--af-ink);margin:0 0 12px}
+.abt #why .two-view__t{font-size:13.5px;line-height:2;color:var(--af-mid);margin:0 0 22px}
+/* 導線は本文の続きではなく、行動の列として分ける */
+.abt #why .two-view__go{
+  display:block;margin:auto -26px 0;padding:0;border-top:1px solid var(--af-line);
+}
+.abt #why .two-view__go .textlink{
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+  padding:14px 26px;font-size:13px;font-weight:700;letter-spacing:.02em;
+  color:var(--af-red);text-decoration:none;border-bottom:1px solid var(--af-line2);
+  transition:background-color .2s;
+}
+.abt #why .two-view__go .textlink:last-child{border-bottom:none}
+.abt #why .two-view__go .textlink::after{
+  content:"";flex:none;width:6px;height:6px;
+  border-top:1.4px solid currentColor;border-right:1.4px solid currentColor;
+  transform:rotate(45deg);transition:transform .2s;
+}
+.abt #why .two-view__go .textlink:hover{background:#FCEEEF}
+.abt #why .two-view__go .textlink:hover::after{transform:rotate(45deg) translate(2px,-2px)}
+
+/* =====================================================================
+   ③ LOGITEC INTEGRATION と、1本の線で束ねた3本柱
+   ===================================================================== */
+.abt #why .integrate{
+  margin-top:46px;background:var(--af-soft2);border:1px solid var(--af-line);
+  border-left:3px solid var(--af-red);border-radius:0 8px 8px 0;padding:26px 28px;
+}
+.abt #why .integrate .en{font-size:11px;font-weight:700;letter-spacing:.16em;color:var(--af-red);margin-bottom:10px}
+.abt #why .integrate b{font-size:16.5px;font-weight:700;line-height:1.6;letter-spacing:.02em;color:var(--af-ink);margin-bottom:10px}
+.abt #why .integrate span{font-size:13.5px;line-height:2;color:var(--af-mid)}
+
+/* 3本柱（#why と #process の両方で使う .effects--row） */
+.abt .effects--row{
+  position:relative;display:grid;grid-template-columns:repeat(3,1fr);gap:0;
+  margin-top:46px!important;padding-top:32px;
+}
+.abt .effects--row::before{
+  content:"";position:absolute;left:15px;right:calc(33.3333% - 15px);top:32px;height:1px;background:var(--af-line);
+  transform:scaleX(0);transform-origin:left center;transition:transform 1s var(--af-ease) .12s;
+}
+.abt .is-in.effects--row::before{transform:scaleX(1)}
+.abt .effects--row li{
+  position:relative;background:none;border-radius:0;padding:0 30px 0 0;
+  opacity:0;transform:translateY(10px);transition:opacity .55s ease,transform .55s var(--af-ease);
+}
+.abt .is-in.effects--row li{opacity:1;transform:none}
+.abt .is-in.effects--row li:nth-child(1){transition-delay:.26s}
+.abt .is-in.effects--row li:nth-child(2){transition-delay:.40s}
+.abt .is-in.effects--row li:nth-child(3){transition-delay:.54s}
+.abt .effects--row li .en{
+  position:absolute;left:0;top:-15px;margin:0;width:30px;height:30px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  background:var(--af-bg);border:1px solid var(--af-line);
+  color:var(--af-red);font-size:11px;font-weight:700;letter-spacing:.04em;
+}
+.abt .effects--row li b{font-size:15.5px;font-weight:700;line-height:1.6;letter-spacing:.02em;color:var(--af-ink);margin:18px 0 10px}
+.abt .effects--row li p{font-size:13px;line-height:1.95;color:var(--af-mid)}
+/* キーワードだけを補助的に強く見せる（赤の下敷き） */
+.abt .effects--row li p .hl{
+  display:inline;color:var(--af-ink);font-weight:700;padding:0 2px;
+  background:linear-gradient(transparent 62%, rgba(207,19,27,.18) 62%);
+}
+.abt #why .note{margin-top:26px;font-size:12.5px;line-height:1.9;color:var(--af-mid)}
+
+/* =====================================================================
+   ④ Our Process：戻り線のある循環プロセス図
+   ===================================================================== */
+.abt #process .fdeline{
+  position:relative;display:grid;grid-template-columns:repeat(4,1fr);gap:0;
+  margin-top:46px;padding:34px 0 54px;
+}
+/* 進行線 */
+.abt #process .fdeline::before{
+  content:"";position:absolute;left:8px;right:calc(25% - 8px);top:34px;height:1px;background:var(--af-line);
+  transform:scaleX(0);transform-origin:left center;transition:transform 1.05s var(--af-ease) .15s;
+}
+.abt #process .fdeline.is-in::before{transform:scaleX(1)}
+/* 戻り線（使われた結果が、次の改善に戻る）。本文に重ならないよう、行の下の余白だけに描く */
+.abt #process .fdeline::after{
+  content:"";position:absolute;left:8px;right:calc(25% - 8px);top:auto;bottom:14px;height:26px;
+  border:1px solid var(--af-line2);border-top:none;border-radius:0 0 13px 13px;
+  opacity:0;transition:opacity .6s ease .95s;pointer-events:none;
+}
+.abt #process .fdeline.is-in::after{opacity:1}
+
+.abt #process .fdeline__i{
+  position:relative;background:none;border:none;border-radius:0;padding:22px 28px 0 0;text-align:left;
+  opacity:0;transform:translateY(10px);transition:opacity .55s ease,transform .55s var(--af-ease);
+}
+.abt #process .fdeline.is-in .fdeline__i{opacity:1;transform:none}
+.abt #process .fdeline.is-in .fdeline__i:nth-child(1){transition-delay:.28s}
+.abt #process .fdeline.is-in .fdeline__i:nth-child(2){transition-delay:.42s}
+.abt #process .fdeline.is-in .fdeline__i:nth-child(3){transition-delay:.56s}
+.abt #process .fdeline.is-in .fdeline__i:nth-child(4){transition-delay:.70s}
+/* ノード。4つとも同じ大きさで、FDEだけ中心に赤を入れる（強調しすぎない） */
+.abt #process .fdeline__i::before{
+  content:"";position:absolute;left:0;top:-8px;width:16px;height:16px;border-radius:50%;
+  background:var(--af-bg);border:1.5px solid var(--af-node);
+}
+.abt #process .fdeline__i--key::before{
+  border-color:var(--af-red);
+  background:radial-gradient(circle, var(--af-red) 0 3.4px, #fff 3.4px);
+}
+/* 工程間の進行マーク */
+.abt #process .fdeline__i + .fdeline__i::after{
+  content:"";position:absolute;left:-14px;top:-4px;width:7px;height:7px;
+  border-top:1px solid var(--af-node);border-right:1px solid var(--af-node);transform:rotate(45deg);
+}
+/* 戻り線の左端。線だけだと枠に見えるので、戻る向きの矢じりを置く */
+.abt #process .fdeline__i:first-child::after{
+  content:"";position:absolute;left:9px;bottom:-44px;width:7px;height:7px;
+  border-top:1px solid var(--af-node);border-left:1px solid var(--af-node);transform:rotate(-45deg);
+  opacity:0;transition:opacity .6s ease .95s;
+}
+.abt #process .fdeline.is-in .fdeline__i:first-child::after{opacity:1}
+.abt #process .fdeline__i--key{background:none;color:inherit}
+.abt #process .fdeline__en{
+  display:block;margin:0 0 8px;font-size:10.5px;font-weight:700;letter-spacing:.14em;
+  color:var(--af-mid);text-transform:uppercase;
+}
+.abt #process .fdeline__i--key .fdeline__en{color:var(--af-red)}
+.abt #process .fdeline__i b{display:block;font-size:14.5px;font-weight:700;line-height:1.7;letter-spacing:.02em;color:var(--af-ink)}
+
+/* FDEの説明は、図の読み方を補う注釈として置く */
+.abt #process .transnote{
+  background:none;border:none;border-radius:0;border-left:2px solid var(--af-line);
+  margin:0;padding:2px 0 2px 20px;font-size:13px;line-height:2.05;color:var(--af-mid);
+}
+.abt #process .shead .stitle{letter-spacing:.02em}
+
+/* =====================================================================
+   ⑤ Crossover：対等な3点接続図
+   ===================================================================== */
+.abt #crossover .xover__head{max-width:824px;margin-bottom:0}
+.abt #crossover .xover__ttl{font-size:clamp(21px,2.4vw,29px);font-weight:700;line-height:1.55;letter-spacing:.02em;color:var(--af-ink);margin:10px 0 12px}
+.abt #crossover .xover__lead{font-size:14px;line-height:2;color:var(--af-mid)}
+
+/* 3領域：3つとも同じ扱い。1本の線の上に等間隔で並べる */
+.abt #crossover .xover__nodes{
+  position:relative;display:grid;grid-template-columns:repeat(3,1fr);gap:0;
+  margin:48px 0 0;padding-top:32px;
+}
+.abt #crossover .xover__nodes::before{
+  content:"";position:absolute;left:7px;right:calc(33.3333% - 7px);top:32px;height:1px;background:var(--af-line);
+  transform:scaleX(0);transform-origin:left center;transition:transform 1s var(--af-ease) .15s;
+}
+.abt #crossover .xover.is-in .xover__nodes::before{transform:scaleX(1)}
+.abt #crossover .xover__node{
+  position:relative;background:none;border:none;border-radius:0;padding:20px 30px 0 0;
+  opacity:0;transform:translateY(10px);transition:opacity .55s ease,transform .55s var(--af-ease);
+}
+.abt #crossover .xover.is-in .xover__node{opacity:1;transform:none}
+.abt #crossover .xover.is-in .xover__node:nth-child(1){transition-delay:.28s}
+.abt #crossover .xover.is-in .xover__node:nth-child(2){transition-delay:.42s}
+.abt #crossover .xover.is-in .xover__node:nth-child(3){transition-delay:.56s}
+.abt #crossover .xover__node::before{
+  content:"";position:absolute;left:0;top:-7px;width:14px;height:14px;border-radius:50%;
+  background:var(--af-bg);border:1.5px solid var(--af-red);
+}
+.abt #crossover .xover__no{
+  display:block;margin:0 0 9px;font-size:10.5px;font-weight:700;letter-spacing:.14em;color:var(--af-mid);
+}
+.abt #crossover .xover__n{font-size:15.5px;font-weight:700;line-height:1.6;letter-spacing:.02em;color:var(--af-ink);margin:0 0 9px}
+.abt #crossover .xover__t{font-size:13px;line-height:1.95;color:var(--af-mid)}
+
+/* 3つの関係説明：どの2領域の話かを小さな図で示し、図と文章を結びつける */
+.abt #crossover .xover__links{display:block;margin:34px 0 0;border-top:1px solid var(--af-line2)}
+.abt #crossover .xover__link{
+  display:grid;grid-template-columns:86px 1fr;grid-template-areas:"map lp" "map lt";
+  column-gap:20px;align-items:center;
+  background:none;border:none;border-radius:0;
+  padding:16px 0;border-bottom:1px solid var(--af-line2);
+}
+.abt #crossover .xover__lp{grid-area:lp;display:block;margin:0 0 4px;font-size:13px;font-weight:700;letter-spacing:.02em;color:var(--af-ink)}
+.abt #crossover .xover__lt{grid-area:lt;display:block;margin:0;font-size:12.5px;line-height:1.85;color:var(--af-mid)}
+/* 3点のうち、その関係にあたる2点を赤で示す */
+.abt .xover__lmap{
+  grid-area:map;display:flex;align-items:center;justify-content:flex-start;
+  width:86px;height:12px;
+}
+.abt .xover__lmap i{
+  position:relative;flex:none;width:8px;height:8px;border-radius:50%;
+  border:1px solid var(--af-node);background:var(--af-bg);
+}
+.abt .xover__lmap i + i{margin-left:26px}
+.abt .xover__lmap i + i::before{
+  content:"";position:absolute;left:-27px;top:50%;width:27px;height:1px;background:var(--af-line);
+}
+.abt .xover__link--12 .xover__lmap i:nth-child(1),
+.abt .xover__link--12 .xover__lmap i:nth-child(2),
+.abt .xover__link--23 .xover__lmap i:nth-child(2),
+.abt .xover__link--23 .xover__lmap i:nth-child(3),
+.abt .xover__link--13 .xover__lmap i:nth-child(1),
+.abt .xover__link--13 .xover__lmap i:nth-child(3){border-color:var(--af-red);background:var(--af-red)}
+.abt .xover__link--12 .xover__lmap i:nth-child(2)::before,
+.abt .xover__link--23 .xover__lmap i:nth-child(3)::before,
+.abt .xover__link--13 .xover__lmap i:nth-child(2)::before,
+.abt .xover__link--13 .xover__lmap i:nth-child(3)::before{background:var(--af-red)}
+
+.abt #crossover .xover__note{
+  margin:26px 0 0;padding-left:20px;border-left:2px solid var(--af-line);
+  font-size:12.5px;line-height:2;color:var(--af-mid);
+}
+
+/* 下段3項目：価値が生まれる連携のサイクルとして見せる */
+.abt #crossover .xover__cards{
+  position:relative;display:grid;grid-template-columns:repeat(3,1fr);gap:0;
+  counter-reset:xc;margin:50px 0 0;padding:34px 0 50px;
+}
+.abt #crossover .xover__cards::before{
+  content:"";position:absolute;left:15px;right:calc(33.3333% - 15px);top:34px;height:1px;background:var(--af-line);
+  transform:scaleX(0);transform-origin:left center;transition:transform 1s var(--af-ease) .15s;
+}
+.abt #crossover .xover.is-in .xover__cards::before{transform:scaleX(1)}
+/* 3つ目から1つ目へ戻る線（改善がまた出発点になる）。本文に重ならないよう、行の下の余白だけに描く */
+.abt #crossover .xover__cards::after{
+  content:"";position:absolute;left:15px;right:calc(33.3333% - 15px);top:auto;bottom:12px;height:26px;
+  border:1px solid var(--af-line2);border-top:none;border-radius:0 0 13px 13px;
+  opacity:0;transition:opacity .6s ease .95s;pointer-events:none;
+}
+.abt #crossover .xover.is-in .xover__cards::after{opacity:1}
+.abt #crossover .xover__card{
+  position:relative;counter-increment:xc;
+  background:none;border:none;border-radius:0;padding:0 30px 0 0;
+  opacity:0;transform:translateY(10px);transition:opacity .55s ease,transform .55s var(--af-ease);
+}
+.abt #crossover .xover.is-in .xover__card{opacity:1;transform:none}
+.abt #crossover .xover.is-in .xover__card:nth-child(1){transition-delay:.30s}
+.abt #crossover .xover.is-in .xover__card:nth-child(2){transition-delay:.44s}
+.abt #crossover .xover.is-in .xover__card:nth-child(3){transition-delay:.58s}
+.abt #crossover .xover__card::before{
+  content:counter(xc,decimal-leading-zero);
+  position:absolute;left:0;top:-17px;width:30px;height:30px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  background:var(--af-bg);border:1px solid var(--af-line);
+  color:var(--af-red);font-size:11px;font-weight:700;letter-spacing:.04em;
+}
+.abt #crossover .xover__card + .xover__card::after{
+  content:"";position:absolute;left:-14px;top:-4px;width:7px;height:7px;
+  border-top:1px solid var(--af-node);border-right:1px solid var(--af-node);transform:rotate(45deg);
+}
+.abt #crossover .xover__card:first-child::after{
+  content:"";position:absolute;left:16px;bottom:-40px;width:7px;height:7px;
+  border-top:1px solid var(--af-node);border-left:1px solid var(--af-node);transform:rotate(-45deg);
+  opacity:0;transition:opacity .6s ease .95s;
+}
+.abt #crossover .xover.is-in .xover__card:first-child::after{opacity:1}
+.abt #crossover .xover__ch{
+  display:block;margin:20px 0 9px;font-size:11px;font-weight:700;letter-spacing:.1em;color:var(--af-red);
+}
+.abt #crossover .xover__cn{font-size:14.5px;font-weight:700;line-height:1.65;letter-spacing:.02em;color:var(--af-ink);margin:0 0 9px}
+.abt #crossover .xover__ct{font-size:12.5px;line-height:1.95;color:var(--af-mid)}
+.abt #crossover .xover__foot{margin:0;font-size:13px;line-height:2;color:var(--af-mid)}
+
+/* =====================================================================
+   タブレット・スマートフォン
+   ===================================================================== */
+@media(max-width:1000px){
+  .abt #why .force4__list,
+  .abt #process .fdeline,
+  .abt #crossover .xover__nodes,
+  .abt #crossover .xover__cards{grid-template-columns:repeat(2,1fr);row-gap:34px}
+  .abt .effects--row{grid-template-columns:repeat(2,1fr);row-gap:34px}
+}
+@media(max-width:760px){
+  /* 縦並びのときは、進行線を左の1本の縦罫に置き換える。
+     横に線を引くと折り返しで意味が壊れるため。 */
+  .abt #why .force4__list,
+  .abt #process .fdeline,
+  .abt #crossover .xover__nodes,
+  .abt #crossover .xover__cards,
+  .abt .effects--row{
+    grid-template-columns:1fr;row-gap:0;padding:0 0 0 30px;margin-top:34px;
+  }
+  .abt #why .force4__list::before,
+  .abt #process .fdeline::before,
+  .abt #crossover .xover__nodes::before,
+  .abt #crossover .xover__cards::before,
+  .abt .effects--row::before{
+    left:12px;right:auto;top:14px;bottom:14px;width:1px;height:auto;
+    transform:scaleY(0);transform-origin:top center;transition:transform 1s var(--af-ease) .12s;
+  }
+  .abt #why .force4.is-in .force4__list::before,
+  .abt #process .fdeline.is-in::before,
+  .abt #crossover .xover.is-in .xover__nodes::before,
+  .abt #crossover .xover.is-in .xover__cards::before,
+  .abt .is-in.effects--row::before{transform:scaleY(1)}
+  /* 戻り線は縦並びでは左側に回す */
+  .abt #process .fdeline::after,
+  .abt #crossover .xover__cards::after{
+    left:0;right:auto;top:14px;bottom:18px;width:12px;height:auto;
+    border:1px solid var(--af-line2);border-right:none;border-radius:9px 0 0 9px;
+  }
+  .abt #why .force4__i,
+  .abt #process .fdeline__i,
+  .abt #crossover .xover__node,
+  .abt #crossover .xover__card,
+  .abt .effects--row li{padding:14px 0 22px}
+  .abt #why .force4__no,
+  .abt .effects--row li .en,
+  .abt #crossover .xover__card::before{left:-30px;top:12px;width:26px;height:26px;font-size:10.5px}
+  .abt #process .fdeline__i::before{left:-25px;top:17px}
+  .abt #crossover .xover__node::before{left:-24px;top:18px}
+  .abt #why .force4__i + .force4__i::before,
+  .abt #process .fdeline__i::after,
+  .abt #crossover .xover__card::after{display:none}
+  .abt #why .force4__fig{margin:4px 0 12px}
+  .abt .effects--row li b{margin-top:0}
+  .abt #crossover .xover__ch{margin-top:0}
+  .abt #why .two-view{grid-template-columns:1fr;gap:18px;margin-top:34px}
+  .abt #why .force4__hub{padding:16px 18px}
+  .abt #why .integrate{margin-top:34px;padding:22px}
+  .abt #crossover .xover__link{grid-template-columns:1fr;grid-template-areas:"map" "lp" "lt";row-gap:8px}
+  .abt .xover__lmap{margin-bottom:2px}
+}
+
+/* =====================================================================
+   動きを減らす設定では、線も項目も最初から出した状態にする
+   ===================================================================== */
+@media(prefers-reduced-motion:reduce){
+  .abt #why .force4__list::before,
+  .abt #process .fdeline::before,
+  .abt #crossover .xover__nodes::before,
+  .abt #crossover .xover__cards::before,
+  .abt .effects--row::before{transform:none!important;transition:none!important}
+  .abt #why .force4__i,
+  .abt #process .fdeline__i,
+  .abt #crossover .xover__node,
+  .abt #crossover .xover__card,
+  .abt .effects--row li{opacity:1!important;transform:none!important;transition:none!important}
+  .abt #process .fdeline::after,
+  .abt #crossover .xover__cards::after{opacity:1!important;transition:none!important}
+}
