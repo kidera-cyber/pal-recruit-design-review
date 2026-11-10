@@ -1,0 +1,330 @@
+/* =====================================================================
+   ABOUT-D v1：ABOUT 刷新版（新規プレビュー）
+   ---------------------------------------------------------------------
+   【効く範囲】<body> に a4 が付いたページだけ。読み込んでいるのは
+   about-d.html の1ページのみ。既存の28ページには一切影響しない。
+   共通CSS（style.css / system-h.css / lightsurface.css / about-figures.css）
+   は1行も変更していない。このファイルを最後に読み、必要箇所だけ上書きする。
+
+   【基準】成果物B（条件付き承認）のトークン。
+   白・淡グレーを基調、赤はアクセント、カードの羅列をやめ、
+   罫線・余白・タイポグラフィと図解で見せる。
+
+   【表示の原則】JavaScript が動かなくても本文が必ず見える。
+   .av は初期状態で表示されており、JS が <html> に a4anim を付けた
+   ときだけ隠れる。監視が1.2秒発火しなければ a4anim を外す。
+
+   現在のバージョン：20261113f
+   ===================================================================== */
+
+.a4{
+  --a-red:#CF131B; --a-red-d:#A50F16; --a-red-t:#FCEEF0;
+  --a-ink:#262946; --a-mid:#6B6D81; --a-soft:#797DAC;
+  --a-bg:#FFFFFF; --a-g1:#F2F3F6; --a-g3:#F7F8F9;
+  --a-line:#DAE1F2; --a-line2:#E7EBF4;
+  --a-ease:cubic-bezier(.2,.7,.2,1);
+  --a-wide:1240px;
+}
+.a4 .a4w{width:min(var(--a-wide),100% - 48px);margin-inline:auto}
+
+/* ── 動きの土台（JSが無くても見える） ── */
+.a4anim .a4 .av{opacity:0;transform:translateY(12px);
+  transition:opacity .7s ease,transform .7s var(--a-ease)}
+.a4anim .a4 .av.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){
+  .a4anim .a4 .av{opacity:1!important;transform:none!important;transition:none!important}
+}
+
+/* ── セクション枠 ── */
+.a4 #why.sec,.a4 #process.sec{background:var(--a-bg);padding-block:clamp(52px,6.6vw,112px)}
+.a4 #process.sec{background:var(--a-g3)}
+/* .wrap は共通CSSで左右24pxの padding を持つ。幅指定で更に48px引くと
+   本文幅が他セクションより48px狭くなるため、padding の分を足して指定する。 */
+.a4 #why .wrap,.a4 #process .wrap{width:min(calc(var(--a-wide) + 48px),100%);max-width:none}
+
+/* ── 見出し ── */
+.a4 .a4h{max-width:880px;margin-bottom:clamp(28px,3.6vw,44px)}
+.a4 .a4h__lb{position:static;display:flex;align-items:center;gap:12px;margin:0 0 15px;padding:0;
+  font-family:var(--font-en);font-size:11.5px;font-weight:700;letter-spacing:.16em;
+  color:var(--a-red);text-transform:uppercase}
+.a4 .a4h__lb::before{content:"";position:static;transform:none;flex:none;
+  width:26px;height:2px;background:var(--a-red)}
+.a4 .a4h__lb::after{display:none}
+.a4 .a4h__t{margin:0;font-size:clamp(23px,3.1vw,38px);font-weight:500;line-height:1.38;
+  letter-spacing:.005em;color:var(--a-ink)}
+.a4 .a4h__t b{font-weight:700}
+.a4 .a4h__d{margin:16px 0 0;font-size:clamp(14px,1.5vw,16px);line-height:1.9;color:var(--a-mid)}
+
+/* ── 小見出し（ブロックの仕切り） ── */
+.a4 .a4sub{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;
+  margin:clamp(40px,5vw,64px) 0 clamp(16px,2.2vw,22px);
+  padding-bottom:11px;border-bottom:2px solid var(--a-ink)}
+.a4 .a4sub h3{margin:0;font-size:clamp(16px,1.9vw,21px);font-weight:700;line-height:1.5;color:var(--a-ink)}
+.a4 .a4sub span{font-family:var(--font-en);font-size:10.5px;font-weight:700;
+  letter-spacing:.14em;color:var(--a-soft)}
+
+/* ── 出典注記 ── */
+.a4 .a4src{display:flex;gap:10px;align-items:flex-start;margin:clamp(16px,2.2vw,22px) 0 0;
+  font-size:11.5px;line-height:1.85;color:var(--a-mid)}
+.a4 .a4src i{flex:none;margin-top:.62em;width:14px;height:1px;background:var(--a-soft)}
+
+/* ── ボタン・リンク ── */
+.a4 .a4acts{display:flex;flex-wrap:wrap;gap:12px;margin-top:clamp(24px,3.2vw,34px)}
+.a4 .a4btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  min-height:56px;padding:0 30px;border-radius:999px;font-size:14px;font-weight:700;
+  letter-spacing:.03em;text-decoration:none;border:1px solid var(--a-line);color:var(--a-ink);
+  transition:border-color .2s,background-color .2s}
+.a4 .a4btn--p{background:var(--a-red);border-color:var(--a-red);color:#fff}
+.a4 .a4btn--p:hover{background:var(--a-red-d);border-color:var(--a-red-d)}
+.a4 .a4btn:not(.a4btn--p):hover{border-color:var(--a-ink)}
+.a4 .a4btn i{font-style:normal;flex:none;width:7px;height:7px;
+  border-top:1.6px solid currentColor;border-right:1.6px solid currentColor;
+  transform:rotate(45deg);transition:transform .2s}
+.a4 .a4btn:hover i{transform:rotate(45deg) translate(2px,-2px)}
+
+/* =====================================================================
+   ① ロジテックインテグレーション＝製造〜倉庫〜配送をデータでつなぐ
+   ---------------------------------------------------------------------
+   モノの流れ（上）とデータの流れ（下）の2本のレールで描く。
+   四角い箱と矢印の羅列にせず、1本の線の上に拠点を置く。
+   ===================================================================== */
+.a4 .lgi{margin-top:clamp(28px,3.6vw,40px)}
+.a4 .lgi__ttl{display:grid;grid-template-columns:auto auto;justify-content:start;
+  gap:12px 16px;align-items:center;margin:0 0 clamp(26px,3.4vw,36px)}
+.a4 .lgi__name{font-size:clamp(17px,2.1vw,25px);font-weight:700;line-height:1.4;
+  letter-spacing:.02em;color:var(--a-ink);white-space:nowrap}
+.a4 .lgi__kind{justify-self:start;margin:0;font-family:var(--font-jp);font-size:11.5px;font-weight:700;letter-spacing:.08em;
+  color:var(--a-red);border:1px solid var(--a-red);padding:4px 10px;white-space:nowrap}
+.a4 .lgi__lead{grid-column:1/-1;margin:0;font-size:clamp(14px,1.5vw,16px);line-height:1.9;
+  color:var(--a-mid);max-width:72ch}
+
+.a4 .lgi__fig{position:relative;padding:clamp(14px,2vw,22px) 0 0}
+/* 上：モノの流れ */
+.a4 .lgi__rail{position:relative;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:0;padding-top:30px}
+.a4 .lgi__rail::before{content:"";position:absolute;left:9px;right:calc(16.666% - 9px);top:9px;
+  height:2px;background:var(--a-ink);
+  right:calc(33.3333% - 9px);
+  transform-origin:left center;transition:transform 1s var(--a-ease) .15s}
+.a4anim .a4 .lgi__rail::before{transform:scaleX(0)}
+.a4anim .a4 .lgi.in .lgi__rail::before{transform:scaleX(1)}
+.a4 .lgi__node{position:relative;padding:0 clamp(14px,2vw,26px) 0 0}
+.a4 .lgi__node::before{content:"";position:absolute;left:0;top:-30px;width:18px;height:18px;
+  border-radius:50%;background:var(--a-bg);border:2px solid var(--a-ink)}
+.a4 .lgi__node--hub::before{border-color:var(--a-red);
+  background:radial-gradient(circle, var(--a-red) 0 4px, #fff 4px)}
+.a4 .lgi__nn{display:block;font-size:clamp(15px,1.8vw,19px);font-weight:700;line-height:1.45;
+  letter-spacing:.02em;color:var(--a-ink)}
+.a4 .lgi__nt{display:block;margin-top:7px;font-size:12.5px;line-height:1.8;color:var(--a-mid)}
+/* 下：データの流れ */
+.a4 .lgi__data{position:relative;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:0;margin-top:clamp(26px,3.4vw,38px);padding-top:30px}
+.a4 .lgi__data::before{content:"";position:absolute;left:9px;right:calc(16.666% - 9px);top:9px;
+  height:2px;background:var(--a-red);opacity:.5;
+  right:calc(33.3333% - 9px);
+  transform-origin:left center;transition:transform 1s var(--a-ease) .35s}
+.a4anim .a4 .lgi__data::before{transform:scaleX(0)}
+.a4anim .a4 .lgi.in .lgi__data::before{transform:scaleX(1)}
+.a4 .lgi__d{position:relative;padding:0 clamp(14px,2vw,26px) 0 0}
+.a4 .lgi__d::before{content:"";position:absolute;left:1px;top:-28px;width:14px;height:14px;
+  border-radius:50%;background:var(--a-bg);border:2px solid var(--a-red)}
+.a4 .lgi__d b{display:block;font-size:13.5px;font-weight:700;line-height:1.5;color:var(--a-red)}
+/* モノとデータをつなぐ縦の点線 */
+.a4 .lgi__link{position:absolute;left:0;right:0;top:0;bottom:0;pointer-events:none;
+  display:grid;grid-template-columns:repeat(3,minmax(0,1fr))}
+.a4 .lgi__link i{position:relative}
+.a4 .lgi__link i::before{content:"";position:absolute;left:9px;top:48px;bottom:46px;width:0;
+  border-left:1px dotted var(--a-soft);opacity:.6}
+/* 右端：一元管理・可視化 */
+.a4 .lgi__out{display:flex;align-items:center;gap:13px;margin:clamp(26px,3.4vw,36px) 0 0;
+  padding:clamp(15px,2vw,20px) clamp(16px,2.2vw,24px);
+  background:var(--a-g1);border-left:3px solid var(--a-red)}
+.a4 .lgi__out b{font-size:14.5px;font-weight:700;letter-spacing:.02em;color:var(--a-ink);white-space:nowrap}
+.a4 .lgi__out span{font-size:13px;line-height:1.85;color:var(--a-mid)}
+@media(max-width:860px){
+  .a4 .lgi__rail,.a4 .lgi__data,.a4 .lgi__link{grid-template-columns:minmax(0,1fr)}
+  .a4 .lgi__rail,.a4 .lgi__data{padding:0 0 0 34px;row-gap:22px}
+  .a4 .lgi__rail::before,.a4 .lgi__data::before{left:8px;right:auto;top:8px;bottom:8px;
+    width:2px;height:auto;transform:none;transform-origin:top center}
+  .a4anim .a4 .lgi__rail::before,.a4anim .a4 .lgi__data::before{transform:scaleY(0)}
+  .a4anim .a4 .lgi.in .lgi__rail::before,.a4anim .a4 .lgi.in .lgi__data::before{transform:scaleY(1)}
+  .a4 .lgi__node::before{left:-34px;top:2px}
+  .a4 .lgi__d::before{left:-33px;top:3px}
+  .a4 .lgi__node,.a4 .lgi__d{padding-right:0}
+  .a4 .lgi__link{display:none}
+  .a4 .lgi__out{flex-direction:column;align-items:flex-start;gap:8px}
+}
+
+/* ── 定義の区別（ここが今回の肝） ── */
+.a4 .lgi__def{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0;
+  margin:clamp(28px,3.6vw,40px) 0 0;border-top:1px solid var(--a-line)}
+.a4 .lgi__def > div{padding:clamp(18px,2.4vw,24px) clamp(16px,2.2vw,28px) 0 0}
+.a4 .lgi__def > div + div{border-left:1px solid var(--a-line);padding-left:clamp(20px,2.6vw,32px)}
+.a4 .lgi__def dt{margin:0 0 8px;font-size:14px;font-weight:700;line-height:1.5;color:var(--a-ink)}
+.a4 .lgi__def dd{margin:0;font-size:13px;line-height:1.9;color:var(--a-mid)}
+@media(max-width:700px){
+  .a4 .lgi__def{grid-template-columns:minmax(0,1fr)}
+  .a4 .lgi__def > div + div{border-left:none;border-top:1px solid var(--a-line);padding-left:0}
+}
+
+/* ── 実践環境で使っているソリューション ── */
+.a4 .sol{list-style:none;margin:clamp(18px,2.4vw,26px) 0 0;padding:0;
+  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;
+  background:var(--a-line);border:1px solid var(--a-line)}
+.a4 .sol li{background:var(--a-bg);padding:clamp(15px,2vw,20px)}
+.a4 .sol span{display:block;font-family:var(--font-en);font-size:10.5px;font-weight:700;
+  letter-spacing:.12em;color:var(--a-red);margin-bottom:8px}
+.a4 .sol b{display:block;font-size:14px;font-weight:700;line-height:1.5;color:var(--a-ink)}
+@media(max-width:760px){.a4 .sol{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:440px){.a4 .sol{grid-template-columns:minmax(0,1fr)}}
+
+/* =====================================================================
+   ② OUR PROCESS：公式の導入プロセス5段階
+   ===================================================================== */
+.a4 .prc{list-style:none;margin:clamp(28px,3.6vw,42px) 0 0;padding:0;position:relative;
+  display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:0;padding-top:34px}
+.a4 .prc::before{content:"";position:absolute;left:10px;right:calc(20% - 10px);top:10px;height:2px;
+  background:var(--a-red);opacity:.35;
+  transform-origin:left center;transition:transform 1.1s var(--a-ease) .2s}
+.a4anim .a4 .prc::before{transform:scaleX(0)}
+.a4anim .a4 .prc.in::before{transform:scaleX(1)}
+.a4 .prc li{position:relative;padding:0 clamp(12px,1.6vw,22px) 0 0}
+.a4 .prc li::before{content:"";position:absolute;left:0;top:-34px;width:20px;height:20px;
+  border-radius:50%;background:var(--a-bg);border:2px solid var(--a-red);
+  display:flex;align-items:center;justify-content:center}
+.a4 .prc li + li::after{content:"";position:absolute;left:-13px;top:-30px;width:8px;height:8px;
+  border-top:1.4px solid var(--a-line);border-right:1.4px solid var(--a-line);transform:rotate(45deg)}
+.a4 .prc__no{display:block;font-family:var(--font-en);font-size:10.5px;font-weight:700;
+  letter-spacing:.14em;color:var(--a-mid);margin-bottom:8px}
+.a4 .prc__t{display:block;font-size:14.5px;font-weight:700;line-height:1.5;letter-spacing:.01em;color:var(--a-ink)}
+.a4 .prc__d{display:block;margin-top:9px;font-size:12px;line-height:1.8;color:var(--a-mid)}
+@media(max-width:980px){
+  .a4 .prc{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:28px}
+  .a4 .prc::before{display:none}
+  .a4 .prc li + li::after{display:none}
+  .a4 .prc li{padding:34px 16px 0 0}
+  .a4 .prc li::before{top:0}
+}
+@media(max-width:560px){
+  .a4 .prc{grid-template-columns:minmax(0,1fr);padding:0 0 0 34px;row-gap:0}
+  .a4 .prc li{padding:16px 0 18px;border-bottom:1px solid var(--a-line2)}
+  .a4 .prc li:last-child{border-bottom:none}
+  .a4 .prc li::before{left:-34px;top:18px;width:16px;height:16px}
+}
+
+/* ── FDEの役割（小さく、工程の読み方として） ── */
+.a4 .fde{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.45fr);
+  gap:clamp(18px,3vw,44px);align-items:start;margin-top:clamp(18px,2.4vw,26px)}
+.a4 .fde__fig{list-style:none;margin:0;padding:0;display:grid;gap:0;
+  border-top:1px solid var(--a-line)}
+.a4 .fde__fig li{position:relative;display:grid;grid-template-columns:72px minmax(0,1fr);
+  gap:14px;align-items:baseline;padding:13px 0;border-bottom:1px solid var(--a-line2)}
+.a4 .fde__fig li:last-child{border-bottom:none}
+.a4 .fde__fig span{font-family:var(--font-en);font-size:10.5px;font-weight:700;
+  letter-spacing:.12em;color:var(--a-mid)}
+.a4 .fde__fig li.is-key span{color:var(--a-red)}
+.a4 .fde__fig b{font-size:13.5px;font-weight:700;line-height:1.6;color:var(--a-ink)}
+.a4 .fde__t{margin:0;font-size:13.5px;line-height:1.95;color:var(--a-mid)}
+.a4 .fde__t a{color:var(--a-red)}
+@media(max-width:860px){.a4 .fde{grid-template-columns:minmax(0,1fr)}}
+
+/* ── 統合による効果（OUR VALUE を独立させずここに畳む） ── */
+.a4 .eff{list-style:none;margin:clamp(26px,3.4vw,38px) 0 0;padding:0;
+  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;
+  border-top:2px solid var(--a-ink)}
+.a4 .eff li{padding:clamp(18px,2.4vw,24px) clamp(16px,2.2vw,28px) 0 0}
+.a4 .eff li + li{border-left:1px solid var(--a-line);padding-left:clamp(20px,2.6vw,32px)}
+.a4 .eff__no{display:block;font-family:var(--font-en);font-size:11px;font-weight:700;
+  letter-spacing:.14em;color:var(--a-red);margin-bottom:10px}
+.a4 .eff b{display:block;font-size:clamp(15px,1.8vw,18px);font-weight:700;line-height:1.5;color:var(--a-ink)}
+.a4 .eff p{margin:9px 0 0;font-size:12.5px;line-height:1.85;color:var(--a-mid)}
+@media(max-width:700px){
+  .a4 .eff{grid-template-columns:minmax(0,1fr)}
+  .a4 .eff li{padding:16px 0}
+  .a4 .eff li + li{border-left:none;border-top:1px solid var(--a-line);padding-left:0}
+}
+
+/* ── 2つの入口（既存を維持しつつ、余白だけ新基準に合わせる） ── */
+.a4 #why .two-view{margin-top:clamp(34px,4.4vw,50px)}
+
+/* ── アコーディオン（新基準の見た目に合わせる） ── */
+.a4 .a4more{margin:clamp(20px,2.6vw,28px) 0 0;border-top:1px solid var(--a-line)}
+.a4 .a4more > summary{list-style:none;cursor:pointer;display:inline-flex;align-items:center;gap:10px;
+  padding:13px 0;font-size:12.5px;font-weight:700;letter-spacing:.02em;color:var(--a-ink)}
+.a4 .a4more > summary::-webkit-details-marker{display:none}
+.a4 .a4more > summary::before{content:"";flex:none;width:16px;height:16px;border:1px solid var(--a-red);
+  background:linear-gradient(var(--a-red),var(--a-red)) center/7px 1px no-repeat,
+             linear-gradient(var(--a-red),var(--a-red)) center/1px 7px no-repeat}
+.a4 .a4more[open] > summary::before{
+  background:linear-gradient(var(--a-red),var(--a-red)) center/7px 1px no-repeat}
+.a4 .a4more > summary:hover{color:var(--a-red)}
+.a4 .a4more dl{margin:0 0 18px;display:grid;gap:10px}
+.a4 .a4more dl > div{display:grid;grid-template-columns:clamp(100px,16%,170px) minmax(0,1fr);
+  gap:4px 18px;padding-top:10px;border-top:1px dashed var(--a-line2)}
+.a4 .a4more dt{margin:0;font-size:12.5px;font-weight:700;line-height:1.6;color:var(--a-red)}
+.a4 .a4more dd{margin:0;font-size:13px;line-height:1.95;color:var(--a-mid)}
+@media(max-width:620px){.a4 .a4more dl > div{grid-template-columns:minmax(0,1fr);gap:4px}}
+
+/* =====================================================================
+   ABOUT-D v1 修正：SPでの横溢れと、補助英字のコントラスト
+   ---------------------------------------------------------------------
+   ・社名＋バッジを横並びのまま置くと 375px で 40px はみ出すため、
+     760px 以下では縦積みにし、社名の折り返しを許す。
+   ・補助の英字ラベルに使っていた #797DAC は白地 3.93:1／淡グレー地
+     3.70:1 で AA（4.5:1）に届かないため、#6B6D81 に置き換える。
+   ===================================================================== */
+.a4 .a4sub span{color:var(--a-mid)}
+@media(max-width:760px){
+  .a4 .lgi__ttl{grid-template-columns:minmax(0,1fr);justify-content:stretch;gap:10px}
+  .a4 .lgi__name{white-space:normal;font-size:clamp(17px,5vw,21px);line-height:1.45}
+  .a4 .lgi__kind{justify-self:start}
+  .a4 .lgi__lead{grid-column:auto}
+}
+
+/* =====================================================================
+   ABOUT-D-B v1：ビジュアル統合案（body に a4b が付いたときだけ）
+   ---------------------------------------------------------------------
+   アイソメトリック図を主役にする。図の上にラベルは打たず、
+   説明は図の下へ。SPで細部がつぶれないよう、横スクロールできる枠に入れる。
+   ===================================================================== */
+.a4 .lgi__sol-lead{margin:0 0 clamp(14px,2vw,18px);font-size:13.5px;line-height:1.9;color:var(--a-mid)}
+
+.a4 .hubfig{margin:clamp(22px,3vw,34px) 0 0}
+.a4 .hubfig__scroll{overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;
+  background:var(--a-g3);border:1px solid var(--a-line)}
+.a4 .hubfig img{display:block;width:100%;height:auto;max-width:100%}
+.a4 .hubfig__cap{display:block;margin:clamp(13px,1.8vw,17px) 0 0;
+  padding-left:16px;border-left:2px solid var(--a-red);
+  font-size:13px;line-height:1.9;color:var(--a-ink)}
+.a4 .hubfig__cap span{color:var(--a-mid);font-size:12px;margin-left:6px}
+@media(max-width:760px){
+  /* 1672px の図が 375px に縮むと細部が読めないため、横にスクロールさせる */
+  .a4 .hubfig img{width:auto;height:auto;max-width:none;min-width:720px}
+  .a4 .hubfig__scroll{position:relative}
+  .a4 .hubfig__scroll::after{content:"← 横にスクロールできます →";position:sticky;left:0;
+    display:block;padding:7px 10px;font-size:11px;font-weight:700;color:var(--a-mid);
+    background:var(--a-g1);border-top:1px solid var(--a-line);width:100%}
+}
+
+.a4 .hubstep{list-style:none;margin:clamp(16px,2.2vw,22px) 0 0;padding:0;position:relative;
+  display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:0;padding-top:28px}
+.a4 .hubstep::before{content:"";position:absolute;left:8px;right:calc(20% - 8px);top:8px;height:2px;
+  background:var(--a-red);opacity:.35;transform-origin:left center;transition:transform 1s var(--a-ease) .2s}
+.a4anim .a4 .hubstep::before{transform:scaleX(0)}
+.a4anim .a4 .hubstep.in::before{transform:scaleX(1)}
+.a4 .hubstep li{position:relative;padding:0 clamp(10px,1.6vw,20px) 0 0}
+.a4 .hubstep li::before{content:"";position:absolute;left:0;top:-28px;width:16px;height:16px;
+  border-radius:50%;background:var(--a-bg);border:2px solid var(--a-red)}
+.a4 .hubstep span{display:block;font-family:var(--font-en);font-size:10px;font-weight:700;
+  letter-spacing:.14em;color:var(--a-mid);margin-bottom:6px}
+.a4 .hubstep b{display:block;font-size:13.5px;font-weight:700;line-height:1.5;color:var(--a-ink)}
+@media(max-width:900px){
+  .a4 .hubstep{grid-template-columns:minmax(0,1fr);padding:0 0 0 30px;row-gap:0}
+  .a4 .hubstep::before{left:7px;right:auto;top:10px;bottom:10px;width:2px;height:auto;
+    transform:none;transform-origin:top center}
+  .a4anim .a4 .hubstep::before{transform:scaleY(0)}
+  .a4anim .a4 .hubstep.in::before{transform:scaleY(1)}
+  .a4 .hubstep li{padding:12px 0 12px;border-bottom:1px solid var(--a-line2)}
+  .a4 .hubstep li:last-child{border-bottom:none}
+  .a4 .hubstep li::before{left:-30px;top:14px;width:14px;height:14px}
+}

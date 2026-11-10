@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<!-- ===== NEWTOP-D v1：採用サイト刷新版 TOP（新規プレビュー）
+     現行の home.html / newtop-c-v2.html は一切変更していない。
+     新規ファイルとして作成し、CSS も newtop-d.css（全セレクタ .v4 スコープ）
+     を最後に1本足しただけ。既存27ページには影響しない。
+
+     【検索エンジン向け設定の区別】
+     ・本ページは検証用プレビューのため noindex,nofollow
+     ・canonical は本番URL（../）ではなく自己参照にしている。
+       本番の正規化先を検証用ページが名乗らないようにするため。
+     ・構造化データ（Organization）は本番 index.html の資産なので
+       このプレビューには載せていない。 ===== -->
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>【試作・非公開】HOME 刷新版D｜株式会社PAL 採用サイト デザイン検証</title>
+<meta name="description" content="株式会社PAL 採用サイトTOPの刷新版プレビュー（非公開・検証用）。参考6社の情報設計とPALコーポレートのデザインを統合し、事業理解・9職種・社員・キャリア・募集職種の導線を再構成した検証ページです。本番サイトには反映していません。">
+<link rel="canonical" href="newtop-d.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&family=Noto+Sans+JP:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/style.css">
+<link rel="stylesheet" href="assets/css/corporate-system.css">
+<link rel="stylesheet" href="assets/css/newtop-system.css">
+<link rel="stylesheet" href="assets/css/pal-v2.css?v=20261109i">
+<!-- ===== NEWTOP-D v1：このページ専用。全セレクタ .v4 スコープ ===== -->
+<link rel="stylesheet" href="assets/css/newtop-d.css?v=20261113b">
+</head>
+<body class="v4">
+<div class="proto-bar" style="background:#000;color:#fff;padding:10px 20px;font-size:12.5px;text-align:center;position:relative;z-index:600">【試作・非公開】HOME 刷新版D｜<b style="color:#ff8186">デザイン検証用プレビュー・本番サイト未反映</b>｜文言・数値・CTAは現行HOMEと同一</div>
+<a class="skip-link" href="#main">本文へスキップ</a>
+
+<header class="hdr" id="hdr">
+  <div class="hdr__inner">
+    <a class="logo" href="home.html" aria-label="PAL RECRUIT トップへ">
+      <span class="logo__mark">PAL</span>
+      <span class="logo__txt">RECRUIT<small>株式会社PAL 採用サイト</small></span>
+    </a>
+    <nav class="gnav" aria-label="グローバルメニュー">
+      <a href="home.html" aria-current="page" class="is-current">ホーム<small>HOME</small></a>
+      <a href="about.html">PALを知る<small>ABOUT</small></a>
+      <a href="work.html">仕事を知る<small>WORK</small></a>
+      <a href="people.html">人を知る<small>PEOPLE</small></a>
+      <a href="career.html">キャリア<small>CAREER</small></a>
+      <a href="jobs.html">募集職種<small>JOBS</small></a>
+      <a href="faq.html">FAQ<small>Q&amp;A</small></a>
+    </nav>
+    <button class="btn btn--red hdr__cta btn--off" type="button" disabled>ENTRY</button>
+    <button class="hdr__toggle" id="navToggle" aria-expanded="false" aria-controls="drawer" aria-label="メニューを開く">
+      <span></span><span></span><span></span>MENU
+    </button>
+  </div>
+</header>
+<div class="drawer" id="drawer">
+  <a href="home.html" aria-current="page" class="is-current">ホーム<span>HOME</span></a>
+  <a href="about.html">PALを知る<span>ABOUT</span></a>
+  <a href="work.html">仕事を知る<span>WORK</span></a>
+  <a href="people.html">人を知る<span>PEOPLE</span></a>
+  <a href="career.html">キャリア<span>CAREER</span></a>
+  <a href="jobs.html">募集職種<span>JOBS</span></a>
+  <a href="faq.html">FAQ<span>Q&amp;A</span></a>
+  <button class="btn btn--red btn--off" type="button" disabled>エントリーする</button>
+</div>
+
+<main id="main">
+
+<!-- ══════════ FV ══════════ -->
+<section class="v4fv">
+  <figure class="v4fv__art">
+    <video autoplay muted loop playsinline preload="metadata" poster="assets/img/hero-poster.webp" aria-hidden="true">
+      <source src="assets/video/hero-operations.mp4" type="video/mp4">
+    </video>
+  </figure>
+  <div class="v4w v4fv__in">
+    <p class="v4fv__eb">PAL RECRUIT — キャリア採用</p>
+    <h1>現場に立ち、<br><em>自分の手で、</em><br>変えていく。</h1>
+    <div class="v4acts">
+      <a class="v4btn v4btn--p" href="jobs.html">募集中の職種を見る<i aria-hidden="true"></i></a>
+      <a class="v4btn v4btn--s" href="people.html">PALで働く人を知る<i aria-hidden="true"></i></a>
+    </div>
+    <p class="v4fv__note">映像は、現場の運営と、システム・設備・データが連動する関係を示した概念図です（※画像はイメージです）。</p>
+  </div>
+</section>
+
+<!-- ===== NEWTOP-D v1：数値帯はFVの中に置くと背景イラストに重なって
+     読みにくいので、FV直下の白帯として独立させた。 ===== -->
+<div class="v4numband">
+  <div class="v4w">
+    <ul>
+      <li><b>9<span>職種</span></b><p>現場・技術・輸送をつなぐ専門性</p></li>
+      <li><b>120<span>名</span></b><p>社員数（パート・アルバイト含め約1,600名）</p></li>
+      <li><b>2000<span>年〜</span></b><p>物流現場を請け負い続けてきた歴史</p></li>
+    </ul>
+  </div>
+</div>
+
+<!-- ══════════ 01 PALとは ══════════ -->
+<section class="v4s" id="v4-about">
+  <div class="v4w">
+    <div class="v4h rv">
+      <p class="v4h__lb">What PAL does</p>
+      <h2 class="v4h__t">戦略も、技術も、現場も。<b>すべてをつなぐ。</b></h2>
+      <p class="v4h__d">外から提案するのではない。顧客の現場を請け負い、自分たちの責任で回す。技術と現場の両方に立つPALだからできる、“当事者”の仕事が、ここにある。</p>
+    </div>
+
+    <div class="v4int rv">
+      <p class="v4int__cap">物流DXは、4つに分かれて発注されがち。<span>SEPARATED</span></p>
+      <ul class="v4int__split">
+        <li><b>コンサルティング会社</b><span>調査・戦略</span></li>
+        <li><b>SIer</b><span>システム</span></li>
+        <li><b>マテハンメーカー</b><span>機器</span></li>
+        <li><b>3PL</b><span>実行</span></li>
+      </ul>
+      <div class="v4int__gap"><i></i><i></i><i></i><i></i></div>
+      <p class="v4int__arrow">つなぎ目が、物流DXを止める</p>
+
+      <div class="v4int__flow">
+        <p class="v4int__pal"><b>PAL</b><span>分断された関係者や複数ベンダーをつなぎ、一つの流れで進めます。</span></p>
+        <ol class="v4int__steps">
+          <li><b>設計</b><span>Design</span></li>
+          <li><b>実装</b><span>Build</span></li>
+          <li><b>運用</b><span>Operate</span></li>
+          <li><b>改善</b><span>Improve</span></li>
+        </ol>
+      </div>
+      <p class="v4int__src"><i aria-hidden="true"></i>この整理は、コーポレートサイト「私たちの役割」で公開している内容に基づいています。</p>
+    </div>
+
+    <div class="v4acts rv">
+      <a class="v4btn v4btn--s" href="about.html">PALについてさらに詳しく見る<i aria-hidden="true"></i></a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ 02 3領域の交わり ══════════ -->
+<section class="v4s v4s--g1" id="v4-cross">
+  <div class="v4w">
+    <div class="v4hv rv">
+      <p class="v4hv__en" aria-hidden="true">CROSSOVER</p>
+      <div class="v4hv__b">
+        <p class="v4h__lb">Crossover</p>
+        <h2 class="v4h__t">専門性が交わることで、<b>仕事が動き出す。</b></h2>
+      </div>
+      <p class="v4hv__v">人と技術が、<br>現場で交わる。</p>
+    </div>
+    <div class="v4cx rv">
+      <ul class="v4cx__list">
+        <li><span class="v4cx__en">BPO / Operation</span><h3 class="v4cx__n">BPO・現場運営</h3><p class="v4cx__t">現場を安定させ、改善を進める</p></li>
+        <li><span class="v4cx__en">Forward Deployed Engineer</span><h3 class="v4cx__n">FDE</h3><p class="v4cx__t">現場課題を技術につなぐ</p></li>
+        <li><span class="v4cx__en">System / Product</span><h3 class="v4cx__n">システム・プロダクト開発</h3><p class="v4cx__t">現場で使われる仕組みをつくる</p></li>
+      </ul>
+      <p class="v4cx__note"><i aria-hidden="true"></i>3つの領域に上下関係はありません。物流DXの進め方は案件ごとに違うため、部門間連携のかたちもそのつど変わります。</p>
+    </div>
+    <div class="v4acts rv">
+      <a class="v4btn v4btn--s" href="about.html#crossover">相関図の詳細をABOUTで見る<i aria-hidden="true"></i></a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ 03 9職種の索引 ══════════ -->
+<section class="v4s" id="v4-work">
+  <div class="v4w">
+    <div class="v4h rv">
+      <p class="v4h__lb">Find Your Field</p>
+      <h2 class="v4h__t">あなたの専門性が活きる<b>仕事を探す。</b></h2>
+      <p class="v4h__d">PALには9つの職種があります。それぞれ異なる専門性を持ち、必要な場面で連携しています。</p>
+    </div>
+    <ul class="v4jl rv">
+      <li><a href="work.html"><span class="v4jl__no">01</span><span class="v4jl__n">物流センター運営</span><span class="v4jl__d"><span>BPO / Operation</span>現場を安定させ、改善を進める</span><span class="v4jl__s v4jl__s--on">募集中</span></a></li>
+      <li><a href="work.html"><span class="v4jl__no">02</span><span class="v4jl__n">衛生清掃・クレンリネス</span><span class="v4jl__d"><span>Cleanliness</span>清掃を、計画と運用で支える</span><span class="v4jl__s">募集なし</span></a></li>
+      <li><a href="work.html"><span class="v4jl__no">03</span><span class="v4jl__n">FDE</span><span class="v4jl__d"><span>Forward Deployed Engineer</span>現場課題を技術につなぐ</span><span class="v4jl__s v4jl__s--on">募集中</span></a></li>
+      <li><a href="work.html"><span class="v4jl__no">04</span><span class="v4jl__n">システム・プロダクト開発</span><span class="v4jl__d"><span>System / Product</span>現場で使われる仕組みをつくる</span><span class="v4jl__s v4jl__s--on">募集中</span></a></li>
+      <li><a href="work.html"><span class="v4jl__no">05</span><span class="v4jl__n">配送・運行</span><span class="v4jl__d"><span>DTS / Transport</span>安全・品質・時間を守って届ける</span><span class="v4jl__s v4jl__s--on">募集中</span></a></li>
+      <li><a href="work.html"><span class="v4jl__no">06</span><span class="v4jl__n">営業・事業開発</span><span class="v4jl__d"><span>Engagement / Sales・BizDev</span>顧客課題を次の提案につなげる</span><span class="v4jl__s v4jl__s--on">募集中</span></a></li>
+      <li><a href="work.html"><span class="v4jl__no">07</span><span class="v4jl__n">マーケティング・コンテンツ制作</span><span class="v4jl__d"><span>Marketing / Content</span>市場と現場の情報を、顧客との接点に変える</span><span class="v4jl__s">募集なし</span></a></li>
+      <li><a href="work.html"><span class="v4jl__no">08</span><span class="v4jl__n">人材派遣営業</span><span class="v4jl__d"><span>Staffing Sales</span>人材の提案から、物流現場の改善につなげる</span><span class="v4jl__s v4jl__s--on">募集中</span></a></li>
+      <li><a href="work.html"><span class="v4jl__no">09</span><span class="v4jl__n">コーポレート</span><span class="v4jl__d"><span>Corporate</span>人・組織・会社運営を支える</span><span class="v4jl__s v4jl__s--soon">募集予定</span></a></li>
+    </ul>
+    <div class="v4acts rv">
+      <a class="v4btn v4btn--s" href="work.html">仕事を知る（WORK）<i aria-hidden="true"></i></a>
+      <a class="v4btn v4btn--s" href="jobs.html">募集職種を見る（JOBS）<i aria-hidden="true"></i></a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ 04 人を知る ══════════ -->
+<section class="v4s v4s--g3" id="v4-people">
+  <div class="v4w">
+    <div class="v4hv rv">
+      <p class="v4hv__en" aria-hidden="true">PEOPLE</p>
+      <div class="v4hv__b">
+        <p class="v4h__lb">People / Real Voices</p>
+        <h2 class="v4h__t">その仕事を<b>している人がいる。</b></h2>
+      </div>
+      <p class="v4hv__v">本人の言葉で。</p>
+    </div>
+    <div class="v4pp rv">
+      <figure class="v4pp__ph"><img src="../assets/images/avatar-fde.png" alt="FDEとして働く社員の似顔絵" width="900" height="975" loading="lazy"></figure>
+      <div>
+        <p class="v4pp__role">FDE</p>
+        <blockquote class="v4pp__q">現場で使われて、初めて「できた」と言える。</blockquote>
+        <p class="v4pp__by"><b>H.Y</b>FDE・2023年新卒入社</p>
+      </div>
+    </div>
+    <ul class="v4pr rv">
+      <li><a href="people.html"><img src="../assets/images/avatar-system.png" alt="DXプロダクト開発の社員の似顔絵" width="900" height="975" loading="lazy"><b>M.M</b><span>つくるのは、現場が明日から使えるもの。</span></a></li>
+      <li><a href="people.html"><img src="../assets/images/avatar-bpo.png" alt="BPO事業部の社員の似顔絵" width="900" height="975" loading="lazy"><b>I.N</b><span>毎日の運営の中に、次の改善がある。</span></a></li>
+      <li><a href="people.html"><img src="../assets/images/avatar-dts.png" alt="DTS事業部の社員の似顔絵" width="900" height="975" loading="lazy"><b>K.Y</b><span>運ぶだけではない。物流を、止めない仕事。</span></a></li>
+      <li><a href="people.html"><img src="../assets/images/avatar-sales.png" alt="マーケティング本部の社員の似顔絵" width="900" height="975" loading="lazy"><b>H.S</b><span>売る前に、まず課題を見つける。</span></a></li>
+      <li><a href="people.html"><img src="../assets/images/avatar-cleaning.png" alt="クレンリネス課の社員の似顔絵" width="900" height="975" loading="lazy"><b>S.K</b><span>食品プロセスセンターの清掃を、計画から支える。</span></a></li>
+      <li><a href="people.html"><img src="../assets/images/avatar-corporate.png" alt="コーポレート本部の社員の似顔絵" width="900" height="975" loading="lazy"><b>M.K</b><span>みんなが働きやすい環境を、仕組みから整える。</span></a></li>
+    </ul>
+    <div class="v4acts rv">
+      <a class="v4btn v4btn--s" href="people.html">社員インタビューをもっと見る<i aria-hidden="true"></i></a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ 05 キャリア ══════════ -->
+<section class="v4s" id="v4-career">
+  <div class="v4w">
+    <div class="v4h rv">
+      <p class="v4h__lb">Career Path</p>
+      <h2 class="v4h__t">入社後の自分を、<b>想像できていますか。</b></h2>
+      <p class="v4h__d">実際の仕事の1日から、経験を重ねた先のキャリアまで。気になる職種から、PALで働く毎日を見てみませんか。</p>
+    </div>
+    <ol class="v4cr rv">
+      <li><div class="v4cr__no">01</div><div><span class="v4cr__en">Career / Start</span><h3 class="v4cr__t">入社して最初に、何をする？</h3><p class="v4cr__d">最初に関わる仕事や、現場との関わり方</p></div></li>
+      <li><div class="v4cr__no">02</div><div><span class="v4cr__en">Career / Growth Process</span><h3 class="v4cr__t">どんな経験を積んでいく？</h3><p class="v4cr__d">仕事を覚え、役割が広がっていく過程</p></div></li>
+      <li><div class="v4cr__no">03</div><div><span class="v4cr__en">Career / Career Path</span><h3 class="v4cr__t">その先に、どんな道がある？</h3><p class="v4cr__d">職種ごとのキャリアや専門性の広がり</p></div></li>
+    </ol>
+    <div class="v4acts rv">
+      <a class="v4btn v4btn--s" href="career.html">入社後の仕事とキャリアを知る<i aria-hidden="true"></i></a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ 06 募集中の職種（FAQより前） ══════════ -->
+<section class="v4s v4s--g1" id="v4-jobs">
+  <div class="v4w">
+    <div class="v4h rv">
+      <p class="v4h__lb">Open Positions</p>
+      <h2 class="v4h__t">いま募集している<b>仕事。</b></h2>
+      <p class="v4h__d">現場・技術・営業・輸送・コーポレート。さまざまな専門性を持つメンバーを募集しています。</p>
+    </div>
+    <ul class="v4op rv">
+      <li><a href="jobs.html"><span>BPO / Operation</span><b>物流センター運営</b><em>現場を安定させ、改善を進める</em></a></li>
+      <li><a href="jobs.html"><span>Forward Deployed Engineer</span><b>FDE</b><em>現場課題を技術につなぐ</em></a></li>
+      <li><a href="jobs.html"><span>System / Product</span><b>システム・プロダクト開発</b><em>現場で使われる仕組みをつくる</em></a></li>
+      <li><a href="jobs.html"><span>DTS / Transport</span><b>配送・運行</b><em>安全・品質・時間を守って届ける</em></a></li>
+      <li><a href="jobs.html"><span>Engagement / Sales・BizDev</span><b>営業・事業開発</b><em>顧客課題を次の提案につなげる</em></a></li>
+      <li><a href="jobs.html"><span>Staffing Sales</span><b>人材派遣営業</b><em>人材の提案から、物流現場の改善につなげる</em></a></li>
+    </ul>
+    <div class="v4acts rv">
+      <a class="v4btn v4btn--p" href="jobs.html">募集要項をすべて見る<i aria-hidden="true"></i></a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ 07 FAQ ══════════ -->
+<section class="v4s v4s--tight" id="v4-faq">
+  <div class="v4w">
+    <div class="v4faq rv">
+      <div class="v4h">
+        <p class="v4h__lb">FAQ</p>
+        <h2 class="v4h__t">応募の前に、<b>気になることはありませんか。</b></h2>
+        <p class="v4h__d">選考の進み方、未経験からの応募、勤務地や働き方について、よくある質問にお答えしています。</p>
+      </div>
+      <div class="v4acts" style="margin-top:0">
+        <a class="v4btn v4btn--s" href="faq.html">よくある質問を見る<i aria-hidden="true"></i></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ 08 NEXT STEP ══════════ -->
+<section class="v4s v4s--navy v4entry" id="v4-entry">
+  <figure class="v4entry__art"><img src="../assets/images/hero-bg.jpg" alt="" width="2752" height="1536" loading="lazy"></figure>
+  <div class="v4w v4entry__in">
+    <div class="v4h rv">
+      <p class="v4h__lb">Join PAL</p>
+      <h2 class="v4h__t">現場から、事業の仕組みまで。<b>次の変化をつくる仕事。</b></h2>
+      <p class="v4h__d">現場・技術・営業・輸送・コーポレート。さまざまな専門性を持つメンバーを募集しています。</p>
+    </div>
+    <div class="v4acts rv">
+      <a class="v4btn v4btn--p" href="jobs.html">募集中の職種を見る<i aria-hidden="true"></i></a>
+      <a class="v4btn v4btn--s" href="people.html">PALで働く人を見る<i aria-hidden="true"></i></a>
+    </div>
+    <p class="v4entry__note">※ 現在、各求人の応募先URLは準備中です。採用担当の承認後、ボタンから直接応募できるようになります。</p>
+  </div>
+</section>
+
+</main>
+
+<footer class="ftr">
+  <div class="wrap">
+    <div class="ftr__top">
+      <div class="ftr__about">
+        <a class="logo" href="home.html" style="color:#fff"><span class="logo__mark" style="background:#fff;color:var(--navy-d)">PAL</span><span class="logo__txt">RECRUIT<small style="color:#a2a2a2">株式会社PAL 採用サイト</small></span></a>
+        <p>株式会社PAL｜DXソリューションカンパニー。「物流をコストから、戦略資産に。」を掲げ、分断された物流現場・システム・設備・データをつなぎ、物流DXの設計・実装・運用・改善までを担います。</p>
+        <dl class="ftr__info">
+          <dt>会社名</dt><dd>株式会社PAL</dd>
+          <dt>設立</dt><dd>2000年12月</dd>
+          <dt>代表</dt><dd>辻 有吾</dd>
+          <dt>資本金</dt><dd>9,000万円</dd>
+          <dt>従業員</dt><dd>120名<br>アルバイト・パートを含めると約1,600名</dd>
+          <dt>拠点</dt><dd>大阪本社 / 東京オフィス</dd>
+        </dl>
+      </div>
+      <div>
+        <h3>RECRUIT</h3>
+        <nav aria-label="採用サイト内ナビゲーション">
+          <a href="about.html">PALを知る</a>
+          <a href="work.html">仕事を知る</a>
+          <a href="career.html">キャリアパス</a>
+          <a href="people.html">社員インタビュー・1日の流れ</a>
+          <a href="jobs.html">募集要項</a>
+          <a href="faq.html">よくある質問</a>
+          <span class="applyoff">エントリー（準備中）</span>
+        </nav>
+      </div>
+      <div>
+        <h3>COMPANY</h3>
+        <nav aria-label="コーポレートサイトへのリンク">
+          <a href="https://www.pal-style.co.jp/about/mission/" target="_blank" rel="noopener">ミッション・バリュー</a>
+          <a href="https://www.pal-style.co.jp/about/message/" target="_blank" rel="noopener">トップメッセージ</a>
+          <a href="https://www.pal-style.co.jp/about/role/" target="_blank" rel="noopener">私たちの役割</a>
+          <a href="https://www.pal-style.co.jp/service/" target="_blank" rel="noopener">サービス・事業</a>
+          <a href="https://www.pal-style.co.jp/case/" target="_blank" rel="noopener">物流DX事例</a>
+          <a href="https://www.pal-style.co.jp/company/" target="_blank" rel="noopener">会社概要</a>
+          <a href="https://www.pal-style.co.jp/contact-service/" target="_blank" rel="noopener">お問い合わせ（サービスについて）</a>
+        </nav>
+      </div>
+    </div>
+    <div class="ftr__bottom">
+      <small>© 2026 PAL Co., Ltd.</small>
+      <small>株式会社PAL コーポレートサイト：<a href="https://www.pal-style.co.jp/" target="_blank" rel="noopener" style="color:#e2e2e2;text-decoration:underline;text-underline-offset:3px">www.pal-style.co.jp</a></small>
+    </div>
+  </div>
+</footer>
+<script src="../assets/js/app.js" defer></script>
+<script>
+/* ============================================================
+   ===== NEWTOP-D v1：表示を壊さないスクロール演出 =====
+   .rv は CSS 上は最初から見えている。ここで <html> に v4anim を
+   付けたときだけ隠れ、画面に入ると .in が付いて現れる。
+   ・JavaScript が動かない → v4anim が付かない → 全部見えたまま
+   ・監視が 1.2 秒たっても一度も発火しない（タブが隠れている、
+     ヘッドレス等）→ v4anim を外して全部表示に戻す
+   ・prefers-reduced-motion:reduce → 何もしない
+   opacity:0 のまま取り残される経路を作らない。
+   ============================================================ */
+(function(){
+  "use strict";
+  var root=document.documentElement;
+  if(window.matchMedia && matchMedia('(prefers-reduced-motion:reduce)').matches) return;
+  if(!('IntersectionObserver' in window)) return;
+  var t=[].slice.call(document.querySelectorAll('.rv'));
+  if(!t.length) return;
+  root.classList.add('v4anim');
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  },{threshold:.12, rootMargin:'0px 0px -6% 0px'});
+  t.forEach(function(el){ io.observe(el); });
+  setTimeout(function(){
+    if(!document.querySelector('.rv.in')) root.classList.remove('v4anim');
+  },1200);
+})();
+</script>
+</body>
+</html>
