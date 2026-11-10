@@ -14,7 +14,7 @@
    .av は初期状態で表示されており、JS が <html> に a4anim を付けた
    ときだけ隠れる。監視が1.2秒発火しなければ a4anim を外す。
 
-   現在のバージョン：20261113f
+   現在のバージョン：20261113g
    ===================================================================== */
 
 .a4{
@@ -299,7 +299,9 @@
 .a4 .hubfig__cap span{color:var(--a-mid);font-size:12px;margin-left:6px}
 @media(max-width:760px){
   /* 1672px の図が 375px に縮むと細部が読めないため、横にスクロールさせる */
-  .a4 .hubfig img{width:auto;height:auto;max-width:none;min-width:720px}
+  /* width:auto のままだと原寸(1672px)で描画され、縦が941pxになって長すぎる。
+     幅を720pxに固定し、高さを比率で追従させる。 */
+  .a4 .hubfig img{width:720px;height:auto;max-width:none;min-width:0}
   .a4 .hubfig__scroll{position:relative}
   .a4 .hubfig__scroll::after{content:"← 横にスクロールできます →";position:sticky;left:0;
     display:block;padding:7px 10px;font-size:11px;font-weight:700;color:var(--a-mid);
