@@ -3,7 +3,7 @@
    ---------------------------------------------------------------------
    【キャッシュ運用】読み込み側は必ず lightsurface.css?v=YYYYMMDDx の形で
    バージョンを付ける。中身を直したら v= を必ず上げる。
-   現在のバージョン：20261111k
+   現在のバージョン：20261111m
 
    【効く範囲】<body> に ls が付いたページだけ。
    読み込んでいるのは newtop-c-v2.html / home.html / about.html の3つだけで、
@@ -450,19 +450,23 @@
   display:block;font-size:10.5px;font-weight:700;letter-spacing:.15em;line-height:1.4;
   color:var(--ls-red);text-transform:uppercase;margin-bottom:12px;
 }
-.ls .pg__q{
-  display:block;font-size:clamp(16px,1.55vw,19px);font-weight:700;line-height:1.68;
-  letter-spacing:.02em;color:var(--ls-ink);
-}
-.ls .pg__a:hover .pg__q{color:var(--ls-red)}
-.ls .pg__meta{
-  display:block;margin-top:auto;padding-top:16px;border-top:1px solid var(--ls-line);
-}
+/* 並びは 職種ラベル → 氏名 → 所属・入社年 → 本人の言葉 → リンク。
+   社員紹介なので氏名を一番強く見せ、本人の言葉はその下に、
+   氏名より一段弱い級数・太さで置いて階層を付ける。 */
 .ls .pg__name{
-  display:block;font-size:15px;font-weight:700;letter-spacing:.06em;color:var(--ls-ink);
+  display:block;font-size:clamp(19px,1.9vw,23px);font-weight:700;line-height:1.35;
+  letter-spacing:.06em;color:var(--ls-ink);
 }
+.ls .pg__a:hover .pg__name{color:var(--ls-red)}
 .ls .pg__role{
-  display:block;margin-top:5px;font-size:12px;line-height:1.7;letter-spacing:.02em;color:var(--ls-mid);
+  display:block;margin-top:7px;font-size:12px;font-weight:400;line-height:1.7;
+  letter-spacing:.02em;color:var(--ls-mid);
+}
+/* 本人の言葉：氏名より小さく・細く。細い罫で区切って引用として読めるようにする */
+.ls .pg__q{
+  display:block;margin-top:auto;padding-top:16px;border-top:1px solid var(--ls-line);
+  font-size:clamp(14.5px,1.35vw,16px);font-weight:500;line-height:1.75;
+  letter-spacing:.02em;color:var(--ls-ink);
 }
 /* 右下の丸い矢印 */
 .ls .pg__go{
@@ -501,9 +505,9 @@
   .ls .pg__ph{min-height:132px}
   .ls .pg__b{padding-right:36px}
   .ls .pg__cat{margin-bottom:8px;font-size:10px}
-  .ls .pg__q{font-size:15.5px;line-height:1.6}
-  .ls .pg__meta{padding-top:12px}
-  .ls .pg__name{font-size:14px}
+  .ls .pg__name{font-size:18px;letter-spacing:.05em}
+  .ls .pg__role{margin-top:5px;font-size:11.5px}
+  .ls .pg__q{margin-top:12px;padding-top:12px;font-size:14.5px;line-height:1.7}
   .ls .pg__go{width:24px;height:24px;bottom:0}
   .ls .pg__more{padding:20px 0 4px}
 }
