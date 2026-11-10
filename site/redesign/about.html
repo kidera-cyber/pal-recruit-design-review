@@ -277,6 +277,30 @@
     targets.forEach(function(t){ io.observe(t); });
   } else { targets.forEach(function(t){ t.classList.add('is-in'); }); }
 })();
+/* ============================================================
+   ===== ABOUT-FIG v1：表示の保険 =====
+   .reveal は opacity:0 で始まり、上の IntersectionObserver が
+   is-in を付けて初めて見えるようになる。ところが描画が
+   バックグラウンド扱いになる環境（タブが隠れている、ヘッドレス、
+   スクリーンショット生成など）では監視が一度も発火せず、
+   本文が消えたまま残ることがある。
+   画面内にある最初の .reveal が 1.2 秒たっても表示されていなければ
+   監視が働いていないと判断して、全部表示に切り替える。
+   監視が正常に働いている場合は何もしないので、スクロール時の
+   動きはそのまま残る。
+   ============================================================ */
+(function(){
+  "use strict";
+  setTimeout(function(){
+    var first = document.querySelector('.reveal');
+    if(!first) return;
+    if(document.querySelector('.reveal.is-in')) return;   /* 監視は動いている */
+    var b = first.getBoundingClientRect();
+    if(b.top >= (window.innerHeight || 0) || b.bottom <= 0) return; /* まだ画面外 */
+    var t = document.querySelectorAll('.reveal');
+    for(var i=0;i<t.length;i++){ t[i].classList.add('is-in'); }
+  }, 1200);
+})();
 </script>
 </body>
 </html>
