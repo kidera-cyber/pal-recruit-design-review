@@ -28,7 +28,7 @@
      body に abt が付いたページにしか効かないので、他の64ページには影響しない。
      既存の .reveal / .is-in（system-h.css＋ページ内の IntersectionObserver）に
      乗せているため、JSの追加はしていない。 ===== -->
-<link rel="stylesheet" href="assets/css/about-figures.css?v=20261111f">
+<link rel="stylesheet" href="assets/css/about-figures.css?v=20261111g">
 </head>
 <body class="ls abt">
 <div class="proto-bar">【試作・非公開】ABOUT｜Field Editorialデザイン適用版｜<b>デザイン検証用プレビュー｜本番サイト未反映</b>・文言は本番about/index.htmlと完全同一</div>
@@ -299,6 +299,9 @@
     if(b.top >= (window.innerHeight || 0) || b.bottom <= 0) return; /* まだ画面外 */
     var t = document.querySelectorAll('.reveal');
     for(var i=0;i<t.length;i++){ t[i].classList.add('is-in'); }
+    /* そういう環境では transition も進まないので、遷移を使わず
+       最終状態へ直接飛ばす（about-figures.css の .af-shown） */
+    document.body.classList.add('af-shown');
   }, 1200);
 })();
 </script>

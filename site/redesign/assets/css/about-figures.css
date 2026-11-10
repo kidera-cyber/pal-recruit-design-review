@@ -3,7 +3,7 @@
    ---------------------------------------------------------------------
    【キャッシュ運用】読み込み側は about-figures.css?v=YYYYMMDDx の形で
    バージョンを付ける。中身を直したら v= を必ず上げる。
-   現在のバージョン：20261111f
+   現在のバージョン：20261111g
 
    【効く範囲】<body> に abt が付いたページだけ。読み込んでいるのは
    about.html の1ページのみなので、他の64ページには影響しない。
@@ -440,6 +440,30 @@
   .abt #crossover .xover__link{grid-template-columns:1fr;grid-template-areas:"map" "lp" "lt";row-gap:8px}
   .abt .xover__lmap{margin-bottom:2px}
 }
+
+/* =====================================================================
+   表示の保険が働いたときの最終状態
+   ---------------------------------------------------------------------
+   描画がバックグラウンド扱いになる環境では、is-in が付いても
+   transition が進まず opacity:0 のまま止まることがある。
+   about.html の保険スクリプトが body に af-shown を付けたときは、
+   遷移を使わず最終状態に直接飛ばす。
+   ===================================================================== */
+.abt.af-shown .reveal,
+.abt.af-shown .force4__i,
+.abt.af-shown .effects--row li,
+.abt.af-shown .fdeline__i,
+.abt.af-shown .xover__node,
+.abt.af-shown .xover__card{opacity:1!important;transform:none!important;transition:none!important}
+.abt.af-shown .force4__list::before,
+.abt.af-shown .fdeline::before,
+.abt.af-shown .xover__nodes::before,
+.abt.af-shown .xover__cards::before,
+.abt.af-shown .effects--row::before{transform:none!important;transition:none!important}
+.abt.af-shown .fdeline::after,
+.abt.af-shown .xover__cards::after,
+.abt.af-shown .fdeline__i:first-child::after,
+.abt.af-shown .xover__card:first-child::after{opacity:1!important;transition:none!important}
 
 /* =====================================================================
    動きを減らす設定では、線も項目も最初から出した状態にする
