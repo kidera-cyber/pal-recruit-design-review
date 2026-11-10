@@ -55,8 +55,6 @@
 
 /* ---- HERO：案Aベースの大判写真＋大胆タイポ ---- */
 .heroC{position:relative;overflow:hidden;isolation:isolate;background:#0b0c10;min-height:min(90vh,820px);display:flex;align-items:flex-end}
-.heroC__img{position:absolute;inset:0;background-image:url(../assets/images/dts-dock.jpg);background-size:cover;background-position:center;z-index:0}
-.heroC__scrim{position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(9,10,14,.1) 0%,rgba(9,10,14,.32) 48%,rgba(8,9,14,.9) 100%)}
 .heroC__wrap{position:relative;z-index:2;max-width:var(--maxw);margin:0 auto;padding:clamp(96px,13vh,150px) 24px clamp(44px,6vh,64px);width:100%}
 .heroC__eyebrow{display:flex;align-items:center;gap:14px;margin-bottom:24px;opacity:0;transform:translateY(10px);animation:cIn .7s ease forwards .05s}
 .heroC__eyebrow .ln{width:36px;height:2px;background:var(--red)}
@@ -85,9 +83,6 @@
 .hcstrip__v span{font-size:11.5px;font-weight:700;color:#c7c9d6;margin-left:4px}
 .hcstrip__k{display:block;font-size:11px;color:#9496ab;margin-top:6px;max-width:210px}
 @media(max-width:700px){.hcstrip__i{flex:1 1 100%;border-right:none;margin-right:0;margin-bottom:10px}}
-
-/* ---- Why PAL：編集見出し＋最小限SVGの併用 ---- */
-.hyb-flow{display:flex;border-top:1px solid var(--gray-150);margin-top:8px}
 .hyb-flow__i{flex:1;padding:24px 20px 24px 0;border-right:1px solid var(--gray-150);position:relative}
 .hyb-flow__i:last-child{border-right:none;padding-right:0}
 .hyb-flow__no{font-family:var(--font-en);font-weight:900;font-size:22px;color:var(--gray-300);display:block;margin-bottom:10px}
@@ -97,13 +92,10 @@
 .hyb-flow__ar{position:absolute;right:-13px;top:28px;width:26px;height:26px;display:flex;align-items:center;justify-content:center;background:#fff;z-index:1}
 .hyb-flow__ar svg{width:16px;height:16px}
 .hyb-flow__ar path{stroke:var(--gray-300);stroke-width:2;fill:none;stroke-dasharray:30;stroke-dashoffset:30;transition:stroke-dashoffset .9s ease, stroke .3s}
-.hyb-flow__ar.is-drawn path{stroke-dashoffset:0;stroke:var(--red)}
 @media(max-width:860px){
-  .hyb-flow{flex-direction:column}
   .hyb-flow__i{border-right:none;border-bottom:1px solid var(--gray-150);padding:20px 0}
   .hyb-flow__i:last-child{border-bottom:none}
-  .hyb-flow__ar{display:none}
-}
+  .hyb-flow__ar{display:none}}
 
 /* ---- 9職種：統合俯瞰図（目次インデックス＋ミニマップ連動） ---- */
 .hybrole{display:grid;grid-template-columns:1.3fr 1fr;gap:40px;align-items:start}
@@ -126,32 +118,35 @@
 .hybrole__maplinks{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
 @media(max-width:960px){
   .hybrole{grid-template-columns:1fr}
-  .hybrole__map{position:static}
-}
-
-/* ---- 相関図（コンパクト版） ---- */
-.hybx{border:1px solid var(--gray-150);padding:clamp(20px,3vw,32px);background:#fff}
+  .hybrole__map{position:static}}
 .hybx__row{display:flex;flex-wrap:wrap;gap:0;align-items:center;justify-content:center;margin-bottom:18px}
 .hybx__chip{font-size:13px;font-weight:700;padding:10px 16px;border:1px solid var(--gray-300);background:#fff;text-align:center}
 .hybx__ar{color:var(--red);font-weight:900;padding:0 10px}
 .hybx__note{font-size:12.5px;color:var(--gray-700);line-height:1.8;border-top:1px dashed var(--gray-300);padding-top:14px}
 .hybx__note b{color:var(--ink)}
 @media(max-width:700px){.hybx__row{flex-direction:column}.hybx__ar{transform:rotate(90deg);padding:6px 0}}
-
-/* ---- People：引用インデックス ---- */
-.hybquote{border-top:1px solid var(--gray-150)}
 .hybquote__i{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:22px 0;border-bottom:1px solid var(--gray-150);text-decoration:none;color:inherit;flex-wrap:wrap}
 .hybquote__i:hover .hybquote__q{color:var(--red)}
 .hybquote__q{font-size:clamp(15px,1.6vw,18px);font-weight:800;flex:1;min-width:260px}
 .hybquote__cat{font-family:var(--font-en);font-size:10.5px;color:var(--red);font-weight:900;display:block;margin-bottom:6px}
 
 .secC{padding:clamp(52px,8vh,84px) 0}
+
+/* ===== DEADCSS v1：下のルールは本文で使わなくなったので削除した。
+   ・.hybquote 系（旧 PEOPLE の7行一覧 → .pg のギャラリーに置換）
+   ・.hybx 系（旧 CROSSOVER の箱＋矢印 → .xn のネットワーク図に置換）
+   ・.hyb-flow 系（旧 Why PAL の3カード → B案デザインに置換）
+   ・.heroC__img / .heroC__scrim（FVを写真から動画に変更）
+   ・.is-drawn（対応するJSが無く、どこからも付与されない）
+   いずれもこのページ内 <style> だけの定義。旧C案 newtop-c.html は
+   同じ定義を自分の <style> に持っているため、そちらは変わらない。
+   復元は git 履歴 dbf5841 から。 ===== */
 </style>
 <!-- ===== LIGHTSURFACE v2：濃紺で埋めていた面を白・淡グレーにする。
      body に ls が付いたページだけに効く。共通CSSは変更していないので
      このファイルを読み込んでいない他ページには影響しない。
      元に戻すときは、この link と body の ls を外すだけでよい。 ===== -->
-<link rel="stylesheet" href="assets/css/lightsurface.css?v=20261111i">
+<link rel="stylesheet" href="assets/css/lightsurface.css?v=20261111k">
 </head>
 <body class="pv2 ls">
 

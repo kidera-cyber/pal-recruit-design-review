@@ -136,7 +136,7 @@
 .pflow__no{font-family:var(--font-en);font-weight:900;color:var(--red);font-size:13px;margin-bottom:10px;display:block}
 .pflow__i b{display:block;font-size:15.5px;margin-bottom:8px}
 .pflow__i p{font-size:13px;color:var(--gray-700);margin:0;line-height:1.8}
-.pflow__ar{flex:none;width:34px;display:flex;align-items:center;justify-content:center;color:var(--gray-300)}
+.pflow__ar{flex:none;width:34px;display:flex;align-items:center;justify-content:center;color:var(--gray-500)}
 .pflow__ar svg{width:22px;height:22px}
 .pflow__ar path{stroke:var(--gray-300);stroke-width:2;fill:none;stroke-dasharray:40;stroke-dashoffset:40;transition:stroke-dashoffset 1s ease, stroke 0.3s}
 .pflow__ar.is-drawn path{stroke-dashoffset:0;stroke:var(--red)}

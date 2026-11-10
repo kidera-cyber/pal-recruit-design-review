@@ -11,7 +11,11 @@
   --ink:#1a1a1a;
   --gray-900:#2a2a2e;
   --gray-700:#53545a;
-  --gray-500:#80818a;
+  /* ===== A11Y v8：#80818a は白地 3.87:1／淡グレー地 3.65:1 で AA（4.5:1）に届かない。
+     補助文字という役割はそのままに、コーポレートサイトの補助文字色 #6B6D81
+     （白地 5.09:1／淡グレー地 4.58:1）へ置き換える。明るい面でしか使っていないため、
+     濃くして読みにくくなる箇所はない。 ===== */
+  --gray-500:#6b6d81;
   --gray-300:#c9cacf;
   --gray-150:#e9e9ec;
   --gray-100:#f3f3f5;
@@ -172,7 +176,10 @@ button{font:inherit;cursor:pointer;background:none;border:none;color:inherit}
 .why-flow__ic{width:26px;height:26px;color:var(--red);display:block;margin-bottom:10px}
 .why-flow__i b{display:block;font-size:15px;margin-bottom:6px}
 .why-flow__i p{font-size:13px;color:var(--gray-700)}
-.why-flow__arrow{display:flex;align-items:center;justify-content:center;color:var(--gray-300);font-size:20px}
+/* ===== A11Y v8：--gray-300(#c9cacf) は罫線の色。文字に使うと白地 1.64:1 になるため、
+   文字として表示される2箇所だけ補助文字色に置き換える。
+   トークン自体は変えないので、枠線・区切り線の見え方は変わらない。 ===== */
+.why-flow__arrow{display:flex;align-items:center;justify-content:center;color:var(--gray-500);font-size:20px}
 .why-flow__note{margin-top:18px;background:var(--navy-d);color:#fff;border-radius:var(--radius);padding:16px 20px;font-size:13px;display:flex;align-items:center;gap:10px}
 .why-flow__note b{color:#ff8186;font-weight:800}
 @media(max-width:860px){
@@ -201,7 +208,8 @@ button{font:inherit;cursor:pointer;background:none;border:none;color:inherit}
 .role-chip--v2__one{font-size:12.5px;color:var(--gray-700);margin-top:6px}
 .rc2__st{align-self:flex-start;font-size:10.5px;font-weight:800;color:#fff;background:var(--red);padding:3px 10px;border-radius:999px;white-space:nowrap}
 .rc2__st--off{background:var(--gray-300);color:var(--gray-700)}
-.rc2__st--soon{background:#b4790b}
+/* ===== A11Y v8：白文字を載せるバッジ。#b4790b は 3.7:1 なので濃くする（5.55:1）。 ===== */
+.rc2__st--soon{background:#8a5c06}
 .role-chip--v2__foot{display:flex;align-items:center;justify-content:space-between;gap:10px;padding-top:12px;border-top:1px solid var(--gray-150)}
 .role-chip--v2__go{font-size:12.5px;font-weight:700;color:var(--ink);display:flex;align-items:center;gap:6px}
 .role-chip--v2__apply{font-size:12px;font-weight:700;color:var(--red)}
@@ -313,12 +321,14 @@ button{font:inherit;cursor:pointer;background:none;border:none;color:inherit}
 .ftr__top{display:grid;grid-template-columns:1.6fr 1fr 1fr;gap:34px}
 .ftr__about p{margin-top:14px;color:#a7a9ba;line-height:1.8;font-size:13px}
 .ftr__info{margin-top:18px;display:grid;grid-template-columns:auto 1fr;gap:4px 14px;font-size:12.5px}
-.ftr__info dt{color:#777a90}
-.ftr h3{font-family:var(--font-en);font-size:12px;letter-spacing:.08em;color:#777a90;margin-bottom:14px}
+/* ===== A11Y v8：濃紺地（#11141F）で #777a90 は 4.35:1。少し明るくして AA を満たす。 ===== */
+.ftr__info dt{color:#8a8da2}
+.ftr h3{font-family:var(--font-en);font-size:12px;letter-spacing:.08em;color:#8a8da2;margin-bottom:14px}
 .ftr nav{display:flex;flex-direction:column;gap:10px}
 .ftr nav a,.ftr .applyoff{color:#d4d5e0}
 .ftr nav a:hover{color:#fff}
-.ftr__bottom{margin-top:40px;padding-top:20px;border-top:1px solid rgba(255,255,255,.08);display:flex;flex-wrap:wrap;gap:8px 24px;color:#777a90;font-size:12px}
+/* ===== A11Y v8：コピーライト行も濃紺地で 4.35:1 だったので明るくする。 ===== */
+.ftr__bottom{margin-top:40px;padding-top:20px;border-top:1px solid rgba(255,255,255,.08);display:flex;flex-wrap:wrap;gap:8px 24px;color:#8a8da2;font-size:12px}
 @media(max-width:760px){.ftr__top{grid-template-columns:1fr}}
 
 /* ---------- sticky side CTA ---------- */
@@ -364,7 +374,8 @@ button{font:inherit;cursor:pointer;background:none;border:none;color:inherit}
 .fdeline__i{background:var(--gray-50);border-radius:var(--radius);padding:18px;text-align:center}
 .fdeline__i--key{background:var(--red);color:#fff}
 .fdeline__en{display:block;font-size:11px;font-weight:700;margin-bottom:6px;color:var(--gray-500)}
-.fdeline__i--key .fdeline__en{color:#ffd3d4}
+/* ===== A11Y v8：赤いチップの上の英字。#ffd3d4 は 4.13:1 なので白（5.87:1）にする。 ===== */
+.fdeline__i--key .fdeline__en{color:#fff}
 .fdeline__i b{font-size:14px}
 .transnote{font-size:13px;color:var(--gray-700);background:var(--gray-50);padding:16px;border-radius:var(--radius)}
 
@@ -416,7 +427,7 @@ button{font:inherit;cursor:pointer;background:none;border:none;color:inherit}
 .wsw__st .en{color:var(--red);font-weight:800;display:block;margin-bottom:4px}
 .wsw{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
 .wsw__item{background:#fff;border:1px solid var(--gray-150);border-radius:var(--radius);padding:20px}
-.wsw__no{color:var(--gray-300);font-weight:800;font-size:12px}
+.wsw__no{color:var(--gray-500);font-weight:800;font-size:12px}
 .wsw__ic{width:28px;height:28px;color:var(--red);margin:8px 0}
 .wsw__h{display:block;font-size:14.5px;margin-bottom:6px}
 .wsw__t{font-size:13px;color:var(--gray-700)}
@@ -600,12 +611,16 @@ button{font:inherit;cursor:pointer;background:none;border:none;color:inherit}
 .fits3 li{background:var(--gray-100);padding:7px 14px;border-radius:999px;font-size:12.5px}
 .chap__lead{font-size:13.5px;color:var(--gray-700);max-width:760px;margin-bottom:18px}
 .chap__lead--end{margin-top:20px}
+/* ===== A11Y v8：.chap--msg は濃い面。中の英字ラベルは補助文字色（#6B6D81）だと
+   3.56〜3.61:1 になるため、濃い面用の明るい補助色にする。 ===== */
 .chap--msg{text-align:center;background:var(--black);color:#fff}
+.chap--msg .chap__en{color:#8a8da2}
 .msg3__q{color:#9496ab;font-size:13px;margin-bottom:14px}
 .msg3{font-size:clamp(19px,2.6vw,27px);font-weight:800;line-height:1.6;max-width:720px;margin:0 auto 18px}
 .msg3 b{color:#ff8186}
 .msg3__t{max-width:720px;margin:0 auto 14px;color:#c7c9d6;font-size:13.5px}
-.msg3__by{margin-top:14px;color:#777a90;font-size:12.5px}
+/* ===== A11Y v8：濃い面に乗る署名。#777a90 は 4.28〜4.35:1 なので明るくする。 ===== */
+.msg3__by{margin-top:14px;color:#8a8da2;font-size:12.5px}
 
 .ch{padding:48px 0}
 .ch--soft{background:var(--gray-50)}
@@ -830,3 +845,27 @@ button{font:inherit;cursor:pointer;background:none;border:none;color:inherit}
   .entry__ctas{flex-direction:column;align-items:stretch}
   .entry__ctas .btn{justify-content:center}
 }
+
+/* =====================================================================
+   A11Y v8：濃い面に乗る PALレッドの小さな文字
+   ---------------------------------------------------------------------
+   #CF131B は濃紺（#11141F／#1C2030）や黒に近い面の上で 2.9〜3.5:1 となり、
+   AA（小さい文字 4.5:1／大きい文字 3:1）に届かない。
+   同系の明るい赤 #FF8A8E（#11141F 上で 5.2:1）に置き換える。
+   明るい面の赤は変えていない。
+   詳細度は、後から読み込まれる newtop-system.css やページ内 <style> に
+   負けないよう、親クラスを1つ足した形にしている。
+   ===================================================================== */
+.sec--navy .roadmap__en,
+.sec--navy h2 em,
+.sec--navy h2 span,
+.roledg__panel .roledg__panel__cat,
+.rolemap__stage--support .rolemap__stage-h .en,
+.hybrole__map .hybrole__mapcat,
+.whonote .textlink,
+.heroB__copy .heroflags-caption .hf-dot,
+.heroC__wrap .heroflags-caption .hf-dot{color:#ff8a8e}
+
+/* 9職種一覧の番号。--gray-300 は罫線の色で、白地では 1.54〜1.64:1 にしかならない。
+   旧C案のページ内 <style> に負けないよう親クラスを足している。 */
+.hybrole__idx .hybrole__no{color:var(--gray-500)}

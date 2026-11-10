@@ -3,7 +3,7 @@
    ---------------------------------------------------------------------
    【キャッシュ運用】読み込み側は必ず lightsurface.css?v=YYYYMMDDx の形で
    バージョンを付ける。中身を直したら v= を必ず上げる。
-   現在のバージョン：20261111i
+   現在のバージョン：20261111k
 
    【効く範囲】<body> に ls が付いたページだけ。
    読み込んでいるのは newtop-c-v2.html / home.html / about.html の3つだけで、
@@ -87,7 +87,7 @@
 }
 .ls .hybrole__row:hover{background:var(--ls-soft2)}
 .ls .hybrole__row.is-active{background:var(--ls-soft);border-left-color:var(--ls-red)}
-.ls .hybrole__no{color:var(--ls-mid)}
+/* 9職種の番号色も共通CSS側（A11Y v8）で直したため、ここでの指定は不要 */
 .ls .hybrole__ja{color:var(--ls-ink)}
 .ls .hybrole__row.is-active .hybrole__ja{color:var(--ls-red)}
 .ls .hybrole__one{color:var(--ls-mid)}
@@ -164,13 +164,8 @@
 /* 矢印は装飾（aria-hidden）だが、白地で 2.53:1 と薄すぎたので AA を満たす濃さにする */
 .ls .roadmap__stop:not(:last-child) .roadmap__arrow{color:var(--ls-mid)}
 
-/* =====================================================================
-   フッターの補助ラベル
-   共通の style.css が #777A90 を使っており、濃紺地（#11141F）で 4.35:1 と
-   AA（4.5:1）にわずかに届かない。共通CSSは他の62ページも使うため触らず、
-   このファイルを読み込む3ページだけ少し明るくする（5.61:1）。
-   ===================================================================== */
-.ls .ftr dt,.ls .ftr small,.ls footer dt,.ls footer small{color:#8A8DA2}
+/* フッターの補助ラベルの明るさも、共通CSS側（A11Y v8）で全ページ直したので
+   ここでの上書きは不要になった。 */
 
 /* =====================================================================
    D. ABOUT：ハブ帯と Our Values
@@ -210,18 +205,11 @@
 .ls #values .btn--onnavy:hover{background:var(--ls-red-tint)}
 
 /* =====================================================================
-   E. 明色面の補助テキスト（このファイルを読む3ページのみ）
-   共通CSSの --gray-500（#80818A）は白地で 3.65:1、--ls-soft 地で 3.29:1 と
-   AA（4.5:1）に届かない。共通CSSは他の62ページも使うため触らず、
-   ここで同じ色役割を #6B6D81（白地 5.09:1／淡グレー地 4.58:1）に置き換える。
+   E. 明色面の補助テキスト
+   ここにあった上書き（--gray-500 相当の色・赤チップ上の英字・フッター見出し）は、
+   共通CSS側（style.css の A11Y v8）で全ページまとめて直したため削除した。
+   同じ値を二重に持たないようにしている。
    ===================================================================== */
-.ls .note,
-.ls .force4__en,.ls .force4__k,.ls .force4__note,
-.ls .fdeline__en,.ls .xover__note,.ls .num2__s{color:var(--ls-mid)}
-/* 赤いチップの上の英字 #FFD3D4 は 4.13:1 なので白にする（5.87:1） */
-.ls .fdeline__i--key .fdeline__en{color:#fff}
-/* フッターの見出し #777A90 は濃紺地で 4.35:1 */
-.ls .ftr h3{color:#8A8DA2}
 
 /* =====================================================================
    検証用の帯（本番には出ない）
@@ -489,16 +477,21 @@
 .ls .pg__a:hover .pg__go,.ls .pg__more:hover .pg__go{border-color:var(--ls-red);background:var(--ls-red)}
 .ls .pg__a:hover .pg__go::before,.ls .pg__more:hover .pg__go::before{border-color:#fff}
 
-/* 8枠目：社員ではなく一覧への導線。枠は持たせない */
+/* 8枠目：社員ではなく一覧への導線。
+   人物カードと同じ高さに引き伸ばすと「空のカード」に見えるため、
+   行の上端に寄せた小さなリンクにする。矢印も文字の横に置く。 */
+.ls .pg__i--more{align-items:flex-start}
 .ls .pg__more{
-  display:flex;flex-direction:column;justify-content:center;gap:12px;
-  width:100%;padding:26px 40px 24px 0;position:relative;text-decoration:none;color:inherit;
+  display:grid;grid-template-columns:auto auto;grid-template-areas:"k k" "t g";
+  justify-content:start;align-content:start;gap:10px 14px;
+  width:auto;padding:26px 0 0;position:relative;text-decoration:none;color:inherit;
 }
+.ls .pg__more-k{grid-area:k}
 .ls .pg__more-t{
-  font-size:clamp(15px,1.4vw,17px);font-weight:700;letter-spacing:.02em;color:var(--ls-ink);
+  grid-area:t;font-size:clamp(15px,1.4vw,17px);font-weight:700;letter-spacing:.02em;color:var(--ls-ink);
 }
 .ls .pg__more:hover .pg__more-t{color:var(--ls-red)}
-.ls .pg__more .pg__go{bottom:auto;top:50%;transform:translateY(-50%)}
+.ls .pg__more .pg__go{grid-area:g;position:static;transform:none;align-self:center;right:auto;bottom:auto}
 
 @media(max-width:860px){
   .ls .pg{grid-template-columns:1fr;gap:0;margin-top:24px}
@@ -512,5 +505,5 @@
   .ls .pg__meta{padding-top:12px}
   .ls .pg__name{font-size:14px}
   .ls .pg__go{width:24px;height:24px;bottom:0}
-  .ls .pg__more{padding:22px 36px 20px 0}
+  .ls .pg__more{padding:20px 0 4px}
 }
