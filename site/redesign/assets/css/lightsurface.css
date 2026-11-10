@@ -3,7 +3,7 @@
    ---------------------------------------------------------------------
    【キャッシュ運用】読み込み側は必ず lightsurface.css?v=YYYYMMDDx の形で
    バージョンを付ける。中身を直したら v= を必ず上げる。
-   現在のバージョン：20261111g
+   現在のバージョン：20261111i
 
    【効く範囲】<body> に ls が付いたページだけ。
    読み込んでいるのは newtop-c-v2.html / home.html / about.html の3つだけで、
@@ -341,86 +341,92 @@
 }
 
 /* =====================================================================
-   XOVER2 v1：CROSSOVER の相関図
+   XNET v1：CROSSOVER の相関図（Editorial Network）
    ---------------------------------------------------------------------
-   白い箱3つ＋赤い双方向矢印（.hybx）をやめ、
-   ・3領域を同じ大きさ・同じ構成の見出しブロックとして等間隔に並べ（対等）
-   ・その上に細い線を3本引いて1点で交差させ（独立しつつ交わる）
-   ・交差点だけを PALレッドの小さなノードにする（接点）
-   という構成にした。枠線・影・アニメーションは使わない。
-   赤は交点とホバー時だけに限定し、残りは罫線と余白で見せる。
+   「3領域から1点へ立ち上がる線」をやめ、3領域を三角の頂点に等距離で置き、
+   各ペアを中心側へふくらむ曲線で結ぶネットワークにした。
+   ・閉じた輪なので、起点・頂点・上下関係という読み方ができない
+   ・3本の曲線が最接近する中心のすき間に、小さな赤い接点を置く
+   ・左に見出しと説明文、右に図の2カラムにして空白を詰め、
+     見出し・図解・説明文を1つのまとまりに見せる
+   ・SVGは縦横比を保つ（preserveAspectRatio 既定）ので円が歪まない。
+     文字はすべてHTMLなので、拡大しても滲まず、読み上げにも対応する
+   色：線 #C2CBE0 ／ 頂点 #FFFFFF＋#A9B4D0 ／ 接点 #CF131B
+       主文字 #262946 ／ 補助 #6B6D81
    ===================================================================== */
-.ls .xv{max-width:1080px;margin:0 auto}
+.ls .xn{
+  display:grid;grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr);
+  gap:clamp(28px,4vw,64px);align-items:center;
+}
+.ls .xn__head{max-width:460px}
+.ls .xn__title{
+  font-size:clamp(21px,2.1vw,29px);font-weight:700;line-height:1.55;letter-spacing:.02em;
+  color:var(--ls-ink);margin:0;
+}
+.ls .xn__note{
+  margin:clamp(18px,2vw,26px) 0 0;padding-top:18px;border-top:1px solid var(--ls-line);
+  font-size:13px;line-height:2;color:var(--ls-mid);
+}
+.ls .xn__note b{color:var(--ls-ink);font-weight:700}
+.ls .xn__link{margin:14px 0 0}
 
-/* --- 中央の接点に集まる3本の線と、それを横切る細い罫 --- */
-.ls .xv__stage{position:relative;width:100%}
-.ls .xv__art{
-  display:block;width:100%;height:clamp(96px,11vw,150px);margin:0 auto;
+/* --- 図：三角のネットワーク ---
+   ラベルは絶対配置にせず、グリッドで 上／図／左下・右下 に置く。
+   余分な空白が出ず、幅が変わっても図と文字がずれない。 */
+.ls .xn__fig{min-width:0}
+.ls .xn__stage{
+  display:grid;grid-template-columns:1fr 1fr;
+  grid-template-areas:"a a" "art art" "b c";
+  width:100%;max-width:620px;margin:0 auto;
 }
-/* 交点のノード。SVGは横に引き伸ばすので、真円はこちらで描く */
-.ls .xv__node{
-  position:absolute;left:50%;top:33.3%;transform:translate(-50%,-50%);
-  width:9px;height:9px;border-radius:50%;background:var(--ls-red);
+.ls .xn__art{grid-area:art;display:block;width:100%;height:auto;margin:6px 0 2px}
+.ls .xn__fields{display:contents;list-style:none;margin:0;padding:0}
+.ls .xn__f{margin:0;justify-self:center;max-width:92%}
+.ls .xn__f--a{grid-area:a;text-align:center;max-width:64%}
+.ls .xn__f--b{grid-area:b;text-align:left}
+.ls .xn__f--c{grid-area:c;text-align:right}
+.ls .xn__en{
+  display:block;font-size:10px;font-weight:700;letter-spacing:.13em;line-height:1.5;
+  color:var(--ls-mid);text-transform:uppercase;margin-bottom:7px;
 }
-.ls .xv__node::before{
-  content:"";position:absolute;inset:-9px;border-radius:50%;
-  border:1px solid rgba(207,19,27,.26);
+.ls .xn__ja{
+  display:block;font-size:clamp(16px,1.45vw,19px);font-weight:700;line-height:1.5;
+  letter-spacing:.02em;color:var(--ls-ink);
 }
-
-/* --- 3領域：カードにせず、罫線と余白だけで並べる --- */
-.ls .xv__fields{
-  list-style:none;margin:0;padding:0;
-  display:grid;grid-template-columns:repeat(3,1fr);gap:0;
-}
-.ls .xv__f{
-  position:relative;margin:0;padding:26px 32px 4px;text-align:center;
-}
-/* 線の終点と見出しをつなぐ小さな点 */
-.ls .xv__dot{
-  position:absolute;top:-4px;left:50%;transform:translateX(-50%);
-  width:7px;height:7px;border-radius:50%;background:#C2CBE0;
-}
-.ls .xv__en{
-  display:block;font-size:10.5px;font-weight:700;letter-spacing:.14em;line-height:1.6;
-  color:var(--ls-mid);text-transform:uppercase;margin-bottom:10px;
-}
-.ls .xv__ja{
-  display:block;font-size:clamp(16px,1.5vw,19px);font-weight:700;letter-spacing:.03em;
-  line-height:1.5;color:var(--ls-ink);
-}
-.ls .xv__one{
-  display:block;margin-top:8px;font-size:12.5px;line-height:1.8;letter-spacing:.02em;
+.ls .xn__one{
+  display:block;margin-top:7px;font-size:12.5px;line-height:1.75;letter-spacing:.02em;
   color:var(--ls-mid);
 }
 
-/* --- 注記とABOUTリンク：図の意味を補う位置に、細い罫で続ける --- */
-.ls .xv__note{
-  max-width:760px;margin:clamp(28px,3.4vw,40px) auto 0;
-  padding-top:18px;border-top:1px solid var(--ls-line);
-  font-size:12.5px;line-height:2;color:var(--ls-mid);text-align:center;
+@media(max-width:960px) and (min-width:861px){
+  .ls .xn{grid-template-columns:1fr;gap:28px}
+  .ls .xn__head{max-width:none}
 }
-.ls .xv__note b{color:var(--ls-ink);font-weight:700}
-.ls .xv__note .textlink{margin-left:6px;white-space:nowrap}
-
 @media(max-width:860px){
-  /* 図は小さく中央に置き、3領域は縦に積む。
-     縦の細罫でつなぎ、真ん中に赤い接点を置いて「交わる」関係を保つ。 */
-  .ls .xv__stage{width:min(272px,74%);margin:0 auto}
-  .ls .xv__art{width:100%;height:100px;margin-bottom:4px}
-  .ls .xv__fields{grid-template-columns:1fr;position:relative;padding-left:26px}
-  /* 3領域を1本の縦罫でつなぐ。3つとも同じ点にして、どれかを特別扱いしない。 */
-  .ls .xv__fields::before{
-    content:"";position:absolute;left:3px;top:22px;bottom:22px;width:1px;background:#C2CBE0;
+  /* スマートフォンはPCの図を縮めず、専用の組みに切り替える。
+     図は小さく中央に置き、3領域は縦に並べて1本の細罫でつなぐ。
+     3つの点はすべて同じ扱いで、どれかを強調しない。 */
+  .ls .xn{grid-template-columns:1fr;gap:24px}
+  .ls .xn__head{max-width:none}
+  .ls .xn__title{font-size:clamp(19px,5.2vw,23px)}
+  .ls .xn__stage{display:block;max-width:none}
+  .ls .xn__art{width:min(228px,64%);margin:0 auto 10px}
+  .ls .xn__fields{display:block;position:relative;padding-left:26px}
+  .ls .xn__fields::before{
+    content:"";position:absolute;left:3px;top:20px;bottom:20px;width:1px;background:#C2CBE0;
   }
-  .ls .xv__f{text-align:left;padding:16px 0}
-  .ls .xv__f + .xv__f{border-top:1px solid var(--ls-line)}
-  .ls .xv__dot{
-    top:22px;left:-26px;transform:none;width:7px;height:7px;background:#C2CBE0;
+  .ls .xn__f{position:relative;max-width:none;justify-self:auto;
+    text-align:left;padding:15px 0}
+  .ls .xn__f + .xn__f{border-top:1px solid var(--ls-line)}
+  .ls .xn__f::before{
+    content:"";position:absolute;left:-26px;top:21px;width:7px;height:7px;
+    border-radius:50%;background:#FFFFFF;border:1px solid #A9B4D0;
   }
-  .ls .xv__en{margin-bottom:6px}
-  .ls .xv__note{text-align:left;margin-top:26px}
-  .ls .xv__note .textlink{white-space:normal}
+  .ls .xn__en{margin-bottom:5px}
+  .ls .xn__ja{font-size:16.5px}
+  .ls .xn__note{font-size:12.5px}
 }
+
 
 /* =====================================================================
    PGAL v1：PEOPLE / REAL VOICES の人物ギャラリー
