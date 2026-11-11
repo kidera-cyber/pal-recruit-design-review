@@ -246,3 +246,8 @@
 .a7 .p4num > div:nth-child(2) .p4num__v{color:var(--p-red)}
 /* .p4sub span{display:block} が後勝ちしてバッジが全幅に伸びるのを打ち消す */
 .a7 .p4sub .p4sub__tag{display:inline-block;width:auto}
+
+/* ===== ABOUT D5 / NOTE LINK v2 START：注記内リンクをリンクと分かる見た目にする ===== */
+.a7 .p4note a{color:var(--p-mid);text-decoration:underline;text-underline-offset:2px}
+.a7 .p4note a:hover{color:var(--p-red)}
+/* ===== ABOUT D5 / NOTE LINK v2 END ===== */

@@ -1,0 +1,220 @@
+/* =====================================================================
+   WORK-D2 v1：WORK 刷新版D2（職種の伝え方を組み替えた新規プレビュー）
+   ---------------------------------------------------------------------
+   【効く範囲】<body> に w5 が付いたページだけ（work-d2.html の1枚）。
+   work.html / work-d.html / ABOUT各版 / 共通CSS には一切影響しない。
+
+   【D案から変えたところ】
+   ・職種パネルの順番を「どんな仕事か → 何を担当するのか →
+     この仕事の面白さ → どんな人と働くのか → どんな募集があるか」に揃えた。
+   ・一言の下に、その職種を1文で言い切る見出し（旧 rdeep__h）を上げた。
+   ・「主な仕事」は代表3項目を先に見せ、残りは折りたたみの中へ。
+   ・折りたたみの見出しを職種ごとの言葉に変え、9個並ぶ単調さを避けた。
+   ・職種アイコンを大きく使い、どの職種を見ているかが分かるようにした。
+
+   【TOPとの整合】home.html の実測値。コンテナ1180px、
+   英字ラベル11.5px w700 #262946、見出し29px w700 lh1.55、
+   リード15px lh1.8、セクション余白104px、白と#F2F3F6の交互、
+   ボタンは .btn--ghost を白地・赤枠・赤文字に。
+
+   【ABOUTと作り分ける】ABOUT D5 は「2本のレール」「3点接続」「数字」。
+   WORK D2 は「4つの流れ＋支える層」と「左に大アイコン・右に2段組」。
+
+   【表示の原則】隠す指定は .w5anim 配下だけ。JS が無くても本文は見える。
+
+   現在のバージョン：20261118b
+   ===================================================================== */
+
+.w5{
+  --k-red:#CF131B; --k-red-t:#FCEEF0;
+  --k-ink:#262946; --k-mid:#6B6D81; --k-sub:#53545A;
+  --k-bg:#FFFFFF; --k-g1:#F2F3F6;
+  --k-line:#DAE1F2; --k-line2:#E7EBF4;
+  --k-ease:cubic-bezier(.2,.7,.2,1);
+}
+
+/* ── 動きの土台 ── */
+.w5anim .w5 .kv{opacity:0;transform:translateY(12px);
+  transition:opacity .7s ease,transform .7s var(--k-ease)}
+.w5anim .w5 .kv.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){
+  .w5anim .w5 .kv{opacity:1!important;transform:none!important;transition:none!important}
+}
+
+/* ── セクション（home.html 準拠） ── */
+.w5 #overview.sec{background:var(--k-bg)}
+.w5 #why.sec{background:var(--k-g1)}
+.w5 #roles.sec{background:var(--k-bg)}
+.w5 #overview.sec,.w5 #why.sec,.w5 #roles.sec{padding-block:clamp(56px,7vw,104px)}
+.w5 #overview .slabel,.w5 #roles .slabel{
+  font-size:11.5px;font-weight:700;letter-spacing:.16em;color:var(--k-ink);
+  text-transform:uppercase;margin-bottom:10px;padding-left:18px}
+.w5 #overview .stitle,.w5 #roles .stitle{
+  font-size:clamp(22px,2.6vw,29px)!important;font-weight:700;line-height:1.55;
+  letter-spacing:.02em;color:var(--k-ink)}
+.w5 #overview .slead,.w5 #roles .slead{
+  margin-top:14px;font-size:15px;line-height:1.8;color:var(--k-sub);max-width:70ch}
+.w5 .btn--ghost{display:inline-flex;align-items:center;gap:10px;
+  background:var(--k-bg);color:var(--k-red);border:1px solid var(--k-red);
+  border-radius:9999px;padding:16px 20px 16px 30px;
+  font-size:15.5px;font-weight:500;letter-spacing:.03em;text-decoration:none;
+  transition:background-color .2s}
+.w5 .btn--ghost:hover{background:var(--k-red-t)}
+.w5 .btn--ghost .btn__ico{color:var(--k-red);font-size:11px}
+
+/* =====================================================================
+   冒頭の全体像（D案から維持）
+   ===================================================================== */
+.w5 .wmap{margin:clamp(28px,3.6vw,44px) 0 0}
+.w5 .wmap__flow{list-style:none;margin:0;padding:30px 0 0;position:relative;
+  display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0}
+.w5 .wmap__flow::before{content:"";position:absolute;left:10px;right:calc(25% - 10px);top:10px;
+  height:2px;background:var(--k-red);opacity:.4;
+  transform-origin:left center;transition:transform 1.1s var(--k-ease) .2s}
+.w5anim .w5 .wmap__flow::before{transform:scaleX(0)}
+.w5anim .w5 .wmap__flow.in::before{transform:scaleX(1)}
+.w5 .wmap__st{position:relative;padding:0 clamp(14px,2vw,26px) 0 0}
+.w5 .wmap__st::before{content:"";position:absolute;left:0;top:-30px;width:20px;height:20px;
+  border-radius:50%;background:var(--k-bg);border:2px solid var(--k-red)}
+.w5 .wmap__st--loop::before{background:radial-gradient(circle,var(--k-red) 0 4px,#fff 4px)}
+.w5 .wmap__no{display:block;font-family:var(--font-en);font-size:10.5px;font-weight:700;
+  letter-spacing:.14em;color:var(--k-mid);margin:0 0 7px}
+.w5 .wmap__h{display:block;margin:0 0 14px;font-size:clamp(15px,1.8vw,18px);font-weight:700;
+  line-height:1.5;letter-spacing:.02em;color:var(--k-ink)}
+.w5 .wmap__t{margin:0;font-size:12.5px;line-height:1.85;color:var(--k-mid)}
+.w5 .wmap__jobs{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:1px}
+.w5 .wmap__jobs a{display:flex;align-items:center;gap:9px;padding:9px 0;
+  font-size:13px;font-weight:700;line-height:1.45;letter-spacing:.02em;
+  color:var(--k-ink);text-decoration:none;border-top:1px solid var(--k-line2);transition:color .2s}
+.w5 .wmap__jobs li:first-child a{border-top:1px solid var(--k-line)}
+.w5 .wmap__jobs a:hover{color:var(--k-red)}
+.w5 .wmap__jobs svg{flex:none;width:19px;height:19px;color:var(--k-red)}
+.w5 .wmap__jobs a::after{content:"";margin-left:auto;flex:none;width:6px;height:6px;
+  border-top:1.4px solid var(--k-mid);border-right:1.4px solid var(--k-mid);transform:rotate(45deg)}
+.w5 .wmap__base{display:flex;align-items:center;flex-wrap:wrap;gap:12px;
+  margin:clamp(22px,3vw,30px) 0 0;padding:clamp(15px,2vw,19px) clamp(16px,2.2vw,24px);
+  background:var(--k-g1);border-left:3px solid var(--k-ink);
+  font-size:13.5px;line-height:1.85;color:var(--k-ink)}
+.w5 .wmap__base .en{font-family:var(--font-en);font-size:10.5px;font-weight:700;
+  letter-spacing:.14em;color:var(--k-mid)}
+.w5 .wmap__base a{display:inline-flex;align-items:center;gap:8px;color:var(--k-red);font-weight:700;
+  text-decoration:none;border-bottom:1px solid currentColor;padding-bottom:2px}
+.w5 .wmap__base svg{flex:none;width:19px;height:19px;color:var(--k-red)}
+@media(max-width:980px){
+  .w5 .wmap__flow{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:34px;padding-top:0}
+  .w5 .wmap__flow::before{display:none}
+  .w5 .wmap__st{padding:30px 18px 0 0}
+  .w5 .wmap__st::before{top:0}
+}
+@media(max-width:600px){
+  .w5 .wmap__flow{grid-template-columns:minmax(0,1fr);padding:0 0 0 34px;row-gap:26px}
+  .w5 .wmap__st{padding:0}
+  .w5 .wmap__st::before{left:-34px;top:2px;width:17px;height:17px}
+}
+
+/* =====================================================================
+   職種パネル：どんな仕事か → 担当 → 面白さ → 誰と働くか → 募集
+   ===================================================================== */
+.w5 .w5top{display:grid;grid-template-columns:auto minmax(0,1fr);
+  gap:clamp(16px,2.4vw,28px);align-items:start;
+  padding-bottom:clamp(18px,2.4vw,24px);border-bottom:2px solid var(--k-ink)}
+.w5 .w5ic{flex:none;width:clamp(42px,5vw,62px);height:clamp(42px,5vw,62px);color:var(--k-red)}
+.w5 .w5en{margin:0 0 7px;font-family:var(--font-en);font-size:10.5px;font-weight:700;
+  letter-spacing:.13em;color:var(--k-mid)}
+.w5 .w5n{margin:0 0 12px;font-size:clamp(19px,2.4vw,28px);font-weight:700;line-height:1.4;
+  letter-spacing:.02em;color:var(--k-ink)}
+/* その職種を1文で言い切る見出し（旧 rdeep__h を前へ出した） */
+.w5 .w5lead{margin:0 0 10px;font-size:clamp(15px,1.8vw,19px);font-weight:700;line-height:1.65;
+  letter-spacing:.02em;color:var(--k-red)}
+.w5 .w5one{margin:0;font-size:13.5px;line-height:1.85;color:var(--k-mid)}
+
+.w5 .w5grid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);
+  gap:0;margin-top:clamp(20px,2.8vw,28px)}
+.w5 .w5col{padding:0 clamp(18px,2.6vw,36px) 0 0}
+.w5 .w5col + .w5col{border-left:1px solid var(--k-line);padding:0 0 0 clamp(20px,2.8vw,38px)}
+.w5 .w5ch{display:flex;align-items:center;gap:10px;margin:0 0 13px;
+  font-size:12px;font-weight:700;letter-spacing:.08em;color:var(--k-mid)}
+.w5 .w5ch::before{content:"";flex:none;width:16px;height:2px;background:var(--k-red)}
+.w5 .w5col > .w5ch + * + .w5ch{margin-top:clamp(20px,2.6vw,26px)}
+.w5 .w5pts{list-style:none;margin:0;padding:0;display:grid;gap:0}
+.w5 .w5pts li{position:relative;padding:10px 0 10px 20px;
+  font-size:13.5px;line-height:1.75;color:var(--k-ink);border-bottom:1px solid var(--k-line2)}
+.w5 .w5pts li:last-child{border-bottom:none}
+.w5 .w5pts li::before{content:"";position:absolute;left:2px;top:1.05em;width:7px;height:7px;
+  border-radius:50%;background:var(--k-red)}
+.w5 .w5t{margin:0;font-size:13.5px;line-height:1.95;color:var(--k-ink)}
+.w5 .w5ppl{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:7px}
+.w5 .w5ppl li{font-size:12px;font-weight:700;line-height:1.5;color:var(--k-mid);
+  background:var(--k-g1);border:1px solid var(--k-line);padding:5px 10px}
+@media(max-width:860px){
+  .w5 .w5grid{grid-template-columns:minmax(0,1fr)}
+  .w5 .w5col{padding:0}
+  .w5 .w5col + .w5col{border-left:none;border-top:1px solid var(--k-line);
+    padding:clamp(20px,3vw,26px) 0 0;margin-top:clamp(20px,3vw,26px)}
+}
+
+/* 折りたたみ：見出しを職種ごとの言葉にして単調さを避ける */
+.w5 .w5more{margin:clamp(20px,2.8vw,28px) 0 0;border-top:1px solid var(--k-line)}
+.w5 .w5more > summary{list-style:none;cursor:pointer;display:flex;align-items:flex-start;gap:11px;
+  padding:14px 0;font-size:13.5px;font-weight:700;line-height:1.6;letter-spacing:.02em;color:var(--k-ink)}
+.w5 .w5more > summary::-webkit-details-marker{display:none}
+.w5 .w5more > summary::before{content:"";flex:none;margin-top:.28em;width:16px;height:16px;
+  border:1px solid var(--k-red);
+  background:linear-gradient(var(--k-red),var(--k-red)) center/7px 1px no-repeat,
+             linear-gradient(var(--k-red),var(--k-red)) center/1px 7px no-repeat}
+.w5 .w5more[open] > summary::before{
+  background:linear-gradient(var(--k-red),var(--k-red)) center/7px 1px no-repeat}
+.w5 .w5more > summary:hover{color:var(--k-red)}
+.w5 .w5more__in{padding-bottom:clamp(14px,2vw,20px)}
+
+/* 募集・社員の声への導線 */
+.w5 .w5foot{display:flex;flex-wrap:wrap;gap:12px;align-items:center;
+  margin-top:clamp(22px,3vw,30px);padding-top:clamp(18px,2.4vw,24px);
+  border-top:1px solid var(--k-line)}
+.w5 .w5foot .w5ch{margin:0 14px 0 0}
+.w5 .w5foot a{display:inline-flex;align-items:center;gap:9px;
+  font-size:13.5px;font-weight:700;letter-spacing:.02em;text-decoration:none;
+  color:var(--k-red);border-bottom:1px solid currentColor;padding-bottom:3px}
+.w5 .w5foot a i{font-style:normal}
+.w5 .w5foot a:hover{color:#A50F16}
+@media(max-width:600px){.w5 .w5foot{flex-direction:column;align-items:flex-start;gap:10px}}
+
+/* ページ全体の導線 */
+.w5 .w5next{display:flex;flex-wrap:wrap;align-items:center;gap:clamp(14px,2.6vw,28px);
+  margin-top:clamp(30px,4vw,46px)}
+.w5 .w5link{display:inline-flex;align-items:center;gap:9px;
+  font-size:14px;font-weight:700;color:var(--k-red);text-decoration:none;
+  border-bottom:1px solid currentColor;padding-bottom:3px}
+.w5 .w5link::after{content:"";flex:none;width:6px;height:6px;
+  border-top:1.5px solid currentColor;border-right:1.5px solid currentColor;
+  transform:rotate(45deg);transition:transform .2s}
+.w5 .w5link:hover::after{transform:rotate(45deg) translate(2px,-2px)}
+
+/* 旧 .rcbtn（赤地・白文字のボタン）がそのまま残っていると、
+   .w5foot a の赤文字指定と重なって赤地に赤文字になる。
+   D2ではテキストリンクに統一するので、ボタンの見た目を打ち消す。 */
+.w5 .w5foot a.rcbtn,.w5 .w5foot a.rcbtn--main,.w5 .w5foot a.rcbtn--sub{
+  background:none;background-color:transparent;color:var(--k-red);
+  border:none;border-bottom:1px solid currentColor;border-radius:0;
+  padding:0 0 3px;min-height:0;box-shadow:none;font-size:13.5px;font-weight:700}
+.w5 .w5foot a.rcbtn:hover{background:none;color:#A50F16}
+
+/* ============================================================
+   ===== WORK D2 / WHO WORKS HERE v2 START =====
+   「どんな人が働いているのか」ブロック（people/*.html の実在インタビューへ接続）
+   既存ルール上書きなし（新規クラスのみ）
+   ============================================================ */
+.w5 .w5who{display:block;margin-top:10px;padding:18px 20px 16px;border:1px solid #DAE1F2;border-radius:10px;background:#FFF;text-decoration:none;transition:border-color .2s ease,background .2s ease}
+.w5 .w5who:hover{border-color:#CF131B;background:#FCFCFD}
+.w5 .w5who__q{margin:0 0 8px;font-size:15px;font-weight:700;line-height:1.7;color:#262946}
+.w5 .w5who__m{margin:0 0 10px;font-size:12.5px;line-height:1.75;color:#6B6D81}
+.w5 .w5who__m b{font-weight:700;color:#262946}
+.w5 .w5who__go{display:inline-block;font-size:13px;font-weight:500;color:#CF131B;border-bottom:1px solid #CF131B;padding-bottom:1px}
+.w5 .w5who__go i{font-style:normal;margin-left:6px}
+@media (max-width:767px){.w5 .w5who{padding:16px 16px 14px}.w5 .w5who__q{font-size:14.5px}}
+/* ===== WORK D2 / WHO WORKS HERE v2 END ===== */
+
+/* ===== WORK D2 / JOB NOTE v3 START：募集に関する注記（work-d.html の rpanel__note を復元） ===== */
+.w5 .w5note{margin:10px 0 0;font-size:12.5px;line-height:1.8;color:#6B6D81;flex-basis:100%}
+.w5 .w5note a{color:#6B6D81;text-decoration:underline}
+/* ===== WORK D2 / JOB NOTE v3 END ===== */
