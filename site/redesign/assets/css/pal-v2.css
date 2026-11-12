@@ -464,15 +464,14 @@ body.pv2{
 /* --- 対象となる濃い面 ---
    .entry          … JOIN PAL（写真＋rgba(10,11,18,.82) のオーバーレイ）
    .sec--navy      … 入社後セクション
-   .hcbelow        … FV直下の数値帯
    .hybrole__map   … 9職種の詳細パネル
    footer          … フッター
    実効背景は、写真が最も明るい最悪条件で #36373D として検証した。 */
 
 /* 見出し：継承の白に戻す */
 .pv2 .entry h1,.pv2 .entry h2,.pv2 .entry h3,
-.pv2 .sec--navy h1,.pv2 .sec--navy h2,.pv2 .sec--navy h3,
-.pv2 .hcbelow h1,.pv2 .hcbelow h2,.pv2 .hcbelow h3{color:#fff}
+/* .pv2 .hcbelow … HCBELOW-REMOVE v1 でセクションごと削除したため対象から外した */
+.pv2 .sec--navy h1,.pv2 .sec--navy h2,.pv2 .sec--navy h3{color:#fff}
 
 /* 本文：元の style.css と同じ明るいグレー（#36373D 上で 8.13:1） */
 .pv2 .entry p{color:#D4D5E0}

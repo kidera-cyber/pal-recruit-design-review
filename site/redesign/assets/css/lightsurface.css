@@ -48,32 +48,10 @@
 
 /* =====================================================================
    A. HOME：数値・企業紹介（9職種／120名／2000年〜）
-   濃紺ベタ（var(--navy-d) + color:#fff）→ 淡グレー面に白カードを並べる
+   HCBELOW-REMOVE v1 でこのセクション自体を newtop-c-v2.html から削除したため、
+   .ls .hcbelow / .ls .hcstrip のスタイルも不要になった。
+   復元元：git 8ad9bcb の assets/css/lightsurface.css
    ===================================================================== */
-.ls .hcbelow{
-  background:var(--ls-soft);color:var(--ls-ink);
-  border-top:1px solid var(--ls-line);border-bottom:1px solid var(--ls-line);
-}
-.ls .hcbelow h1,.ls .hcbelow h2,.ls .hcbelow h3{color:var(--ls-ink)}
-.ls .hcbelow__lead{padding-block:clamp(26px,4.4vh,38px) 4px}
-.ls .hcbelow__lead p{color:var(--ls-ink);font-size:15px;line-height:1.9}
-/* カードで囲わず、縦の細罫で3つを区切る。コーポレートサイトの数値表現に合わせる。 */
-.ls .hcstrip{display:grid;grid-template-columns:repeat(3,1fr);gap:0;padding-block:24px 36px}
-.ls .hcstrip__i{
-  flex:none;margin:0;padding:2px 36px;
-  background:none;border:none;border-left:1px solid var(--ls-line);border-radius:0;
-}
-.ls .hcstrip__i:first-child{padding-left:0;border-left:none}
-.ls .hcstrip__v{color:var(--ls-red);font-size:34px;font-weight:900;line-height:1.1}
-.ls .hcstrip__v span{color:var(--ls-ink);font-size:12px;font-weight:700;margin-left:5px}
-.ls .hcstrip__k{display:block;max-width:none;margin-top:10px;font-size:12.5px;line-height:1.8;color:var(--ls-mid)}
-@media(max-width:700px){
-  .ls .hcstrip{grid-template-columns:1fr;gap:0}
-  .ls .hcstrip__i{
-    margin:0;padding:18px 0;border-left:none;border-bottom:1px solid var(--ls-line);
-  }
-  .ls .hcstrip__i:last-child{border-bottom:none}
-}
 
 /* =====================================================================
    B. HOME：9職種の円形図解と職種情報

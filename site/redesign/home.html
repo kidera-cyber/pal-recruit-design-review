@@ -72,17 +72,7 @@
 @media(max-width:760px){.heroC{min-height:82vh}.heroC__ctas .btn{width:100%;justify-content:center}.heroC__credit{position:static;padding:10px 24px 16px;text-align:left}.heroflags-caption{gap:6px 18px}}
 @media(prefers-reduced-motion:reduce){.heroC__eyebrow,.heroC__title .ln,.heroC__ctas{animation:none!important;opacity:1!important;transform:none!important}}
 
-/* ---- 数字＋リード ---- */
-.hcbelow{background:var(--navy-d);color:#fff}
-.hcbelow__lead{padding:clamp(26px,4.4vh,38px) 0 4px}
-.hcbelow__lead p{color:#d8d9e2;font-size:15px;line-height:1.9;max-width:680px;margin:0}
-.hcstrip{display:flex;flex-wrap:wrap;padding:20px 0 28px}
-.hcstrip__i{flex:1 1 220px;padding:6px 26px 6px 0;border-right:1px solid rgba(255,255,255,.14);margin-right:26px}
-.hcstrip__i:last-child{border-right:none}
-.hcstrip__v{font-family:var(--font-en);font-weight:900;font-size:28px}
-.hcstrip__v span{font-size:11.5px;font-weight:700;color:#c7c9d6;margin-left:4px}
-.hcstrip__k{display:block;font-size:11px;color:#9496ab;margin-top:6px;max-width:210px}
-@media(max-width:700px){.hcstrip__i{flex:1 1 100%;border-right:none;margin-right:0;margin-bottom:10px}}
+/* ---- 数字＋リード（.hcbelow / .hcstrip）：HCBELOW-REMOVE v1 で削除済み ---- */
 .hyb-flow__i{flex:1;padding:24px 20px 24px 0;border-right:1px solid var(--gray-150);position:relative}
 .hyb-flow__i:last-child{border-right:none;padding-right:0}
 .hyb-flow__no{font-family:var(--font-en);font-weight:900;font-size:22px;color:var(--gray-300);display:block;margin-bottom:10px}
@@ -234,16 +224,11 @@
   <p class="heroC__credit">映像は、現場の運営と、システム・設備・データが連動する関係を示した概念図です<br class="heroC__credit-br">※画像はイメージです</p>
 </section>
 
-<section class="hcbelow" aria-label="PALの採用情報サマリー">
-  <div class="wrap hcbelow__lead reveal">
-    <p>外から提案するのではない。顧客の現場を請け負い、自分たちの責任で回す。技術と現場の両方に立つPALだからできる、"当事者"の仕事が、ここにある。</p>
-  </div>
-  <div class="wrap hcstrip reveal-stagger">
-    <div class="hcstrip__i"><span class="hcstrip__v en">9<span>職種</span></span><span class="hcstrip__k">現場・技術・輸送をつなぐ専門性</span></div>
-    <div class="hcstrip__i"><span class="hcstrip__v en">120<span>名</span></span><span class="hcstrip__k">社員数（パート・アルバイト含め約1,600名）</span></div>
-    <div class="hcstrip__i"><span class="hcstrip__v en">2000<span>年〜</span></span><span class="hcstrip__k">物流現場を請け負い続けてきた歴史</span></div>
-  </div>
-</section>
+<!-- ===== HCBELOW-REMOVE v1：FV直下の「紹介文＋3指標（9職種／120名／2000年〜）」
+     セクションを削除した。ABOUT「数字で見るPAL」と内容が重複していたため。
+     復元元：git 8ad9bcb の newtop-c-v2.html（.hcbelow / .hcstrip）
+     専用CSSもあわせて削除：このファイルのインライン style／lightsurface.css の
+     「A. HOME：数値・企業紹介」ブロック／pal-v2.css の .pv2 .hcbelow 見出し指定 ===== -->
 
 <!-- ② Why PAL -->
 <!-- ===== WHY-B v1：Why PAL を B案（newtop-b.html）のデザインに差し替えた。
