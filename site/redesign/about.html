@@ -4,18 +4,15 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
-<title>【試作・非公開】ABOUT｜Field Editorial デザインシステム適用版｜株式会社PALとは？物流DXを現場から実装する仕事と強み</title>
-<meta name="description" content="株式会社PALは、物流現場の運営を請け負いながら、システム・設備・データを組み合わせて現場で使われる仕組みをつくる会社です。FDEという役割、仕事の進め方で大切にしている3つのこと、設立・拠点などの会社概要を紹介します。（redesign試作・非公開・文言は本番about/index.htmlと完全同一）">
+<title>株式会社PALとは？物流DXを支える事業と、働く人｜PAL 採用サイト</title>
+<meta name="description" content="物流DXを戦略から実行まで一気通貫で支える株式会社PAL。現場の運営と仕組みづくりの両方を担う事業の形、BPO・FDE・システム開発が連携する働き方、社員の声、設立・従業員数・事業領域の数字を紹介します。">
 <link rel="canonical" href="about.html">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&family=Noto+Sans+JP:wght@400;500;700;800;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../assets/css/style.css">
 <link rel="stylesheet" href="assets/css/system-h.css">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"採用情報","item":"../"},{"@type":"ListItem","position":2,"name":"PALを知る"}]}</script>
 <style>
-.proto-bar{background:#000;color:#fff;padding:10px 20px;font-size:12.5px;text-align:center;position:relative;z-index:600}
-.proto-bar b{color:#ff8186}
 .reveal-stagger{display:grid}
 @media (prefers-reduced-motion:reduce){ .reveal{opacity:1!important;transform:none!important} }
 </style>
@@ -28,10 +25,13 @@
      body に abt が付いたページにしか効かないので、他の64ページには影響しない。
      既存の .reveal / .is-in（system-h.css＋ページ内の IntersectionObserver）に
      乗せているため、JSの追加はしていない。 ===== -->
-<link rel="stylesheet" href="assets/css/about-figures.css?v=20261112c">
+<!-- ===== ABOUT-D5 v1：about-figures.css は .abt スコープで、
+     このページの body に abt が無いため1行も効かない。読み込まない。 ===== -->
+<!-- ===== ABOUT-D5 v1：この検証ページ専用。全セレクタ .a7 スコープ ===== -->
+<link rel="stylesheet" href="assets/css/about.css?v=20261112a">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"採用情報","item":"../"},{"@type":"ListItem","position":2,"name":"PALを知る"}]}</script>
 </head>
-<body class="ls abt">
-<div class="proto-bar">【試作・非公開】ABOUT｜Field Editorialデザイン適用版｜<b>デザイン検証用プレビュー｜本番サイト未反映</b>・文言は本番about/index.htmlと完全同一</div>
+<body class="ls a7">
 <a class="skip-link" href="#main">本文へスキップ</a>
 
 <header class="hdr" id="hdr">
@@ -81,238 +81,122 @@
   </div>
 </section>
 
-<section class="sec sec--soft sec--tight" id="why">
+<!-- ══════════ 01 WHO WE ARE ══════════ -->
+<section class="sec sec--tight" id="who">
   <div class="wrap">
-    <div class="shead reveal" style="margin-bottom:30px">
-      <p class="slabel">Why PAL</p>
-      <h2 class="stitle">現場を動かす。仕組みをつくる。<br>その両方が、PALの仕事。</h2>
-      <p class="slead">異なる専門性を組み合わせ、現場で使える仕組みをつくり、改善を重ねています。</p>
+    <div class="p4h pv">
+      <p class="slabel">Who we are</p>
+      <h2 class="stitle">現場を動かす。仕組みをつくる。</h2>
+      <p class="slead">PALは、物流現場の運営を自ら請け負いながら、システム・設備・データを組み合わせて現場で使われる仕組みをつくる会社です。</p>
     </div>
 
-<!-- ===== WHY-FIG v2：文章を読ませる構成から、図で分かる構成へ。
-     ・4工程：見出し＋領域タグだけを初期表示にし、各工程の説明文は
-       下のアコーディオンへそのまま移した（文言は変えていない）
-     ・「技術と設備は…」は本文ではなく、図の凡例として図の直下に置いた
-     ・2つの入口：対象人物像（アイコン＋見出し）→向いている領域（タグ）
-       →行動（CTA）の順に並べ替え。長い1文はタグと短文に分けた
-     ・3つの強み：線でつないだ時系列をやめ、図形＋キーワードで
-       横に並べて見比べられる形にした
-     ・ロジテックインテグレーション：長い説明文を、中心＋4要素の
-       関係図に置き換えた（要素名は本文の語をそのまま使用）===== -->
-    <div class="force4 reveal">
-      <p class="force4__hub"><span class="en">PAL</span><b>現場から改善まで、ひとつながりで関わる</b></p>
-      <ol class="force4__list">
-        <li class="force4__i"><p class="force4__no en">01</p><span class="force4__fig" aria-hidden="true"><svg viewBox="0 0 26 26" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h20M6 21V10l7-4.5 7 4.5v11"/></svg></span><p class="force4__en en">Field Operation</p><h3 class="force4__h">現場を、自分たちで知っている。</h3><ul class="force4__tags"><li>物流BPO</li><li>現場運営</li></ul></li>
-        <li class="force4__i"><p class="force4__no en">02</p><span class="force4__fig" aria-hidden="true"><svg viewBox="0 0 26 26" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h14M4 13h18M4 19h10"/></svg></span><p class="force4__en en">Strategy &amp; Design</p><h3 class="force4__h">課題を整理し、改善を設計する。</h3><ul class="force4__tags"><li>現場分析</li><li>戦略</li><li>実行計画</li></ul></li>
-        <li class="force4__i"><p class="force4__no en">03</p><span class="force4__fig" aria-hidden="true"><svg viewBox="0 0 26 26" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="7.5" r="2.1"/><circle cx="20" cy="12.5" r="2.1"/><circle cx="8.5" cy="19" r="2.1"/><path d="M8 8.6l9.9 2.9M18.6 14.4l-8.3 3.7"/></svg></span><p class="force4__en en">Technology &amp; Data</p><h3 class="force4__h">技術とデータで、仕組みをつくる。</h3><ul class="force4__tags"><li>システム開発</li><li>自動化設備の活用</li><li>データの取得と可視化</li></ul></li>
-        <li class="force4__i"><p class="force4__no en">04</p><span class="force4__fig" aria-hidden="true"><svg viewBox="0 0 26 26" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M20.5 13a7.5 7.5 0 1 1-2.8-5.8"/><path d="M20.8 3.6v4.2h-4.2"/></svg></span><p class="force4__en en">Implementation &amp; Improvement</p><h3 class="force4__h">現場で動かし、改善を重ねる。</h3><ul class="force4__tags"><li>実装</li><li>運用</li><li>効果検証</li><li>改善</li></ul></li>
-      </ol>
-      <p class="figlegend"><i aria-hidden="true"></i>技術と設備は、自社開発に加えて外部製品やパートナーとの連携も含みます。</p>
-      <details class="amore">
-        <summary class="amore__s">4つの工程の説明を開く</summary>
-        <div class="amore__p"><p>物流現場の運営から、システム開発・自動化・データ活用まで。</p></div>
-        <dl class="amore__dl">
-          <div class="amore__r"><dt class="en">01</dt><dd>物流BPOとして、現場の運営そのものを請け負っています。</dd></div>
-          <div class="amore__r"><dt class="en">02</dt><dd>現場で起きていることを分析し、何をどう変えるかを決めます。</dd></div>
-          <div class="amore__r"><dt class="en">03</dt><dd>システム開発に加え、自動化設備やデータの取得・可視化を組み合わせます。</dd></div>
-          <div class="amore__r"><dt class="en">04</dt><dd>導入して終わりにせず、運用と効果検証を続けます。</dd></div>
-        </dl>
-      </details>
-    </div>
-
-    <div class="two-view reveal">
-      <div class="two-view__i two-view__i--field">
-        <div class="two-view__head"><span class="two-view__ico" aria-hidden="true"><svg viewBox="0 0 26 26" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M13 13.5a4 4 0 1 0 0-8 4 4 0 0 0 0 8Z"/><path d="M4.5 22a8.5 8.5 0 0 1 17 0"/></svg></span><div><p class="two-view__en en">If you come from the field</p><h3 class="two-view__h">現場運営の経験がある方へ。</h3></div></div>
-        <ul class="two-view__tags"><li>稼働</li><li>品質</li><li>安全</li><li>生産性</li></ul>
-        <p class="two-view__t">日々の運営に加えて、システムや自動化設備、データを使った現場改善にも接点があります。</p>
-        <p class="two-view__go"><a class="textlink textlink--sm" href="work.html#role-bpo">現場運営の仕事を見る</a><a class="textlink textlink--sm" href="people/bpo.html">現場運営の社員を見る</a></p>
+    <!-- ===== ABOUT-D5 v1：イラストが主役。図の上にラベルは打たず、
+         読み方は図の下に1行だけ添える。 ===== -->
+    <figure class="p4fig pv">
+      <div class="p4fig__box">
+        <img src="assets/img/logistics-hub.webp" alt="経営・製造・倉庫・配送が、中央のデータ管理拠点と赤い点線で結ばれている物流全体の概念図" width="1672" height="941" loading="lazy" decoding="async">
       </div>
-      <div class="two-view__i two-view__i--eng">
-        <div class="two-view__head"><span class="two-view__ico" aria-hidden="true"><svg viewBox="0 0 26 26" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M9 7.5 3.5 13 9 18.5M17 7.5 22.5 13 17 18.5M14.5 4.5l-3 17"/></svg></span><div><p class="two-view__en en">If you come from engineering</p><h3 class="two-view__h">システム・開発の経験がある方へ。</h3></div></div>
-        <ul class="two-view__tags"><li>開発</li><li>実装</li></ul>
-        <p class="two-view__t">つくった仕組みは、PALが運営する現場で実際に使われます。</p>
-        <p class="two-view__sub">業務や運用とのつながりを考えながら、社内外の関係者と分担して関わります。</p>
-        <p class="two-view__go"><a class="textlink textlink--sm" href="work.html#role-system">開発の仕事を見る</a><a class="textlink textlink--sm" href="people/system.html">開発の社員を見る</a></p>
+      <figcaption>経営・製造・倉庫・配送のデータを一元管理・可視化し、ひとつの流れにする。<span>※イラストは概念図です。</span></figcaption>
+    </figure>
+
+    <!-- 名称の取り違えが起きないよう、2つを1行ずつ並べて区別する -->
+    <dl class="p4def pv">
+      <div>
+        <dt><b>ロジテックインテグレーション</b><em>統合アプローチ</em></dt>
+        <dd>物流DXを戦略から実行まで一気通貫で支援する、PALのサービスです。</dd>
       </div>
+      <div>
+        <dt><b>倉庫オートメーションセンター</b><em>実践環境</em></dt>
+        <dd>自動化設備とデータ連携を組み合わせた運用を、実際に動かしている場所です。</dd>
+      </div>
+    </dl>
+    <p class="p4note pv"><i aria-hidden="true"></i>導入している設備やシステム、PALの強みの詳細は、<a href="https://www.pal-style.co.jp/service/" target="_blank" rel="noopener">コーポレートサイトのサービスページ</a>で公開しています。</p>
+
+    <p class="p4acts pv">
+      <a class="btn btn--ghost" href="work.html">9つの職種と仕事内容を見る<span class="btn__ico" aria-hidden="true">▶</span></a>
+      <a class="p4link" href="https://www.pal-style.co.jp/about/role/" target="_blank" rel="noopener">PALの役割をコーポレートサイトで見る</a>
+    </p>
+  </div>
+</section>
+
+<!-- ══════════ 02 OUR PEOPLE & CULTURE ══════════ -->
+<section class="sec sec--tight" id="people">
+  <div class="wrap">
+    <div class="p4h pv">
+      <p class="slabel">Our people &amp; culture</p>
+      <h2 class="stitle">違う専門性が、ひとつの仕事を動かす。</h2>
+      <p class="slead">PALには、物流センターの運営を担う人、現場課題を整理するFDE、仕組みを開発するエンジニアなど、異なる専門性を持つメンバーがいます。</p>
     </div>
 
-    <div class="lgx reveal">
-      <p class="lgx__en en">LOGITECH INTEGRATION</p>
-      <h3 class="lgx__h">自分たちの現場で試したことを、仕組みづくりに活かす。</h3>
-      <div class="lgx__fig">
-        <div class="lgx__hub"><span class="lgx__hubk">PALが運営する倉庫オートメーションセンター</span><b>ロジテックインテグレーション</b></div>
-        <ul class="lgx__nodes">
-          <li class="lgx__n"><span class="lgx__ico" aria-hidden="true"><svg viewBox="0 0 26 26" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="18.5" r="2.4"/><circle cx="20" cy="18.5" r="2.4"/><path d="M6 16.1h14M8.5 12.2h9v3.9h-9z"/></svg></span><span>搬送・仕分の自動化設備</span></li>
-          <li class="lgx__n"><span class="lgx__ico" aria-hidden="true"><svg viewBox="0 0 26 26" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M13 21v-7"/><circle cx="13" cy="11.5" r="2.2"/><path d="M8.4 6.9a6.5 6.5 0 0 0 0 9.2M17.6 6.9a6.5 6.5 0 0 1 0 9.2"/></svg></span><span>無線での作業指示</span></li>
-          <li class="lgx__n"><span class="lgx__ico" aria-hidden="true"><svg viewBox="0 0 26 26" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><rect x="7.5" y="2.5" width="11" height="21" rx="2"/><path d="M11 6.5h4M10.5 12h5M10.5 16h5"/></svg></span><span>現場アプリ</span></li>
-          <li class="lgx__n"><span class="lgx__ico" aria-hidden="true"><svg viewBox="0 0 26 26" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4.5" width="20" height="15" rx="1.6"/><path d="M7 15.5v-3.5M12 15.5V8.5M17 15.5v-5.5"/></svg></span><span>ダッシュボード</span></li>
-        </ul>
-      </div>
-      <p class="lgx__out"><i aria-hidden="true"></i>そこで確かめたことを、ほかの現場でも使える仕組みづくりに活かしています。</p>
-      <p class="lgx__go"><a class="textlink textlink--sm" href="https://www.pal-style.co.jp/" target="_blank" rel="noopener">コーポレートサイトで見る</a></p>
-      <details class="amore">
-        <summary class="amore__s">ロジテックインテグレーションの取り組みを読む</summary>
-        <div class="amore__p"><p>PALが運営する倉庫オートメーションセンター「ロジテックインテグレーション」では、搬送・仕分の自動化設備、無線での作業指示、現場アプリ、ダッシュボードを組み合わせた運用を実践してきました。</p></div>
-      </details>
-    </div>
-
-    <ul class="effects effects--row str3 reveal">
-      <li class="str3__i"><span class="en">01</span><span class="str3__fig" aria-hidden="true"><svg viewBox="0 0 26 26" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><circle cx="4" cy="13" r="1.8"/><circle cx="13" cy="13" r="1.8"/><circle cx="22" cy="13" r="1.8"/><path d="M5.8 13h5.4M14.8 13h5.4"/></svg></span><b class="str3__kw">一気通貫</b><b class="str3__h">戦略から実行まで、続けて関わる</b></li>
-      <li class="str3__i"><span class="en">02</span><span class="str3__fig" aria-hidden="true"><svg viewBox="0 0 26 26" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="3.5" width="12" height="12" rx="1.2"/><rect x="10.5" y="10.5" width="12" height="12" rx="1.2"/></svg></span><b class="str3__kw">既存資産</b><b class="str3__h">既存のシステム・ベンダーを活かす</b></li>
-      <li class="str3__i"><span class="en">03</span><span class="str3__fig" aria-hidden="true"><svg viewBox="0 0 26 26" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.4 15.4 22.5 22.5"/><path d="M7.8 10.6l1.9 1.9 3.6-3.9"/></svg></span><b class="str3__kw">PoV（価値検証）</b><b class="str3__h">やる前に、効果を検証する</b></li>
+    <ul class="p4cx pv">
+      <li><span class="p4cx__en">BPO / Operation</span><h3 class="p4cx__n">BPO・現場運営</h3><p class="p4cx__t">現場を安定させ、改善を進める</p></li>
+      <li><span class="p4cx__en">Forward Deployed Engineer</span><h3 class="p4cx__n">FDE</h3><p class="p4cx__t">現場課題を技術につなぐ</p></li>
+      <li><span class="p4cx__en">System / Product</span><h3 class="p4cx__n">システム・プロダクト開発</h3><p class="p4cx__t">現場で使われる仕組みをつくる</p></li>
     </ul>
-    <!-- ===== STR3-TRIM v1：3つの強みはキーワード・図形・見出しだけを
-         初期表示にし、説明文はアコーディオンへそのまま移した。 ===== -->
-    <details class="amore">
-      <summary class="amore__s">3つの強みの説明を開く</summary>
-      <dl class="amore__dl">
-        <div class="amore__r"><dt class="en">01</dt><dd>設計して渡して終わりにせず、運用と改善まで一気通貫で関わります。</dd></div>
-        <div class="amore__r"><dt class="en">02</dt><dd>すべてを入れ替えるのではなく、既存資産を活かして最適化します。</dd></div>
-        <div class="amore__r"><dt class="en">03</dt><dd>PoV（価値検証）で効果を確かめてから進め、投資判断のハードルを下げます。</dd></div>
-      </dl>
-    </details>
-    <p class="note">8つの強みの全文は、コーポレートサイト「PALの強み」で公開しています。</p>
-  </div>
-</section>
+    <p class="p4cx__note pv"><i aria-hidden="true"></i>3つの領域に上下関係はありません。</p>
 
-<section class="sec sec--tight" id="process">
-  <div class="wrap">
-    <div class="shead reveal" style="margin-bottom:22px">
-      <p class="slabel">Our Process</p>
-      <h2 class="stitle" style="font-size:clamp(23px,2.7vw,32px)">現場で見つけた課題を、動く仕組みへ。</h2>
-    </div>
-    <ol class="fdeline reveal">
-      <li class="fdeline__i"><span class="fdeline__en en">Field</span><b>現場で課題が見つかる</b></li>
-      <li class="fdeline__i fdeline__i--key"><span class="fdeline__en en">FDE</span><b>課題を整理し、技術要件へ変える</b></li>
-      <li class="fdeline__i"><span class="fdeline__en en">Teams</span><b>各部門が実装し、現場で動かす</b></li>
-      <li class="fdeline__i fdeline__i--loop"><span class="fdeline__en en">Improve</span><b>使われた結果が、次の改善に戻る</b></li>
-    </ol>
-    <!-- ===== PROC-TRIM v1：FDEの説明は、図の読み方にあたる1文目だけを
-         初期表示に残し、残りの2文はアコーディオンへそのまま移した。 ===== -->
-    <p class="transnote" style="margin-top:30px">FDE（Forward Deployed Engineer）は、現場の課題を技術要件へ整理し、システム開発などの専門部門と連携して、実装・改善につなぐ役割です。</p>
-    <details class="amore">
-      <summary class="amore__s">FDEの役割をくわしく見る</summary>
-      <div class="amore__p">
-        <p>FDEがひとりで設計から運用までを担うわけではありません。それぞれの専門部門が連携して、ひとつの仕組みを動かしています。</p>
-        <p><a class="textlink" href="work.html">職種ごとの仕事内容を見る</a></p>
-      </div>
-    </details>
-
-    <div class="shead" style="margin:44px 0 18px">
-      <h3 class="stitle" style="font-size:clamp(18px,1.9vw,21px)">PALがつなぐことで生まれる価値。</h3>
-    </div>
-    <!-- ===== PROC-TRIM v1：3つの価値は見出しだけを初期表示にし、
-         説明文はアコーディオンへそのまま移した。文言は変えていない。 ===== -->
-    <ul class="effects effects--row val3row reveal">
-      <li><span class="en">01</span><b>調整の重複を減らす</b></li>
-      <li><span class="en">02</span><b>責任の所在を明確にする</b></li>
-      <li><span class="en">03</span><b>意思決定を速くする</b></li>
+    <ul class="p4voice pv">
+      <li><a href="people.html"><img src="../assets/images/avatar-fde.png" alt="FDEとして働く社員の似顔絵" width="900" height="975" loading="lazy"><q>現場で使われて、初めて「できた」と言える。</q><cite><b>H.Y</b>FDE・2023年新卒入社</cite></a></li>
+      <li><a href="people.html"><img src="../assets/images/avatar-bpo.png" alt="BPO事業部で働く社員の似顔絵" width="900" height="975" loading="lazy"><q>毎日の運営の中に、次の改善がある。</q><cite><b>I.N</b>BPO事業部 Productivity推進部</cite></a></li>
+      <li><a href="people.html"><img src="../assets/images/avatar-system.png" alt="DXプロダクト開発で働く社員の似顔絵" width="900" height="975" loading="lazy"><q>つくるのは、現場が明日から使えるもの。</q><cite><b>M.M</b>DXプロダクト開発・2026年中途入社</cite></a></li>
     </ul>
-    <details class="amore">
-      <summary class="amore__s">3つの価値の説明を開く</summary>
-      <dl class="amore__dl">
-        <div class="amore__r"><dt class="en">01</dt><dd>複数の関係者とのやり取りを整理し、同じ説明の繰り返しを減らします。</dd></div>
-        <div class="amore__r"><dt class="en">02</dt><dd>誰が何を担うのかを整理し、責任が曖昧になる状態を防ぎます。</dd></div>
-        <div class="amore__r"><dt class="en">03</dt><dd>必要な情報と関係者をつなぎ、判断から実行までの停滞を減らします。</dd></div>
-      </dl>
-    </details>
-    <p style="margin-top:26px"><a class="btn btn--ghost" href="work.html#role-fde">FDEの仕事内容を見る<span class="btn__ico" aria-hidden="true">▶</span></a></p>
-  </div>
-</section>
+    <p class="p4acts pv"><a class="p4link" href="people.html">PALで働く人を知る</a></p>
 
-<section class="sec sec--tight" id="crossover">
-  <div class="wrap">
-    <div class="xover reveal">
-      <div class="xover__head">
-        <p class="slabel xover__label">Crossover / Our Expertise</p>
-        <h2 class="xover__ttl">専門性が交わることで、仕事が動き出す。</h2>
-        <!-- ===== XOVER-TRIM v1：1文目（3つの職種の列挙）は直下の図が
-             同じことを示しているため、初期表示から外してアコーディオンへ移した。
-             文言は変えていない。 ===== -->
-        <p class="xover__lead">それぞれの経験や知識を持ち寄りながら、現場で使われる仕組みづくりや運営改善に取り組んでいます。</p>
+    <div class="p4way pv">
+      <div class="p4way__i">
+        <h4>現場運営の経験がある方へ。</h4>
+        <p>日々の運営に加えて、システムや自動化設備、データを使った現場改善にも接点があります。</p>
+        <a href="work.html#role-bpo">現場運営の仕事を見る</a>
       </div>
-      <div class="xover__net">
-        <ul class="xover__nodes">
-          <li class="xover__node"><span class="xover__no en">01</span><h3 class="xover__n">BPO・現場運営</h3><p class="xover__t">物流センターの稼働・品質・安全・改善に関わる。</p></li>
-          <li class="xover__node"><span class="xover__no en">02</span><h3 class="xover__n">FDE</h3><p class="xover__t">現場課題を整理し、技術要件や実装へつなぐ。</p></li>
-          <li class="xover__node"><span class="xover__no en">03</span><h3 class="xover__n">システム・プロダクト開発</h3><p class="xover__t">現場で使うシステムや仕組みを設計・開発する。</p></li>
-        </ul>
-        <ul class="xover__links">
-          <li class="xover__link xover__link--12"><span class="xover__lmap" aria-hidden="true"><i></i><i></i><i></i></span><b class="xover__lp">BPO・現場運営とFDE</b><p class="xover__lt">現場の状況と課題を共有する。</p></li>
-          <li class="xover__link xover__link--23"><span class="xover__lmap" aria-hidden="true"><i></i><i></i><i></i></span><b class="xover__lp">FDEとシステム・プロダクト開発</b><p class="xover__lt">業務要件と実装の方法をすり合わせる。</p></li>
-          <li class="xover__link xover__link--13"><span class="xover__lmap" aria-hidden="true"><i></i><i></i><i></i></span><b class="xover__lp">BPO・現場運営とシステム・プロダクト開発</b><p class="xover__lt">運用しながら、使い方と仕組みを調整する。</p></li>
-        </ul>
+      <div class="p4way__i">
+        <h4>システム・開発の経験がある方へ。</h4>
+        <p>つくった仕組みは、PALが運営する現場で実際に使われます。</p>
+        <a href="work.html#role-system">開発の仕事を見る</a>
       </div>
-      <p class="xover__note"><i aria-hidden="true"></i>3つの領域に上下関係はありません。</p>
-      <ul class="xover__cards">
-        <li class="xover__card"><span class="xover__ch">現場を知る</span><h3 class="xover__cn">現場の経験が、改善の出発点になる。</h3></li>
-        <li class="xover__card"><span class="xover__ch">技術で形にする</span><h3 class="xover__cn">現場で使われる仕組みをつくる。</h3></li>
-        <li class="xover__card"><span class="xover__ch">運用から改善する</span><h3 class="xover__cn">使われ方を見ながら、改善を重ねる。</h3></li>
-      </ul>
-      <!-- ===== XOVER-TRIM v1：3サイクルの説明文と、連携についての注記は
-           初期表示から外してアコーディオンへ移した。文言は変えていない。 ===== -->
-      <details class="amore">
-        <summary class="amore__s">連携サイクルの中身をくわしく見る</summary>
-        <div class="amore__p"><p>PALには、物流センターの運営を担う人、現場課題を整理するFDE、仕組みを開発するエンジニアなど、異なる専門性を持つメンバーがいます。</p></div>
-        <dl class="amore__dl">
-          <div class="amore__r"><dt>現場を知る</dt><dd>物流センターの運営で得られる情報や気づきが、改善内容を考える材料になります。</dd></div>
-          <div class="amore__r"><dt>技術で形にする</dt><dd>現場の課題や業務要件をもとに、専門部門が連携してシステムや運用の仕組みを検討します。</dd></div>
-          <div class="amore__r"><dt>運用から改善する</dt><dd>仕組みを導入して終わりではなく、実際の運用状況を確認しながら、必要な改善につなげていきます。</dd></div>
-          <div class="amore__r"><dt>部門間の連携</dt><dd>物流DXの進め方は案件ごとに違うため、部門間連携のかたちもそのつど変わります。現場で使われる物流システムは、このやり取りの積み重ねでかたちになります。</dd></div>
-        </dl>
-      </details>
-      <p class="xover__foot">PALには、このほかにも営業・配送・クレンリネス・コーポレートなどの職種があります。物流DXの仕事内容は<a class="textlink" href="work.html">仕事を知る（WORK）</a>でご覧いただけます。</p>
     </div>
-  </div>
-</section>
 
-<!-- ===== LIGHTSURFACE v2：Our Values の濃紺面をやめ、淡グレー面＋白カードにした。
-     3つの価値観の文言・CTA文言・リンク先は変えていない。 ===== -->
-<section class="sec sec--tight" id="values">
-  <div class="wrap">
-    <div class="shead reveal" style="margin-bottom:22px">
-      <p class="slabel">Our Values</p>
-      <h2 class="stitle" style="font-size:clamp(23px,2.7vw,32px)">PALが、大切にする3つのこと。</h2>
-    </div>
-    <ul class="val3 reveal">
-      <li><span class="val3__no en">01</span><b>現場の当事者となる</b></li>
-      <li><span class="val3__no en">02</span><b>個を尊重し、平等に接する</b></li>
-      <li><span class="val3__no en">03</span><b>自分の「手」で変えていく</b></li>
+    <ul class="p4val pv">
+      <li><span class="p4val__no">01</span><b>現場の当事者となる</b></li>
+      <li><span class="p4val__no">02</span><b>個を尊重し、平等に接する</b></li>
+      <li><span class="p4val__no">03</span><b>自分の「手」で変えていく</b></li>
     </ul>
-    <p style="margin-top:24px"><a class="btn btn--onnavy" href="people.html#look">3つの価値観と、働く人の姿勢を見る<span class="btn__ico" aria-hidden="true">▶</span></a></p>
-    <!-- ===== ABOUT-APPLY v1：応募条件の補足。
-         文章は1文字も変えず、<br> と文の切れ目で段落に分けただけ。
-         「職種によって条件が違う」ことが並べて読めるよう、
-         2つの職種を左右に、締めの一文を下段に置く。 ===== -->
-    <div class="whonote whonote--apply">
-      <div class="whonote__grid">
-        <p class="whonote__i">FDEとセンター長／候補では、入社時の高いITスキルを必須としていません。技術力よりも人物面を最優先しています。</p>
-        <p class="whonote__i">一方で、自社開発 Web・アプリエンジニアは、何らかのWeb系システム開発の実務経験を応募条件としています。</p>
+
+    <!-- 応募条件は職種で異なる。採用の重要情報なので小さくしない。 -->
+    <div class="p4apply pv">
+      <div class="p4apply__g">
+        <p>FDEとセンター長／候補では、入社時の高いITスキルを必須としていません。技術力よりも人物面を最優先しています。</p>
+        <p>一方で、自社開発 Web・アプリエンジニアは、何らかのWeb系システム開発の実務経験を応募条件としています。</p>
       </div>
-      <p class="whonote__foot">応募条件は職種ごとに異なるため、<a class="textlink" href="jobs.html">各募集要項</a>をご確認ください。</p>
+      <p class="p4apply__f">応募条件は職種ごとに異なるため、<a href="jobs.html">各募集要項</a>をご確認ください。</p>
     </div>
   </div>
 </section>
 
+<!-- ══════════ 03 PAL IN NUMBERS ══════════ -->
 <section class="sec" id="numbers">
   <div class="wrap">
-    <div class="shead reveal" style="margin-bottom:30px">
-      <p class="slabel">PAL by the Numbers</p>
-      <h2 class="stitle" style="font-size:clamp(23px,2.7vw,32px)">数字で見るPAL。</h2>
+    <div class="p4h pv">
+      <p class="slabel">PAL in numbers</p>
+      <h2 class="stitle">数字で見るPAL。</h2>
       <p class="slead">会社概要として公表している情報を中心にまとめました。</p>
     </div>
-    <div class="nums2 reveal">
-      <div class="num2"><b class="num2__v">2000<em>年</em>12<em>月</em></b><span class="num2__k">設立</span></div>
-      <div class="num2"><b class="num2__v" data-countup>120<em>名</em></b><span class="num2__k">従業員数</span><span class="num2__s">アルバイト・パートを含めると約1,600名</span></div>
-      <div class="num2"><b class="num2__v" data-countup>9,000<em>万円</em></b><span class="num2__k">資本金</span></div>
+    <div class="p4num pv">
+      <div><b class="p4num__v">2000<em>年</em>12<em>月</em></b><span class="p4num__k">設立</span></div>
+      <div><b class="p4num__v">120<em>名</em></b><span class="p4num__k">従業員数</span><span class="p4num__s">アルバイト・パートを含めると約1,600名</span></div>
+      <div><b class="p4num__v">4<em>領域</em></b><span class="p4num__k">事業領域</span><span class="p4num__s">コンサルティング／ロジテックインテグレーション／システム開発＆エンジニアリング／ロジテックオペレーション</span></div>
     </div>
-    <dl class="nums2sub">
-      <div class="nsub"><dt><span class="nsub__v" data-countup>2<em>拠点</em></span></dt><dd>大阪本社（大阪市西区新町）／東京オフィス（千代田区神田小川町）</dd></div>
-      <div class="nsub"><dt><span class="nsub__v" data-countup>4<em>領域</em></span></dt><dd>コンサルティング／ロジテックインテグレーション／システム開発＆エンジニアリング／ロジテックオペレーション</dd></div>
-      <div class="nsub nsub--goal"><dt><span class="nsub__v">120<i aria-hidden="true">→</i><span class="nsub__goalv">230</span><em>名</em></span><span class="nsub__tag">FY2029目標</span></dt><dd>採用計画</dd></div>
-    </dl>
-    <p class="note nums2__src">出典：株式会社PALの会社概要（2026年10月22日確認）</p>
-    <p style="margin-top:20px"><a class="btn btn--ghost" href="https://www.pal-style.co.jp/company/" target="_blank" rel="noopener">会社概要を見る<span class="btn__ico" aria-hidden="true">▶</span></a></p>
+    <ul class="p4sub pv">
+      <li><b>2<em>拠点</em></b><span>大阪本社（大阪市西区新町）／東京オフィス（千代田区神田小川町）</span></li>
+      <li><b>9,000<em>万円</em></b><span>資本金</span></li>
+      <li><b>120<i aria-hidden="true">→</i>230<em>名</em></b><span>採用計画</span><span class="p4sub__tag">FY2029目標</span></li>
+    </ul>
+    <p class="p4note pv"><i aria-hidden="true"></i>出典：株式会社PALの会社概要（2026年10月22日確認）</p>
+
+    <p class="p4next pv">
+      <a class="btn btn--red" href="jobs.html">募集中の職種を見る<span class="btn__ico" aria-hidden="true">▶</span></a>
+      <a class="p4link" href="work.html">仕事を知る</a>
+      <a class="p4link" href="people.html">人を知る</a>
+    </p>
   </div>
 </section>
 
@@ -444,6 +328,26 @@
     });
   }, {threshold:.35});
   items.forEach(function(el){ io.observe(el); });
+})();
+</script>
+<!-- ===== ABOUT-D5 v1：.pv のスクロール演出。
+     CSS 上 .av は最初から見えており、ここで <html> に d5anim を
+     付けたときだけ隠れる。JS が動かなければ全部見えたまま。
+     監視が1.2秒発火しなければ d5anim を外して全表示に戻す。 ===== -->
+<script>
+(function(){
+  "use strict";
+  var root=document.documentElement;
+  if(window.matchMedia && matchMedia('(prefers-reduced-motion:reduce)').matches) return;
+  if(!('IntersectionObserver' in window)) return;
+  var t=[].slice.call(document.querySelectorAll('.pv'));
+  if(!t.length) return;
+  root.classList.add('d5anim');
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  },{threshold:.12, rootMargin:'0px 0px -6% 0px'});
+  t.forEach(function(el){ io.observe(el); });
+  setTimeout(function(){ if(!document.querySelector('.pv.in')) root.classList.remove('d5anim'); },1200);
 })();
 </script>
 </body>

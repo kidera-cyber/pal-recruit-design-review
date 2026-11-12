@@ -1,0 +1,253 @@
+/* =====================================================================
+   ABOUT-D5 v1：ABOUT 簡素化版（3セクション構成・新規プレビュー）
+   ---------------------------------------------------------------------
+   【効く範囲】<body> に a6 が付いたページだけ（about-d5.html の1枚）。
+   about.html / about-d2.html / about-d3.html / about-d4.html / 共通CSS
+   には一切影響しない。
+
+   【TOPとの整合】home.html の実測値に合わせる。
+     コンテナ  .wrap 1180px / padding-inline 40px（共通CSSのまま）
+     英字ラベル .slabel 11.5px w700 ls.16em #262946（赤にしない）
+     見出し    29px w700 lh1.55 ls.02em #262946
+     リード    15px lh1.8 #53545A
+     ボタン    共通の .btn--ghost / .btn--red を home.html の見え方に
+     余白      セクション上下 104px
+     背景      白 と #F2F3F6 の交互
+
+   【3セクションで見た目を変える】
+     01 WHO WE ARE          … 大きなイラストが主役
+     02 OUR PEOPLE & CULTURE… 人とつながりが主役（似顔絵＋3点の関係）
+     03 PAL IN NUMBERS      … 数字とタイポグラフィが主役
+   同じカード列を繰り返さない。タグもカードも増やさない。
+
+   【表示の原則】JavaScript が動かなくても本文が必ず見える。
+   隠す指定はこのファイル内で2箇所だけで、どちらも .d5anim 配下にある。
+
+   現在のバージョン：20261117a
+   ===================================================================== */
+
+.a7{
+  --p-red:#CF131B; --p-red-t:#FCEEF0;
+  --p-ink:#262946; --p-mid:#6B6D81; --p-sub:#53545A;
+  --p-bg:#FFFFFF; --p-g1:#F2F3F6;
+  --p-line:#DAE1F2; --p-line2:#E7EBF4;
+  --p-ease:cubic-bezier(.2,.7,.2,1);
+}
+
+/* ── 動きの土台（JSが無くても見える） ── */
+.d5anim .a7 .pv{opacity:0;transform:translateY(12px);
+  transition:opacity .7s ease,transform .7s var(--p-ease)}
+.d5anim .a7 .pv.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){
+  .d5anim .a7 .pv{opacity:1!important;transform:none!important;transition:none!important}
+}
+
+/* ── セクション ── */
+.a7 #who.sec,.a7 #people.sec,.a7 #numbers.sec{padding-block:clamp(56px,7vw,104px)}
+.a7 #who.sec{background:var(--p-bg)}
+.a7 #people.sec{background:var(--p-g1)}
+.a7 #numbers.sec{background:var(--p-bg)}
+
+/* ── 見出し（home.html 準拠） ── */
+.a7 .p4h{max-width:860px;margin-bottom:clamp(24px,3.2vw,36px)}
+.a7 .p4h .slabel{font-size:11.5px;font-weight:700;letter-spacing:.16em;color:var(--p-ink);
+  text-transform:uppercase;margin-bottom:10px;padding-left:18px}
+.a7 .p4h .stitle{font-size:clamp(23px,3vw,34px)!important;font-weight:700;line-height:1.5;
+  letter-spacing:.02em;color:var(--p-ink)}
+.a7 .p4h .slead{margin-top:16px;font-size:clamp(15px,1.6vw,16px);line-height:1.9;
+  color:var(--p-sub);max-width:64ch}
+
+/* ── 導線 ── */
+.a7 .p4acts{display:flex;flex-wrap:wrap;align-items:center;gap:clamp(14px,2.4vw,26px);
+  margin-top:clamp(24px,3.2vw,36px)}
+.a7 .btn--ghost{display:inline-flex;align-items:center;gap:10px;
+  background:var(--p-bg);color:var(--p-red);border:1px solid var(--p-red);
+  border-radius:9999px;padding:16px 20px 16px 30px;
+  font-size:15.5px;font-weight:500;letter-spacing:.03em;text-decoration:none;
+  transition:background-color .2s}
+.a7 .btn--ghost:hover{background:var(--p-red-t)}
+.a7 .btn--ghost .btn__ico{color:var(--p-red);font-size:11px}
+.a7 .p4link{display:inline-flex;align-items:center;gap:9px;
+  font-size:14px;font-weight:700;letter-spacing:.02em;color:var(--p-red);
+  text-decoration:none;border-bottom:1px solid currentColor;padding-bottom:3px}
+.a7 .p4link::after{content:"";flex:none;width:6px;height:6px;
+  border-top:1.5px solid currentColor;border-right:1.5px solid currentColor;
+  transform:rotate(45deg);transition:transform .2s}
+.a7 .p4link:hover::after{transform:rotate(45deg) translate(2px,-2px)}
+.a7 .p4note{display:flex;gap:10px;align-items:flex-start;margin:clamp(16px,2.2vw,22px) 0 0;
+  font-size:12px;line-height:1.85;color:var(--p-mid)}
+.a7 .p4note i{flex:none;margin-top:.62em;width:14px;height:1px;background:var(--p-mid);opacity:.7}
+
+/* =====================================================================
+   01 WHO WE ARE ─ 大きなイラストが主役
+   ===================================================================== */
+.a7 .p4fig{margin:clamp(24px,3.2vw,38px) 0 0}
+.a7 .p4fig__box{overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;
+  background:var(--p-g1);border:1px solid var(--p-line)}
+.a7 .p4fig img{display:block;width:100%;height:auto;max-width:100%}
+.a7 .p4fig figcaption{display:block;margin:clamp(12px,1.7vw,16px) 0 0;padding-left:16px;
+  border-left:2px solid var(--p-red);font-size:13.5px;line-height:1.9;color:var(--p-ink)}
+.a7 .p4fig figcaption span{color:var(--p-mid);font-size:12px;margin-left:6px}
+@media(max-width:760px){
+  /* 1672px の図を 375px に縮めると細部が読めないので、幅720pxで横スクロール */
+  .a7 .p4fig img{width:720px;height:auto;max-width:none}
+  .a7 .p4fig__box{position:relative}
+  .a7 .p4fig__box::after{content:"← 横にスクロールできます →";position:sticky;left:0;
+    display:block;padding:7px 10px;font-size:11px;font-weight:700;color:var(--p-mid);
+    background:var(--p-bg);border-top:1px solid var(--p-line);width:100%}
+}
+/* 2つの名称を1行ずつ並べて区別する（カードにしない） */
+.a7 .p4def{margin:clamp(26px,3.4vw,36px) 0 0;display:grid;gap:0;border-top:1px solid var(--p-line)}
+.a7 .p4def > div{display:grid;grid-template-columns:minmax(0,390px) minmax(0,1fr);
+  align-items:baseline;gap:6px clamp(18px,2.4vw,30px);
+  padding:clamp(15px,2vw,19px) 0;border-bottom:1px solid var(--p-line2)}
+.a7 .p4def dt{margin:0;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.a7 .p4def dt b{font-size:clamp(15px,1.7vw,18px);font-weight:700;letter-spacing:.02em;
+  color:var(--p-ink);white-space:nowrap}
+.a7 .p4def dt em{font-style:normal;font-size:11px;font-weight:700;letter-spacing:.06em;
+  color:var(--p-red);border:1px solid var(--p-red);padding:3px 9px;white-space:nowrap}
+.a7 .p4def dd{margin:0;font-size:13.5px;line-height:1.9;color:var(--p-mid)}
+@media(max-width:700px){.a7 .p4def > div{grid-template-columns:minmax(0,1fr)}}
+
+/* =====================================================================
+   02 OUR PEOPLE & CULTURE ─ 人とつながりが主役
+   ===================================================================== */
+/* 3つの専門性（線でつなぐ・カードにしない） */
+.a7 .p4cx{list-style:none;margin:clamp(24px,3.2vw,36px) 0 0;padding:28px 0 0;position:relative;
+  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0}
+.a7 .p4cx::before{content:"";position:absolute;left:8px;right:calc(33.3333% - 8px);top:8px;height:2px;
+  background:var(--p-red);opacity:.4;transform-origin:left center;transition:transform 1s var(--p-ease) .2s}
+.d5anim .a7 .p4cx::before{transform:scaleX(0)}
+.d5anim .a7 .p4cx.in::before{transform:scaleX(1)}
+.a7 .p4cx li{position:relative;padding:0 clamp(16px,2.4vw,32px) 0 0}
+.a7 .p4cx li::before{content:"";position:absolute;left:0;top:-28px;width:17px;height:17px;
+  border-radius:50%;background:var(--p-g1);border:2px solid var(--p-red)}
+.a7 .p4cx__en{display:block;font-family:var(--font-en);font-size:10.5px;font-weight:700;
+  letter-spacing:.13em;color:var(--p-mid);margin-bottom:8px}
+.a7 .p4cx__n{margin:0 0 8px;font-size:clamp(16px,1.9vw,20px);font-weight:700;line-height:1.5;color:var(--p-ink)}
+.a7 .p4cx__t{margin:0;font-size:13.5px;line-height:1.9;color:var(--p-mid)}
+.a7 .p4cx__note{display:flex;gap:11px;align-items:center;margin:clamp(20px,2.8vw,28px) 0 0;
+  font-size:13.5px;font-weight:700;line-height:1.8;color:var(--p-ink)}
+.a7 .p4cx__note i{flex:none;width:18px;height:1px;background:var(--p-red)}
+@media(max-width:760px){
+  .a7 .p4cx{grid-template-columns:minmax(0,1fr);padding:0 0 0 32px;row-gap:22px}
+  .a7 .p4cx::before{left:7px;right:auto;top:8px;bottom:8px;width:2px;height:auto;
+    transform:none;transform-origin:top center}
+  .d5anim .a7 .p4cx::before{transform:scaleY(0)}
+  .d5anim .a7 .p4cx.in::before{transform:scaleY(1)}
+  .a7 .p4cx li{padding:0}
+  .a7 .p4cx li::before{left:-32px;top:2px}
+}
+
+/* 社員の言葉（似顔絵を主役に・カードにしない） */
+.a7 .p4voice{list-style:none;margin:clamp(26px,3.4vw,38px) 0 0;padding:0;
+  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(18px,2.6vw,34px)}
+.a7 .p4voice a{display:block;text-decoration:none;color:inherit}
+.a7 .p4voice img{display:block;width:100%;height:auto;background:var(--p-bg);margin-bottom:14px}
+.a7 .p4voice q{display:block;quotes:none;font-size:clamp(15px,1.8vw,18px);font-weight:700;
+  line-height:1.65;letter-spacing:.02em;color:var(--p-ink)}
+.a7 .p4voice cite{display:block;margin-top:10px;font-style:normal;font-size:12.5px;
+  line-height:1.7;color:var(--p-mid)}
+.a7 .p4voice cite b{display:block;font-size:14px;font-weight:700;color:var(--p-ink);letter-spacing:.06em}
+.a7 .p4voice a:hover q{color:var(--p-red)}
+@media(max-width:760px){.a7 .p4voice{grid-template-columns:minmax(0,1fr);gap:26px}}
+
+/* 2つの入口（説明は1文・タグなし・上下関係をつけない） */
+.a7 .p4way{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:clamp(18px,2.6vw,34px);margin:clamp(16px,2.2vw,22px) 0 0}
+.a7 .p4way__i{display:flex;flex-direction:column;
+  border-top:2px solid var(--p-ink);padding-top:clamp(16px,2.2vw,22px)}
+.a7 .p4way__i h4{margin:0 0 10px;font-size:clamp(15px,1.8vw,18px);font-weight:700;
+  line-height:1.5;letter-spacing:.02em;color:var(--p-ink)}
+.a7 .p4way__i p{margin:0 0 clamp(14px,2vw,18px);font-size:13.5px;line-height:1.95;color:var(--p-mid)}
+.a7 .p4way__i a{margin-top:auto;display:inline-flex;align-items:center;gap:8px;
+  font-size:13px;font-weight:700;color:var(--p-red);text-decoration:none}
+.a7 .p4way__i a::after{content:"";flex:none;width:6px;height:6px;
+  border-top:1.4px solid currentColor;border-right:1.4px solid currentColor;
+  transform:rotate(45deg);transition:transform .2s}
+.a7 .p4way__i a:hover::after{transform:rotate(45deg) translate(2px,-2px)}
+@media(max-width:700px){.a7 .p4way{grid-template-columns:minmax(0,1fr);gap:24px}}
+
+/* 3つの価値観（大きな番号・罫線のみ） */
+.a7 .p4val{list-style:none;margin:clamp(20px,2.8vw,28px) 0 0;padding:0;
+  border-top:2px solid var(--p-red)}
+.a7 .p4val li{display:grid;grid-template-columns:clamp(72px,8vw,110px) minmax(0,1fr);
+  align-items:baseline;gap:clamp(14px,2.4vw,32px);
+  padding:clamp(16px,2.2vw,24px) 0;border-bottom:1px solid var(--p-line)}
+.a7 .p4val__no{font-family:var(--font-en);font-size:clamp(30px,4vw,54px);font-weight:700;
+  line-height:.95;color:var(--p-red)}
+.a7 .p4val b{font-size:clamp(17px,2.1vw,25px);font-weight:700;line-height:1.5;
+  letter-spacing:.02em;color:var(--p-ink)}
+@media(max-width:620px){
+  .a7 .p4val li{grid-template-columns:minmax(0,1fr);gap:4px;padding:16px 0}
+  .a7 .p4val__no{font-size:28px}
+}
+
+/* 応募条件の補足（重要情報なので小さくしすぎない） */
+.a7 .p4apply{margin:clamp(26px,3.4vw,36px) 0 0;background:var(--p-bg);
+  border:1px solid var(--p-line);border-top:2px solid var(--p-ink);
+  padding:clamp(20px,2.8vw,28px)}
+.a7 .p4apply__g{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(18px,3vw,34px)}
+.a7 .p4apply p{margin:0;font-size:14px;line-height:1.95;color:var(--p-ink)}
+.a7 .p4apply__f{margin-top:clamp(14px,2vw,18px)!important;padding-top:clamp(13px,1.8vw,16px);
+  border-top:1px solid var(--p-line);font-size:13px!important;color:var(--p-mid)!important}
+.a7 .p4apply__f a{color:var(--p-red);font-weight:700}
+@media(max-width:700px){.a7 .p4apply__g{grid-template-columns:minmax(0,1fr);gap:16px}}
+
+/* =====================================================================
+   03 PAL IN NUMBERS ─ 数字とタイポグラフィが主役
+   ===================================================================== */
+.a7 .p4num{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;
+  margin:clamp(24px,3.2vw,36px) 0 0;border-top:1px solid var(--p-line);border-bottom:1px solid var(--p-line)}
+.a7 .p4num > div{padding:clamp(24px,3.2vw,36px) clamp(18px,2.4vw,32px) clamp(24px,3.2vw,36px) 0}
+.a7 .p4num > div + div{border-left:1px solid var(--p-line);padding-left:clamp(22px,2.8vw,36px)}
+.a7 .p4num__v{display:block;font-family:var(--font-en);font-size:clamp(34px,5vw,64px);
+  font-weight:700;line-height:1;letter-spacing:0;color:var(--p-ink);font-variant-numeric:tabular-nums}
+.a7 .p4num__v em{font-family:var(--font-jp);font-size:.34em;font-style:normal;font-weight:700;
+  color:var(--p-mid);margin:0 1px 0 4px;letter-spacing:.02em}
+.a7 .p4num:first-of-type > div:nth-child(2) .p4num__v{color:var(--p-red)}
+.a7 .p4num__k{display:block;margin-top:13px;font-size:12px;font-weight:700;
+  letter-spacing:.1em;color:var(--p-mid)}
+.a7 .p4num__s{display:block;margin-top:9px;font-size:12.5px;line-height:1.8;color:var(--p-mid)}
+/* 補助の数字は横1列の行に */
+.a7 .p4sub{list-style:none;margin:0;padding:0;display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));gap:0;border-bottom:1px solid var(--p-line)}
+.a7 .p4sub li{padding:clamp(18px,2.4vw,24px) clamp(16px,2.2vw,28px) clamp(18px,2.4vw,24px) 0}
+.a7 .p4sub li + li{border-left:1px solid var(--p-line);padding-left:clamp(20px,2.6vw,32px)}
+.a7 .p4sub b{display:block;font-family:var(--font-en);font-size:clamp(20px,2.4vw,30px);
+  font-weight:700;line-height:1.1;color:var(--p-ink)}
+.a7 .p4sub b em{font-family:var(--font-jp);font-size:.42em;font-style:normal;font-weight:700;
+  color:var(--p-mid);margin-left:4px}
+.a7 .p4sub b i{font-style:normal;color:var(--p-red);margin:0 .12em}
+.a7 .p4sub span{display:block;margin-top:8px;font-size:12.5px;line-height:1.8;color:var(--p-mid)}
+.a7 .p4sub__tag{display:inline-block;margin-top:9px;border:1px solid var(--p-red);
+  padding:3px 9px;font-size:11px;font-weight:700;letter-spacing:.06em;color:var(--p-red);white-space:nowrap}
+@media(max-width:860px){
+  .a7 .p4num,.a7 .p4sub{grid-template-columns:minmax(0,1fr)}
+  .a7 .p4num > div,.a7 .p4sub li{padding:20px 0}
+  .a7 .p4num > div + div,.a7 .p4sub li + li{border-left:none;border-top:1px solid var(--p-line);padding-left:0}
+}
+
+/* ── ページ末尾の導線（優先度をつける） ── */
+.a7 .p4next{margin:clamp(34px,4.4vw,52px) 0 0;display:flex;flex-wrap:wrap;align-items:center;
+  gap:clamp(14px,2.6vw,30px)}
+.a7 .p4next .btn--red{display:inline-flex;align-items:center;gap:10px;
+  background:var(--p-red);color:#fff;border:1px solid var(--p-red);border-radius:9999px;
+  padding:18px 24px 18px 34px;font-size:16px;font-weight:700;letter-spacing:.03em;text-decoration:none}
+.a7 .p4next .btn--red:hover{background:#A50F16;border-color:#A50F16}
+.a7 .p4next .btn--red .btn__ico{font-size:11px}
+
+/* 似顔絵は 900×975 でほぼ正方形。そのまま3列に並べると1枚が約390pxになり
+   セクションが間延びするため、顔まわりを見せる比率でトリミングする。 */
+.a7 .p4voice img{aspect-ratio:4/3.1;object-fit:cover;object-position:50% 12%}
+@media(max-width:760px){.a7 .p4voice img{aspect-ratio:16/9;object-position:50% 14%}}
+
+/* 従業員数だけ赤にする。:first-of-type は div の並びに左右されるので使わない。 */
+.a7 .p4num > div:nth-child(2) .p4num__v{color:var(--p-red)}
+/* .p4sub span{display:block} が後勝ちしてバッジが全幅に伸びるのを打ち消す */
+.a7 .p4sub .p4sub__tag{display:inline-block;width:auto}
+
+/* ===== ABOUT / NOTE LINK v2 START：注記内リンクをリンクと分かる見た目にする ===== */
+.a7 .p4note a{color:var(--p-mid);text-decoration:underline;text-underline-offset:2px}
+.a7 .p4note a:hover{color:var(--p-red)}
+/* ===== ABOUT / NOTE LINK v2 END ===== */
