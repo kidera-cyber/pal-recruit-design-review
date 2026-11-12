@@ -12,8 +12,9 @@
      ・共通 CSS（site/assets/css/style.css）は変更しない。
        style.css は redesign 以外のページも使っているため、.we の中だけで後勝ち
        上書きする。
-     ・インライン style（フッターロゴの color:#fff など）は !important でのみ
-       上書きできる。該当箇所にはその旨を書いている。
+     ・暗色背景に合わせたインライン style（フッターロゴの color:#fff、
+       コーポレートURL の color:#e2e2e2 など）は、正式28ページの HTML から
+       外した（112箇所）。そのため !important は使っていない。
 
    目次
      00 変数
@@ -224,8 +225,7 @@
    ------------------------------------------------------------
    指定元 site/assets/css/style.css 320-332 行
      .ftr{background:var(--navy-d);color:#c7c9d6}
-   HTML 側のインライン style（ロゴの color:#fff / background:#fff）は
-   !important でのみ上書きできる。該当は 3 か所だけ。
+   暗色背景に合わせた HTML のインライン style は、正式28ページから削除済み。
    ============================================================ */
 
 .we .ftr{
@@ -236,10 +236,11 @@
   font-size:13.5px;
 }
 
-/* ロゴ：インライン style の色を打ち消す */
-.we .ftr .logo{color:var(--w-ink)!important}
-.we .ftr .logo__mark{background:var(--w-ink)!important;color:#FFFFFF!important}
-.we .ftr .logo__txt small{color:var(--w-mid)!important}
+/* ロゴ。暗色背景に合わせたインライン style（color:#fff など）は
+   正式28ページの HTML から外したので、!important は不要になった */
+.we .ftr .logo{color:var(--w-ink)}
+.we .ftr .logo__mark{background:var(--w-ink);color:#FFFFFF}
+.we .ftr .logo__txt small{color:var(--w-mid)}
 
 .we .ftr__about p{color:var(--w-sub);line-height:1.9;font-size:13px;max-width:34em}
 .we .ftr__info{font-size:12.5px;row-gap:6px}
@@ -265,8 +266,8 @@
   border-top:1px solid var(--w-line2);
   color:var(--w-mid);font-size:12px;
 }
-.we .ftr__bottom a{color:var(--w-sub)!important;text-decoration:underline;text-underline-offset:3px}
-.we .ftr__bottom a:hover{color:var(--w-red)!important}
+.we .ftr__bottom a{color:var(--w-sub);text-decoration:underline;text-underline-offset:3px}
+.we .ftr__bottom a:hover{color:var(--w-red)}
 /* コーポレートサイトのURLは <small> の中にあり 10px まで落ちていた。
    白地では 1.30:1 で読めないため、親と同じ 12px に戻す */
 .we .ftr__bottom small{font-size:inherit}
@@ -285,6 +286,10 @@
   .we .entry p{font-size:15px}
   .we .entry__ctas{flex-direction:column;align-items:stretch}
   .we .entry__ctas .btn{justify-content:center}
+  /* 共通 .btn は white-space:nowrap のため、職種名の長いCTA
+     （「エンゲージメント・新規営業の募集要項を見る」など）が
+     375px の画面幅を超えて文字が切れていた。ボタン内で折り返す */
+  .we .entry .btn{white-space:normal;text-align:center;line-height:1.5}
   .we .ftr{padding:40px 0 20px}
   .we .ftr h3{margin-bottom:16px}
   .we .ftr__top{row-gap:30px}

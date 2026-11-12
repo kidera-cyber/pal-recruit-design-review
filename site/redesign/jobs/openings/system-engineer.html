@@ -12,6 +12,12 @@
 <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&family=Noto+Sans+JP:wght@400;500;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../../../assets/css/style.css">
 <link rel="stylesheet" href="../../assets/css/system-h.css">
+<!-- ===== WHITE-EDITORIAL v1：採用サイト共通の白基調デザイン（A案）。
+     NEXT STEP（.entry）とフッター（.ftr）の配色は
+     assets/css/white-editorial.css が .we スコープで後勝ち上書きする。
+     文言・リンク・会社情報は変更していない。
+     戻すときは <body> の we と、この link の2行を外す。 ===== -->
+<link rel="stylesheet" href="../../assets/css/white-editorial.css?v=4">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"JobPosting","title":"自社開発 Web・アプリエンジニア","description":"自社の物流DXプロダクトの開発。管理者向けのWebシステムと作業者向けのスマートフォンアプリが連動する仕組みを、倉庫内作業の生産性向上や配送効率化を目的につくる。","hiringOrganization":{"@type":"Organization","name":"株式会社PAL","sameAs":"https://www.pal-style.co.jp/"},"jobLocation":{"@type":"Place","address":{"@type":"PostalAddress","streetAddress":"新町1丁目4番26号 四ツ橋グランドビル2階","addressLocality":"大阪市西区","addressRegion":"大阪府","addressCountry":"JP"}},"employmentType":"FULL_TIME","baseSalary":{"@type":"MonetaryAmount","currency":"JPY","value":{"@type":"QuantityValue","minValue":5000000,"maxValue":8000000,"unitText":"YEAR"}}}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"採用情報","item":"../../../"},{"@type":"ListItem","position":2,"name":"募集職種","item":"../../"},{"@type":"ListItem","position":3,"name":"自社開発 Web・アプリエンジニア｜大阪"}]}</script>
 <style>
@@ -20,7 +26,7 @@
 @media (prefers-reduced-motion:reduce){ .reveal{opacity:1!important;transform:none!important} }
 </style>
 </head>
-<body>
+<body class="we">
 <div class="proto-bar">【試作・非公開】JOBS詳細｜Field Editorialデザイン適用版｜<b>デザイン検証用プレビュー｜本番サイト未反映</b>・文言は本番jobs/openings/system-engineer/index.htmlと完全同一</div>
 <a class="skip-link" href="#main">本文へスキップ</a>
 <header class="hdr" id="hdr">
@@ -115,7 +121,6 @@
 </section>
 
 <section class="entry">
-  <div class="entry__media"><img src="../../../assets/images/hero-bg.jpg" alt="" width="2752" height="1536" loading="lazy" aria-hidden="true"></div>
   <div class="entry__inner wrap--narrow reveal">
     <p class="entry__label en">NEXT STEP</p>
     <h2>この求人に<br>応募する。</h2>
@@ -131,7 +136,7 @@
   <div class="wrap">
     <div class="ftr__top">
       <div class="ftr__about">
-        <a class="logo" href="../../home.html" style="color:#fff"><span class="logo__mark" style="background:#fff;color:var(--navy-d)">PAL</span><span class="logo__txt">RECRUIT<small style="color:#a2a2a2">株式会社PAL 採用サイト</small></span></a>
+        <a class="logo" href="../../home.html"><span class="logo__mark">PAL</span><span class="logo__txt">RECRUIT<small>株式会社PAL 採用サイト</small></span></a>
         <p>株式会社PAL｜DXソリューションカンパニー。「物流をコストから、戦略資産に。」を掲げ、分断された物流現場・システム・設備・データをつなぎ、物流DXの設計・実装・運用・改善までを担います。</p>
         <dl class="ftr__info"><dt>会社名</dt><dd>株式会社PAL</dd><dt>設立</dt><dd>2000年12月</dd><dt>代表</dt><dd>辻 有吾</dd><dt>資本金</dt><dd>9,000万円</dd><dt>従業員</dt><dd>120名<br>アルバイト・パートを含めると約1,600名</dd><dt>拠点</dt><dd>大阪本社 / 東京オフィス</dd></dl>
       </div>
@@ -146,7 +151,7 @@
         <a href="https://www.pal-style.co.jp/contact-service/" target="_blank" rel="noopener">お問い合わせ（サービスについて）</a>
       </nav></div>
     </div>
-    <div class="ftr__bottom"><small>© 2026 PAL Co., Ltd.</small><small>株式会社PAL コーポレートサイト：<a href="https://www.pal-style.co.jp/" target="_blank" rel="noopener" style="color:#e2e2e2;text-decoration:underline;text-underline-offset:3px">www.pal-style.co.jp</a></small></div>
+    <div class="ftr__bottom"><small>© 2026 PAL Co., Ltd.</small><small>株式会社PAL コーポレートサイト：<a href="https://www.pal-style.co.jp/" target="_blank" rel="noopener">www.pal-style.co.jp</a></small></div>
   </div>
 </footer>
 <script src="../../../assets/js/app.js" defer></script>
