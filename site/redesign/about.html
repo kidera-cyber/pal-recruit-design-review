@@ -28,7 +28,7 @@
 <!-- ===== ABOUT-D5 v1：about-figures.css は .abt スコープで、
      このページの body に abt が無いため1行も効かない。読み込まない。 ===== -->
 <!-- ===== ABOUT-D5 v1：この検証ページ専用。全セレクタ .a7 スコープ ===== -->
-<link rel="stylesheet" href="assets/css/about.css?v=20261112a">
+<link rel="stylesheet" href="assets/css/about.css?v=20261112e">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"採用情報","item":"../"},{"@type":"ListItem","position":2,"name":"PALを知る"}]}</script>
 </head>
 <body class="ls a7">
@@ -127,31 +127,35 @@
       <h2 class="stitle">違う専門性が、ひとつの仕事を動かす。</h2>
       <p class="slead">PALには、物流センターの運営を担う人、現場課題を整理するFDE、仕組みを開発するエンジニアなど、異なる専門性を持つメンバーがいます。</p>
     </div>
-
-    <ul class="p4cx pv">
-      <li><span class="p4cx__en">BPO / Operation</span><h3 class="p4cx__n">BPO・現場運営</h3><p class="p4cx__t">現場を安定させ、改善を進める</p></li>
-      <li><span class="p4cx__en">Forward Deployed Engineer</span><h3 class="p4cx__n">FDE</h3><p class="p4cx__t">現場課題を技術につなぐ</p></li>
-      <li><span class="p4cx__en">System / Product</span><h3 class="p4cx__n">システム・プロダクト開発</h3><p class="p4cx__t">現場で使われる仕組みをつくる</p></li>
-    </ul>
-    <p class="p4cx__note pv"><i aria-hidden="true"></i>3つの領域に上下関係はありません。</p>
-
+    <figure class="p4flow pv">
+      <figcaption class="p4flow__cap">3つの専門領域</figcaption>
+      <ul class="p4cx">
+        <li><span class="p4cx__en">BPO / Operation</span><h3 class="p4cx__n">BPO・現場運営</h3><p class="p4cx__t">現場を安定させ、改善を進める</p></li>
+        <li><span class="p4cx__en">Forward Deployed Engineer</span><h3 class="p4cx__n">FDE</h3><p class="p4cx__t">現場課題を技術につなぐ</p></li>
+        <li><span class="p4cx__en">System / Product</span><h3 class="p4cx__n">システム・プロダクト開発</h3><p class="p4cx__t">現場で使われる仕組みをつくる</p></li>
+      </ul>
+      <p class="p4cx__note"><i aria-hidden="true"></i>3つの領域に上下関係はありません。</p>
+    </figure>
+    <p class="p4vh pv">この領域で働く人</p>
     <ul class="p4voice pv">
-      <li><a href="people.html"><img src="../assets/images/avatar-bpo.png" alt="BPO事業部で働く社員の似顔絵" width="900" height="975" loading="lazy"><q>毎日の運営の中に、次の改善がある。</q><cite><b>I.N</b>BPO事業部 Productivity推進部</cite></a></li>
-      <li><a href="people.html"><img src="../assets/images/avatar-fde.png" alt="FDEとして働く社員の似顔絵" width="900" height="975" loading="lazy"><q>現場で使われて、初めて「できた」と言える。</q><cite><b>H.Y</b>FDE・2023年新卒入社</cite></a></li>
-      <li><a href="people.html"><img src="../assets/images/avatar-system.png" alt="DXプロダクト開発で働く社員の似顔絵" width="900" height="975" loading="lazy"><q>つくるのは、現場が明日から使えるもの。</q><cite><b>M.M</b>DXプロダクト開発・2026年中途入社</cite></a></li>
+      <li><a href="people.html"><span class="p4voice__ph"><img src="../assets/images/avatar-bpo.png" alt="BPO事業部で働く社員の似顔絵" width="900" height="975" loading="lazy"></span><span class="p4voice__b"><span class="p4voice__area">BPO・現場運営</span><q>毎日の運営の中に、次の改善がある。</q><cite><b>I.N</b>BPO事業部 Productivity推進部</cite></span></a></li>
+      <li><a href="people.html"><span class="p4voice__ph"><img src="../assets/images/avatar-fde.png" alt="FDEとして働く社員の似顔絵" width="900" height="975" loading="lazy"></span><span class="p4voice__b"><span class="p4voice__area">FDE</span><q>現場で使われて、初めて「できた」と言える。</q><cite><b>H.Y</b>FDE・2023年新卒入社</cite></span></a></li>
+      <li><a href="people.html"><span class="p4voice__ph"><img src="../assets/images/avatar-system.png" alt="DXプロダクト開発で働く社員の似顔絵" width="900" height="975" loading="lazy"></span><span class="p4voice__b"><span class="p4voice__area">システム・プロダクト開発</span><q>つくるのは、現場が明日から使えるもの。</q><cite><b>M.M</b>DXプロダクト開発・2026年中途入社</cite></span></a></li>
     </ul>
     <p class="p4acts pv"><a class="p4link" href="people.html">PALで働く人を知る</a></p>
-
-    <div class="p4way pv">
-      <div class="p4way__i">
-        <h4>現場運営の経験がある方へ。</h4>
-        <p>日々の運営に加えて、システムや自動化設備、データを使った現場改善にも接点があります。</p>
-        <a href="work.html#role-bpo">現場運営の仕事を見る</a>
+    <div class="two-view pv">
+      <div class="two-view__i two-view__i--field">
+        <div class="two-view__head"><span class="two-view__ico" aria-hidden="true"><svg viewBox="0 0 26 26" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M13 13.5a4 4 0 1 0 0-8 4 4 0 0 0 0 8Z"/><path d="M4.5 22a8.5 8.5 0 0 1 17 0"/></svg></span><div><p class="two-view__en en">If you come from the field</p><h3 class="two-view__h">現場運営の経験がある方へ。</h3></div></div>
+        <ul class="two-view__tags"><li>稼働</li><li>品質</li><li>安全</li><li>生産性</li></ul>
+        <p class="two-view__t">日々の運営に加えて、システムや自動化設備、データを使った現場改善にも接点があります。</p>
+        <p class="two-view__go"><a class="textlink textlink--sm" href="work.html#role-bpo">現場運営の仕事を見る</a><a class="textlink textlink--sm" href="people/bpo.html">現場運営の社員を見る</a></p>
       </div>
-      <div class="p4way__i">
-        <h4>システム・開発の経験がある方へ。</h4>
-        <p>つくった仕組みは、PALが運営する現場で実際に使われます。</p>
-        <a href="work.html#role-system">開発の仕事を見る</a>
+      <div class="two-view__i two-view__i--eng">
+        <div class="two-view__head"><span class="two-view__ico" aria-hidden="true"><svg viewBox="0 0 26 26" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M9 7.5 3.5 13 9 18.5M17 7.5 22.5 13 17 18.5M14.5 4.5l-3 17"/></svg></span><div><p class="two-view__en en">If you come from engineering</p><h3 class="two-view__h">システム・開発の経験がある方へ。</h3></div></div>
+        <ul class="two-view__tags"><li>開発</li><li>実装</li></ul>
+        <p class="two-view__t">つくった仕組みは、PALが運営する現場で実際に使われます。</p>
+        <p class="two-view__sub">業務や運用とのつながりを考えながら、社内外の関係者と分担して関わります。</p>
+        <p class="two-view__go"><a class="textlink textlink--sm" href="work.html#role-system">開発の仕事を見る</a><a class="textlink textlink--sm" href="people/system.html">開発の社員を見る</a></p>
       </div>
     </div>
 
