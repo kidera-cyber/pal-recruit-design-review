@@ -15,6 +15,9 @@
 <!-- ===== CONNECT v1：HOW ROLES CONNECT（#connect）専用。
      共通 style.css の .wflow は変更せず、このセクションだけを組み直す。 ===== -->
 <link rel="stylesheet" href="assets/css/work-connect.css?v=3">
+<!-- ===== BPO-V3 v1：#role-bpo（物流センター運営）パネル専用。
+     共通 style.css は変更せず、このパネルの中だけを組み直す。 ===== -->
+<link rel="stylesheet" href="assets/css/work-bpo.css?v=1">
 <!-- ===== WHITE-EDITORIAL v1：採用サイト共通の白基調デザイン（A案）。
      本文・NEXT STEP・フッターの配色は assets/css/white-editorial.css が
      .we スコープで後勝ち上書きする。HTML の文言・リンクは変更していない。
@@ -121,7 +124,14 @@
         <div class="rpanel__top"><svg class="rpanel__ic" aria-hidden="true"><use href="#ic2-field"></use></svg><div><h3 class="rpanel__n">物流センター運営</h3><p class="rpanel__en en">BPO / Operation</p><p class="rpanel__one">現場を安定させ、改善を進める</p></div></div>
         <div class="rpanel__body">
           <div class="rpanel__main"><p class="rpanel__ch">主な仕事</p>
-            <ul class="role-points"><li>各拠点の稼働状況の確認と、人員配置</li><li>作業進捗・品質・安全の管理</li><li>生産性・収支の確認と、業務改善の推進</li><li>取引先との打ち合わせ、現場確認</li><li>拠点間の調整と、改善施策の横展開</li></ul>
+            <!-- ===== BPO-V3 v1：主な仕事を「番号／短い要約見出し／正式な仕事内容」の3段にした。
+                 要約見出し（dt の太字）は正式な業務名称ではなく、dd の正式な仕事内容を読むための見出し。
+                 5項目のうち残り2つは削除せず、下の「そのほかの担当業務」に移してある。 ===== -->
+            <dl class="bpomain">
+              <div class="bpomain__i"><dt class="bpomain__h"><span class="bpomain__no en">01</span>現場の稼働を管理する</dt><dd class="bpomain__d">各拠点の稼働状況の確認と、人員配置</dd></div>
+              <div class="bpomain__i"><dt class="bpomain__h"><span class="bpomain__no en">02</span>品質と安全を守る</dt><dd class="bpomain__d">作業進捗・品質・安全の管理</dd></div>
+              <div class="bpomain__i"><dt class="bpomain__h"><span class="bpomain__no en">03</span>数字をもとに改善する</dt><dd class="bpomain__d">生産性・収支の確認と、業務改善の推進</dd></div>
+            </dl>
           </div>
           <div class="rpanel__side"><p class="rpanel__ch">この仕事らしさ</p><p class="rpanel__t">現場を安定して回しながら、より良い運営へ改善していくこと。改善が、そのまま現場の変化になります。</p>
             <p class="rpanel__ch">関わる相手</p><ul class="role-people"><li>現場スタッフ</li><li>拠点責任者</li><li>取引先</li><li>DX・システム部門</li></ul>
@@ -130,6 +140,12 @@
         <div class="rdeep">
           <h4 class="rdeep__h">現場を止めずに、やり方を変えていく。</h4>
           <p class="rdeep__lead">物流センターの運営を預かる仕事です。日々の稼働を安定させながら、人員配置・作業進捗・品質・安全・生産性・収支を見て、現場の改善まで担当します。拠点によって顧客の業態、取り扱う商品、勤務シフトが異なります。</p>
+          <!-- ===== BPO-V3 v1：主な仕事の残り2項目。原文のまま、順序も変えていない ===== -->
+          <p class="rpanel__ch">そのほかの担当業務</p>
+          <ul class="bpoother">
+            <li>取引先との打ち合わせ、現場確認</li>
+            <li>拠点間の調整と、改善施策の横展開</li>
+          </ul>
           <p class="rpanel__ch">仕事の進め方</p>
           <ol class="rdeep__flow">
             <li><span class="en">01</span><b>現場の状況を把握する</b><p><span>稼働を見る</span>各拠点の稼働状況を確認し、その日の作業量をつかむ。</p></li>

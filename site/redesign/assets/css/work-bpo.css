@@ -1,0 +1,168 @@
+@charset "utf-8";
+/* ============================================================================
+   WORK｜物流センター運営（#role-bpo）パネル  BPO-V3 v1
+
+   対象はこのパネルの中だけ。セレクタはすべて #role-bpo から始めるので、
+   ほかの8職種・HOW ROLES CONNECT・WHY THIS WORK MATTERS には波及しない。
+   共通 site/assets/css/style.css は変更していない（site/work/index.html も
+   同じ .role-points / .rdeep__flow を使っているため）。
+
+   直した2か所
+     ① 主な仕事      13.5px の箇条書き → 番号／要約見出し／正式な仕事内容 の3段
+     ② 仕事の進め方  薄灰の縦積み4ボックス → 横一本の線でつなぐ4工程
+                     （work-job-sample で承認済みの図解と同じ作り。
+                       HTML は変えず、CSS だけで横並びにしている）
+
+   「この仕事で大切にしていること」は、v3 の表示方法が未承認のため
+   現行の全文表示のままにしてある。
+
+   配色は White Editorial A案
+     白 #FFFFFF／濃紺 #262946／PALレッド #CF131B／本文 #53545A
+     補助 #6B6D81／罫線 #DAE1F2・#E7EBF4
+   ============================================================================ */
+
+#role-bpo{
+  --b-ink:#262946;
+  --b-ink2:#464A6F;
+  --b-sub:#53545A;
+  --b-mid:#6B6D81;
+  --b-red:#CF131B;
+  --b-line:#DAE1F2;
+  --b-line2:#E7EBF4;
+}
+
+/* 小見出し（主な仕事／そのほかの担当業務／仕事の進め方 …）。
+   共通の 12px グレーは弱いので、赤い短線＋濃紺にする */
+#role-bpo .rpanel__ch{
+  position:relative;padding-left:32px;margin-bottom:16px;
+  font-size:13px;font-weight:700;letter-spacing:.08em;color:var(--b-ink);
+  text-transform:none;
+}
+#role-bpo .rpanel__ch::before{
+  content:"";position:absolute;left:0;top:.62em;width:22px;height:2px;background:var(--b-red);
+}
+
+/* ───────── ① 主な仕事 ───────── */
+#role-bpo .bpomain{margin:0;padding:0;border-top:1px solid var(--b-line)}
+#role-bpo .bpomain__i{
+  padding:clamp(15px,1.8vw,19px) 0;border-bottom:1px solid var(--b-line2);
+}
+#role-bpo .bpomain__h{
+  display:flex;align-items:baseline;gap:14px;margin:0 0 6px;
+  font-size:clamp(16px,1.8vw,18px);font-weight:700;line-height:1.55;
+  letter-spacing:.01em;color:var(--b-ink);
+}
+#role-bpo .bpomain__no{
+  flex:none;font:900 clamp(18px,2vw,21px)/1 Lato,sans-serif;
+  letter-spacing:.02em;color:var(--b-red);
+}
+#role-bpo .bpomain__d{
+  margin:0 0 0 34px;font-size:14.5px;line-height:1.85;color:var(--b-sub);
+}
+
+/* この仕事らしさ／関わる相手（右カラム）は、主な仕事より一段弱く */
+#role-bpo .rpanel__t{font-size:14px;line-height:1.9;color:var(--b-sub)}
+#role-bpo .role-people li{font-size:14px;color:var(--b-ink)}
+
+/* ───────── そのほかの担当業務 ───────── */
+#role-bpo .bpoother{
+  list-style:none;margin:0 0 26px;padding:0;border-top:1px solid var(--b-line2);
+}
+#role-bpo .bpoother li{
+  position:relative;padding:12px 0 12px 28px;border-bottom:1px solid var(--b-line2);
+  font-size:15px;line-height:1.75;color:var(--b-ink);
+}
+#role-bpo .bpoother li::before{
+  content:"";position:absolute;left:0;top:50%;width:15px;height:1px;
+  background:var(--b-red);transform:translateY(-50%);
+}
+#role-bpo .bpoother li::after{
+  content:"";position:absolute;left:10px;top:50%;width:6px;height:6px;
+  border-top:1px solid var(--b-red);border-right:1px solid var(--b-red);
+  transform:translateY(-50%) rotate(45deg);
+}
+
+/* ───────── ② 仕事の進め方：横4工程 ─────────
+   HTML は <ol class="rdeep__flow"><li><span class="en">01</span><b>…</b><p>…</p></li>
+   のまま。薄灰のボックスをやめ、1本の線と接続点で4工程をつなぐ。      */
+#role-bpo .rdeep__flow{
+  grid-template-columns:repeat(4,minmax(0,1fr));gap:0;
+  margin:0 0 clamp(22px,2.6vw,28px);padding-top:50px;position:relative;
+}
+/* 工程をつなぐ線。端は内側で止めて、始点と終点を示す */
+#role-bpo .rdeep__flow::before{
+  content:"";position:absolute;left:calc(12.5% - 1px);right:calc(12.5% - 1px);
+  top:45px;height:2px;background:var(--b-ink);
+}
+#role-bpo .rdeep__flow li{
+  position:relative;background:none;border-radius:0;
+  padding:0 clamp(14px,1.8vw,22px) 0 0;
+}
+#role-bpo .rdeep__flow li + li{padding-left:clamp(14px,1.8vw,22px)}
+
+/* 番号：赤・大きく。線の上に接続点を置く */
+#role-bpo .rdeep__flow .en{
+  position:absolute;left:50%;top:-50px;transform:translateX(-50%);
+  display:block;margin:0;
+  font:900 clamp(24px,2.8vw,30px)/1 Lato,sans-serif;color:var(--b-red);
+}
+#role-bpo .rdeep__flow .en::after{
+  content:"";position:absolute;left:50%;top:calc(100% + 9px);transform:translateX(-50%);
+  width:12px;height:12px;border-radius:50%;background:#FFFFFF;
+  border:3px solid var(--b-ink);box-sizing:border-box;
+}
+#role-bpo .rdeep__flow b{
+  display:block;margin:22px 0 12px;text-align:center;
+  font-size:clamp(15px,1.7vw,17px);font-weight:700;line-height:1.5;color:var(--b-ink);
+}
+#role-bpo .rdeep__flow p{
+  margin:0 0 10px;font-size:13.5px;line-height:1.85;color:var(--b-sub);
+}
+#role-bpo .rdeep__flow p:last-child{margin-bottom:0}
+#role-bpo .rdeep__flow p span{
+  display:block;margin:0 0 3px;font-size:12.5px;font-weight:700;letter-spacing:.04em;
+  color:var(--b-ink2);
+}
+#role-bpo .rdeep__note{
+  margin:0 0 clamp(24px,2.8vw,32px);padding-left:16px;
+  border-left:2px solid var(--b-line);
+  font-size:13.5px;line-height:1.85;color:var(--b-mid);
+}
+
+/* ───────── そのほかの読みやすさ ───────── */
+#role-bpo .rdeep__h{font-size:clamp(17px,2vw,20px);line-height:1.5;color:var(--b-ink)}
+#role-bpo .rdeep__lead{font-size:14.5px;line-height:1.9;color:var(--b-sub);max-width:46em}
+/* 大切にしていること：v3 の表示方法は未承認のため、全文表示のまま文字だけ読みやすくする */
+#role-bpo .rdeep__pts li{font-size:14px;gap:14px;align-items:baseline}
+#role-bpo .rdeep__pts i{font-size:17px;font-family:Lato,sans-serif}
+#role-bpo .rdeep__pts b{margin-bottom:5px;font-size:15px;line-height:1.6;color:var(--b-ink)}
+#role-bpo .rdeep__pts p{font-size:13.5px;line-height:1.9;color:var(--b-sub)}
+
+/* ───────── レスポンシブ ───────── */
+@media(max-width:1023px){
+  #role-bpo .rdeep__flow{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:36px;padding-top:0}
+  #role-bpo .rdeep__flow::before{display:none}
+  #role-bpo .rdeep__flow li{padding:0 16px 0 0}
+  #role-bpo .rdeep__flow li + li{padding-left:16px}
+  #role-bpo .rdeep__flow li:nth-child(odd){padding-left:0}
+  #role-bpo .rdeep__flow .en{position:static;transform:none;margin-bottom:8px;font-size:25px}
+  #role-bpo .rdeep__flow .en::after{display:none}
+  #role-bpo .rdeep__flow b{margin:0 0 10px;text-align:left}
+}
+@media(max-width:760px){
+  /* SP は縦1列。左に縦線を通し、番号を線の上に置く */
+  #role-bpo .rdeep__flow{grid-template-columns:minmax(0,1fr);row-gap:26px;padding:0 0 0 50px;position:relative}
+  #role-bpo .rdeep__flow::before{display:block;left:16px;right:auto;top:14px;bottom:14px;width:2px;height:auto}
+  #role-bpo .rdeep__flow li,
+  #role-bpo .rdeep__flow li + li,
+  #role-bpo .rdeep__flow li:nth-child(odd){padding:0}
+  #role-bpo .rdeep__flow .en{
+    position:absolute;left:-50px;top:-3px;width:34px;text-align:center;
+    font-size:clamp(22px,6vw,25px);margin:0;
+  }
+  #role-bpo .rdeep__flow .en::after{display:block;left:50%;top:calc(100% + 6px);width:11px;height:11px;border-width:2.5px}
+  #role-bpo .rdeep__flow b{margin:2px 0 9px;font-size:16px}
+  #role-bpo .bpomain__h{font-size:16px;gap:12px}
+  #role-bpo .bpomain__d{margin-left:30px;font-size:14.5px}
+  #role-bpo .bpoother li{font-size:14.5px}
+}
