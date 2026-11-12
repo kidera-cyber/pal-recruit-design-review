@@ -445,3 +445,105 @@
   .cv2 .ecar__h{font-size:17px}
 }
 /* ===== ENGAGEMENT CAREER v1 END ===== */
+
+/* ============================================================
+   ===== FIRST EXPERIENCES v1 START =====
+   02 START（入社して、最初にすること）の再設計。
+
+   旧実装（.ctl）は3シーンに長い説明文を横並びで出していたため、
+   初期表示の文章量が多く、3つの経験の違いがひと目で伝わらなかった。
+   初期表示は「SCENE番号 → 図解 → 見出し」だけにし、説明文は
+   .cmore（details）へ移している。.ctl / .sline の指定は使わなくなる。
+
+   灰色の大きなボックスは置かず、白地に図解・番号・罫線・余白で
+   メリハリをつける。淡いブルーグレーは図解の内部だけに使う。
+   ============================================================ */
+.cv2 .fx{
+  list-style:none;margin:0;padding:0;position:relative;
+  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:0 clamp(26px,3.4vw,52px);
+}
+.cv2 .fx__i{
+  position:relative;padding-top:clamp(18px,2.2vw,24px);
+  border-top:2px solid var(--c-ink);
+}
+/* シーン同士の流れ。図解の高さの中ほどに小さな矢印を置く */
+.cv2 .fx__i + .fx__i::before{
+  content:"";position:absolute;left:calc(-1 * clamp(13px,1.7vw,26px));
+  top:calc(clamp(18px,2.2vw,24px) + 1.9em + clamp(14px,1.8vw,20px) + 22%);
+  width:11px;height:11px;
+  border-top:2px solid var(--c-red);border-right:2px solid var(--c-red);
+  transform:translateX(-50%) rotate(45deg);
+}
+.cv2 .fx__no{
+  margin:0 0 clamp(14px,1.8vw,20px);
+  font:900 clamp(12px,1.4vw,14px)/1 Lato,sans-serif;letter-spacing:.14em;color:var(--c-red);
+}
+.cv2 .fx__fig{margin:0 0 clamp(16px,2vw,22px);line-height:0}
+.cv2 .fx__g{display:block;width:100%;height:auto}
+.cv2 .fx__h{
+  margin:0;font-size:clamp(18px,2.2vw,23px);font-weight:700;line-height:1.5;
+  letter-spacing:.01em;color:var(--c-ink);
+}
+
+/* 詳細（.cmore を再利用）。開閉できることが分かる幅広の帯にする */
+.cv2 .fxmore{margin:clamp(30px,3.6vw,44px) 0 0}
+.cv2 .fxmore .cmore__st{font-size:clamp(16px,1.8vw,18px)}
+.cv2 .fxmore .cmore__in{max-width:62em}
+.cv2 .fxnote{
+  margin:clamp(22px,2.6vw,30px) 0 0;padding-top:clamp(18px,2.2vw,24px);
+  border-top:1px solid var(--c-line);
+}
+.cv2 .fxnote__h{
+  margin:0 0 9px;font-size:clamp(15.5px,1.7vw,17px);font-weight:700;
+  line-height:1.6;color:var(--c-ink);
+}
+.cv2 .fxnote__t{margin:0;font-size:14px;line-height:1.9;color:var(--c-sub)}
+
+/* 関連導線。大きなボタンにはせず、テキストリンクと矢印で主従をつける */
+.cv2 .fxrel{
+  list-style:none;margin:clamp(26px,3vw,36px) 0 0;padding:0;
+  border-top:1px solid var(--c-line);
+}
+.cv2 .fxrel__i{
+  display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:baseline;gap:12px 20px;
+  padding:clamp(13px,1.6vw,16px) 0;border-bottom:1px solid var(--c-line2);
+}
+.cv2 .fxrel__k{font-size:13.5px;line-height:1.7;color:var(--c-mid)}
+.cv2 .fxrel__a{
+  display:inline-flex;align-items:center;gap:9px;
+  font-size:15px;font-weight:700;color:var(--c-ink);text-decoration:none;
+  transition:color .15s;
+}
+.cv2 .fxrel__i--main .fxrel__a{font-size:clamp(16px,1.8vw,17.5px)}
+.cv2 .fxrel__a i{position:relative;display:block;width:15px;height:9px}
+.cv2 .fxrel__a i::before{
+  content:"";position:absolute;left:0;top:4px;width:15px;height:1.5px;
+  background:var(--c-ink);transition:background-color .15s,transform .2s;
+}
+.cv2 .fxrel__a i::after{
+  content:"";position:absolute;right:0;top:1.5px;width:7px;height:7px;
+  border-top:1.5px solid var(--c-ink);border-right:1.5px solid var(--c-ink);
+  transform:rotate(45deg);transition:border-color .15s,transform .2s;
+}
+.cv2 .fxrel__a:hover{color:var(--c-red)}
+.cv2 .fxrel__a:hover i::before{background:var(--c-red);transform:translateX(3px)}
+.cv2 .fxrel__a:hover i::after{border-color:var(--c-red);transform:rotate(45deg) translate(2px,2px)}
+.cv2 .fxrel__a:focus-visible{outline:2px solid var(--c-red);outline-offset:3px;border-radius:4px}
+
+@media(prefers-reduced-motion:reduce){
+  .cv2 .fxrel__a,.cv2 .fxrel__a i::before,.cv2 .fxrel__a i::after{transition:none}
+}
+
+@media(max-width:860px){
+  /* SP は1カラム。流れの矢印は下向きにする */
+  .cv2 .fx{grid-template-columns:minmax(0,1fr);gap:clamp(26px,5vw,34px) 0}
+  .cv2 .fx__i + .fx__i::before{
+    left:50%;top:calc(-1 * clamp(13px,2.5vw,17px));
+    transform:translateX(-50%) rotate(135deg);
+  }
+  .cv2 .fx__g{max-width:420px;margin:0 auto}
+  .cv2 .fx__h{font-size:clamp(18px,5vw,21px)}
+  .cv2 .fxrel__i{grid-template-columns:minmax(0,1fr);gap:5px}
+}
+/* ===== FIRST EXPERIENCES v1 END ===== */
