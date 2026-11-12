@@ -184,3 +184,184 @@
 .cv2 .croad__to{
   margin:clamp(20px,2.4vw,26px) 0 0;font-size:13.5px;line-height:1.85;color:var(--c-mid);
 }
+
+/* ============================================================
+   ===== CAREER-V2 v2 START =====
+   職種別キャリアパスの残り5領域（営業・クレンリネス・FDE・プロダクト・DTS）を
+   BPO と同じ「ロードマップ主役」へ揃えるための修飾子。
+   既存の .croad 一式（v1）はそのまま使い、線の引き方だけを後勝ちで上書きする。
+     croad--line  STEP1〜4 が一本道（クレンリネス／プロダクト）
+     croad--br3   STEP3 まで実線、STEP4 へは破線（FDE）
+     croad--flow  STEP ではなく 01〜04 の工程（エンゲージメント・新規営業）
+     croad__br    ロードマップ直下の分岐注記（FDE）
+     cbr          STEP1 から A／B の2方向へ分かれる専用図（DTS）
+   ============================================================ */
+
+/* ── 一本道：全区間を実線にし、破線のレイヤーを止める ── */
+.cv2 .croad--line .croad__l::before{left:12.5%;right:12.5%;width:auto}
+.cv2 .croad--line .croad__l::after{display:none}
+
+/* ── STEP3 まで実線、STEP3→4 のみ破線 ── */
+.cv2 .croad--br3 .croad__l::before{left:12.5%;width:50%}
+.cv2 .croad--br3 .croad__l::after{left:62.5%;right:12.5%}
+
+/* ── 01〜04 の工程。番号が2桁で背が高くなるぶん、線とノードを下げる ── */
+.cv2 .croad--flow .croad__l{padding-top:56px}
+.cv2 .croad--flow .croad__l::before{left:12.5%;right:12.5%;width:auto;top:40px}
+.cv2 .croad--flow .croad__l::after{display:none}
+.cv2 .croad--flow .croad__no{top:-56px;font-size:clamp(21px,2.4vw,27px);letter-spacing:.02em}
+.cv2 .croad--flow .croad__no::after{left:3px}
+
+/* ── FDE の分岐注記 ── */
+.cv2 .croad__br{
+  margin:clamp(24px,2.8vw,32px) 0 0;padding:clamp(18px,2.2vw,22px) clamp(18px,2.2vw,24px);
+  border:1px solid var(--c-line);border-radius:12px;background:var(--c-soft);
+}
+.cv2 .croad__br-h{
+  display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin:0 0 14px;
+  font-size:15px;font-weight:700;line-height:1.6;color:var(--c-ink);
+}
+.cv2 .croad__br-en{
+  flex:none;font:700 11px/1.4 Lato,sans-serif;letter-spacing:.18em;color:var(--c-red);
+}
+.cv2 .croad__br-cols{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0}
+.cv2 .croad__br-col{padding:0 clamp(16px,2vw,24px) 0 0}
+.cv2 .croad__br-col + .croad__br-col{padding-left:clamp(16px,2vw,24px);border-left:1px solid var(--c-line)}
+.cv2 .croad__br-col b{
+  display:block;margin:0 0 6px;font-size:15.5px;font-weight:700;line-height:1.5;color:var(--c-ink);
+}
+.cv2 .croad__br-col p{margin:0;font-size:13.5px;line-height:1.85;color:var(--c-sub)}
+
+/* ── DTS：STEP1 から2方向へ分かれる図 ── */
+.cv2 .cbr{margin:clamp(24px,3vw,32px) 0 0}
+.cv2 .cbr__lab{
+  display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin:0 0 16px;
+  font:700 11px/1.4 Lato,sans-serif;letter-spacing:.18em;color:var(--c-red);
+}
+.cv2 .cbr__lab span{
+  font-family:inherit;font-size:15px;font-weight:700;letter-spacing:.04em;color:var(--c-ink);
+}
+.cv2 .cbr__no{
+  margin:0 0 9px;font:900 clamp(13px,1.5vw,15px)/1 Lato,sans-serif;
+  letter-spacing:.08em;color:var(--c-red);
+}
+.cv2 .cbr__r{
+  display:block;margin:0 0 8px;font-size:clamp(17px,1.9vw,21px);font-weight:700;
+  line-height:1.5;letter-spacing:.01em;color:var(--c-ink);
+}
+.cv2 .cbr__t{margin:0;font-size:14.5px;line-height:1.85;color:var(--c-sub)}
+
+/* 起点の STEP 1。左に太い縦線を立て、ここから2方向へ分かれることを示す */
+.cv2 .cbr__root{
+  position:relative;padding:0 0 clamp(22px,2.6vw,28px) 34px;max-width:46em;
+}
+.cv2 .cbr__root::before{
+  content:"";position:absolute;left:6px;top:8px;bottom:0;width:2px;background:var(--c-ink);
+}
+.cv2 .cbr__root::after{
+  content:"";position:absolute;left:0;top:2px;width:14px;height:14px;border-radius:50%;
+  background:#FFFFFF;border:3px solid var(--c-ink);box-sizing:border-box;
+}
+.cv2 .cbr__h{
+  display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;
+  margin:0 0 clamp(18px,2.2vw,24px);padding:0 0 0 34px;
+  font-size:15px;font-weight:700;line-height:1.6;color:var(--c-ink);
+}
+.cv2 .cbr__en{
+  flex:none;font:700 11px/1.4 Lato,sans-serif;letter-spacing:.18em;color:var(--c-red);
+}
+.cv2 .cbr__cols{
+  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0;
+  border-top:1px solid var(--c-line);
+}
+.cv2 .cbr__col{padding:clamp(20px,2.4vw,26px) clamp(18px,2.2vw,28px) 0 0}
+.cv2 .cbr__col + .cbr__col{padding-left:clamp(18px,2.2vw,28px);border-left:1px solid var(--c-line2)}
+.cv2 .cbr__label{
+  margin:0 0 clamp(16px,2vw,20px);padding-bottom:9px;border-bottom:2px solid var(--c-red);
+  font-size:14px;font-weight:700;letter-spacing:.04em;color:var(--c-ink);
+}
+.cv2 .cbr__l{list-style:none;margin:0;padding:0;display:grid;gap:clamp(18px,2.2vw,24px)}
+.cv2 .cbr__i{position:relative;padding-left:34px}
+.cv2 .cbr__i::after{
+  content:"";position:absolute;left:0;top:2px;width:13px;height:13px;border-radius:50%;
+  background:#FFFFFF;border:3px solid var(--c-ink);box-sizing:border-box;
+}
+.cv2 .cbr__i + .cbr__i::before{
+  content:"";position:absolute;left:6px;top:calc(-1 * clamp(18px,2.2vw,24px));height:calc(clamp(18px,2.2vw,24px) + 2px);
+  width:2px;background:var(--c-line);
+}
+.cv2 .cbr__next{
+  margin:clamp(16px,2vw,20px) 0 0;padding-left:15px;border-left:2px solid var(--c-line);
+  font-size:13.5px;line-height:1.85;color:var(--c-mid);
+}
+
+@media(max-width:860px){
+  /* 縦ロードマップでも、線の引き方を領域ごとに揃える */
+  .cv2 .croad--line .croad__l::before,
+  .cv2 .croad--flow .croad__l::before{left:16px;right:auto;top:10px;bottom:14px;width:2px;height:auto}
+  .cv2 .croad--br3 .croad__l::before{left:16px;right:auto;top:10px;width:2px;height:70%}
+  .cv2 .croad--br3 .croad__l::after{left:16px;right:auto;top:70%;bottom:14px;width:0;height:auto;
+    border-top:none;border-left:2px dashed var(--c-line)}
+  .cv2 .croad--flow .croad__l{padding:0 0 0 92px}
+  .cv2 .croad--flow .croad__no{top:0}
+  .cv2 .croad--flow .croad__no::after{left:66px;top:2px}
+  .cv2 .croad__br-cols,.cv2 .cbr__cols{grid-template-columns:minmax(0,1fr)}
+  .cv2 .croad__br-col,.cv2 .croad__br-col + .croad__br-col{padding:0 0 16px;border-left:none}
+  .cv2 .croad__br-col + .croad__br-col{padding:16px 0 0;border-top:1px solid var(--c-line)}
+  .cv2 .cbr__col,.cv2 .cbr__col + .cbr__col{padding:22px 0 0;border-left:none}
+  .cv2 .cbr__col + .cbr__col{border-top:1px solid var(--c-line2)}
+}
+@media(max-width:760px){
+  .cv2 .cbr__r{font-size:17px}
+}
+/* ===== CAREER-V2 v2 END ===== */
+
+/* ============================================================
+   ===== CAREER-V2 v2-1 START =====
+   SP（860px 以下）の縦ロードマップで、STEP のノード（丸）が縦線から
+   55.5px 右に外れ、番号と本文の間に浮いていた。v1 の
+     .croad__no::after{left:66px}
+   は番号テキストの右に丸を置いてしまうため、線の上に戻す。
+   ① 縦線を左端 6px（中心 7px）へ
+   ② 番号テキストを線の右 22px へ
+   ③ 丸を線の中心（6.5px）へ
+   BPO を含む全ロードマップと、入社後3シーンのタイムラインに効く。
+   ============================================================ */
+@media(max-width:860px){
+  .cv2 .croad .croad__l::before,
+  .cv2 .croad .croad__l::after{left:6px}
+  .cv2 .ctl::before{left:6px}
+  .cv2 .croad .croad__no,
+  .cv2 .ctl__no{left:-70px}
+  .cv2 .croad .croad__no::after,
+  .cv2 .ctl__no::after{left:-22px;top:0}
+  .cv2 .cbr__root,.cv2 .cbr__h{padding-left:30px}
+}
+/* ===== CAREER-V2 v2-1 END ===== */
+
+/* ノードの丸（白地）より後ろに線を通す。
+   v1 では .croad__l::after（破線）が最後の子として丸の上に描かれていた */
+.cv2 .croad__i,.cv2 .ctl__i,.cv2 .cbr__i,.cv2 .cbr__root{position:relative;z-index:1}
+.cv2 .croad__l::before,.cv2 .croad__l::after,.cv2 .ctl::before{z-index:0}
+
+/* ============================================================
+   ===== CAREER-V2 v2-2 START =====
+   PC幅で、STEP をつなぐ線がノード（丸）に接続していなかった。
+   v1 は線を「列の中心（12.5%〜87.5%）」に引いていたが、丸は
+   「列の左端＋10.5px」にあるため、実測で 131px ずれていた。
+   線の端をノードの中心に合わせ直す。861px 以上にだけ効かせ、
+   SP の縦レイアウト（v2-1）には触れない。
+   ============================================================ */
+@media(min-width:861px){
+  /* 4列：ノード中心 = 10.5px / 25%+10.5px / 50%+10.5px / 75%+10.5px */
+  .cv2 .croad__l::before{left:10.5px;width:25%}
+  .cv2 .croad__l::after{left:calc(25% + 10.5px);right:calc(25% - 10.5px)}
+  .cv2 .croad--line .croad__l::before{left:10.5px;right:calc(25% - 10.5px);width:auto}
+  .cv2 .croad--br3 .croad__l::before{left:10.5px;width:50%}
+  .cv2 .croad--br3 .croad__l::after{left:calc(50% + 10.5px);right:calc(25% - 10.5px)}
+  /* 工程図は番号が2桁で丸の位置が 1px 内側 */
+  .cv2 .croad--flow .croad__l::before{left:9.5px;right:calc(25% - 9.5px);width:auto}
+  /* 3列タイムライン：ノード中心 = 12.5px / 33.3333%+12.5px / 66.6667%+12.5px */
+  .cv2 .ctl::before{left:12.5px;right:calc(33.3333% - 12.5px)}
+}
+/* ===== CAREER-V2 v2-2 END ===== */
