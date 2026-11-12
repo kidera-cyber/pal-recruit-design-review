@@ -44,6 +44,12 @@
   margin:0 0 clamp(22px,2.6vw,28px);font-size:14.5px;line-height:1.85;color:var(--p-sub);
 }
 
+/* 原文「この領域で働く人」。二段構造の区切り見出しだったものを、
+   各カラムの人物の直前へ移した（削除しない）。本文ではなくラベル */
+.a7 .xp__vh{
+  margin:0 0 10px;font-size:12px;font-weight:700;letter-spacing:.06em;color:var(--p-mid);
+}
+
 /* 下部：人物とその言葉。カラムごと1つのリンクにする */
 .a7 .xp__p{
   display:block;margin-top:0;padding-top:clamp(20px,2.4vw,26px);
@@ -78,6 +84,7 @@
 
 @media(max-width:860px){
   .a7 .xp{grid-template-columns:minmax(0,1fr);gap:0}
+  .a7 .xp__vh{margin-bottom:8px}
   .a7 .xp__i,.a7 .xp__i + .xp__i{
     display:block;padding:clamp(22px,4vw,26px) 0;border-left:none;
   }

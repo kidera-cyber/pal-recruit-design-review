@@ -34,6 +34,9 @@
      .we スコープで後勝ち上書きする。HTML の文言・リンクは変更していない。
      戻すときは <body> の we と、この link の2行を外すだけでよい。 ===== -->
 <link rel="stylesheet" href="assets/css/white-editorial.css?v=4">
+<!-- ===== EXPERTISE×PEOPLE v1：OUR PEOPLE & CULTURE の3領域＋社員紹介を
+     1つの3カラムへ統合する。about.css 本体は変更していない。 ===== -->
+<link rel="stylesheet" href="assets/css/about-people-v2.css?v=2">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"採用情報","item":"../"},{"@type":"ListItem","position":2,"name":"PALを知る"}]}</script>
 </head>
 <body class="ls a7 we">
@@ -152,29 +155,46 @@
       <h2 class="stitle">違う専門性が、ひとつの仕事を動かす。</h2>
       <p class="slead">PALには、物流センターの運営を担う人、現場課題を整理するFDE、仕組みを開発するエンジニアなど、異なる専門性を持つメンバーがいます。</p>
     </div>
-    <div class="p4net pv">
-      <ul class="p4net__areas">
-        <li class="p4net__i"><span class="p4net__en">BPO / Operation</span><h3 class="p4net__n">BPO・現場運営</h3><p class="p4net__t">現場を安定させ、改善を進める</p></li>
-        <li class="p4net__i"><span class="p4net__en">Forward Deployed Engineer</span><h3 class="p4net__n">FDE</h3><p class="p4net__t">現場課題を技術につなぐ</p></li>
-        <li class="p4net__i"><span class="p4net__en">System / Product</span><h3 class="p4net__n">システム・プロダクト開発</h3><p class="p4net__t">現場で使われる仕組みをつくる</p></li>
-      </ul>
-      <div class="p4net__wire">
-        <svg class="p4net__g" viewBox="0 0 1000 68" preserveAspectRatio="none" aria-hidden="true" focusable="false">
-          <path class="p4net__arc" d="M167,8 C167,58 833,58 833,8" vector-effect="non-scaling-stroke"/>
-          <path class="p4net__arc" d="M500,8 L500,40.5" vector-effect="non-scaling-stroke"/>
-        </svg>
-        <span class="p4net__nd" style="--p:16.6667%"></span>
-        <span class="p4net__nd" style="--p:50%"></span>
-        <span class="p4net__nd" style="--p:83.3333%"></span>
-      </div>
-      <p class="p4net__note">3つの領域に上下関係はありません。</p>
-    </div>
-    <p class="p4vh pv">この領域で働く人</p>
-    <ul class="p4voice pv">
-      <li><a href="people.html"><img src="../assets/images/avatar-bpo.png" alt="BPO事業部で働く社員の似顔絵" width="900" height="975" loading="lazy"><span class="p4voice__b"><span class="p4voice__area">BPO・現場運営</span><q>毎日の運営の中に、次の改善がある。</q><cite><b>I.N</b>BPO事業部 Productivity推進部</cite></span></a></li>
-      <li><a href="people.html"><img src="../assets/images/avatar-fde.png" alt="FDEとして働く社員の似顔絵" width="900" height="975" loading="lazy"><span class="p4voice__b"><span class="p4voice__area">FDE</span><q>現場で使われて、初めて「できた」と言える。</q><cite><b>H.Y</b>FDE・2023年新卒入社</cite></span></a></li>
-      <li><a href="people.html"><img src="../assets/images/avatar-system.png" alt="DXプロダクト開発で働く社員の似顔絵" width="900" height="975" loading="lazy"><span class="p4voice__b"><span class="p4voice__area">システム・プロダクト開発</span><q>つくるのは、現場が明日から使えるもの。</q><cite><b>M.M</b>DXプロダクト開発・2026年中途入社</cite></span></a></li>
+    <!-- ===== EXPERTISE×PEOPLE v1：3領域の図解（曲線＋赤い丸）と社員紹介の二段構造をやめ、
+         領域と人物をひとつの3カラムに統合した。社員の発言・氏名・所属・リンクは原文のまま。
+         「この領域で働く人」の見出しは原文のまま、各カラムの人物の直前へ移した。
+         復元元：git a4948a5 の about.html ===== -->
+    <ul class="xp pv">
+      <li class="xp__i">
+        <p class="xp__en en">BPO / Operation</p>
+        <h3 class="xp__n">BPO・現場運営</h3>
+        <p class="xp__r">現場を安定させ、改善を進める</p>
+        <p class="xp__vh">この領域で働く人</p>
+        <a class="xp__p" href="people.html">
+          <img class="xp__img" src="../assets/images/avatar-bpo.png" alt="BPO事業部で働く社員の似顔絵" width="900" height="975" loading="lazy" decoding="async">
+          <q class="xp__q">毎日の運営の中に、次の改善がある。</q>
+          <cite class="xp__c"><b>I.N</b>BPO事業部 Productivity推進部</cite>
+        </a>
+      </li>
+      <li class="xp__i">
+        <p class="xp__en en">Forward Deployed Engineer</p>
+        <h3 class="xp__n">FDE</h3>
+        <p class="xp__r">現場課題を技術につなぐ</p>
+        <p class="xp__vh">この領域で働く人</p>
+        <a class="xp__p" href="people.html">
+          <img class="xp__img" src="../assets/images/avatar-fde.png" alt="FDEとして働く社員の似顔絵" width="900" height="975" loading="lazy" decoding="async">
+          <q class="xp__q">現場で使われて、初めて「できた」と言える。</q>
+          <cite class="xp__c"><b>H.Y</b>FDE・2023年新卒入社</cite>
+        </a>
+      </li>
+      <li class="xp__i">
+        <p class="xp__en en">System / Product</p>
+        <h3 class="xp__n">システム・プロダクト開発</h3>
+        <p class="xp__r">現場で使われる仕組みをつくる</p>
+        <p class="xp__vh">この領域で働く人</p>
+        <a class="xp__p" href="people.html">
+          <img class="xp__img" src="../assets/images/avatar-system.png" alt="DXプロダクト開発で働く社員の似顔絵" width="900" height="975" loading="lazy" decoding="async">
+          <q class="xp__q">つくるのは、現場が明日から使えるもの。</q>
+          <cite class="xp__c"><b>M.M</b>DXプロダクト開発・2026年中途入社</cite>
+        </a>
+      </li>
     </ul>
+    <p class="xp__note pv">3つの領域に上下関係はありません。</p>
     <p class="p4acts pv"><a class="p4link" href="people.html">PALで働く人を知る</a></p>
     <div class="two-view two-view--b pv">
       <div class="two-view__i two-view__i--field">
