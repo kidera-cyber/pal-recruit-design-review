@@ -252,259 +252,13 @@
 .a7 .p4note a:hover{color:var(--p-red)}
 /* ===== ABOUT / NOTE LINK v2 END ===== */
 
-/* ============================================================
-   ===== ABOUT / PEOPLE STRUCTURE v2 START =====
-   目的：OUR PEOPLE & CULTURE の主役を 3領域フロー図に戻す。
-     ・フロー図を白いカードとして独立させ、線・見出し・役割文を強める
-     ・社員紹介は横組みの小型カードにして、図の補足という位置づけにする
-   既存の .p4cx / .p4voice の後ろに置き、詳細度と記述順で後勝ちさせる。
-   社員の発言・氏名・所属・入社年、3領域の文言は変更していない。
-   ============================================================ */
 
-/* ---- 主役：3領域フロー図を独立した情報ブロックにする ---- */
-.a7 .p4flow{
-  margin:clamp(26px,3.4vw,38px) 0 0;
-  padding:clamp(26px,3.2vw,38px) clamp(22px,3vw,40px) clamp(22px,2.8vw,32px);
-  background:#FFFFFF;
-  border:1px solid var(--p-line);
-  border-radius:12px;
-}
-.a7 .p4flow__cap{
-  display:block;margin:0 0 clamp(18px,2.4vw,26px);
-  font-size:11.5px;font-weight:700;letter-spacing:.16em;color:var(--p-ink);
-  text-transform:none;
-}
-.a7 .p4flow .p4cx{margin:0;padding:30px 0 0}
-/* 接続線を太くして、3領域が並列であることを見せる */
-.a7 .p4flow .p4cx::before{top:9px;height:3px;background:var(--p-red);opacity:.85}
-.a7 .p4flow .p4cx li::before{
-  top:-30px;width:19px;height:19px;border-width:3px;background:#FFFFFF;
-}
-/* 領域名を主役として大きく、役割文も読める大きさに */
-.a7 .p4flow .p4cx__en{font-size:11px;letter-spacing:.14em;color:var(--p-mid)}
-.a7 .p4flow .p4cx__n{
-  margin:7px 0 9px;font-size:clamp(18px,2.3vw,24px);font-weight:700;
-  line-height:1.45;letter-spacing:.01em;color:var(--p-ink);
-}
-.a7 .p4flow .p4cx__t{font-size:14.5px;line-height:1.85;color:var(--p-sub)}
-/* 領域のあいだに細い区切りを入れて、並列関係を補強する */
-.a7 .p4flow .p4cx li + li{border-left:1px solid var(--p-line);padding-left:clamp(20px,2.6vw,34px)}
-.a7 .p4flow .p4cx__note{
-  margin:clamp(20px,2.6vw,28px) 0 0;padding-top:clamp(16px,2vw,22px);
-  border-top:1px solid var(--p-line);font-size:13px;color:var(--p-mid);
-}
 
-/* ---- サブ：社員紹介は横組みの小型カードへ ---- */
-.a7 .p4vh{
-  margin:clamp(26px,3.2vw,36px) 0 clamp(12px,1.6vw,16px);
-  font-size:11.5px;font-weight:700;letter-spacing:.16em;color:var(--p-mid);
-}
-.a7 .p4voice{
-  margin:0;gap:clamp(12px,1.6vw,18px);
-  grid-template-columns:repeat(3,minmax(0,1fr));
-}
-.a7 .p4voice li{min-width:0}
-.a7 .p4voice a{
-  display:flex;gap:13px;align-items:flex-start;
-  padding:15px 16px;background:#FFFFFF;border:1px solid var(--p-line);
-  border-radius:10px;transition:border-color .2s ease;
-}
-.a7 .p4voice a:hover{border-color:var(--p-red)}
-.a7 .p4voice__ph{
-  flex:none;width:68px;border-radius:8px;overflow:hidden;background:var(--p-bg2);
-}
-.a7 .p4voice img{
-  width:100%;height:auto;margin:0;aspect-ratio:1/1;
-  object-fit:cover;object-position:50% 10%;
-}
-.a7 .p4voice__b{min-width:0}
-.a7 .p4voice__area{
-  display:block;font-size:10.5px;font-weight:700;letter-spacing:.1em;
-  color:var(--p-red);margin-bottom:6px;
-}
-.a7 .p4voice q{
-  display:block;quotes:none;margin:0;
-  font-size:13.5px;font-weight:500;line-height:1.75;color:var(--p-ink);
-}
-.a7 .p4voice cite{
-  display:block;margin-top:8px;font-style:normal;
-  font-size:11.5px;line-height:1.7;color:var(--p-mid);
-}
-.a7 .p4voice cite b{
-  display:inline;font-size:11.5px;font-weight:700;color:var(--p-ink);
-  letter-spacing:.06em;margin-right:7px;
-}
-.a7 .p4voice a:hover q{color:var(--p-ink)}
 
-/* ---- タブレット ---- */
-@media(max-width:1023px){
-  .a7 .p4voice{grid-template-columns:repeat(2,minmax(0,1fr))}
-}
-/* ---- スマートフォン ---- */
-@media(max-width:760px){
-  .a7 .p4flow{padding:22px 18px 20px;border-radius:10px}
-  .a7 .p4flow .p4cx{padding:0 0 0 32px}
-  .a7 .p4flow .p4cx::before{top:8px;bottom:8px;width:3px;height:auto}
-  .a7 .p4flow .p4cx li::before{left:-32px;top:2px}
-  .a7 .p4flow .p4cx li + li{border-left:none;padding-left:0}
-  .a7 .p4flow .p4cx__n{font-size:18px}
-  .a7 .p4voice{grid-template-columns:minmax(0,1fr);gap:10px}
-  .a7 .p4voice a{padding:13px 14px;gap:12px}
-  .a7 .p4voice__ph{width:60px}
-  .a7 .p4voice q{font-size:13.5px}
-}
-/* ===== ABOUT / PEOPLE STRUCTURE v2 END ===== */
 
-/* ===== ABOUT / PEOPLE STRUCTURE v2.1 START：揃えの調整 ===== */
-/* 領域名が2行になる列があるため、見出し高さを2行分確保して役割文の行頭を揃える */
-.a7 .p4flow .p4cx li{display:flex;flex-direction:column}
-.a7 .p4flow .p4cx__n{min-height:calc(2 * 1.45em)}
-/* 3カードの高さを揃える */
-.a7 .p4voice li{display:flex}
-.a7 .p4voice a{flex:1}
-@media(max-width:760px){
-  .a7 .p4flow .p4cx__n{min-height:0}
-}
-/* ===== ABOUT / PEOPLE STRUCTURE v2.1 END ===== */
 
-/* ============================================================
-   ===== ABOUT / PEOPLE v3 START =====
-   (A) 3領域フロー図：並列・協働の関係として見せ直す
-       ・各領域をパネル化して高さと文字を拡大
-       ・接続線は無彩色にし、PALレッドはノードだけに限定
-       ・矢印を使わず、上下関係・一方通行に見せない
-   (B) 2つの入口：about-d2.html の .two-view を .a7 スコープへ移植して復元
-   ============================================================ */
 
-/* ───────── (A) 3領域フロー図 ───────── */
-.a7 .p4flow{padding:clamp(28px,3.4vw,40px) clamp(24px,3vw,40px) clamp(24px,3vw,34px)}
-.a7 .p4flow .p4cx{
-  margin:0;padding:34px 0 0;gap:0;
-  grid-template-columns:repeat(3,minmax(0,1fr));
-}
-/* 接続線は無彩色。3領域が同じ高さに並ぶことだけを示す */
-.a7 .p4flow .p4cx::before{
-  left:calc(16.6667% - 1px);right:calc(16.6667% - 1px);top:12px;height:2px;
-  background:var(--p-line);opacity:1;
-}
-/* ノードだけ PALレッド。すべて同じ形・同じ大きさ＝上下関係なし */
-.a7 .p4flow .p4cx li::before{
-  left:50%;transform:translateX(-50%);top:4px;
-  width:19px;height:19px;border:3px solid var(--p-red);background:#FFFFFF;
-}
-.a7 .p4flow .p4cx li{
-  display:flex;flex-direction:column;align-items:flex-start;
-  padding:22px 22px 20px;margin:0;
-  background:#FBFCFD;border:1px solid var(--p-line);border-radius:10px;
-}
-.a7 .p4flow .p4cx li + li{border-left:1px solid var(--p-line);margin-left:14px}
-.a7 .p4flow .p4cx__en{
-  font-size:10.5px;font-weight:700;letter-spacing:.14em;color:var(--p-mid);
-  text-transform:uppercase;margin-bottom:9px;
-}
-.a7 .p4flow .p4cx__n{
-  margin:0 0 11px;font-size:clamp(19px,2.5vw,26px);font-weight:700;
-  line-height:1.4;letter-spacing:.01em;color:var(--p-ink);min-height:calc(2 * 1.4em);
-}
-.a7 .p4flow .p4cx__t{
-  margin:auto 0 0;padding-top:12px;border-top:1px solid var(--p-line2);
-  font-size:14.5px;line-height:1.8;color:var(--p-sub);
-}
-.a7 .p4flow .p4cx__note{
-  margin:clamp(20px,2.6vw,26px) 0 0;padding-top:clamp(16px,2vw,20px);
-  border-top:1px solid var(--p-line);font-size:13px;color:var(--p-mid);
-}
 
-/* ───────── (B) 2つの入口（旧カードデザインの復元） ───────── */
-.a7 .two-view{
-  display:grid;grid-template-columns:repeat(2,1fr);gap:26px;
-  margin:clamp(34px,4.4vw,50px) 0 0;
-}
-.a7 .two-view__i{
-  display:flex;flex-direction:column;
-  background:#FFFFFF;border:1px solid var(--p-line);border-top:2px solid var(--p-red);
-  border-radius:8px;padding:0 26px 0;transition:border-color .2s;
-}
-/* 2つ目は性格が違うことを、上罫と記号の形で示す（赤は使わない） */
-.a7 .two-view__i--eng{border-top-color:var(--p-ink)}
-.a7 .two-view__head{
-  display:flex;align-items:flex-start;gap:14px;
-  margin:0 -26px 16px;padding:22px 26px 18px;
-  border-bottom:1px solid var(--p-line);
-}
-.a7 .two-view__ico{flex:none;display:block;width:30px;height:30px;margin-top:2px;color:var(--p-red)}
-.a7 .two-view__i--eng .two-view__ico{color:var(--p-ink)}
-.a7 .two-view__ico svg{display:block;width:100%;height:100%}
-.a7 .two-view__en{
-  display:block;margin:0 0 7px;font-size:10.5px;font-weight:700;
-  letter-spacing:.13em;color:var(--p-mid);text-transform:uppercase;
-}
-.a7 .two-view__h{
-  margin:0;font-size:17.5px;font-weight:700;line-height:1.55;
-  letter-spacing:.02em;color:var(--p-ink);
-}
-.a7 .two-view__tags{
-  list-style:none;display:flex;flex-wrap:wrap;gap:6px;margin:0;padding:0;
-}
-.a7 .two-view__tags li{
-  font-size:11.5px;font-weight:700;line-height:1.5;letter-spacing:.02em;
-  color:var(--p-ink);background:#FFFFFF;border:1px solid var(--p-line);
-  padding:4px 9px;white-space:nowrap;
-}
-.a7 .two-view__t{margin:14px 0 22px;font-size:13.5px;line-height:1.95;color:var(--p-mid)}
-.a7 .two-view__sub{
-  margin:-12px 0 22px;padding-left:14px;border-left:1px solid var(--p-line);
-  font-size:12.5px;line-height:1.85;color:var(--p-mid);
-}
-/* 導線は本文の続きではなく、行動の列として分ける */
-.a7 .two-view__go{display:block;margin:auto -26px 0;padding:0;border-top:1px solid var(--p-line)}
-.a7 .two-view__go .textlink{
-  display:flex;align-items:center;justify-content:space-between;gap:12px;
-  padding:14px 26px;font-size:13px;font-weight:700;letter-spacing:.02em;
-  color:var(--p-red);text-decoration:none;border-bottom:1px solid var(--p-line2);
-  transition:background-color .2s;
-}
-.a7 .two-view__go .textlink:last-child{border-bottom:none}
-.a7 .two-view__go .textlink::after{
-  content:"";flex:none;width:6px;height:6px;
-  border-top:1.4px solid currentColor;border-right:1.4px solid currentColor;
-  transform:rotate(45deg);transition:transform .2s;
-}
-.a7 .two-view__go .textlink:hover{background:var(--p-red-t)}
-.a7 .two-view__go .textlink:hover::after{transform:rotate(45deg) translate(2px,-2px)}
-
-/* ───────── タブレット ───────── */
-@media(max-width:1023px){
-  .a7 .two-view{gap:18px}
-}
-/* ───────── スマートフォン ───────── */
-@media(max-width:760px){
-  .a7 .p4flow .p4cx{grid-template-columns:minmax(0,1fr);row-gap:12px;padding:0}
-  .a7 .p4flow .p4cx::before{display:none}
-  .a7 .p4flow .p4cx li{padding:18px 18px 16px}
-  .a7 .p4flow .p4cx li::before{position:static;transform:none;margin:0 0 12px;display:block}
-  .a7 .p4flow .p4cx li + li{border-left:1px solid var(--p-line);margin-left:0}
-  .a7 .p4flow .p4cx__n{font-size:19px;min-height:0;margin-bottom:9px}
-  .a7 .p4flow .p4cx__t{margin-top:10px}
-
-  .a7 .two-view{grid-template-columns:1fr;gap:16px;margin-top:32px}
-  .a7 .two-view__i{padding:0 20px}
-  .a7 .two-view__head{margin:0 -20px 14px;padding:18px 20px 16px}
-  .a7 .two-view__go{margin:auto -20px 0}
-  .a7 .two-view__go .textlink{padding:13px 20px}
-}
-/* ===== ABOUT / PEOPLE v3 END ===== */
-
-/* ===== ABOUT / PEOPLE v3.1 START：3領域パネルの幅を揃え、接続線を近づける ===== */
-.a7 .p4flow .p4cx{gap:14px;padding-top:28px}
-.a7 .p4flow .p4cx li + li{border-left:1px solid var(--p-line);margin-left:0}
-.a7 .p4flow .p4cx::before{
-  left:calc(16.6667% + 7px);right:calc(16.6667% + 7px);top:9px;
-}
-@media(max-width:760px){
-  .a7 .p4flow .p4cx{gap:12px;padding-top:0}
-}
-/* ===== ABOUT / PEOPLE v3.1 END ===== */
 
 
 
@@ -670,3 +424,245 @@
   position:absolute;left:0;top:.82em;margin:0;
 }
 /* ===== ABOUT / NOTE FIX v1 END ===== */
+
+/* ============================================================
+   ===== ABOUT / PEOPLE NETWORK v4 START =====
+   3領域を「カードの並び」ではなく、1枚のネットワーク図として見せる。
+     ・枠・背景・独立カードを使わない
+     ・3つの接続点は共有の弧で結ぶ。中央にハブを置かないので、
+       どれかが他を統括する形にならない／一方向の工程にも見えない
+     ・社員紹介は図の下にエディトリアル配置（枠なし・図より控えめ）
+   ============================================================ */
+
+/* ───────── 3領域ネットワーク図 ───────── */
+.a7 .p4net{margin:clamp(30px,4vw,46px) 0 0}
+.a7 .p4net__areas{
+  list-style:none;margin:0;padding:0;
+  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));
+  column-gap:clamp(20px,3vw,44px);
+}
+.a7 .p4net__i{min-width:0;text-align:center}
+.a7 .p4net__en{
+  display:block;font-size:10.5px;font-weight:700;letter-spacing:.15em;
+  color:var(--p-mid);text-transform:uppercase;margin-bottom:10px;
+}
+.a7 .p4net__n{
+  margin:0;font-size:clamp(19px,2.6vw,29px);font-weight:700;
+  line-height:1.4;letter-spacing:.01em;color:var(--p-ink);
+}
+.a7 .p4net__t{
+  margin:10px 0 0;font-size:14px;line-height:1.85;color:var(--p-sub);
+}
+
+/* 接続線：弧1本＋中央の短い縦線。すべて同じ太さ・同じ色 */
+.a7 .p4net__wire{position:relative;height:86px;margin-top:clamp(14px,1.8vw,20px)}
+.a7 .p4net__g{display:block;width:100%;height:100%;overflow:visible}
+.a7 .p4net__arc{fill:none;stroke:var(--p-line);stroke-width:1.5}
+/* 接続点：3つとも同じ形・同じ大きさ */
+.a7 .p4net__nd{
+  position:absolute;left:var(--p);top:8px;transform:translate(-50%,-50%);
+  width:11px;height:11px;border-radius:50%;
+  background:#FFFFFF;border:2px solid var(--p-red);box-sizing:border-box;
+}
+.a7 .p4net__note{
+  margin:clamp(10px,1.4vw,14px) 0 0;text-align:center;
+  font-size:12.5px;line-height:1.8;color:var(--p-mid);
+}
+
+/* ───────── 社員紹介：枠なしのエディトリアル ───────── */
+.a7 .p4vh{
+  margin:clamp(40px,5vw,60px) 0 clamp(16px,2vw,20px);
+  padding-top:clamp(20px,2.6vw,26px);border-top:1px solid var(--p-line);
+  font-size:11.5px;font-weight:700;letter-spacing:.16em;color:var(--p-mid);
+}
+.a7 .p4voice{
+  list-style:none;margin:0;padding:0;
+  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));
+  column-gap:clamp(22px,3vw,44px);row-gap:28px;
+}
+.a7 .p4voice li{min-width:0}
+.a7 .p4voice a{
+  display:grid;grid-template-columns:110px minmax(0,1fr);column-gap:16px;
+  text-decoration:none;color:inherit;align-items:start;
+}
+.a7 .p4voice img{
+  display:block;width:110px;height:110px;margin:0;border-radius:10px;
+  object-fit:cover;object-position:50% 8%;background:var(--p-g1);
+}
+.a7 .p4voice__b{display:block;min-width:0}
+.a7 .p4voice__area{
+  display:block;font-size:10.5px;font-weight:700;letter-spacing:.08em;
+  color:var(--p-red);margin-bottom:7px;
+}
+.a7 .p4voice q{
+  display:block;quotes:none;margin:0;
+  font-size:14px;font-weight:500;line-height:1.75;color:var(--p-ink);
+}
+.a7 .p4voice cite{
+  display:block;margin-top:10px;font-style:normal;
+  font-size:11.5px;line-height:1.7;color:var(--p-mid);
+}
+.a7 .p4voice cite b{
+  display:inline;font-size:11.5px;font-weight:700;color:var(--p-ink);
+  letter-spacing:.06em;margin-right:8px;
+}
+.a7 .p4voice a:hover q{color:var(--p-red)}
+.a7 .p4voice a:hover img{opacity:.9}
+
+/* ───────── タブレット ───────── */
+@media(max-width:1023px){
+  .a7 .p4voice a{grid-template-columns:92px minmax(0,1fr);column-gap:13px}
+  .a7 .p4voice img{width:92px;height:92px}
+  .a7 .p4voice q{font-size:13.5px}
+}
+/* ───────── スマートフォン：縦のネットワークにする ───────── */
+@media(max-width:760px){
+  .a7 .p4net__areas{
+    grid-template-columns:minmax(0,1fr);row-gap:26px;
+    position:relative;padding-left:34px;
+  }
+  /* 左に1本の縦線を通し、3領域が同じ線上に並ぶことを示す */
+  .a7 .p4net__areas::before{
+    content:"";position:absolute;left:5px;top:10px;bottom:10px;
+    width:1.5px;background:var(--p-line);
+  }
+  .a7 .p4net__i{text-align:left;position:relative}
+  .a7 .p4net__i::before{
+    content:"";position:absolute;left:-34px;top:9px;
+    width:11px;height:11px;border-radius:50%;
+    background:#FFFFFF;border:2px solid var(--p-red);box-sizing:border-box;
+  }
+  .a7 .p4net__i::after{
+    content:"";position:absolute;left:-23px;top:14px;width:17px;height:1.5px;
+    background:var(--p-line);
+  }
+  .a7 .p4net__en{margin-bottom:6px}
+  .a7 .p4net__n{font-size:20px}
+  .a7 .p4net__t{margin-top:6px;font-size:13.5px}
+  .a7 .p4net__wire{display:none}
+  .a7 .p4net__note{text-align:left;margin-top:18px;padding-left:34px}
+
+  .a7 .p4voice{grid-template-columns:minmax(0,1fr);row-gap:22px}
+  .a7 .p4voice a{grid-template-columns:100px minmax(0,1fr);column-gap:14px}
+  .a7 .p4voice img{width:100px;height:100px}
+  .a7 .p4voice q{font-size:13.5px}
+  .a7 .p4vh{margin-top:34px}
+}
+/* ===== ABOUT / PEOPLE NETWORK v4 END ===== */
+
+
+
+/* ===== ABOUT / PEOPLE NETWORK v4.1 START：揃えと図の密度を調整 ===== */
+/* 領域名が2行になる列があるため、見出し高さを揃えて役割文の行頭を一致させる */
+.a7 .p4net__i{display:flex;flex-direction:column}
+.a7 .p4net__n{min-height:calc(2 * 1.4em)}
+/* 名前の下に短い赤の罫を入れ、図とタイポをつなぐ */
+.a7 .p4net__t{
+  margin-top:12px;padding-top:12px;position:relative;
+}
+.a7 .p4net__t::before{
+  content:"";position:absolute;left:50%;top:0;transform:translateX(-50%);
+  width:26px;height:2px;background:var(--p-red);
+}
+/* 図の密度を上げる */
+.a7 .p4net__wire{height:68px;margin-top:clamp(12px,1.6vw,18px)}
+.a7 .p4net__arc{stroke:#C9D3EA;stroke-width:1.5}
+.a7 .p4net__nd{width:13px;height:13px}
+@media(max-width:760px){
+  .a7 .p4net__n{min-height:0}
+  .a7 .p4net__t{padding-top:10px;margin-top:10px}
+  .a7 .p4net__t::before{left:0;transform:none}
+}
+/* ===== ABOUT / PEOPLE NETWORK v4.1 END ===== */
+
+/* ============================================================
+   ===== ABOUT / TWO-VIEW B v1 START =====
+   経験別の2つの入口（採用案：B案）。
+   カード上部にミニグラフィック（SVG線画・面積は約22%）を置き、
+   タイポグラフィと組み合わせる。CTAは主導線＝塗りボタン、副導線＝テキスト。
+   左＝現場運営（赤）／右＝システム・開発（濃紺）で性格を分ける。
+   ============================================================ */
+.a7 .two-view{
+  display:grid;grid-template-columns:repeat(2,1fr);gap:24px;
+  margin:clamp(34px,4.4vw,50px) 0 0;
+}
+.a7 .two-view__i{
+  display:flex;flex-direction:column;background:#FFFFFF;
+  border:1px solid var(--p-line);border-radius:10px;overflow:hidden;
+  transition:border-color .2s;
+}
+.a7 .two-view__i:hover{border-color:var(--p-line)}
+
+/* ミニグラフィック */
+.a7 .two-view__mv{
+  background:#F7F8FB;border-bottom:1px solid var(--p-line);
+  padding:12px 26px;line-height:0;
+}
+.a7 .two-view__i--eng .two-view__mv{background:#F6F7FA}
+.a7 .two-view__mv svg{display:block;width:100%;height:auto;max-height:76px}
+
+/* 本文 */
+.a7 .two-view__bd{padding:22px 26px 0}
+.a7 .two-view__en{
+  display:block;margin:0 0 7px;font-size:10.5px;font-weight:700;letter-spacing:.13em;
+  color:var(--p-mid);text-transform:uppercase;position:relative;padding-left:26px;
+}
+.a7 .two-view__en::before{
+  content:"";position:absolute;left:0;top:.5em;width:18px;height:2px;background:var(--p-red);
+}
+.a7 .two-view__i--eng .two-view__en::before{background:var(--p-ink)}
+.a7 .two-view__h{
+  margin:0;font-size:clamp(18px,2.2vw,22px);font-weight:700;line-height:1.45;
+  letter-spacing:.01em;color:var(--p-ink);
+}
+/* キーワードは四角の羅列にせず、罫線で区切った一列にする */
+.a7 .two-view__tags{
+  list-style:none;display:flex;flex-wrap:wrap;margin:16px 0 0;padding:14px 0;
+  border-top:1px solid var(--p-line2);border-bottom:1px solid var(--p-line2);
+}
+.a7 .two-view__tags li{
+  font-size:12.5px;font-weight:700;letter-spacing:.04em;color:var(--p-ink);
+  padding:0 14px;line-height:1.4;border-left:1px solid var(--p-line);
+  background:none;border-top:none;border-right:none;border-bottom:none;white-space:nowrap;
+}
+.a7 .two-view__tags li:first-child{padding-left:0;border-left:none}
+.a7 .two-view__t{margin:16px 0 0;font-size:13.5px;line-height:1.95;color:var(--p-sub)}
+.a7 .two-view__sub{
+  margin:10px 0 0;padding-left:13px;border-left:2px solid var(--p-line);
+  font-size:12.5px;line-height:1.85;color:var(--p-mid);
+}
+
+/* 導線：主＝塗りボタン／副＝テキストリンク */
+.a7 .two-view__go{margin:auto 0 0;padding:22px 26px 24px;display:grid;gap:10px}
+.a7 .two-view__go .textlink{
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+  text-decoration:none;font-weight:700;letter-spacing:.02em;border:none;
+}
+.a7 .two-view__go .textlink.is-main{
+  background:var(--p-red);color:#FFFFFF;border-radius:8px;padding:15px 18px;font-size:14px;
+  transition:background-color .2s;
+}
+.a7 .two-view__i--eng .two-view__go .textlink.is-main{background:var(--p-ink)}
+.a7 .two-view__go .textlink.is-main:hover{background:#A60F16}
+.a7 .two-view__i--eng .two-view__go .textlink.is-main:hover{background:#121428}
+.a7 .two-view__go .textlink.is-sub{
+  color:var(--p-red);font-size:13px;padding:2px 2px 0;
+  border-bottom:1px solid transparent;background:none;
+}
+.a7 .two-view__i--eng .two-view__go .textlink.is-sub{color:var(--p-ink)}
+.a7 .two-view__go .textlink.is-sub:hover{border-bottom-color:currentColor}
+.a7 .two-view__go .textlink i{
+  flex:none;width:7px;height:7px;border-top:1.6px solid currentColor;
+  border-right:1.6px solid currentColor;transform:rotate(45deg);transition:transform .2s;
+}
+.a7 .two-view__go .textlink:hover i{transform:rotate(45deg) translate(2px,-2px)}
+
+@media(max-width:1023px){.a7 .two-view{gap:18px}}
+@media(max-width:760px){
+  .a7 .two-view{grid-template-columns:1fr;gap:16px;margin-top:32px}
+  .a7 .two-view__mv{padding:12px 20px}
+  .a7 .two-view__bd{padding:20px 20px 0}
+  .a7 .two-view__go{padding:20px 20px 22px}
+  .a7 .two-view__tags li{font-size:12px;padding:0 11px}
+}
+/* ===== ABOUT / TWO-VIEW B v1 END ===== */
