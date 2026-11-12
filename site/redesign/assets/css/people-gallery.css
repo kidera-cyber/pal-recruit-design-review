@@ -1,0 +1,134 @@
+@charset "utf-8";
+/* ============================================================================
+   PEOPLE｜社員インタビュー一覧  PEOPLE GALLERY v1
+
+   旧実装（共通 style.css の .pgrid / .pcard）の問題
+     ・部署名とコメントを人物イラストの上に重ねていたため、顔に文字がかかり、
+       白抜き文字も背景のイラストに溶けて読めなかった
+     ・PCで5列＋2列に並び、1枚あたりが細長く、情報が窮屈だった
+     ・部署名・社員情報が小さく、インタビューへの導線が矢印1つだった
+
+   新実装
+     ・文字はすべて画像の外へ。イラスト → 英字カテゴリ → 部署名 → コメント →
+       社員情報 → 「インタビューを読む」 の縦1列に積む
+     ・PC3列／タブレット2列／SP1列。7人目は横並びの特集型にして段を埋める
+     ・イラストは枠を同寸法で固定し、画像ごとに拡大率・位置を与えて
+       7人の顔の高さと大きさを揃える（画像データは未加工）
+
+   共通 site/assets/css/style.css と system-h.css は変更していない。
+   旧 .pgrid / .pcard の指定はそのまま残るが、このページでは使わなくなる。
+
+   配色は White Editorial A案
+     白 #FFFFFF／濃紺 #262946／PALレッド #CF131B／本文 #53545A
+     補助 #6B6D81／罫線 #DAE1F2・#E7EBF4／面 #F7F8F9
+   ============================================================================ */
+
+.pgal{
+  --g-ink:#262946;--g-sub:#53545A;--g-mid:#6B6D81;--g-red:#CF131B;
+  --g-line:#DAE1F2;--g-line2:#E7EBF4;--g-soft:#F7F8F9;
+  list-style:none;margin:clamp(26px,3vw,36px) 0 0;padding:0;
+  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:clamp(30px,3.6vw,48px) clamp(24px,3vw,40px);
+}
+.pgal__i{min-width:0}
+
+/* カードは枠で囲わず、上の罫線と余白だけで区切る */
+.pgal__a{
+  display:grid;grid-template-rows:auto 1fr;gap:clamp(16px,1.9vw,20px);
+  height:100%;padding-top:clamp(16px,1.9vw,20px);
+  border-top:2px solid var(--g-ink);
+  text-decoration:none;color:inherit;
+}
+.pgal__a:focus-visible{outline:2px solid var(--g-red);outline-offset:4px;border-radius:6px}
+
+/* ── イラスト ──
+   枠を 7枚で同寸法に固定し、画像ごとの --s（拡大率）／--y（上下）／--x（左右）で
+   顔の高さと大きさを揃える。元データ 900×975 は加工していない。 */
+.pgal__ph{
+  position:relative;display:block;overflow:hidden;
+  width:100%;aspect-ratio:1 / 1;
+  border-radius:12px;background:var(--g-soft);
+}
+.pgal__img{
+  position:absolute;top:var(--y,0);left:var(--x,0);
+  width:calc(var(--s,1) * 100%);max-width:none;height:auto;display:block;
+  transition:transform .4s cubic-bezier(.2,.7,.2,1);
+}
+.pgal__a:hover .pgal__img{transform:scale(1.03)}
+
+.pgal__b{display:block}
+
+/* ── 英字カテゴリ（赤の短いアクセント） ── */
+.pgal__cat{
+  display:block;margin:0 0 9px;
+  font:700 11px/1.5 Lato,sans-serif;letter-spacing:.17em;color:var(--g-red);
+}
+/* ── 部署名：一覧のなかで最も強い情報として扱う ── */
+.pgal__dep{
+  display:block;margin:0 0 12px;padding-bottom:12px;
+  border-bottom:1px solid var(--g-line2);
+  font-size:clamp(17px,2vw,20px);font-weight:700;line-height:1.5;
+  letter-spacing:.01em;color:var(--g-ink);
+}
+/* ── 社員コメント：原文のまま、濃紺で大きく ── */
+.pgal__copy{
+  display:block;margin:0 0 14px;
+  font-size:clamp(16.5px,1.9vw,19px);font-weight:700;line-height:1.75;
+  letter-spacing:.01em;color:var(--g-ink);
+}
+/* ── 社員情報：控えめにしつつ、読める大きさを保つ ── */
+.pgal__meta{
+  display:block;margin:0 0 16px;font-size:14px;line-height:1.75;color:var(--g-mid);
+}
+/* ── インタビュー導線 ── */
+.pgal__go{
+  display:inline-flex;align-items:center;gap:9px;
+  font-size:14.5px;font-weight:700;color:var(--g-ink);
+  transition:color .15s;
+}
+.pgal__go i{
+  position:relative;display:block;width:16px;height:9px;
+}
+.pgal__go i::before{
+  content:"";position:absolute;left:0;top:4px;width:16px;height:1.5px;
+  background:var(--g-ink);transition:background-color .15s,transform .2s;
+}
+.pgal__go i::after{
+  content:"";position:absolute;right:0;top:1.5px;width:7px;height:7px;
+  border-top:1.5px solid var(--g-ink);border-right:1.5px solid var(--g-ink);
+  transform:rotate(45deg);transition:border-color .15s,transform .2s;
+}
+.pgal__a:hover .pgal__go{color:var(--g-red)}
+.pgal__a:hover .pgal__go i::before{background:var(--g-red);transform:translateX(3px)}
+.pgal__a:hover .pgal__go i::after{border-color:var(--g-red);transform:rotate(45deg) translate(2px,2px)}
+
+/* ── 7人目：3列目に1枚だけ残らないよう、横並びの特集型で段を埋める ──
+   掲載順は変えていない。 */
+.pgal__i--wide{grid-column:1 / -1}
+.pgal__i--wide .pgal__a{
+  grid-template-columns:minmax(0,320px) minmax(0,1fr);grid-template-rows:auto;
+  align-items:start;gap:clamp(24px,3vw,44px);
+}
+.pgal__i--wide .pgal__copy{font-size:clamp(18px,2.2vw,23px);line-height:1.7;max-width:22em}
+.pgal__i--wide .pgal__dep{font-size:clamp(18px,2.1vw,21px)}
+
+@media(prefers-reduced-motion:reduce){
+  .pgal__img,.pgal__go,.pgal__go i::before,.pgal__go i::after{transition:none}
+  .pgal__a:hover .pgal__img{transform:none}
+}
+
+/* ── タブレット：2列。7人目は横並びのまま2列ぶんを使う ── */
+@media(max-width:1023px){
+  .pgal{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .pgal__i--wide .pgal__a{grid-template-columns:minmax(0,280px) minmax(0,1fr)}
+}
+
+/* ── スマートフォン：1列。7人目も縦並びに戻す ── */
+@media(max-width:700px){
+  .pgal{grid-template-columns:minmax(0,1fr);gap:clamp(26px,5vw,34px)}
+  .pgal__i--wide .pgal__a{grid-template-columns:minmax(0,1fr);grid-template-rows:auto 1fr}
+  .pgal__i--wide .pgal__copy{font-size:clamp(17px,4.6vw,20px);max-width:none}
+  .pgal__dep{font-size:18px}
+  .pgal__copy{font-size:17.5px}
+  .pgal__meta{font-size:14px}
+}

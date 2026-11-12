@@ -21,6 +21,9 @@
 <!-- ===== PEOPLE VALUES v1：#look（3つの価値観／6つの姿勢／3つの力）専用。
      共通 style.css は変更せず、このセクションの中だけを組み直す。 ===== -->
 <link rel="stylesheet" href="assets/css/people-values.css?v=5">
+<!-- ===== PEOPLE GALLERY v1：社員インタビュー一覧の再設計。
+     共通 style.css / system-h.css は変更せず、このページだけに効く。 ===== -->
+<link rel="stylesheet" href="assets/css/people-gallery.css?v=1">
 <!-- ===== REVEAL-SAFE v2：本文を常に可視にしたうえで、JS成功時だけ演出を足す。
      共通 style.css は変更していない。.rvs-scope を持つページにだけ効く。 ===== -->
 <link rel="stylesheet" href="assets/css/reveal-safe.css?v=1">
@@ -82,50 +85,102 @@
 
 <section class="sec sec--tight" id="people">
   <div class="wrap">
-    <div class="pgrid reveal">
-      <a class="pcard pcard--av" href="people/bpo.html">
-        <figure class="pcard__ph av-pad"><img src="../assets/images/avatar-bpo.png" alt="BPO／現場運営として働く I.N のイラスト（プロフィール画像）" width="900" height="975" loading="lazy">
-          <span class="pcard__cat en">BPO / 現場運営</span><span class="pcard__copy">現場を回し、<br>改善をつくる</span>
-        </figure>
-        <div class="pcard__b"><p class="pcard__dep">BPO／現場運営</p><p class="pcard__meta">I.N ・ 2005 PALへ転籍</p><span class="pcard__ar" aria-hidden="true">→</span></div>
-      </a>
-      <a class="pcard pcard--av" href="people/cleaning.html">
-        <figure class="pcard__ph av-pad"><img src="../assets/images/avatar-cleaning.png" alt="BPO／クレンリネス課のメンバーのイラスト（プロフィール画像）" width="900" height="975" loading="lazy">
-          <span class="pcard__cat en">CLEANLINESS</span><span class="pcard__copy">清掃を、<br>計画から支える</span>
-        </figure>
-        <div class="pcard__b"><p class="pcard__dep">BPO／クレンリネス課</p><p class="pcard__meta">S.K ・ 2016 中途入社</p><span class="pcard__ar" aria-hidden="true">→</span></div>
-      </a>
-      <a class="pcard pcard--av" href="people/dts.html">
-        <figure class="pcard__ph av-pad"><img src="../assets/images/avatar-dts.png" alt="DTS事業部 運送課 千葉営業所 所長 K.Y のイラスト（プロフィール画像）" width="900" height="975" loading="lazy">
-          <span class="pcard__cat en">DTS / 運送</span><span class="pcard__copy">届けるまでが、<br>物流。</span>
-        </figure>
-        <div class="pcard__b"><p class="pcard__dep">DTS事業部 運送課 千葉営業所／所長</p><p class="pcard__meta">K.Y ・ 2018年 中途入社</p><span class="pcard__ar" aria-hidden="true">→</span></div>
-      </a>
-      <a class="pcard pcard--av" href="people/fde.html">
-        <figure class="pcard__ph av-pad"><img src="../assets/images/avatar-fde.png" alt="FDE社員 H.Y のイラスト（プロフィール画像）" width="900" height="975" loading="lazy">
-          <span class="pcard__cat en">FDE</span><span class="pcard__copy">開発したものを、<br>現場まで見に行く</span>
-        </figure>
-        <div class="pcard__b"><p class="pcard__dep">FDE</p><p class="pcard__meta">H.Y ・ 2023 新卒入社</p><span class="pcard__ar" aria-hidden="true">→</span></div>
-      </a>
-      <a class="pcard pcard--av" href="people/system.html">
-        <figure class="pcard__ph av-pad"><img src="../assets/images/avatar-system.png" alt="DXプロダクト開発として働く M.M のイラスト（プロフィール画像）" width="900" height="975" loading="lazy">
-          <span class="pcard__cat en">ENGINEER</span><span class="pcard__copy">プロダクトを、<br>自分の手で</span>
-        </figure>
-        <div class="pcard__b"><p class="pcard__dep">システム部</p><p class="pcard__meta">M.M ・ 2026 中途入社</p><span class="pcard__ar" aria-hidden="true">→</span></div>
-      </a>
-      <a class="pcard pcard--av" href="people/sales.html">
-        <figure class="pcard__ph av-pad"><img src="../assets/images/avatar-sales.png" alt="エンゲージメント・新規営業として働く H.S のイラスト（プロフィール画像）" width="900" height="975" loading="lazy">
-          <span class="pcard__cat en">ENGAGEMENT / SALES</span><span class="pcard__copy">売る前に、<br>まず課題を見つける</span>
-        </figure>
-        <div class="pcard__b"><p class="pcard__dep">エンゲージメント・新規営業</p><p class="pcard__meta">H.S ・ 2010 中途入社</p><span class="pcard__ar" aria-hidden="true">→</span></div>
-      </a>
-      <a class="pcard pcard--av" href="people/corporate.html">
-        <figure class="pcard__ph av-pad"><img src="../assets/images/avatar-corporate.png" alt="コーポレート本部 総務課として働く M.K のイラスト（プロフィール画像）" width="900" height="975" loading="lazy">
-          <span class="pcard__cat en">CORPORATE</span><span class="pcard__copy">人と組織から、<br>事業を前へ</span>
-        </figure>
-        <div class="pcard__b"><p class="pcard__dep">総務部</p><p class="pcard__meta">M.K ・ 2017 入社</p><span class="pcard__ar" aria-hidden="true">→</span></div>
-      </a>
-    </div>
+    <!-- ============================================================
+         ===== PEOPLE GALLERY v1 =====
+         旧実装は、部署名とコメントを人物イラストの上に重ねていたため
+         顔に文字がかかり、どちらも読みにくかった。文字はすべて HTML なので
+         画像の外へ出し、イラスト → 英字カテゴリ → 部署名 → コメント →
+         社員情報 → インタビュー導線 の順に組み直した。
+         画像・原文・リンク・掲載順は一切変えていない。
+         7人目だけが3列目に取り残されないよう、最後の1枚を横並びの
+         特集型にして段を埋めている（順序は変えていない）。
+         ============================================================ -->
+    <ul class="pgal reveal">
+      <li class="pgal__i">
+        <a class="pgal__a" href="people/bpo.html">
+          <span class="pgal__ph"><img class="pgal__img" src="../assets/images/avatar-bpo.png" alt="BPO／現場運営として働く I.N のイラスト（プロフィール画像）" width="900" height="975" loading="lazy" decoding="async" style="--s:1.040;--y:+0.55%;--x:+0.54%"></span>
+          <span class="pgal__b">
+            <span class="pgal__cat en">BPO / 現場運営</span>
+            <span class="pgal__dep">BPO／現場運営</span>
+            <span class="pgal__copy">現場を回し、<br>改善をつくる</span>
+            <span class="pgal__meta">I.N ・ 2005 PALへ転籍</span>
+            <span class="pgal__go">インタビューを読む<i aria-hidden="true"></i></span>
+          </span>
+        </a>
+      </li>
+      <li class="pgal__i">
+        <a class="pgal__a" href="people/cleaning.html">
+          <span class="pgal__ph"><img class="pgal__img" src="../assets/images/avatar-cleaning.png" alt="BPO／クレンリネス課のメンバーのイラスト（プロフィール画像）" width="900" height="975" loading="lazy" decoding="async" style="--s:1.071;--y:+0.04%;--x:-0.32%"></span>
+          <span class="pgal__b">
+            <span class="pgal__cat en">CLEANLINESS</span>
+            <span class="pgal__dep">BPO／クレンリネス課</span>
+            <span class="pgal__copy">清掃を、<br>計画から支える</span>
+            <span class="pgal__meta">S.K ・ 2016 中途入社</span>
+            <span class="pgal__go">インタビューを読む<i aria-hidden="true"></i></span>
+          </span>
+        </a>
+      </li>
+      <li class="pgal__i">
+        <a class="pgal__a" href="people/dts.html">
+          <span class="pgal__ph"><img class="pgal__img" src="../assets/images/avatar-dts.png" alt="DTS事業部 運送課 千葉営業所 所長 K.Y のイラスト（プロフィール画像）" width="900" height="975" loading="lazy" decoding="async" style="--s:1.143;--y:+0.66%;--x:-4.99%"></span>
+          <span class="pgal__b">
+            <span class="pgal__cat en">DTS / 運送</span>
+            <span class="pgal__dep">DTS事業部 運送課 千葉営業所／所長</span>
+            <span class="pgal__copy">届けるまでが、<br>物流。</span>
+            <span class="pgal__meta">K.Y ・ 2018年 中途入社</span>
+            <span class="pgal__go">インタビューを読む<i aria-hidden="true"></i></span>
+          </span>
+        </a>
+      </li>
+      <li class="pgal__i">
+        <a class="pgal__a" href="people/fde.html">
+          <span class="pgal__ph"><img class="pgal__img" src="../assets/images/avatar-fde.png" alt="FDE社員 H.Y のイラスト（プロフィール画像）" width="900" height="975" loading="lazy" decoding="async" style="--s:1.071;--y:-1.39%;--x:+1.58%"></span>
+          <span class="pgal__b">
+            <span class="pgal__cat en">FDE</span>
+            <span class="pgal__dep">FDE</span>
+            <span class="pgal__copy">開発したものを、<br>現場まで見に行く</span>
+            <span class="pgal__meta">H.Y ・ 2023 新卒入社</span>
+            <span class="pgal__go">インタビューを読む<i aria-hidden="true"></i></span>
+          </span>
+        </a>
+      </li>
+      <li class="pgal__i">
+        <a class="pgal__a" href="people/system.html">
+          <span class="pgal__ph"><img class="pgal__img" src="../assets/images/avatar-system.png" alt="DXプロダクト開発として働く M.M のイラスト（プロフィール画像）" width="900" height="975" loading="lazy" decoding="async" style="--s:1.091;--y:-2.48%;--x:-1.02%"></span>
+          <span class="pgal__b">
+            <span class="pgal__cat en">ENGINEER</span>
+            <span class="pgal__dep">システム部</span>
+            <span class="pgal__copy">プロダクトを、<br>自分の手で</span>
+            <span class="pgal__meta">M.M ・ 2026 中途入社</span>
+            <span class="pgal__go">インタビューを読む<i aria-hidden="true"></i></span>
+          </span>
+        </a>
+      </li>
+      <li class="pgal__i">
+        <a class="pgal__a" href="people/sales.html">
+          <span class="pgal__ph"><img class="pgal__img" src="../assets/images/avatar-sales.png" alt="エンゲージメント・新規営業として働く H.S のイラスト（プロフィール画像）" width="900" height="975" loading="lazy" decoding="async" style="--s:1.089;--y:-1.36%;--x:+2.20%"></span>
+          <span class="pgal__b">
+            <span class="pgal__cat en">ENGAGEMENT / SALES</span>
+            <span class="pgal__dep">エンゲージメント・新規営業</span>
+            <span class="pgal__copy">売る前に、<br>まず課題を見つける</span>
+            <span class="pgal__meta">H.S ・ 2010 中途入社</span>
+            <span class="pgal__go">インタビューを読む<i aria-hidden="true"></i></span>
+          </span>
+        </a>
+      </li>
+      <li class="pgal__i pgal__i--wide">
+        <a class="pgal__a" href="people/corporate.html">
+          <span class="pgal__ph"><img class="pgal__img" src="../assets/images/avatar-corporate.png" alt="コーポレート本部 総務課として働く M.K のイラスト（プロフィール画像）" width="900" height="975" loading="lazy" decoding="async" style="--s:1.201;--y:-1.31%;--x:+2.91%"></span>
+          <span class="pgal__b">
+            <span class="pgal__cat en">CORPORATE</span>
+            <span class="pgal__dep">総務部</span>
+            <span class="pgal__copy">人と組織から、<br>事業を前へ</span>
+            <span class="pgal__meta">M.K ・ 2017 入社</span>
+            <span class="pgal__go">インタビューを読む<i aria-hidden="true"></i></span>
+          </span>
+        </a>
+      </li>
+    </ul>
     <p class="pgrid__note">※ 掲載名はイニシャル表記です。<a class="textlink textlink--sm" href="jobs.html">現在の募集状況は募集職種ページへ</a></p>
   </div>
 </section>
