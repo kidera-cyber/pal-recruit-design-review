@@ -423,11 +423,8 @@
   font-size:clamp(21px,2.1vw,29px);font-weight:700;line-height:1.55;letter-spacing:.02em;
   color:var(--ls-ink);margin:0;
 }
-.ls .xn2__note{
-  margin:clamp(16px,1.8vw,22px) 0 0;padding-top:18px;border-top:1px solid var(--ls-line);
-  font-size:13px;line-height:2;color:var(--ls-mid);
-}
-.ls .xn2__note b{color:var(--ls-ink);font-weight:700}
+/* .xn2__note / .xn2__note b：削除済み。注記の HTML 自体を撤去したため参照がなくなった。
+   救済情報：git show 7520097:site/redesign/assets/css/lightsurface.css */
 
 /* ビジュアル。aspect-ratio を枠に与えて、読み込み前後で高さが動かないようにする */
 .ls .xn2__fig{
@@ -445,7 +442,6 @@
 
 @media(max-width:860px){
   .ls .xn2__title{font-size:clamp(19px,5.2vw,23px)}
-  .ls .xn2__note{font-size:12.5px}
   .ls .xn2__fig{margin-top:clamp(20px,4.4vw,26px)}
 
   /* SP だけ3領域を文字で出す。細い縦罫でつなぎ、どれも同じ扱いにする */
