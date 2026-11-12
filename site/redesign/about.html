@@ -36,7 +36,7 @@
 <link rel="stylesheet" href="assets/css/white-editorial.css?v=4">
 <!-- ===== EXPERTISE×PEOPLE v1：OUR PEOPLE & CULTURE の3領域＋社員紹介を
      1つの3カラムへ統合する。about.css 本体は変更していない。 ===== -->
-<link rel="stylesheet" href="assets/css/about-people-v2.css?v=2">
+<link rel="stylesheet" href="assets/css/about-people-v2.css?v=3">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"採用情報","item":"../"},{"@type":"ListItem","position":2,"name":"PALを知る"}]}</script>
 </head>
 <body class="ls a7 we">
@@ -155,7 +155,10 @@
       <h2 class="stitle">違う専門性が、ひとつの仕事を動かす。</h2>
       <p class="slead">PALには、物流センターの運営を担う人、現場課題を整理するFDE、仕組みを開発するエンジニアなど、異なる専門性を持つメンバーがいます。</p>
     </div>
-    <!-- ===== EXPERTISE×PEOPLE v1：3領域の図解（曲線＋赤い丸）と社員紹介の二段構造をやめ、
+    <!-- ===== EXPERTISE×PEOPLE v2：注釈「3つの領域に上下関係はありません。」を
+         HTMLから削除した（非表示では残さない）。社員イラストは .xp__ph で枠を固定し、
+         画像ごとに頭頂・頭の中心・頭の大きさが揃う補正をかけている。
+         ===== EXPERTISE×PEOPLE v1：3領域の図解（曲線＋赤い丸）と社員紹介の二段構造をやめ、
          領域と人物をひとつの3カラムに統合した。社員の発言・氏名・所属・リンクは原文のまま。
          「この領域で働く人」の見出しは原文のまま、各カラムの人物の直前へ移した。
          復元元：git a4948a5 の about.html ===== -->
@@ -166,7 +169,7 @@
         <p class="xp__r">現場を安定させ、改善を進める</p>
         <p class="xp__vh">この領域で働く人</p>
         <a class="xp__p" href="people.html">
-          <img class="xp__img" src="../assets/images/avatar-bpo.png" alt="BPO事業部で働く社員の似顔絵" width="900" height="975" loading="lazy" decoding="async">
+          <span class="xp__ph xp__ph--bpo"><img class="xp__img" src="../assets/images/avatar-bpo.png" alt="BPO事業部で働く社員の似顔絵" width="900" height="975" loading="lazy" decoding="async"></span>
           <q class="xp__q">毎日の運営の中に、次の改善がある。</q>
           <cite class="xp__c"><b>I.N</b>BPO事業部 Productivity推進部</cite>
         </a>
@@ -177,7 +180,7 @@
         <p class="xp__r">現場課題を技術につなぐ</p>
         <p class="xp__vh">この領域で働く人</p>
         <a class="xp__p" href="people.html">
-          <img class="xp__img" src="../assets/images/avatar-fde.png" alt="FDEとして働く社員の似顔絵" width="900" height="975" loading="lazy" decoding="async">
+          <span class="xp__ph xp__ph--fde"><img class="xp__img" src="../assets/images/avatar-fde.png" alt="FDEとして働く社員の似顔絵" width="900" height="975" loading="lazy" decoding="async"></span>
           <q class="xp__q">現場で使われて、初めて「できた」と言える。</q>
           <cite class="xp__c"><b>H.Y</b>FDE・2023年新卒入社</cite>
         </a>
@@ -188,13 +191,12 @@
         <p class="xp__r">現場で使われる仕組みをつくる</p>
         <p class="xp__vh">この領域で働く人</p>
         <a class="xp__p" href="people.html">
-          <img class="xp__img" src="../assets/images/avatar-system.png" alt="DXプロダクト開発で働く社員の似顔絵" width="900" height="975" loading="lazy" decoding="async">
+          <span class="xp__ph xp__ph--system"><img class="xp__img" src="../assets/images/avatar-system.png" alt="DXプロダクト開発で働く社員の似顔絵" width="900" height="975" loading="lazy" decoding="async"></span>
           <q class="xp__q">つくるのは、現場が明日から使えるもの。</q>
           <cite class="xp__c"><b>M.M</b>DXプロダクト開発・2026年中途入社</cite>
         </a>
       </li>
     </ul>
-    <p class="xp__note pv">3つの領域に上下関係はありません。</p>
     <p class="p4acts pv"><a class="p4link" href="people.html">PALで働く人を知る</a></p>
     <div class="two-view two-view--b pv">
       <div class="two-view__i two-view__i--field">

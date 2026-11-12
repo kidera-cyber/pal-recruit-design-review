@@ -21,10 +21,11 @@
   display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;
   border-top:1px solid var(--p-line);
 }
-/* 行を揃えるため grid にする。flex + margin-top:auto だと
-   コメントの行数差で人物の上端がずれる（BPOだけ下がっていた） */
+/* 行を揃えるため grid にする。余る高さは最後の行（人物ブロック）に送り、
+   英字ラベル・職種名・役割説明・「この領域で働く人」・イラストの上端を
+   3カラムで揃える。flex + margin-top:auto だと行数差で人物の上端がずれる。 */
 .a7 .xp__i{
-  display:grid;grid-template-rows:auto auto auto 1fr;align-content:start;
+  display:grid;grid-template-rows:auto auto auto auto 1fr;align-content:start;
   padding:clamp(26px,3vw,34px) clamp(20px,2.4vw,30px) clamp(24px,2.8vw,30px) 0;
 }
 .a7 .xp__i + .xp__i{
@@ -56,16 +57,44 @@
   border-top:1px solid var(--p-line2);
   text-decoration:none;color:inherit;
 }
-.a7 .xp__img{
-  display:block;width:clamp(120px,11vw,150px);height:auto;
-  border-radius:12px;background:#F7F8FB;margin:0 0 clamp(16px,1.9vw,20px);
-  object-fit:cover;object-position:50% 8%;aspect-ratio:900 / 975;
+/* ============================================================
+   イラストの枠と、画像ごとの位置・大きさ補正（v2）
+
+   3枚の元データは同じ 900×975 だが、人物の入り方が揃っていなかった。
+     頭頂のy      bpo 23 ／ fde 40 ／ system 49
+     頭の高さ     bpo 732 ／ fde 710 ／ system 701（頭頂→肩）
+     頭の中心x    bpo 437 ／ fde 406 ／ system 421（中央は450）
+   そのため width・height を同じ値にしても、顔の高さ・大きさ・左右位置が
+   そろわない。枠（.xp__ph）の寸法を3枚で固定したうえで、画像ごとに
+     --s  拡大率（頭の高さを揃える）
+     --y  上下位置（頭頂を揃える）
+     --x  左右位置（頭の中心を揃える）
+   を与えて、実画面で人物が揃って見えるようにしている。
+   画像データそのものは加工していない。
+   ============================================================ */
+.a7 .xp__ph{
+  position:relative;display:block;overflow:hidden;
+  width:clamp(120px,11vw,150px);aspect-ratio:900 / 975;
+  border-radius:12px;background:#F7F8FB;
+  margin:0 0 clamp(16px,1.9vw,20px);
 }
+.a7 .xp__img{
+  position:absolute;top:var(--y,0);left:var(--x,0);
+  /* 共通CSSの img{max-width:100%} が拡大率を打ち消すため、ここだけ外す */
+  width:calc(var(--s,1) * 100%);max-width:none;height:auto;display:block;
+}
+/* 頭の高さ 732 を基準に、拡大率＝732÷各画像の頭の高さ×1.04 */
+.a7 .xp__ph--bpo    .xp__img{--s:1.040;--x:-0.5%;--y:0.5%}
+.a7 .xp__ph--fde    .xp__img{--s:1.072;--x:1.6%;--y:-1.4%}
+.a7 .xp__ph--system .xp__img{--s:1.086;--x:-0.8%;--y:-2.5%}
 .a7 .xp__q{
   display:block;quotes:none;margin:0 0 13px;padding-left:15px;
   border-left:2px solid var(--p-red);
   font-size:clamp(15.5px,1.7vw,17px);font-weight:700;line-height:1.75;
   letter-spacing:.01em;color:var(--p-ink);
+  /* 1行のコメントと2行のコメントが混在するため、2行分を確保して
+     社員名・所属の開始位置を3カラムで揃える */
+  min-height:3.5em;
 }
 .a7 .xp__q::before,.a7 .xp__q::after{content:none}
 .a7 .xp__c{
@@ -75,11 +104,11 @@
 .a7 .xp__p:hover .xp__q{color:var(--p-red)}
 .a7 .xp__p:focus-visible{outline:2px solid var(--p-red);outline-offset:4px;border-radius:6px}
 
-/* 3領域が対等であることを示す一文。線や矢印は使わない */
-.a7 .xp__note{
-  margin:clamp(18px,2.2vw,24px) 0 0;padding-top:clamp(16px,2vw,20px);
+/* 注釈「3つの領域に上下関係はありません。」は HTML から削除した。
+   その直後にあった区切り線と余白は、次のリンク行が引き継ぐ。 */
+.a7 .xp + .p4acts{
+  margin-top:clamp(22px,2.6vw,30px);padding-top:clamp(20px,2.4vw,26px);
   border-top:1px solid var(--p-line);
-  font-size:13.5px;line-height:1.85;color:var(--p-mid);
 }
 
 @media(max-width:860px){
@@ -96,14 +125,14 @@
     display:grid;grid-template-columns:118px minmax(0,1fr);gap:4px 16px;align-items:start;
     padding-top:18px;
   }
-  .a7 .xp__img{width:118px;margin:0;grid-area:1 / 1 / 3 / 2}
+  .a7 .xp__ph{width:118px;margin:0;grid-area:1 / 1 / 3 / 2}
   .a7 .xp__q{grid-area:1 / 2 / 2 / 3}
   .a7 .xp__c{grid-area:2 / 2 / 3 / 3}
-  .a7 .xp__q{font-size:15.5px;margin-bottom:10px;padding-left:13px}
+  .a7 .xp__q{font-size:15.5px;margin-bottom:10px;padding-left:13px;min-height:0}
   .a7 .xp__c{font-size:12.5px}
 }
 @media(max-width:380px){
   .a7 .xp__p{grid-template-columns:100px minmax(0,1fr);gap:13px}
-  .a7 .xp__img{width:100px}
+  .a7 .xp__ph{width:100px}
 }
 /* ===== EXPERTISE × PEOPLE v1 END ===== */
