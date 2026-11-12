@@ -1,25 +1,25 @@
 @charset "utf-8";
 /* ============================================================================
-   WORK｜仕事の魅力（#why）  WORK EDITORIAL v1
+   WORK｜仕事の魅力（#why）  WORK EDITORIAL v2
 
-   旧実装（共通 style.css の .wsw）の問題
-     ・4項目がまったく同じ形の小さなカードで、どれも文字中心だった
-     ・汎用アイコンが1つずつ並ぶだけで、4つの違いが視覚的に伝わらなかった
-     ・説明文が小さく、横に押し込まれていた
+   v1（線画SVG 4点）からの変更
+     ・.wmx__fig 内の svg.wmx__g を撤去し、物流現場・設備・人のビジュアル
+       4点に差し替えた。v1 用の .wmx__g ルールは削除した。
+     ・構成を「番号＋右に図解」から「画像を上、その下に番号・見出し・本文」
+       の縦積みに変更。画像が主役になる並びにする。
 
-   新実装
-     ・PC は 2列×2段。SP は1列
-     ・大きな 01〜04（PALレッド）／濃紺の強い見出し／十分な行間の本文
-     ・各項目に、その意味が読み取れる図解を描き起こして添える
-         01 机上の検討と物流現場が、往復する線でつながっている
-         02 考える → 設計する → 現場で動く が1本の線で最後までつながる
-         03 専門性の異なる担当が、ひとつの仕事へ集まる
-         04 改善の前と後を、目で見て確かめられる
-       いずれも業務上の関係性・成果数値・体制は示していない（形と線だけ）
-     ・枠で囲わず、細い罫線と余白で整理する
+   4枚で元の縦横比が異なるため（1枚が 16:9、3枚が 2:1）、
+     枠 : aspect-ratio 16/9 で4項目とも同じ表示領域に固定
+     画像: object-fit:contain ＋ object-position:50% 50%
+   とし、人物・設備・グラフィックを切り取らずに原比率のまま収める。
+   2:1 の3枚は枠の上下に各 5.6% の余白が出るが、4枚とも地色がほぼ白のため
+   白背景の上では面として見えない。
+   枠に aspect-ratio を与えているので、読み込み時のレイアウトシフトは出ない。
 
-   共通 site/assets/css/style.css は変更していない。
-   .wsw の指定は残るが、このページでは使わなくなる。
+   4項目とも画像枠の高さが等しいので、番号・見出し・本文の開始位置は
+   自動的に揃う（段ごとに揃う）。
+
+   外枠・影・灰色カードは使わない。共通 site/assets/css/style.css は未変更。
 
    配色は White Editorial A案
      白 #FFFFFF／濃紺 #262946／PALレッド #CF131B／本文 #53545A／罫線 #DAE1F2
@@ -33,51 +33,53 @@
   --w-line:#DAE1F2;--w-line2:#E7EBF4;
   list-style:none;margin:clamp(26px,3vw,36px) 0 0;padding:0;
   display:grid;grid-template-columns:repeat(2,minmax(0,1fr));
-  gap:0 clamp(36px,4.6vw,72px);
+  gap:clamp(30px,3.6vw,46px) clamp(36px,4.6vw,66px);
 }
 .wmx__i{
-  display:grid;grid-template-columns:auto minmax(0,1fr);
-  gap:0 clamp(18px,2.2vw,26px);
-  padding:clamp(26px,3vw,36px) 0 clamp(28px,3.2vw,38px);
+  display:block;
+  padding:clamp(22px,2.6vw,30px) 0 0;
   border-top:1px solid var(--w-line);
 }
-/* 3・4枚目の上罫線は、2段目の区切りとして少し濃くする */
-.wmx__i:nth-child(n+3){border-top-color:var(--w-line)}
 
-/* 大きな番号。左列に置き、見出し・図解・本文を右列へ積む */
+/* ───────── 画像 ─────────
+   枠は4項目とも 16:9。中の画像は contain なので切り取られない。     */
+.wmx__fig{
+  margin:0 0 clamp(16px,2vw,22px);
+  aspect-ratio:16/9;
+  display:flex;align-items:center;justify-content:center;
+  line-height:0;
+}
+.wmx__img{
+  display:block;width:100%;height:100%;max-width:100%;
+  object-fit:contain;object-position:50% 50%;
+}
+
+/* ───────── 番号・見出し・本文 ───────── */
 .wmx__no{
-  grid-area:1 / 1 / 2 / 2;margin:0;
-  font:900 clamp(30px,3.6vw,46px)/1 Lato,sans-serif;letter-spacing:.01em;
+  margin:0 0 clamp(8px,1vw,11px);
+  font:900 clamp(28px,3.2vw,40px)/1 Lato,sans-serif;letter-spacing:.01em;
   color:var(--w-red);
 }
-.wmx__fig{
-  grid-area:1 / 2 / 2 / 3;margin:0 0 clamp(16px,2vw,22px);line-height:0;
-}
-.wmx__g{display:block;width:100%;height:auto;max-width:300px}
-
 .wmx__h{
-  grid-area:2 / 2 / 3 / 3;margin:0 0 clamp(10px,1.3vw,14px);
-  font-size:clamp(19px,2.3vw,24px);font-weight:700;line-height:1.5;
+  margin:0 0 clamp(9px,1.2vw,13px);
+  font-size:clamp(19px,2.2vw,23px);font-weight:700;line-height:1.5;
   letter-spacing:.01em;color:var(--w-ink);
+  word-break:auto-phrase;line-break:strict;
 }
 .wmx__t{
-  grid-area:3 / 2 / 4 / 3;margin:0;max-width:30em;
-  font-size:clamp(15px,1.7vw,16px);line-height:1.95;color:var(--w-sub);
+  margin:0;max-width:32em;
+  font-size:clamp(15px,1.6vw,15.5px);line-height:1.95;color:var(--w-sub);
 }
 
+/* ───────── レスポンシブ ─────────
+   860px 以下は1列。画像は本文幅いっぱいに置く。                     */
 @media(max-width:860px){
-  .wmx{grid-template-columns:minmax(0,1fr);gap:0}
-  .wmx__i{padding:clamp(24px,4.4vw,30px) 0 clamp(26px,4.6vw,32px)}
-  .wmx__g{max-width:340px}
+  .wmx{grid-template-columns:minmax(0,1fr);gap:clamp(26px,5vw,34px) 0}
+  .wmx__i{padding:clamp(20px,4vw,26px) 0 0}
+  .wmx__fig{margin-bottom:clamp(15px,3.4vw,19px)}
 }
 @media(max-width:560px){
-  .wmx__i{
-    grid-template-columns:minmax(0,1fr);gap:0;
-  }
-  /* SP は番号を見出しの上へ。図解は横幅いっぱいにして読み取りやすくする */
-  .wmx__no{grid-area:auto;font-size:clamp(28px,8.4vw,36px);margin-bottom:12px}
-  .wmx__fig{grid-area:auto;margin-bottom:16px}
-  .wmx__h{grid-area:auto;font-size:clamp(18px,5.2vw,21px)}
-  .wmx__t{grid-area:auto;font-size:15.5px;max-width:none}
-  .wmx__g{max-width:none}
+  .wmx__no{font-size:clamp(26px,7.6vw,32px);margin-bottom:8px}
+  .wmx__h{font-size:clamp(18px,5.1vw,21px)}
+  .wmx__t{font-size:15.5px;max-width:none}
 }

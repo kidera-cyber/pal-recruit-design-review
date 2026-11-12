@@ -23,7 +23,7 @@
 <link rel="stylesheet" href="assets/css/work-roles.css?v=1">
 <!-- ===== WORK EDITORIAL v1：仕事の魅力（#why）専用。
      共通 style.css は変更せず、このセクションの中だけを組み直す。 ===== -->
-<link rel="stylesheet" href="assets/css/work-why.css?v=1">
+<link rel="stylesheet" href="assets/css/work-why.css?v=2">
 <!-- ===== WHITE-EDITORIAL v1：採用サイト共通の白基調デザイン（A案）。
      本文・NEXT STEP・フッターの配色は assets/css/white-editorial.css が
      .we スコープで後勝ち上書きする。HTML の文言・リンクは変更していない。
@@ -123,7 +123,12 @@
     </div>
     <p class="wsw__st"><span class="en">PAL</span><b>物流DXを、現場で動く形にする</b></p>
     <!-- ============================================================
-         ===== WORK EDITORIAL v1 =====
+         ===== WORK EDITORIAL v2 =====
+         v1 の線画SVG4点（.wmx__g）を撤去し、物流現場・設備・人のビジュアル
+         4点に差し替えた。見出し・説明文・番号・掲載順序は v1 のまま。
+         画像は16:9の枠に object-fit:contain で収め、元の縦横比のまま
+         切り取らずに表示する（4枚で比率が異なるため）。
+         ---- 旧 v1 コメント ----
          同じ形の小さな4カード（.wsw）をやめ、2列×2段のエディトリアル構成へ。
          見出し・本文は現行の原文のまま。各項目に、その意味が読み取れる図解を
          描き起こして添えた（汎用アイコンの並列ではない）。
@@ -131,81 +136,50 @@
          ============================================================ -->
     <ul class="wmx reveal">
       <li class="wmx__i">
-        <p class="wmx__no en">01</p>
         <div class="wmx__fig">
-          <svg class="wmx__g" viewBox="0 0 220 118" fill="none" aria-hidden="true" focusable="false">
-            <!-- 机上の検討（左の枠）と物流現場（右の棚・搬送）が、往復する線でつながっている -->
-            <rect x="8" y="30" width="62" height="46" rx="4" stroke="#8D99C0" stroke-width="1.5"/>
-            <path d="M18 44h42M18 54h30M18 64h36" stroke="#C2CBE0" stroke-width="1.4" stroke-linecap="round"/>
-            <path d="M120 26v62M150 26v62M180 26v62" stroke="#C2CBE0" stroke-width="1.3"/>
-            <path d="M112 38h76M112 56h76M112 74h76" stroke="#8D99C0" stroke-width="1.5"/>
-            <rect x="124" y="28" width="20" height="8" rx="1.5" fill="#E3E7F3"/>
-            <rect x="156" y="46" width="20" height="8" rx="1.5" fill="#E3E7F3"/>
-            <rect x="124" y="64" width="20" height="8" rx="1.5" fill="#CF131B" opacity=".85"/>
-            <path d="M74 46h30" stroke="#CF131B" stroke-width="1.6" stroke-linecap="round"/>
-            <path d="M98 42l6 4-6 4" stroke="#CF131B" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M104 66H74" stroke="#CF131B" stroke-width="1.6" stroke-linecap="round" stroke-dasharray="5 4"/>
-            <path d="M80 62l-6 4 6 4" stroke="#CF131B" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
+          <img class="wmx__img" src="../assets/images/work-near-field.webp"
+               srcset="../assets/images/work-near-field-760.webp 760w, ../assets/images/work-near-field.webp 1400w"
+               sizes="(max-width:860px) 92vw, 44vw"
+               width="1400" height="700" loading="lazy" decoding="async"
+               alt="物流センターの現場で、タブレットを見ながら作業の状況を確認している様子">
         </div>
+        <p class="wmx__no en">01</p>
         <h3 class="wmx__h">現場に近い</h3>
         <p class="wmx__t">机上で考えるだけではなく、実際の物流現場を見ながら仕事を進めます。</p>
       </li>
       <li class="wmx__i">
-        <p class="wmx__no en">02</p>
         <div class="wmx__fig">
-          <svg class="wmx__g" viewBox="0 0 220 118" fill="none" aria-hidden="true" focusable="false">
-            <!-- 考える → 設計する → 現場で動く。手放さず最後までつながっている1本の線 -->
-            <circle cx="30" cy="59" r="15" stroke="#8D99C0" stroke-width="1.5"/>
-            <path d="M24 59h12M30 53v12" stroke="#C2CBE0" stroke-width="1.4" stroke-linecap="round"/>
-            <rect x="88" y="42" width="44" height="34" rx="3" stroke="#8D99C0" stroke-width="1.5"/>
-            <path d="M96 52h28M96 60h20M96 68h24" stroke="#C2CBE0" stroke-width="1.4" stroke-linecap="round"/>
-            <rect x="166" y="40" width="40" height="38" rx="3" stroke="#CF131B" stroke-width="1.8" fill="#FCEEF0"/>
-            <path d="M174 60l7 7 15-16" stroke="#CF131B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M45 59h43M132 59h34" stroke="#262946" stroke-width="1.6"/>
-            <path d="M82 55l6 4-6 4M160 55l6 4-6 4" stroke="#262946" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M30 82v10h152V82" stroke="#CF131B" stroke-width="1.3" stroke-dasharray="5 4"/>
-          </svg>
+          <img class="wmx__img" src="../assets/images/work-build-systems.webp"
+               srcset="../assets/images/work-build-systems-760.webp 760w, ../assets/images/work-build-systems.webp 1400w"
+               sizes="(max-width:860px) 92vw, 44vw"
+               width="1400" height="788" loading="lazy" decoding="async"
+               alt="入荷から保管・搬送・出荷までの流れを、設備とシステムでつないだ物流センターの全体図">
         </div>
+        <p class="wmx__no en">02</p>
         <h3 class="wmx__h">自分たちで仕組みをつくれる</h3>
         <p class="wmx__t">提案して引き渡すのではなく、つくったものが現場で動くところまで自分の担当範囲になります。</p>
       </li>
       <li class="wmx__i">
-        <p class="wmx__no en">03</p>
         <div class="wmx__fig">
-          <svg class="wmx__g" viewBox="0 0 220 118" fill="none" aria-hidden="true" focusable="false">
-            <!-- 専門性の異なる担当が、ひとつの仕事（中央）へ集まる -->
-            <circle cx="110" cy="59" r="21" fill="#FCEEF0" stroke="#CF131B" stroke-width="1.8"/>
-            <path d="M101 59l6 6 13-13" stroke="#CF131B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            <circle cx="26" cy="26" r="11" stroke="#8D99C0" stroke-width="1.5"/>
-            <circle cx="26" cy="92" r="11" stroke="#8D99C0" stroke-width="1.5"/>
-            <circle cx="194" cy="26" r="11" stroke="#8D99C0" stroke-width="1.5"/>
-            <circle cx="194" cy="92" r="11" stroke="#8D99C0" stroke-width="1.5"/>
-            <circle cx="110" cy="14" r="10" stroke="#8D99C0" stroke-width="1.5"/>
-            <path d="M36 33l48 15M36 85l48-15M184 33l-48 15M184 85l-48-15M110 24v14" stroke="#C2CBE0" stroke-width="1.4"/>
-          </svg>
+          <img class="wmx__img" src="../assets/images/work-cross-functional.webp"
+               srcset="../assets/images/work-cross-functional-760.webp 760w, ../assets/images/work-cross-functional.webp 1400w"
+               sizes="(max-width:860px) 92vw, 44vw"
+               width="1400" height="700" loading="lazy" decoding="async"
+               alt="現場・システム・管理・営業など、異なる職種の担当者が並ぶイラスト">
         </div>
+        <p class="wmx__no en">03</p>
         <h3 class="wmx__h">職種を越えて仕事ができる</h3>
         <p class="wmx__t">BPO、FDE、システム、営業、DTS、衛生清掃、コーポレート。異なる専門性を持つ人と一緒に進めます。</p>
       </li>
       <li class="wmx__i">
-        <p class="wmx__no en">04</p>
         <div class="wmx__fig">
-          <svg class="wmx__g" viewBox="0 0 220 118" fill="none" aria-hidden="true" focusable="false">
-            <!-- 改善の前（左の低い状態）と後（右の高い状態）を、目で見て確かめられる -->
-            <path d="M14 94h192" stroke="#8D99C0" stroke-width="1.5"/>
-            <rect x="26" y="70" width="18" height="24" fill="#E3E7F3"/>
-            <rect x="54" y="62" width="18" height="32" fill="#E3E7F3"/>
-            <rect x="82" y="66" width="18" height="28" fill="#E3E7F3"/>
-            <rect x="112" y="50" width="18" height="44" fill="#C2CBE0"/>
-            <rect x="140" y="36" width="18" height="58" fill="#CF131B" opacity=".25"/>
-            <rect x="168" y="22" width="18" height="72" fill="#CF131B" opacity=".85"/>
-            <path d="M26 78C60 78 120 52 186 18" stroke="#CF131B" stroke-width="1.8" stroke-linecap="round"/>
-            <path d="M176 18h12v12" stroke="#CF131B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-            <circle cx="112" cy="50" r="3.4" fill="#262946"/>
-            <circle cx="140" cy="36" r="3.4" fill="#262946"/>
-          </svg>
+          <img class="wmx__img" src="../assets/images/work-see-change.webp"
+               srcset="../assets/images/work-see-change-760.webp 760w, ../assets/images/work-see-change.webp 1400w"
+               sizes="(max-width:860px) 92vw, 44vw"
+               width="1400" height="700" loading="lazy" decoding="async"
+               alt="自動搬送機が稼働する物流センターと、実績を表示したモニター">
         </div>
+        <p class="wmx__no en">04</p>
         <h3 class="wmx__h">変化を自分の目で見られる</h3>
         <p class="wmx__t">自分たちが関わった改善が、現場の動きや仕事の進め方として返ってきます。</p>
       </li>
