@@ -67,9 +67,8 @@
 .heroC__title .hl-red{color:var(--red)}
 .heroC__ctas{display:flex;flex-wrap:wrap;gap:14px;opacity:0;transform:translateY(14px);animation:cIn .7s ease forwards .54s}
 @keyframes cIn{to{opacity:1;transform:none}}
-.heroC__credit{position:absolute;right:22px;bottom:12px;z-index:2;color:rgba(255,255,255,.5);font-size:10.5px;text-align:right;line-height:1.6}
-.heroC__credit-br{display:none}
-@media(max-width:760px){.heroC{min-height:82vh}.heroC__ctas .btn{width:100%;justify-content:center}.heroC__credit{position:static;padding:10px 24px 16px;text-align:left}.heroflags-caption{gap:6px 18px}}
+/* .heroC__credit / .heroC__credit-br は FV-CREDIT-REMOVE v1 で削除済み */
+@media(max-width:760px){.heroC{min-height:82vh}.heroC__ctas .btn{width:100%;justify-content:center}.heroflags-caption{gap:6px 18px}}
 @media(prefers-reduced-motion:reduce){.heroC__eyebrow,.heroC__title .ln,.heroC__ctas{animation:none!important;opacity:1!important;transform:none!important}}
 
 /* ---- 数字＋リード（.hcbelow / .hcstrip）：HCBELOW-REMOVE v1 で削除済み ---- */
@@ -185,8 +184,7 @@
 <!-- ===== PAL-V2 v1：ファーストビューを写真主体からアイソメトリックイラスト主体へ。
      キャッチコピー「現場に立ち、自分の手で、変えていく。」、赤の強調位置、CTA2本、
      FV直下の訴求キャプション2点は、C案の原文のまま変更していない。
-     旧クレジット文「PALの配送バース（DTS拠点）の実写真」は、写真を使わなくなり
-     事実と合わなくなるため、イラストの説明に差し替えた。「※画像はイメージです」は維持。
+     FV下部のクレジット文は FV-CREDIT-REMOVE v1 で削除した（git a4948a5 から復元可）。
      旧FVの復元は git 履歴の newtop-c.html から。 ===== -->
 <section class="heroC" id="heroC">
   <div class="heroC__wrap">
@@ -226,7 +224,8 @@
       </div>
     </div>
   </div>
-  <p class="heroC__credit">映像は、現場の運営と、システム・設備・データが連動する関係を示した概念図です<br class="heroC__credit-br">※画像はイメージです</p>
+  <!-- ===== FV-CREDIT-REMOVE v1：FV下部の注釈2文を削除した。
+       復元元：git a4948a5 の newtop-c-v2.html ===== -->
 </section>
 
 <!-- ===== HCBELOW-REMOVE v1：FV直下の「紹介文＋3指標（9職種／120名／2000年〜）」
