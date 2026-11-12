@@ -1,0 +1,83 @@
+@charset "utf-8";
+/* ============================================================================
+   WORK｜仕事の魅力（#why）  WORK EDITORIAL v1
+
+   旧実装（共通 style.css の .wsw）の問題
+     ・4項目がまったく同じ形の小さなカードで、どれも文字中心だった
+     ・汎用アイコンが1つずつ並ぶだけで、4つの違いが視覚的に伝わらなかった
+     ・説明文が小さく、横に押し込まれていた
+
+   新実装
+     ・PC は 2列×2段。SP は1列
+     ・大きな 01〜04（PALレッド）／濃紺の強い見出し／十分な行間の本文
+     ・各項目に、その意味が読み取れる図解を描き起こして添える
+         01 机上の検討と物流現場が、往復する線でつながっている
+         02 考える → 設計する → 現場で動く が1本の線で最後までつながる
+         03 専門性の異なる担当が、ひとつの仕事へ集まる
+         04 改善の前と後を、目で見て確かめられる
+       いずれも業務上の関係性・成果数値・体制は示していない（形と線だけ）
+     ・枠で囲わず、細い罫線と余白で整理する
+
+   共通 site/assets/css/style.css は変更していない。
+   .wsw の指定は残るが、このページでは使わなくなる。
+
+   配色は White Editorial A案
+     白 #FFFFFF／濃紺 #262946／PALレッド #CF131B／本文 #53545A／罫線 #DAE1F2
+   ============================================================================ */
+
+/* このセクションだけ薄灰の面をやめ、白地に戻す */
+#why.sec--soft{background:#FFFFFF}
+
+.wmx{
+  --w-ink:#262946;--w-sub:#53545A;--w-red:#CF131B;
+  --w-line:#DAE1F2;--w-line2:#E7EBF4;
+  list-style:none;margin:clamp(26px,3vw,36px) 0 0;padding:0;
+  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:0 clamp(36px,4.6vw,72px);
+}
+.wmx__i{
+  display:grid;grid-template-columns:auto minmax(0,1fr);
+  gap:0 clamp(18px,2.2vw,26px);
+  padding:clamp(26px,3vw,36px) 0 clamp(28px,3.2vw,38px);
+  border-top:1px solid var(--w-line);
+}
+/* 3・4枚目の上罫線は、2段目の区切りとして少し濃くする */
+.wmx__i:nth-child(n+3){border-top-color:var(--w-line)}
+
+/* 大きな番号。左列に置き、見出し・図解・本文を右列へ積む */
+.wmx__no{
+  grid-area:1 / 1 / 2 / 2;margin:0;
+  font:900 clamp(30px,3.6vw,46px)/1 Lato,sans-serif;letter-spacing:.01em;
+  color:var(--w-red);
+}
+.wmx__fig{
+  grid-area:1 / 2 / 2 / 3;margin:0 0 clamp(16px,2vw,22px);line-height:0;
+}
+.wmx__g{display:block;width:100%;height:auto;max-width:300px}
+
+.wmx__h{
+  grid-area:2 / 2 / 3 / 3;margin:0 0 clamp(10px,1.3vw,14px);
+  font-size:clamp(19px,2.3vw,24px);font-weight:700;line-height:1.5;
+  letter-spacing:.01em;color:var(--w-ink);
+}
+.wmx__t{
+  grid-area:3 / 2 / 4 / 3;margin:0;max-width:30em;
+  font-size:clamp(15px,1.7vw,16px);line-height:1.95;color:var(--w-sub);
+}
+
+@media(max-width:860px){
+  .wmx{grid-template-columns:minmax(0,1fr);gap:0}
+  .wmx__i{padding:clamp(24px,4.4vw,30px) 0 clamp(26px,4.6vw,32px)}
+  .wmx__g{max-width:340px}
+}
+@media(max-width:560px){
+  .wmx__i{
+    grid-template-columns:minmax(0,1fr);gap:0;
+  }
+  /* SP は番号を見出しの上へ。図解は横幅いっぱいにして読み取りやすくする */
+  .wmx__no{grid-area:auto;font-size:clamp(28px,8.4vw,36px);margin-bottom:12px}
+  .wmx__fig{grid-area:auto;margin-bottom:16px}
+  .wmx__h{grid-area:auto;font-size:clamp(18px,5.2vw,21px)}
+  .wmx__t{grid-area:auto;font-size:15.5px;max-width:none}
+  .wmx__g{max-width:none}
+}
