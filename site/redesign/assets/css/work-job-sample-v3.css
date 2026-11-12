@@ -1,0 +1,409 @@
+@charset "utf-8";
+/* ============================================================================
+   WORK 職種紹介｜完成サンプル（物流センター運営）  v3
+   （v2 からの差分：「主な仕事」と「詳しい仕事内容」のみ再設計。
+     工程図「02 仕事の進め方」は承認済みのため 40 節をそのまま使う）
+
+   v1 からの変更
+     v1 は配色比率（白40-50 / 淡灰30-40 / 濃紺10-20）に数字を合わせるため、
+     工程図と補足情報を淡灰のパネルにし、末尾のCTA帯を濃紺のベタにしていた。
+     v2 は比率を目標にするのをやめ、TOP・ABOUT と同じ白基調に揃えた。
+     面を分けるのは背景色ではなく、余白・罫線・文字の大きさで行う。
+
+     ・全セクションを白地に。淡灰のベタ面は使わない
+     ・濃紺のCTA帯を白地へ。主CTAは赤塗り、副CTAは白地＋濃紺の枠
+     ・工程図の淡灰パネルを外し、1本の線と列の細罫で構造を示す
+     ・② を1カラムにして、「関わる相手」は ③ の後ろへ移した
+       （①どんな仕事 → ②何を担当 → ③どう進める → ④誰と関わる → ⑤詳細 の順）
+
+   スコープ：<body class="wjs"> の中だけ。共通CSS・他ページには影響しない。
+
+   目次
+     00 変数            10 セクション共通      20 ① HERO
+     30 ② 主な仕事      40 ③ 仕事の進め方      45 ④ 関わる相手
+     50 ⑤ 詳しい仕事内容 60 ⑥ この仕事をもっと知る   70 レスポンシブ
+   ============================================================================ */
+
+.wjs{
+  --j-w:#FFFFFF;
+  --j-g1:#F2F3F6;          /* ほぼ使わない。罫線より強い区切りが要る所だけ */
+  --j-g2:#F7F8F9;
+  --j-ink:#262946;         /* 見出し・職種名・工程名 */
+  --j-ink2:#464A6F;        /* キャッチ */
+  --j-sub:#53545A;         /* 本文 */
+  --j-mid:#6B6D81;         /* 補助 */
+  --j-red:#CF131B;
+  --j-red-d:#A50F16;
+  --j-line:#DAE1F2;
+  --j-line2:#E7EBF4;
+}
+
+/* 試作であることを示す帯 */
+.wjs .proto-bar{background:#262946;color:#fff;padding:9px 20px;font-size:12.5px;
+  text-align:center;letter-spacing:.02em}
+.wjs .proto-bar b{color:#FF8186}
+
+/* ============================================================
+   10 セクション共通
+   ============================================================ */
+.wjs__sec{background:var(--j-w);padding:clamp(46px,5.2vw,70px) 0}
+.wjs__sec + .wjs__sec{border-top:1px solid var(--j-line2)}
+
+/* 見出し：赤い連番 ＋ 濃紺。番号の前に短い赤線を置いて段落の始まりを示す */
+.wjs__h2{
+  display:flex;align-items:baseline;gap:14px;
+  margin:0 0 clamp(22px,2.6vw,30px);
+  font-size:clamp(19px,2.2vw,23px);font-weight:700;line-height:1.5;
+  letter-spacing:.01em;color:var(--j-ink);
+}
+.wjs__h2en{
+  flex:none;position:relative;padding-left:34px;
+  font:900 13px/1 Lato,sans-serif;letter-spacing:.06em;color:var(--j-red);
+}
+.wjs__h2en::before{
+  content:"";position:absolute;left:0;top:.42em;width:24px;height:2px;background:var(--j-red);
+}
+
+.wjs__h3{
+  margin:0 0 12px;font-size:12.5px;font-weight:700;letter-spacing:.1em;
+  color:var(--j-ink);
+}
+
+/* ============================================================
+   20 ① HERO
+   ============================================================ */
+.wjs__hero{background:var(--j-w);border-bottom:1px solid var(--j-line);
+  padding:clamp(40px,5vw,66px) 0 clamp(36px,4.4vw,54px)}
+.wjs__hin{display:grid;grid-template-columns:auto minmax(0,1fr);
+  gap:clamp(18px,2.6vw,30px);align-items:start}
+.wjs__hic{flex:none;display:block;width:clamp(40px,4.4vw,54px);height:clamp(40px,4.4vw,54px);
+  color:var(--j-red)}
+.wjs__hic svg{display:block;width:100%;height:100%}
+.wjs__hen{margin:0 0 10px;font:700 11.5px/1 Lato,sans-serif;letter-spacing:.16em;
+  color:var(--j-red);text-transform:uppercase}
+.wjs__hn{margin:0;font-size:clamp(27px,3.6vw,36px);font-weight:700;line-height:1.35;
+  letter-spacing:.01em;color:var(--j-ink)}
+.wjs__hc{margin:14px 0 0;font-size:clamp(18px,2.2vw,23px);font-weight:500;line-height:1.6;
+  letter-spacing:.01em;color:var(--j-ink2);padding-left:16px;border-left:3px solid var(--j-red)}
+.wjs__hl{margin:18px 0 0;font-size:15.5px;line-height:1.95;color:var(--j-sub);max-width:46em}
+
+/* ============================================================
+   30 ② 主な仕事
+   ------------------------------------------------------------
+   初期表示は上位3件だけ。残りは ⑤ の折りたたみに入れている。
+   ============================================================ */
+.wjs__main{list-style:none;margin:0;padding:0;border-top:1px solid var(--j-line2)}
+.wjs__main li{
+  position:relative;display:flex;align-items:flex-start;gap:14px;
+  padding:17px 0;border-bottom:1px solid var(--j-line2);
+  font-size:16px;line-height:1.75;color:var(--j-ink);
+}
+.wjs__mk{flex:none;width:9px;height:9px;margin-top:.52em;background:var(--j-red)}
+
+/* この仕事らしさ：赤い縦罫の引用。見出しは本文の頭に小さく添える */
+.wjs__like{
+  margin:clamp(24px,2.8vw,32px) 0 0;padding:2px 0 2px 18px;
+  border-left:2px solid var(--j-red);
+  font-size:15.5px;line-height:1.95;color:var(--j-sub);max-width:46em;
+}
+.wjs__likeh{
+  display:block;margin-bottom:7px;
+  font-size:12.5px;font-weight:700;letter-spacing:.1em;color:var(--j-ink);
+}
+
+/* ============================================================
+   40 ③ 仕事の進め方：横方向の工程図
+   ------------------------------------------------------------
+   背景のパネルを使わず、1本の線・接続点・列の細罫だけで構造を示す。
+   ============================================================ */
+.wjs__flow{
+  list-style:none;margin:0;padding:52px 0 0;position:relative;
+  display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;
+}
+/* 工程をつなぐ線。端は内側で止めて、始点と終点を示す */
+.wjs__flow::before{
+  content:"";position:absolute;left:calc(12.5% - 1px);right:calc(12.5% - 1px);
+  top:47px;height:2px;background:var(--j-ink);
+}
+/* 列の縦罫は引かない。横一本の線が切れて見えるのと、
+   工程は「つながり」なので区切るより余白で離す方が合う */
+.wjs__fi{position:relative;padding:0 clamp(18px,2.2vw,30px) 0 0}
+.wjs__fi + .wjs__fi{padding-left:clamp(18px,2.2vw,30px)}
+
+/* 番号：赤・大きく。丸の塗りは使わない */
+.wjs__fno{
+  position:absolute;left:50%;top:-52px;transform:translateX(-50%);
+  display:block;color:var(--j-red);
+  font:900 clamp(26px,3vw,32px)/1 Lato,sans-serif;letter-spacing:0;
+}
+/* 線の上の接続点。工程が線のどこに接しているかを示す */
+.wjs__fno::after{
+  content:"";position:absolute;left:50%;top:calc(100% + 9px);transform:translateX(-50%);
+  width:13px;height:13px;border-radius:50%;background:var(--j-w);
+  border:3px solid var(--j-ink);box-sizing:border-box;
+}
+.wjs__fn{display:block;margin:26px 0 14px;font-size:clamp(15.5px,1.8vw,18px);font-weight:700;
+  line-height:1.5;color:var(--j-ink);text-align:center}
+.wjs__fb{display:grid;gap:11px}
+.wjs__fd{margin:0;font-size:14px;line-height:1.85;color:var(--j-sub)}
+.wjs__fd b{display:block;font-size:12.5px;font-weight:700;letter-spacing:.04em;
+  color:var(--j-ink2);margin-bottom:3px}
+
+/* 工程図に入らない補足 */
+.wjs__fnote{
+  margin:clamp(26px,3vw,34px) 0 0;padding:0 0 0 16px;
+  border-left:2px solid var(--j-line);
+  font-size:14px;line-height:1.85;color:var(--j-mid);
+}
+
+/* ============================================================
+   45 ④ 関わる相手
+   ------------------------------------------------------------
+   工程を読んだあとに「誰と」が来る。4件なので横に並べる。
+   ============================================================ */
+.wjs__ppl{
+  margin:clamp(30px,3.4vw,40px) 0 0;padding-top:clamp(22px,2.6vw,28px);
+  border-top:1px solid var(--j-line2);
+}
+.wjs__ppll{
+  list-style:none;margin:0;padding:0;
+  display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;
+}
+.wjs__ppll li{
+  position:relative;padding:0 18px 0 20px;
+  font-size:15px;line-height:1.7;color:var(--j-ink);
+}
+.wjs__ppll li::before{
+  content:"";position:absolute;left:0;top:.62em;width:11px;height:2px;background:var(--j-red);
+}
+
+/* ============================================================
+   50 ⑤ 詳しい仕事内容（折りたたみ）
+   ============================================================ */
+.wjs__more{border:1px solid var(--j-line);border-radius:10px;background:var(--j-w)}
+.wjs__more summary{
+  display:flex;align-items:center;justify-content:space-between;gap:16px;
+  padding:19px clamp(18px,2.2vw,26px);cursor:pointer;list-style:none;
+  font-size:16px;font-weight:700;color:var(--j-ink);
+}
+.wjs__more summary::-webkit-details-marker{display:none}
+.wjs__more summary:hover{background:var(--j-g2)}
+.wjs__mico{
+  flex:none;position:relative;width:20px;height:20px;
+}
+.wjs__mico::before,.wjs__mico::after{
+  content:"";position:absolute;left:50%;top:50%;background:var(--j-red);
+  transform:translate(-50%,-50%);
+}
+.wjs__mico::before{width:16px;height:2px}
+.wjs__mico::after{width:2px;height:16px;transition:transform .2s}
+.wjs__more[open] .wjs__mico::after{transform:translate(-50%,-50%) scaleY(0)}
+.wjs__min{padding:4px clamp(18px,2.2vw,26px) clamp(24px,2.8vw,30px);
+  border-top:1px solid var(--j-line2)}
+.wjs__min .wjs__h3{margin-top:24px}
+
+.wjs__restl{list-style:none;margin:0;padding:0}
+.wjs__restl li{
+  position:relative;padding:12px 0 12px 22px;border-bottom:1px solid var(--j-line2);
+  font-size:15.5px;line-height:1.75;color:var(--j-ink);
+}
+.wjs__restl li::before{
+  content:"";position:absolute;left:0;top:1.28em;width:9px;height:9px;background:var(--j-red);
+}
+
+.wjs__vals{list-style:none;margin:0;padding:0;
+  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px clamp(24px,3vw,38px)}
+.wjs__vals li{display:grid;grid-template-columns:auto minmax(0,1fr);gap:14px;align-items:start}
+.wjs__vno{flex:none;font:900 clamp(22px,2.4vw,28px)/1 Lato,sans-serif;color:var(--j-red)}
+.wjs__vals b{display:block;margin-bottom:7px;font-size:15px;line-height:1.6;color:var(--j-ink)}
+.wjs__vals p{margin:0;font-size:13.5px;line-height:1.9;color:var(--j-sub)}
+
+/* ============================================================
+   60 ⑥ この仕事をもっと知る
+   ------------------------------------------------------------
+   v1 の濃紺ベタをやめ、白地に。TOP・ABOUT の NEXT STEP と同じ作り。
+   ============================================================ */
+.wjs__sec--cta{border-top:1px solid var(--j-line)}
+.wjs__ctal{display:flex;flex-wrap:wrap;gap:14px;margin:0}
+.wjs__cta{
+  display:inline-flex;align-items:center;gap:10px;
+  padding:15px 28px;border-radius:999px;
+  font-size:15.5px;font-weight:700;text-decoration:none;
+  transition:background-color .2s,border-color .2s,color .2s;
+}
+.wjs__cta i{display:inline-block;width:0;height:0;
+  border-left:6px solid currentColor;border-top:4px solid transparent;border-bottom:4px solid transparent}
+.wjs__cta--main{background:var(--j-red);color:#FFFFFF;border:1px solid var(--j-red)}
+.wjs__cta--main:hover{background:var(--j-red-d);border-color:var(--j-red-d)}
+.wjs__cta--sub{background:var(--j-w);color:var(--j-ink);border:1px solid var(--j-ink)}
+.wjs__cta--sub:hover{background:#F0F2F7}
+
+.wjs .wjs__cta:focus-visible,
+.wjs .wjs__more summary:focus-visible{outline:2px solid var(--j-red);outline-offset:3px;border-radius:6px}
+
+/* ============================================================
+   70 レスポンシブ
+   ============================================================ */
+@media(max-width:1023px){
+  .wjs__flow{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:40px;padding-top:0}
+  .wjs__flow::before{display:none}
+  .wjs__fi{padding:0 18px 0 0}
+  .wjs__fi + .wjs__fi{padding-left:18px}
+  .wjs__fi:nth-child(odd){border-left:none;padding-left:0}
+  .wjs__fno{position:static;transform:none;margin-bottom:10px;font-size:28px}
+  .wjs__fno::after{display:none}
+  .wjs__fn{margin:0 0 12px;text-align:left}
+  .wjs__ppll{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:14px}
+}
+@media(max-width:760px){
+  .wjs__sec{padding:38px 0}
+  .wjs__hero{padding:30px 0 28px}
+  .wjs__hin{grid-template-columns:1fr;gap:14px}
+  .wjs__hn{font-size:clamp(23px,6.6vw,27px)}
+  .wjs__hl{font-size:15px;margin-top:14px}
+  .wjs__h2{font-size:18px;gap:11px;margin-bottom:20px}
+  .wjs__main li{font-size:15.5px;padding:15px 0;gap:12px}
+
+  /* 工程図は1列。左に縦線を通し、番号を線の上に置く */
+  .wjs__flow{grid-template-columns:minmax(0,1fr);row-gap:28px;padding:0 0 0 52px;position:relative}
+  .wjs__flow::before{display:block;left:17px;right:auto;top:16px;bottom:16px;width:2px;height:auto}
+  .wjs__fi,.wjs__fi + .wjs__fi{padding:0;border-left:none}
+  .wjs__fno{position:absolute;left:-52px;top:-4px;width:36px;text-align:center;
+    font-size:clamp(24px,6.4vw,28px);margin:0}
+  .wjs__fno::after{display:block;left:50%;top:calc(100% + 6px);width:11px;height:11px;border-width:2.5px}
+  .wjs__fn{margin:2px 0 10px;font-size:16px}
+  .wjs__fd{font-size:14px}
+  .wjs__fnote{font-size:13.5px}
+
+  .wjs__ppll{grid-template-columns:minmax(0,1fr);row-gap:0}
+  .wjs__ppll li{padding:11px 0 11px 20px;border-bottom:1px solid var(--j-line2)}
+  .wjs__ppll li::before{top:1.05em}
+  .wjs__ppll li:last-child{border-bottom:none}
+
+  .wjs__more summary{font-size:15.5px;padding:16px 16px}
+  .wjs__min{padding:4px 16px 22px}
+  .wjs__vals{grid-template-columns:minmax(0,1fr);gap:20px}
+  .wjs__ctal{flex-direction:column;align-items:stretch}
+  .wjs__cta{justify-content:center}
+}
+
+
+/* ============================================================================
+   v3 追加分
+   ----------------------------------------------------------------------------
+   30v3 「主な仕事」：番号／短い要約見出し／正式な業務説明 の3段
+   50v3 「詳しい仕事内容」：外側のアコーディオンを廃止。
+        A そのほかの担当業務（常時表示）
+        B 大切にしていること（見出し4つ常時表示＋説明はラジオで1つずつ）
+   ここで使う色は White Editorial A案と同じ
+     白 #FFFFFF / 濃紺 #262946 / 赤 #CF131B / 本文 #53545A
+     補助 #6B6D81 / 罫線 #DAE1F2 / 限定的な薄灰 #F7F8F9
+   ============================================================================ */
+
+/* ───────── 30v3 主な仕事 ───────── */
+.wjs3 .v3main{margin:0;padding:0;border-top:1px solid var(--j-line)}
+.wjs3 .v3main__i{
+  display:grid;grid-template-columns:minmax(0,22em) minmax(0,1fr);
+  gap:4px clamp(28px,4vw,64px);align-items:baseline;
+  padding:clamp(20px,2.4vw,26px) 0;border-bottom:1px solid var(--j-line2);
+}
+.wjs3 .v3main__h{
+  display:flex;align-items:baseline;gap:16px;margin:0;
+  font-size:clamp(17px,2vw,20px);font-weight:700;line-height:1.55;
+  letter-spacing:.01em;color:var(--j-ink);
+}
+.wjs3 .v3main__no{
+  flex:none;font:900 clamp(20px,2.2vw,24px)/1 Lato,sans-serif;
+  letter-spacing:.02em;color:var(--j-red);
+}
+.wjs3 .v3main__d{
+  margin:0;font-size:15.5px;line-height:1.9;color:var(--j-sub);
+}
+
+/* この仕事らしさは「主な仕事」の視線を奪わないよう、一段弱くして下に置く */
+.wjs3 .wjs__like{margin-top:clamp(26px,3vw,34px);font-size:15px;color:var(--j-mid)}
+.wjs3 .wjs__likeh{color:var(--j-ink2)}
+
+/* ───────── 50v3 詳しい仕事内容 ───────── */
+/* 小さな英字ラベル＋日本語見出し */
+.wjs3 .v3lab{
+  display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin:0 0 16px;
+  font:700 11px/1.4 Lato,sans-serif;letter-spacing:.18em;color:var(--j-red);
+}
+.wjs3 .v3lab span{
+  font-family:inherit;font-size:15px;font-weight:700;letter-spacing:.04em;color:var(--j-ink);
+}
+
+/* A：そのほかの担当業務 */
+.wjs3 .v3other{margin:0 0 clamp(38px,4.4vw,56px)}
+.wjs3 .v3other__l{list-style:none;margin:0;padding:0;border-top:1px solid var(--j-line2)}
+.wjs3 .v3other__l li{
+  position:relative;padding:15px 0 15px 30px;border-bottom:1px solid var(--j-line2);
+  font-size:16px;line-height:1.75;color:var(--j-ink);
+}
+.wjs3 .v3other__l li::before{
+  content:"";position:absolute;left:0;top:50%;width:16px;height:1px;
+  background:var(--j-red);transform:translateY(-50%);
+}
+.wjs3 .v3other__l li::after{
+  content:"";position:absolute;left:11px;top:50%;width:7px;height:7px;
+  border-top:1px solid var(--j-red);border-right:1px solid var(--j-red);
+  transform:translateY(-50%) rotate(45deg);
+}
+
+/* B：大切にしていること */
+.wjs3 .v3vals__l{list-style:none;margin:0;padding:0;border-top:1px solid var(--j-line)}
+.wjs3 .v3vals__i{border-bottom:1px solid var(--j-line2)}
+.wjs3 .v3vals__r{position:absolute;width:1px;height:1px;margin:-1px;padding:0;
+  overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+.wjs3 .v3vals__lb{
+  display:flex;align-items:baseline;gap:16px;cursor:pointer;
+  padding:17px 44px 17px 0;position:relative;
+  transition:color .15s;
+}
+.wjs3 .v3vals__no{
+  flex:none;font:900 clamp(19px,2.1vw,23px)/1 Lato,sans-serif;color:var(--j-red);
+}
+.wjs3 .v3vals__t{
+  font-size:clamp(16px,1.8vw,18px);font-weight:700;line-height:1.6;color:var(--j-ink);
+}
+/* 開閉を示す印。閉じているときは＋、開いているときは− */
+.wjs3 .v3vals__lb::before,
+.wjs3 .v3vals__lb::after{
+  content:"";position:absolute;right:8px;top:calc(50% - 1px);background:var(--j-red);
+}
+.wjs3 .v3vals__lb::before{width:15px;height:2px;margin-right:0}
+.wjs3 .v3vals__lb::after{width:2px;height:15px;right:14.5px;top:calc(50% - 7.5px);transition:transform .18s}
+.wjs3 .v3vals__r:checked + .v3vals__lb::after{transform:scaleY(0)}
+.wjs3 .v3vals__lb:hover .v3vals__t{color:var(--j-red)}
+/* キーボード操作（ラジオのフォーカス）を見える形にする */
+.wjs3 .v3vals__r:focus-visible + .v3vals__lb{outline:2px solid var(--j-red);outline-offset:2px;border-radius:4px}
+
+.wjs3 .v3vals__d{display:none;padding:0 44px 20px 0}
+.wjs3 .v3vals__r:checked ~ .v3vals__d{display:block}
+.wjs3 .v3vals__d p{
+  margin:0;padding-left:18px;border-left:2px solid var(--j-line);
+  font-size:15px;line-height:1.95;color:var(--j-sub);max-width:46em;
+}
+
+/* 印刷時と、動きを減らす設定のとき */
+@media print{ .wjs3 .v3vals__d{display:block!important} }
+@media(prefers-reduced-motion:reduce){
+  .wjs3 .v3vals__lb,.wjs3 .v3vals__lb::after{transition:none}
+}
+
+@media(max-width:860px){
+  .wjs3 .v3main__i{grid-template-columns:minmax(0,1fr);gap:9px;padding:18px 0}
+  .wjs3 .v3main__h{font-size:17px;gap:13px}
+  .wjs3 .v3main__no{font-size:20px}
+  .wjs3 .v3main__d{font-size:15px}
+}
+@media(max-width:760px){
+  .wjs3 .v3lab{gap:4px 12px;margin-bottom:13px}
+  .wjs3 .v3other__l li{font-size:15.5px;padding:13px 0 13px 28px}
+  .wjs3 .v3vals__lb{padding:15px 38px 15px 0;gap:13px}
+  .wjs3 .v3vals__t{font-size:16px}
+  .wjs3 .v3vals__no{font-size:19px}
+  .wjs3 .v3vals__d{padding:0 0 18px}
+  .wjs3 .v3vals__d p{font-size:14.5px}
+}

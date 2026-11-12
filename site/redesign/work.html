@@ -15,6 +15,12 @@
 <!-- ===== CONNECT v1：HOW ROLES CONNECT（#connect）専用。
      共通 style.css の .wflow は変更せず、このセクションだけを組み直す。 ===== -->
 <link rel="stylesheet" href="assets/css/work-connect.css?v=3">
+<!-- ===== WHITE-EDITORIAL v1：採用サイト共通の白基調デザイン（A案）。
+     本文・NEXT STEP・フッターの配色は assets/css/white-editorial.css が
+     .we スコープで後勝ち上書きする。HTML の文言・リンクは変更していない。
+     戻すときは <body> の we と、この link の2行を外すだけでよい。
+     CONNECT v1（.wcxsec スコープ）とはセレクタが重ならない。 ===== -->
+<link rel="stylesheet" href="assets/css/white-editorial.css?v=1">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"採用情報","item":"../"},{"@type":"ListItem","position":2,"name":"仕事を知る"}]}</script>
 <style>
 .proto-bar{background:#000;color:#fff;padding:10px 20px;font-size:12.5px;text-align:center;position:relative;z-index:600}
@@ -29,7 +35,7 @@
 @media (prefers-reduced-motion:reduce){ .reveal{opacity:1!important;transform:none!important} }
 </style>
 </head>
-<body>
+<body class="we">
 <div class="proto-bar">【試作・非公開】WORK｜Field Editorialデザイン適用版｜<b>デザイン検証用プレビュー｜本番サイト未反映</b>・文言は本番work/index.htmlと完全同一</div>
 <a class="skip-link" href="#main">本文へスキップ</a>
 
