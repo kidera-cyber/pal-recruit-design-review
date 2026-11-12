@@ -36,7 +36,7 @@
 <link rel="stylesheet" href="assets/css/white-editorial.css?v=4">
 <!-- ===== EXPERTISE×PEOPLE v1：OUR PEOPLE & CULTURE の3領域＋社員紹介を
      1つの3カラムへ統合する。about.css 本体は変更していない。 ===== -->
-<link rel="stylesheet" href="assets/css/about-people-v2.css?v=3">
+<link rel="stylesheet" href="assets/css/about-people-v2.css?v=4">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"採用情報","item":"../"},{"@type":"ListItem","position":2,"name":"PALを知る"}]}</script>
 </head>
 <body class="ls a7 we">
@@ -251,7 +251,7 @@
       <ol class="p4nb__flow">
         <li class="p4nb__i p4nb__i--now">
           <span class="p4nb__st">いまのPAL</span>
-          <b class="p4nb__v">120<em>名</em></b>
+          <b class="p4nb__v"><span class="p4nb__n" data-countup style="--d:3ch">120</span><em>名</em></b>
           <span class="p4nb__k">従業員数</span>
           <span class="p4nb__s">アルバイト・パートを含めると約1,600名</span>
           <dl class="p4nb__meta">
@@ -263,13 +263,13 @@
         </li>
         <li class="p4nb__i p4nb__i--area">
           <span class="p4nb__st">仕事の広がり</span>
-          <b class="p4nb__v">4<em>領域</em></b>
+          <b class="p4nb__v"><span class="p4nb__n" data-countup style="--d:1ch">4</span><em>領域</em></b>
           <span class="p4nb__k">事業領域</span>
           <ul class="p4nb__areas"><li>コンサルティング</li><li>ロジテックインテグレーション</li><li>システム開発＆エンジニアリング</li><li>ロジテックオペレーション</li></ul>
         </li>
         <li class="p4nb__i p4nb__i--plan">
           <span class="p4nb__st">これからのPAL<i class="p4nb__tag">FY2029目標</i></span>
-          <b class="p4nb__v p4nb__v--goal">230<em>名</em></b>
+          <b class="p4nb__v p4nb__v--goal"><span class="p4nb__n" data-countup style="--d:3ch">230</span><em>名</em></b>
           <span class="p4nb__k">採用計画（120名 → 230名）</span>
           <span class="p4nb__s">※ 目標値です。達成済みの実績ではありません。</span>
         </li>
@@ -362,16 +362,23 @@
   }, 1200);
 })();
 </script>
-<!-- ===== ABOUT-NUM v1：数字のカウントアップ =====
-     ・data-countup を付けた数字だけを対象にする。
-       設立「2000年12月」と採用計画「120→230名」は、推移や実績と
-       誤解されうるので対象から外し、常に原文のまま表示する。
+<!-- ===== ABOUT-NUM v2：数字のカウントアップ =====
+     ・data-countup を付けた数字だけを対象にする。対象は
+       従業員数 120名 ／ 事業領域 4領域 ／ 採用計画の目標 230名 の3つ。
+       設立「2000年12月」、資本金「9,000万円」、拠点「2拠点」、
+       「約1,600名」、採用計画の説明「120名 → 230名」は、日付・金額・
+       推移として意味を損なうおそれがあるため対象外で、常に原文のまま。
+     ・1.4秒・ease-out（1-(1-p)^3）。桁数ぶんの幅を先に確保しているので、
+       0 → 120 と変化してもレイアウトは動かない。
      ・原文の文字列を保持し、終了時は必ずその文字列へ戻す。
      ・一度表示したら監視を外すので、繰り返し動くことはない。
      ・prefers-reduced-motion:reduce のときは何もしない
        （＝最初から正しい値が出ている）。
      ・監視が発火しない環境では値に一切触れないため、
-       原文の数字がそのまま残る。 ===== -->
+       原文の数字がそのまま残る。
+     ・初期HTMLは最終数値のまま。JS無効・読み込み失敗でも正しい値が出る。
+     ・aria-live は付けていないので、読み上げが連続発生することはない。
+     ・.reveal / .pv の表示制御とは別のスクリプトで、互いに触れていない。 ===== -->
 <script>
 (function(){
   "use strict";
@@ -388,7 +395,7 @@
     var node = el.firstChild, fin = node.nodeValue;
     var goal = parseInt(fin.replace(/[^0-9]/g,''), 10);
     if(!isFinite(goal) || goal <= 0) return;
-    var comma = fin.indexOf(',') >= 0, dur = 900, t0 = 0, done = false;
+    var comma = fin.indexOf(',') >= 0, dur = 1400, t0 = 0, done = false;
     function put(n){ node.nodeValue = comma ? n.toLocaleString('en-US') : String(n); }
     function end(){ if(!done){ done = true; node.nodeValue = fin; } }
     function step(ts){
@@ -398,9 +405,16 @@
       if(p < 1){ put(Math.round(goal * (1 - Math.pow(1 - p, 3)))); requestAnimationFrame(step); }
       else { end(); }
     }
-    put(0);
-    requestAnimationFrame(step);
-    /* 描画が止まる環境でも 0 のまま残らないようにする保険 */
+    /* requestAnimationFrame は背景タブ・省電力・スクリーンショット環境では
+       発火しないことがある。先に 0 を入れてしまうと、その環境では 0 が
+       残って見える。最初のフレームが来てから 0 にするので、
+       rAF が動かない環境では数字に一切触れず、最終数値のまま残る。 */
+    requestAnimationFrame(function(ts){
+      if(done) return;
+      put(0); t0 = ts;
+      requestAnimationFrame(step);
+    });
+    /* 描画が途中で止まった場合の保険。最終数値へ確定させる */
     setTimeout(end, dur + 900);
   }
 

@@ -136,3 +136,17 @@
   .a7 .xp__ph{width:100px}
 }
 /* ===== EXPERTISE × PEOPLE v1 END ===== */
+
+/* ============================================================
+   ===== ABOUT-NUM v2 START =====
+   PAL IN NUMBERS の数字にカウントアップを足したので、
+   0 → 120 と桁が増えてもレイアウトが動かないよう、数字の幅を
+   先に確保する。数字サイズ・見出し・罫線・カード幅・余白は変えていない。
+   about.css 本体は変更していない。
+   ============================================================ */
+.a7 .p4nb__n{
+  display:inline-block;min-width:var(--d,1ch);
+  font-variant-numeric:tabular-nums;font-feature-settings:"tnum" 1;
+  text-align:left;
+}
+/* ===== ABOUT-NUM v2 END ===== */
