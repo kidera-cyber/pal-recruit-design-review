@@ -57,6 +57,35 @@ button{font:inherit;cursor:pointer;background:none;border:none;color:inherit}
 .hdr__inner{max-width:var(--maxw);margin:0 auto;padding:0 20px;height:66px;display:flex;align-items:center;justify-content:space-between;gap:16px}
 .logo{display:flex;align-items:center;gap:10px;font-weight:700;color:var(--ink)}
 .logo__mark{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;background:var(--black);color:#fff;border-radius:8px;font-family:var(--font-en);font-weight:900;font-size:15px}
+/* ===== PAL LOGO v1 =====
+   仮ロゴ（黒い角丸に PAL の文字）を、正式な企業ロゴ画像へ差し替えた。
+   .logo__mark の指定は復元用に残してあるが、HTML では使っていない。
+   ・比率は原本（2000×801）のまま。height だけを指定し width は auto
+   ・ヘッダーは白地なので、ロゴをそのまま置く
+   ・フッターは濃紺地のため、白い面（.logo__plate）を敷いて視認性を確保する。
+     白抜きロゴなど、存在しない公式バリエーションは作っていない
+   ・ロゴと RECRUIT の間に細い区切りを入れ、ロゴ内の PAL と補助表記が
+     重なって見えないようにする
+   ===== */
+/* flex の縮みでロゴが横につぶれないよう、ロゴ側は縮小しない。
+   幅が足りないときは、右の文字側を折り返させる */
+.logo__plate{display:inline-flex;align-items:center;flex:none}
+.logo__img{display:block;height:28px;width:auto;flex:none}
+.logo__txt{position:relative;padding-left:13px;min-width:0}
+.logo__txt::before{content:"";position:absolute;left:0;top:50%;transform:translateY(-50%);width:1px;height:26px;background:currentColor;opacity:.2}
+/* 濃色フッター：白い面にロゴを置き、周囲に余白を確保する。
+   白抜きロゴなど、存在しない公式バリエーションは作っていない */
+.logo__plate--onnavy{background:#fff;border-radius:8px;padding:8px 12px}
+.ftr .logo__img{height:26px}
+@media(max-width:760px){
+  /* 仮ロゴ（40px角）より横幅を使うため、ロゴ・間隔・区切りを詰めて
+     「株式会社PAL 採用サイト」が2行に折り返さないようにする */
+  .logo{gap:8px}
+  .logo__img{height:22px}
+  .logo__txt{padding-left:10px}
+  .logo__txt::before{height:20px}
+  .logo__txt small{white-space:nowrap}
+}
 .logo__txt{font-family:var(--font-en);font-weight:900;font-size:15px;line-height:1.1;display:flex;flex-direction:column}
 .logo__txt small{font-family:var(--font-jp);font-weight:500;font-size:10px;color:var(--gray-700);letter-spacing:.02em}
 .gnav{display:none}

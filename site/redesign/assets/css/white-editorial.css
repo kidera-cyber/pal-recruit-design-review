@@ -334,3 +334,10 @@
 @media(prefers-reduced-motion:reduce){
   .we .entry *,.we .ftr *{transition:none!important;animation:none!important}
 }
+
+/* ============================================================
+   ===== PAL LOGO v1（White Editorial A案）=====
+   A案のフッターは白地なので、濃色フッター用の白い面は不要。
+   ロゴをそのまま置き、サイズと余白をヘッダーと揃える。
+   ============================================================ */
+.we .ftr .logo__img{height:28px}
