@@ -133,8 +133,17 @@
 
 /* ───────── ③ キャリアの3つの広がり ───────── */
 .cv2 .cdir{margin:clamp(26px,3vw,34px) 0 0}
-.cv2 .cdir__fig{margin:0 0 clamp(18px,2.2vw,26px);line-height:0}
-.cv2 .cdir__g{display:block;width:100%;height:auto;max-width:860px;margin:0 auto}
+/* ===== CDIR-IMG v1 =====
+   線画SVG（最大860px）から横長の画像（2000×667・比率3.00）へ差し替えた。
+   縦横比を保ったまま、セクションのコンテンツ幅いっぱいに置く。
+   object-fit は使わないので切り抜きは起きない。
+   枠線・カード背景・影は足していない。 */
+.cv2 .cdir__fig{
+  margin:clamp(4px,0.8vw,10px) 0 clamp(22px,2.6vw,32px);line-height:0;
+}
+.cv2 .cdir__g{
+  display:block;width:100%;max-width:none;height:auto;margin:0;
+}
 .cv2 .cdir__l{
   list-style:none;margin:0;padding:0;border-top:1px solid var(--c-line);
   display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;
@@ -157,6 +166,13 @@
   .cv2 .cmore__d{grid-template-columns:minmax(0,1fr)}
 }
 @media(max-width:860px){
+  /* 比率3:1の横長画像はSPで細くなるため、左右の余白ぶんも画像に使い、
+     画面の端まで表示して少しでも大きく見せる。
+     縦横比はそのままで、引き伸ばしも切り抜きもしていない。
+     画像内の3つのまとまりは、下の 01〜03 の見出しと説明文で補う。 */
+  .cv2 .cdir__fig{
+    margin:2px -24px clamp(16px,3.4vw,22px);
+  }
   /* ロードマップ・タイムラインを縦へ。左に番号と縦線 */
   .cv2 .croad__l,.cv2 .ctl{grid-template-columns:minmax(0,1fr);row-gap:26px;padding:0 0 0 92px}
   .cv2 .croad__l::before{left:16px;right:auto;top:10px;width:2px;height:40%}
