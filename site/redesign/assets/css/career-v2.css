@@ -474,32 +474,42 @@
    灰色の大きなボックスは置かず、白地に図解・番号・罫線・余白で
    メリハリをつける。淡いブルーグレーは図解の内部だけに使う。
    ============================================================ */
+/* ===== FIRST EXPERIENCES v2 =====
+   線画の図解3枚と、シーンをつなぐ装飾矢印を撤去した（.fx__fig / .fx__g /
+   .fx__i + .fx__i::before の指定ごと削除）。
+   アイコンに頼らず、大きな番号（PALレッド）と見出し（濃紺）、
+   細い罫線と余白だけで3つの経験を見せる。
+   視線は 01 → 02 → 03 と並ぶ大きな番号と、列を区切る縦罫で自然に流れる。 */
 .cv2 .fx{
-  list-style:none;margin:0;padding:0;position:relative;
+  list-style:none;margin:0;padding:0;
   display:grid;grid-template-columns:repeat(3,minmax(0,1fr));
   gap:0 clamp(26px,3.4vw,52px);
+  border-top:1px solid var(--c-line);
 }
 .cv2 .fx__i{
-  position:relative;padding-top:clamp(18px,2.2vw,24px);
-  border-top:2px solid var(--c-ink);
+  padding:clamp(26px,3.2vw,38px) clamp(14px,1.8vw,26px) clamp(24px,3vw,34px) 0;
 }
-/* シーン同士の流れ。図解の高さの中ほどに小さな矢印を置く */
-.cv2 .fx__i + .fx__i::before{
-  content:"";position:absolute;left:calc(-1 * clamp(13px,1.7vw,26px));
-  top:calc(clamp(18px,2.2vw,24px) + 1.9em + clamp(14px,1.8vw,20px) + 22%);
-  width:11px;height:11px;
-  border-top:2px solid var(--c-red);border-right:2px solid var(--c-red);
-  transform:translateX(-50%) rotate(45deg);
+.cv2 .fx__i + .fx__i{
+  padding-left:clamp(14px,1.8vw,26px);
+  border-left:1px solid var(--c-line2);
 }
+/* SCENE（小さな英字）と 01（大きな番号）を同じ行のベースラインで揃える */
 .cv2 .fx__no{
-  margin:0 0 clamp(14px,1.8vw,20px);
-  font:900 clamp(12px,1.4vw,14px)/1 Lato,sans-serif;letter-spacing:.14em;color:var(--c-red);
+  display:flex;align-items:baseline;gap:clamp(9px,1.1vw,13px);
+  margin:0 0 clamp(16px,2vw,22px);color:var(--c-red);
 }
-.cv2 .fx__fig{margin:0 0 clamp(16px,2vw,22px);line-height:0}
-.cv2 .fx__g{display:block;width:100%;height:auto}
+.cv2 .fx__lab{
+  font:700 clamp(10.5px,1.1vw,11.5px)/1 Lato,sans-serif;letter-spacing:.2em;
+}
+.cv2 .fx__num{
+  font:900 clamp(40px,5.2vw,68px)/1 Lato,sans-serif;letter-spacing:-.01em;
+}
 .cv2 .fx__h{
-  margin:0;font-size:clamp(18px,2.2vw,23px);font-weight:700;line-height:1.5;
+  margin:0;font-size:clamp(19px,2.3vw,24px);font-weight:700;line-height:1.55;
   letter-spacing:.01em;color:var(--c-ink);
+  /* 「担当を持っ／て、やってみる」のように語の途中で折り返さないようにする。
+     auto-phrase 非対応のブラウザでも、この文字サイズなら1行に収まる */
+  word-break:auto-phrase;line-break:strict;
 }
 
 /* 詳細（.cmore を再利用）。開閉できることが分かる幅広の帯にする */
@@ -552,14 +562,15 @@
 }
 
 @media(max-width:860px){
-  /* SP は1カラム。流れの矢印は下向きにする */
-  .cv2 .fx{grid-template-columns:minmax(0,1fr);gap:clamp(26px,5vw,34px) 0}
-  .cv2 .fx__i + .fx__i::before{
-    left:50%;top:calc(-1 * clamp(13px,2.5vw,17px));
-    transform:translateX(-50%) rotate(135deg);
+  /* SP は1カラム。列を区切る縦罫は横罫に変える */
+  .cv2 .fx{grid-template-columns:minmax(0,1fr);gap:0}
+  .cv2 .fx__i{padding:clamp(22px,4.4vw,28px) 0}
+  .cv2 .fx__i + .fx__i{
+    padding-left:0;border-left:none;border-top:1px solid var(--c-line2);
   }
-  .cv2 .fx__g{max-width:420px;margin:0 auto}
-  .cv2 .fx__h{font-size:clamp(18px,5vw,21px)}
+  .cv2 .fx__no{margin-bottom:clamp(10px,2.2vw,14px)}
+  .cv2 .fx__num{font-size:clamp(36px,9.6vw,46px)}
+  .cv2 .fx__h{font-size:clamp(19px,5.2vw,23px)}
   .cv2 .fxrel__i{grid-template-columns:minmax(0,1fr);gap:5px}
 }
-/* ===== FIRST EXPERIENCES v1 END ===== */
+/* ===== FIRST EXPERIENCES v2 END ===== */
