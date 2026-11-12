@@ -169,64 +169,13 @@
 @media(max-width:700px){.a7 .p4way{grid-template-columns:minmax(0,1fr);gap:24px}}
 
 /* 3つの価値観（大きな番号・罫線のみ） */
-.a7 .p4val{list-style:none;margin:clamp(20px,2.8vw,28px) 0 0;padding:0;
-  border-top:2px solid var(--p-red)}
-.a7 .p4val li{display:grid;grid-template-columns:clamp(72px,8vw,110px) minmax(0,1fr);
-  align-items:baseline;gap:clamp(14px,2.4vw,32px);
-  padding:clamp(16px,2.2vw,24px) 0;border-bottom:1px solid var(--p-line)}
-.a7 .p4val__no{font-family:var(--font-en);font-size:clamp(30px,4vw,54px);font-weight:700;
-  line-height:.95;color:var(--p-red)}
-.a7 .p4val b{font-size:clamp(17px,2.1vw,25px);font-weight:700;line-height:1.5;
-  letter-spacing:.02em;color:var(--p-ink)}
-@media(max-width:620px){
-  .a7 .p4val li{grid-template-columns:minmax(0,1fr);gap:4px;padding:16px 0}
-  .a7 .p4val__no{font-size:28px}
-}
 
 /* 応募条件の補足（重要情報なので小さくしすぎない） */
-.a7 .p4apply{margin:clamp(26px,3.4vw,36px) 0 0;background:var(--p-bg);
-  border:1px solid var(--p-line);border-top:2px solid var(--p-ink);
-  padding:clamp(20px,2.8vw,28px)}
-.a7 .p4apply__g{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(18px,3vw,34px)}
-.a7 .p4apply p{margin:0;font-size:14px;line-height:1.95;color:var(--p-ink)}
-.a7 .p4apply__f{margin-top:clamp(14px,2vw,18px)!important;padding-top:clamp(13px,1.8vw,16px);
-  border-top:1px solid var(--p-line);font-size:13px!important;color:var(--p-mid)!important}
-.a7 .p4apply__f a{color:var(--p-red);font-weight:700}
-@media(max-width:700px){.a7 .p4apply__g{grid-template-columns:minmax(0,1fr);gap:16px}}
 
 /* =====================================================================
    03 PAL IN NUMBERS ─ 数字とタイポグラフィが主役
    ===================================================================== */
-.a7 .p4num{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;
-  margin:clamp(24px,3.2vw,36px) 0 0;border-top:1px solid var(--p-line);border-bottom:1px solid var(--p-line)}
-.a7 .p4num > div{padding:clamp(24px,3.2vw,36px) clamp(18px,2.4vw,32px) clamp(24px,3.2vw,36px) 0}
-.a7 .p4num > div + div{border-left:1px solid var(--p-line);padding-left:clamp(22px,2.8vw,36px)}
-.a7 .p4num__v{display:block;font-family:var(--font-en);font-size:clamp(34px,5vw,64px);
-  font-weight:700;line-height:1;letter-spacing:0;color:var(--p-ink);font-variant-numeric:tabular-nums}
-.a7 .p4num__v em{font-family:var(--font-jp);font-size:.34em;font-style:normal;font-weight:700;
-  color:var(--p-mid);margin:0 1px 0 4px;letter-spacing:.02em}
-.a7 .p4num:first-of-type > div:nth-child(2) .p4num__v{color:var(--p-red)}
-.a7 .p4num__k{display:block;margin-top:13px;font-size:12px;font-weight:700;
-  letter-spacing:.1em;color:var(--p-mid)}
-.a7 .p4num__s{display:block;margin-top:9px;font-size:12.5px;line-height:1.8;color:var(--p-mid)}
 /* 補助の数字は横1列の行に */
-.a7 .p4sub{list-style:none;margin:0;padding:0;display:grid;
-  grid-template-columns:repeat(3,minmax(0,1fr));gap:0;border-bottom:1px solid var(--p-line)}
-.a7 .p4sub li{padding:clamp(18px,2.4vw,24px) clamp(16px,2.2vw,28px) clamp(18px,2.4vw,24px) 0}
-.a7 .p4sub li + li{border-left:1px solid var(--p-line);padding-left:clamp(20px,2.6vw,32px)}
-.a7 .p4sub b{display:block;font-family:var(--font-en);font-size:clamp(20px,2.4vw,30px);
-  font-weight:700;line-height:1.1;color:var(--p-ink)}
-.a7 .p4sub b em{font-family:var(--font-jp);font-size:.42em;font-style:normal;font-weight:700;
-  color:var(--p-mid);margin-left:4px}
-.a7 .p4sub b i{font-style:normal;color:var(--p-red);margin:0 .12em}
-.a7 .p4sub span{display:block;margin-top:8px;font-size:12.5px;line-height:1.8;color:var(--p-mid)}
-.a7 .p4sub__tag{display:inline-block;margin-top:9px;border:1px solid var(--p-red);
-  padding:3px 9px;font-size:11px;font-weight:700;letter-spacing:.06em;color:var(--p-red);white-space:nowrap}
-@media(max-width:860px){
-  .a7 .p4num,.a7 .p4sub{grid-template-columns:minmax(0,1fr)}
-  .a7 .p4num > div,.a7 .p4sub li{padding:20px 0}
-  .a7 .p4num > div + div,.a7 .p4sub li + li{border-left:none;border-top:1px solid var(--p-line);padding-left:0}
-}
 
 /* ── ページ末尾の導線（優先度をつける） ── */
 .a7 .p4next{margin:clamp(34px,4.4vw,52px) 0 0;display:flex;flex-wrap:wrap;align-items:center;
@@ -243,9 +192,6 @@
 @media(max-width:760px){.a7 .p4voice img{aspect-ratio:16/9;object-position:50% 14%}}
 
 /* 従業員数だけ赤にする。:first-of-type は div の並びに左右されるので使わない。 */
-.a7 .p4num > div:nth-child(2) .p4num__v{color:var(--p-red)}
-/* .p4sub span{display:block} が後勝ちしてバッジが全幅に伸びるのを打ち消す */
-.a7 .p4sub .p4sub__tag{display:inline-block;width:auto}
 
 /* ===== ABOUT / NOTE LINK v2 START：注記内リンクをリンクと分かる見た目にする ===== */
 .a7 .p4note a{color:var(--p-mid);text-decoration:underline;text-underline-offset:2px}
@@ -666,3 +612,122 @@
   .a7 .two-view__tags li{font-size:12px;padding:0 11px}
 }
 /* ===== ABOUT / TWO-VIEW B v1 END ===== */
+
+/* ============================================================
+   ===== ABOUT / VALUES B ＋ APPLY v1 START =====
+   3つの価値観：1本の線に沿って段差配置し、続きものとして読ませる。
+   応募条件：枠で囲まず、価値観より明確に控えめな補足として置く。
+   ============================================================ */
+.a7 .p4vb{list-style:none;margin:clamp(30px,4vw,44px) 0 0;padding:0;position:relative}
+.a7 .p4vb::before{
+  content:"";position:absolute;left:7px;top:14px;bottom:14px;width:2px;background:var(--p-line);
+}
+.a7 .p4vb__i{
+  position:relative;padding:0 0 clamp(26px,3vw,38px) 46px;
+  margin-left:calc(var(--k) * clamp(0px,3vw,52px));
+}
+.a7 .p4vb__i:last-child{padding-bottom:0}
+.a7 .p4vb__i::before{
+  content:"";position:absolute;left:0;top:.42em;width:16px;height:16px;border-radius:50%;
+  background:#FFFFFF;border:3px solid var(--p-red);box-sizing:border-box;
+}
+.a7 .p4vb__i::after{
+  content:"";position:absolute;left:16px;top:calc(.42em + 7px);width:22px;height:2px;background:var(--p-line);
+}
+.a7 .p4vb__no{
+  display:inline-block;font:700 11px/1 Lato,sans-serif;letter-spacing:.2em;
+  color:var(--p-red);margin-bottom:8px;
+}
+.a7 .p4vb__t{
+  display:block;font-size:clamp(21px,3.2vw,34px);font-weight:700;line-height:1.4;
+  letter-spacing:.01em;color:var(--p-ink);
+}
+
+/* 応募条件：性格の違う補足情報 */
+.a7 .p4ap{
+  margin:clamp(30px,3.6vw,44px) 0 0;padding:clamp(20px,2.4vw,26px) 0 0;
+  border-top:1px solid var(--p-line);
+  display:grid;grid-template-columns:minmax(0,1fr) minmax(0,320px);gap:clamp(18px,2.4vw,34px);
+  align-items:start;
+}
+.a7 .p4ap__g{display:grid;gap:9px}
+.a7 .p4ap__g p{
+  margin:0;font-size:12.5px;line-height:1.95;color:var(--p-mid);
+  padding-left:14px;border-left:1px solid var(--p-line);
+}
+.a7 .p4ap__f{
+  margin:0;font-size:12.5px;line-height:1.9;color:var(--p-mid);
+  background:#F7F8FA;border-radius:8px;padding:14px 16px;
+}
+.a7 .p4ap__f a{color:var(--p-red);font-weight:700;text-decoration:underline;text-underline-offset:2px}
+
+/* ============================================================
+   ===== ABOUT / NUMBERS B v1 START =====
+   「いまのPAL」「仕事の広がり」「これからのPAL」の3段。
+   FY2029目標は段を分け、実績と混同させない。
+   ============================================================ */
+.a7 .p4nb{margin:clamp(26px,3.4vw,38px) 0 0}
+.a7 .p4nb__flow{
+  list-style:none;margin:0;padding:0;display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));gap:0;
+  border-top:2px solid var(--p-ink);
+}
+.a7 .p4nb__i{
+  padding:clamp(24px,3vw,34px) clamp(20px,2.6vw,32px) clamp(26px,3vw,36px) 0;
+  position:relative;min-width:0;
+}
+.a7 .p4nb__i + .p4nb__i{padding-left:clamp(20px,2.6vw,32px);border-left:1px solid var(--p-line)}
+/* 段の順序を示す小さな矢印 */
+.a7 .p4nb__i + .p4nb__i::before{
+  content:"";position:absolute;left:-6px;top:clamp(34px,3.6vw,44px);
+  width:10px;height:10px;background:#FFFFFF;
+  border-top:2px solid var(--p-line);border-right:2px solid var(--p-line);
+  transform:rotate(45deg);
+}
+.a7 .p4nb__st{
+  display:flex;align-items:center;gap:10px;flex-wrap:wrap;
+  font-size:11.5px;font-weight:700;letter-spacing:.12em;color:var(--p-ink);margin-bottom:14px;
+}
+.a7 .p4nb__tag{
+  font-style:normal;font-size:10px;font-weight:700;letter-spacing:.06em;
+  color:var(--p-red);background:var(--p-red-t);border-radius:9999px;padding:3px 9px;
+}
+.a7 .p4nb__v{
+  display:block;font:700 clamp(40px,5.6vw,70px)/1 Lato,"Noto Sans JP",sans-serif;
+  letter-spacing:-.01em;color:var(--p-ink);
+}
+.a7 .p4nb__v em{font-style:normal;font-size:.3em;font-weight:700;margin-left:.22em}
+.a7 .p4nb__v--goal{color:var(--p-red)}
+.a7 .p4nb__k{display:block;margin-top:12px;font-size:13px;font-weight:700;color:var(--p-ink)}
+.a7 .p4nb__s{display:block;margin-top:9px;font-size:12.5px;line-height:1.85;color:var(--p-mid)}
+.a7 .p4nb__meta{
+  margin:clamp(18px,2.2vw,24px) 0 0;padding-top:clamp(14px,1.8vw,18px);
+  border-top:1px solid var(--p-line);display:grid;gap:7px;
+}
+.a7 .p4nb__meta > div{display:flex;align-items:baseline;gap:12px}
+.a7 .p4nb__meta dt{
+  flex:none;width:52px;font-size:11px;font-weight:700;letter-spacing:.1em;color:var(--p-mid);
+}
+.a7 .p4nb__meta dd{margin:0;font-size:13.5px;font-weight:700;color:var(--p-ink)}
+.a7 .p4nb__sites{margin:9px 0 0;font-size:12px;line-height:1.8;color:var(--p-mid)}
+.a7 .p4nb__areas{list-style:none;margin:clamp(14px,1.8vw,18px) 0 0;padding:0;display:grid;gap:0}
+.a7 .p4nb__areas li{
+  font-size:13px;line-height:1.6;color:var(--p-ink);padding:10px 0 10px 16px;
+  border-bottom:1px solid var(--p-line2);position:relative;
+}
+.a7 .p4nb__areas li::before{
+  content:"";position:absolute;left:0;top:1.05em;width:7px;height:1.5px;background:var(--p-red);
+}
+
+@media(max-width:1023px){
+  .a7 .p4nb__flow{grid-template-columns:minmax(0,1fr)}
+  .a7 .p4nb__i{padding-right:0}
+  .a7 .p4nb__i + .p4nb__i{padding-left:0;border-left:none;border-top:1px solid var(--p-line)}
+  .a7 .p4nb__i + .p4nb__i::before{left:14px;top:-6px}
+}
+@media(max-width:760px){
+  .a7 .p4vb__i{margin-left:0;padding-left:38px;padding-bottom:24px}
+  .a7 .p4ap{grid-template-columns:minmax(0,1fr);gap:16px}
+  .a7 .p4nb__meta dt{width:46px}
+}
+/* ===== ABOUT / VALUES B ＋ NUMBERS B v1 END ===== */

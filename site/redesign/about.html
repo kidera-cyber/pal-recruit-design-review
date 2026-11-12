@@ -28,7 +28,7 @@
 <!-- ===== ABOUT-D5 v1：about-figures.css は .abt スコープで、
      このページの body に abt が無いため1行も効かない。読み込まない。 ===== -->
 <!-- ===== ABOUT-D5 v1：この検証ページ専用。全セレクタ .a7 スコープ ===== -->
-<link rel="stylesheet" href="assets/css/about.css?v=20261113f">
+<link rel="stylesheet" href="assets/css/about.css?v=20261113g">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"採用情報","item":"../"},{"@type":"ListItem","position":2,"name":"PALを知る"}]}</script>
 </head>
 <body class="ls a7">
@@ -195,19 +195,19 @@
       </div>
     </div>
 
-    <ul class="p4val pv">
-      <li><span class="p4val__no">01</span><b>現場の当事者となる</b></li>
-      <li><span class="p4val__no">02</span><b>個を尊重し、平等に接する</b></li>
-      <li><span class="p4val__no">03</span><b>自分の「手」で変えていく</b></li>
-    </ul>
+    <ol class="p4vb pv">
+      <li class="p4vb__i" style="--k:0"><span class="p4vb__no">01</span><b class="p4vb__t">現場の当事者となる</b></li>
+      <li class="p4vb__i" style="--k:1"><span class="p4vb__no">02</span><b class="p4vb__t">個を尊重し、平等に接する</b></li>
+      <li class="p4vb__i" style="--k:2"><span class="p4vb__no">03</span><b class="p4vb__t">自分の「手」で変えていく</b></li>
+    </ol>
 
     <!-- 応募条件は職種で異なる。採用の重要情報なので小さくしない。 -->
-    <div class="p4apply pv">
-      <div class="p4apply__g">
+    <div class="p4ap pv">
+      <div class="p4ap__g">
         <p>FDEとセンター長／候補では、入社時の高いITスキルを必須としていません。技術力よりも人物面を最優先しています。</p>
         <p>一方で、自社開発 Web・アプリエンジニアは、何らかのWeb系システム開発の実務経験を応募条件としています。</p>
       </div>
-      <p class="p4apply__f">応募条件は職種ごとに異なるため、<a href="jobs.html">各募集要項</a>をご確認ください。</p>
+      <p class="p4ap__f">応募条件は職種ごとに異なるため、<a href="jobs.html">各募集要項</a>をご確認ください。</p>
     </div>
   </div>
 </section>
@@ -220,16 +220,34 @@
       <h2 class="stitle">数字で見るPAL。</h2>
       <p class="slead">会社概要として公表している情報を中心にまとめました。</p>
     </div>
-    <div class="p4num pv">
-      <div><b class="p4num__v">2000<em>年</em>12<em>月</em></b><span class="p4num__k">設立</span></div>
-      <div><b class="p4num__v">120<em>名</em></b><span class="p4num__k">従業員数</span><span class="p4num__s">アルバイト・パートを含めると約1,600名</span></div>
-      <div><b class="p4num__v">4<em>領域</em></b><span class="p4num__k">事業領域</span><span class="p4num__s">コンサルティング／ロジテックインテグレーション／システム開発＆エンジニアリング／ロジテックオペレーション</span></div>
+    <div class="p4nb pv">
+      <ol class="p4nb__flow">
+        <li class="p4nb__i p4nb__i--now">
+          <span class="p4nb__st">いまのPAL</span>
+          <b class="p4nb__v">120<em>名</em></b>
+          <span class="p4nb__k">従業員数</span>
+          <span class="p4nb__s">アルバイト・パートを含めると約1,600名</span>
+          <dl class="p4nb__meta">
+            <div><dt>設立</dt><dd>2000年12月</dd></div>
+            <div><dt>拠点</dt><dd>2拠点</dd></div>
+            <div><dt>資本金</dt><dd>9,000万円</dd></div>
+          </dl>
+          <p class="p4nb__sites">大阪本社（大阪市西区新町）／東京オフィス（千代田区神田小川町）</p>
+        </li>
+        <li class="p4nb__i p4nb__i--area">
+          <span class="p4nb__st">仕事の広がり</span>
+          <b class="p4nb__v">4<em>領域</em></b>
+          <span class="p4nb__k">事業領域</span>
+          <ul class="p4nb__areas"><li>コンサルティング</li><li>ロジテックインテグレーション</li><li>システム開発＆エンジニアリング</li><li>ロジテックオペレーション</li></ul>
+        </li>
+        <li class="p4nb__i p4nb__i--plan">
+          <span class="p4nb__st">これからのPAL<i class="p4nb__tag">FY2029目標</i></span>
+          <b class="p4nb__v p4nb__v--goal">230<em>名</em></b>
+          <span class="p4nb__k">採用計画（120名 → 230名）</span>
+          <span class="p4nb__s">※ 目標値です。達成済みの実績ではありません。</span>
+        </li>
+      </ol>
     </div>
-    <ul class="p4sub pv">
-      <li><b>2<em>拠点</em></b><span>大阪本社（大阪市西区新町）／東京オフィス（千代田区神田小川町）</span></li>
-      <li><b>9,000<em>万円</em></b><span>資本金</span></li>
-      <li><b>120<i aria-hidden="true">→</i>230<em>名</em></b><span>採用計画</span><span class="p4sub__tag">FY2029目標</span></li>
-    </ul>
     <p class="p4note pv"><i aria-hidden="true"></i>出典：株式会社PALの会社概要（2026年10月22日確認）</p>
 
     <p class="p4next pv">
