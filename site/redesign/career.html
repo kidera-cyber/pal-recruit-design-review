@@ -18,7 +18,7 @@
      文言・リンク・会社情報は変更していない。
      戻すときは <body> の we と、この link の2行を外す。 の we と、この link の2行を外す。 ===== -->
 <link rel="stylesheet" href="assets/css/white-editorial.css?v=4">
-<link rel="stylesheet" href="assets/css/career-v2.css?v=3">
+<link rel="stylesheet" href="assets/css/career-v2.css?v=4">
 <!-- ===== REVEAL-SAFE v2：本文を常に可視にしたうえで、JS成功時だけ演出を足す。
      共通 style.css は変更していない。.rvs-scope を持つページにだけ効く。 ===== -->
 <link rel="stylesheet" href="assets/css/reveal-safe.css?v=1">
@@ -183,41 +183,65 @@
       <p class="cstory__lead">顧客との接点を重ね、次の提案機会をつくる。</p>
       <p class="cstory__sub">既存顧客への定期的なフォローや、新しい顧客との接点づくりを通じて、課題やニーズを捉え、商談や提案の機会につなげていきます。</p>
       <p class="note">ここでは、エンゲージメント・新規営業の仕事の進み方を紹介しています。募集条件は<a class="textlink textlink--sm" href="jobs.html#job-sales">エンゲージメント・新規営業の募集要項</a>をご覧ください。</p>
-      <!-- ===== CAREER-V2 v2：説明カード → キャリアマップを主役に。
-           01〜04 の説明は原文のまま「この道すじを詳しく読む」の中へ移した。
-           STEP の名称・説明・「一例」の注記・note はすべて原文のまま。 ===== -->
-      <div class="croad croad--flow">
-        <p class="croad__lab en">WORK FLOW<span>仕事の進み方</span></p>
-        <ol class="croad__l">
-          <li class="croad__i">
-            <p class="croad__no en">01</p>
-            <b class="croad__r">顧客との接点をつくる。</b>
+      <!-- ============================================================
+           ===== ENGAGEMENT CAREER v1 =====
+           ここだけ、ほかの5領域が「キャリアの道すじ」なのに対して
+           営業活動の4工程（WORK FLOW）を主役にしていた。工程は仕事内容の
+           説明であって、入社後に何が広がるのかを示していない。
+           主役を「経験・専門性の広がり」へ入れ替え、4工程の原文は
+           下の「この仕事の進め方を詳しく読む」の中にそのまま残している。
+
+           掲載内容の根拠（いずれも採用サイト内の正式情報）
+             ・jobs/openings/engagement-member.html（募集要項）
+                 休眠顧客・潜在顧客の掘り起こし／顧客ランク別の継続フォロー／
+                 課題に対するデータ要求・分析に基づく仮説構築と初回提案の
+                 方向性の整理／社内の提案専門組織へのトスアップ／
+                 顧客の反応をマーケティング部門へ還元
+             ・people/sales.html（社員インタビュー）
+                 現場見学と課題ヒアリング／設計部門へのトスアップ／
+                 長期的な関係構築
+             ・work.html #role-sales（仕事内容）
+                 提案から現場導入までは FDE・BPO・システム / プロダクト・
+                 DTS と分担して進める
+           役職名・昇進ルート・勤続年数は確認できないため記載していない。
+           順序を制度と誤認させないよう、接続線は引いていない。
+           ============================================================ -->
+      <div class="ecar">
+        <p class="ecar__lab en">ENGAGEMENT CAREER<span>顧客理解から、提案の幅を広げていく。</span></p>
+        <p class="ecar__lead">決まった商材を売るのではなく、顧客の課題に合わせて提案を組み立てる仕事です。経験を重ねるほど、顧客を理解する範囲と、提案できる幅が広がっていきます。</p>
+        <ol class="ecar__l">
+          <li class="ecar__i">
+            <p class="ecar__no en">01</p>
+            <h4 class="ecar__h">顧客と現場を知る範囲が広がる</h4>
+            <p class="ecar__t">休眠顧客・潜在顧客への訪問や面談から始まり、顧客ランク別の継続フォローや現場見学を重ねます。顧客の物流のどこに手間がかかっているのかを、現場で見て聞く経験が積み上がっていきます。</p>
+            <ul class="ecar__tags"><li>休眠・潜在顧客の掘り起こし</li><li>顧客ランク別の継続フォロー</li><li>現場見学・課題ヒアリング</li></ul>
           </li>
-          <li class="croad__i">
-            <p class="croad__no en">02</p>
-            <b class="croad__r">課題やニーズを捉える。</b>
+          <li class="ecar__i">
+            <p class="ecar__no en">02</p>
+            <h4 class="ecar__h">課題を捉え、提案の方向性を描けるようになる</h4>
+            <p class="ecar__t">課題に対するデータの分析と仮説構築を重ね、初回提案の方向性を整理するところまでを担います。要望そのものではなく、その裏にある課題を捉える見方が身につきます。</p>
+            <ul class="ecar__tags"><li>データ分析と仮説構築</li><li>初回提案の方向性の整理</li></ul>
           </li>
-          <li class="croad__i">
-            <p class="croad__no en">03</p>
-            <b class="croad__r">商談・提案につなげる。</b>
-          </li>
-          <li class="croad__i">
-            <p class="croad__no en">04</p>
-            <b class="croad__r">顧客との関係を継続する。</b>
+          <li class="ecar__i">
+            <p class="ecar__no en">03</p>
+            <h4 class="ecar__h">社内の専門部門とつながり、関わる範囲が広がる</h4>
+            <p class="ecar__t">整理した課題は、社内の提案専門組織や設計部門へつなぎます。提案から現場導入まではFDE・BPO・システム／プロダクト・DTSと分担して進み、顧客の反応はマーケティング部門へ還元します。</p>
+            <ul class="ecar__tags"><li>提案専門組織へのトスアップ</li><li>各部門との分担</li><li>マーケティング部門への還元</li></ul>
           </li>
         </ol>
+        <p class="ecar__note">ここで示しているのは、役職や昇進の順序ではなく、経験と専門性の広がりです。どの経験から広がるかは、担当する顧客や本人の志向によって変わります。実際に営業として働く社員のキャリアの一例は、<a class="textlink textlink--sm" href="people/sales.html">営業の社員インタビュー</a>に掲載しています。</p>
       </div>
       <div class="cskill">
-        <p class="cskill__lab en">POINTS<span>課題やニーズを捉える観点</span></p>
+        <p class="cskill__lab en">SKILLS<span>この仕事で身につける・活かす専門性</span></p>
         <ul class="cskill__l">
-          <li><b>困っていること</b><span>いまの困りごと</span></li>
-          <li><b>今後の検討事項</b><span>早い段階で把握</span></li>
-          <li><b>業務上の課題</b><span>手間や負担の所在</span></li>
-          <li><b>新しいニーズ</b><span>やりたいこと・変えたいこと</span></li>
+          <li><b>顧客理解</b><span>現場を見て、課題を聞く</span></li>
+          <li><b>課題分析と仮説構築</b><span>データをもとに仮説を立てる</span></li>
+          <li><b>提案の方向性の整理</b><span>初回提案の形にする</span></li>
+          <li><b>関係構築と部門連携</b><span>長く続く関係と、社内との分担</span></li>
         </ul>
       </div>
       <details class="cmore">
-        <summary class="cmore__s"><span class="cmore__st">この道すじを詳しく読む</span><span class="cmore__sm">接点をつくる ／ 課題を捉える ／ 提案へ ／ 関係を継続する</span><span class="cmore__ic" aria-hidden="true"></span></summary>
+        <summary class="cmore__s"><span class="cmore__st">この仕事の進め方を詳しく読む</span><span class="cmore__sm">接点をつくる ／ 課題を捉える ／ 提案へ ／ 関係を継続する</span><span class="cmore__ic" aria-hidden="true"></span></summary>
         <div class="cmore__in">
           <ol class="cmore__l">
             <li><h4 class="cmore__h"><span class="cmore__no en">01</span>顧客との接点をつくる。</h4>

@@ -365,3 +365,83 @@
   .cv2 .ctl::before{left:12.5px;right:calc(33.3333% - 12.5px)}
 }
 /* ===== CAREER-V2 v2-2 END ===== */
+
+/* ============================================================
+   ===== ENGAGEMENT CAREER v1 START =====
+   エンゲージメント・新規営業だけが「営業活動の4工程」を主役にしていたため、
+   主役を「経験・専門性の広がり」へ入れ替えた。その3カラム用。
+
+   ロードマップ（.croad）とは意図的に見た目を分けている。
+     ・接続線を引かない  … 制度化された順序だと誤認させないため
+     ・丸いノードを置かない … STEP ではないため
+   そのうえで、番号・見出し・本文・縦罫・余白は .croad / .cdir と同じ
+   トークンを使い、ほかの5領域と並べてもデザイン品質に差が出ないようにする。
+
+   SKILLS（.cskill）と詳細（.cmore）は BPO と同じ共通コンポーネントを
+   そのまま再利用しているので、このファイルに追加の指定はない。
+   ============================================================ */
+.cv2 .ecar{margin:clamp(24px,3vw,32px) 0 0}
+.cv2 .ecar__lab{
+  display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin:0 0 14px;
+  font:700 11px/1.4 Lato,sans-serif;letter-spacing:.18em;color:var(--c-red);
+}
+.cv2 .ecar__lab span{
+  font-family:inherit;font-size:clamp(16px,1.8vw,19px);font-weight:700;
+  letter-spacing:.02em;line-height:1.5;color:var(--c-ink);
+}
+.cv2 .ecar__lead{
+  margin:0 0 clamp(24px,2.8vw,32px);max-width:46em;
+  font-size:14.5px;line-height:1.9;color:var(--c-sub);
+}
+
+/* 3カラム。縦罫だけで区切り、横に走る線は引かない */
+.cv2 .ecar__l{
+  list-style:none;margin:0;padding:0;
+  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;
+  border-top:1px solid var(--c-line);
+}
+.cv2 .ecar__i{
+  padding:clamp(22px,2.6vw,28px) clamp(18px,2.2vw,28px) 0 0;
+}
+.cv2 .ecar__i + .ecar__i{
+  padding-left:clamp(18px,2.2vw,28px);border-left:1px solid var(--c-line2);
+}
+.cv2 .ecar__no{
+  margin:0 0 10px;font:900 clamp(17px,1.9vw,20px)/1 Lato,sans-serif;
+  letter-spacing:.02em;color:var(--c-red);
+}
+.cv2 .ecar__h{
+  margin:0 0 10px;font-size:clamp(16.5px,1.9vw,19px);font-weight:700;
+  line-height:1.55;letter-spacing:.01em;color:var(--c-ink);
+}
+.cv2 .ecar__t{margin:0;font-size:14.5px;line-height:1.9;color:var(--c-sub)}
+
+/* 根拠にあたる語を短いタグで添える。カードにはしない */
+.cv2 .ecar__tags{
+  list-style:none;margin:clamp(14px,1.8vw,18px) 0 0;padding:0;
+  display:flex;flex-wrap:wrap;gap:7px;
+}
+.cv2 .ecar__tags li{
+  padding:3px 11px;border:1px solid var(--c-line);border-radius:999px;
+  font-size:12.5px;line-height:1.7;color:var(--c-ink);
+}
+
+.cv2 .ecar__note{
+  margin:clamp(22px,2.6vw,28px) 0 0;padding-left:15px;
+  border-left:2px solid var(--c-line);
+  font-size:13.5px;line-height:1.85;color:var(--c-mid);
+}
+.cv2 .ecar__note .textlink{font-weight:700;color:var(--c-ink)}
+.cv2 .ecar__note .textlink:hover{color:var(--c-red)}
+
+@media(max-width:860px){
+  .cv2 .ecar__l{grid-template-columns:minmax(0,1fr)}
+  .cv2 .ecar__i,.cv2 .ecar__i + .ecar__i{
+    padding:clamp(20px,3.4vw,24px) 0;border-left:none;
+  }
+  .cv2 .ecar__i + .ecar__i{border-top:1px solid var(--c-line2)}
+}
+@media(max-width:760px){
+  .cv2 .ecar__h{font-size:17px}
+}
+/* ===== ENGAGEMENT CAREER v1 END ===== */
