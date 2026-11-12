@@ -539,13 +539,20 @@
 }
 .a7 .two-view__i:hover{border-color:var(--p-line)}
 
-/* ミニグラフィック */
+/* ===== CARD-IMG v1：カード上部のグラフィック =====
+   線画SVG（高さ76px）から写真調のWebP（1480×740 / 2:1）へ差し替えた。
+   画像は横長なので、カード幅いっぱいに 2:1 で敷く。拡大・引き伸ばしはしない。
+   2枚とも同じ aspect-ratio を指定しているので、カードの高さは揃う。 */
 .a7 .two-view__mv{
   background:#F7F8FB;border-bottom:1px solid var(--p-line);
-  padding:12px 26px;line-height:0;
+  padding:0;line-height:0;
 }
 .a7 .two-view__i--eng .two-view__mv{background:#F6F7FA}
-.a7 .two-view__mv svg{display:block;width:100%;height:auto;max-height:76px}
+.a7 .two-view__img{
+  display:block;width:100%;height:auto;aspect-ratio:2 / 1;object-fit:cover;
+  object-position:50% 50%;
+}
+/* 旧 .two-view__mv svg（max-height:76px）は CARD-IMG v1 で不要になった */
 
 /* 本文 */
 .a7 .two-view__bd{padding:22px 26px 0}
@@ -606,7 +613,7 @@
 @media(max-width:1023px){.a7 .two-view{gap:18px}}
 @media(max-width:760px){
   .a7 .two-view{grid-template-columns:1fr;gap:16px;margin-top:32px}
-  .a7 .two-view__mv{padding:12px 20px}
+  .a7 .two-view__mv{padding:0}
   .a7 .two-view__bd{padding:20px 20px 0}
   .a7 .two-view__go{padding:20px 20px 22px}
   .a7 .two-view__tags li{font-size:12px;padding:0 11px}
