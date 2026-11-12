@@ -320,6 +320,13 @@
    色：線 #C2CBE0 ／ 頂点 #FFFFFF＋#A9B4D0 ／ 接点 #CF131B
        主文字 #262946 ／ 補助 #6B6D81
    ===================================================================== */
+/* ---------------------------------------------------------------------
+   ↓ ここから XNET v1。正規HOME（newtop-c-v2.html / home.html）は
+   XNET v2（.xn2）へ移行済みで、この v1 ルールを使っているのは
+   旧A/B比較用の home-w.html / home-wb.html だけ。
+   その2ページは今回の対象外のため、表示を壊さないよう残してある。
+   2ページを廃止する場合は、この v1 ブロックごと削除してよい。
+   --------------------------------------------------------------------- */
 .ls .xn{
   display:grid;grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr);
   gap:clamp(28px,4vw,64px);align-items:center;
@@ -391,6 +398,82 @@
   .ls .xn__en{margin-bottom:5px}
   .ls .xn__ja{font-size:16.5px}
   .ls .xn__note{font-size:12.5px}
+}
+
+/* =====================================================================
+   XNET v2：CROSSOVER の相関図（ビジュアル差し替え版）
+   ---------------------------------------------------------------------
+   v1 の三角形SVG＋ラベルの2カラム組みをやめ、1カラムの縦積みにした。
+     ラベル → 見出し → 説明文 → ビジュアル → ABOUT導線
+   画像（1672×941／約16:9）はセクションのコンテンツ幅いっぱいに置き、
+   width:100% / height:auto で原比率のまま表示する。トリミングはしない。
+   枠線・影・背景色は足さず、白地のまま画像だけを置く。
+
+   画像の中に3領域の名称と役割の文字が入っているため、
+   PCでは同じ文字をHTMLで重ねて出さない（.xn2__fields は display:none）。
+   SPは画像を縮めると画像内の文字が読めなくなるので、そこだけ
+   .xn2__fields を出して、同じ内容を読める形で1回だけ示す。
+   読み上げ用には、幅によらず img の alt が3領域と役割を持っている。
+
+   色：主文字 #262946 ／ 補助 #6B6D81 ／ 罫線 var(--ls-line)
+   ===================================================================== */
+.ls .xn2{max-width:1100px;margin:0 auto}
+.ls .xn2__head{max-width:760px}
+.ls .xn2__title{
+  font-size:clamp(21px,2.1vw,29px);font-weight:700;line-height:1.55;letter-spacing:.02em;
+  color:var(--ls-ink);margin:0;
+}
+.ls .xn2__note{
+  margin:clamp(16px,1.8vw,22px) 0 0;padding-top:18px;border-top:1px solid var(--ls-line);
+  font-size:13px;line-height:2;color:var(--ls-mid);
+}
+.ls .xn2__note b{color:var(--ls-ink);font-weight:700}
+
+/* ビジュアル。aspect-ratio を枠に与えて、読み込み前後で高さが動かないようにする */
+.ls .xn2__fig{
+  margin:clamp(24px,3.2vw,40px) 0 0;line-height:0;
+}
+.ls .xn2__img{
+  display:block;width:100%;height:auto;max-width:100%;
+  aspect-ratio:1672/941;
+}
+
+/* 3領域のテキストは PC では出さない（画像内に同じ文字がある） */
+.ls .xn2__fields{display:none}
+
+.ls .xn2__link{margin:clamp(16px,2vw,24px) 0 0}
+
+@media(max-width:860px){
+  .ls .xn2__title{font-size:clamp(19px,5.2vw,23px)}
+  .ls .xn2__note{font-size:12.5px}
+  .ls .xn2__fig{margin-top:clamp(20px,4.4vw,26px)}
+
+  /* SP だけ3領域を文字で出す。細い縦罫でつなぎ、どれも同じ扱いにする */
+  .ls .xn2__fields{
+    display:block;position:relative;list-style:none;
+    margin:clamp(16px,3.6vw,22px) 0 0;padding:0 0 0 26px;
+  }
+  .ls .xn2__fields::before{
+    content:"";position:absolute;left:3px;top:20px;bottom:20px;width:1px;background:#C2CBE0;
+  }
+  .ls .xn2__f{position:relative;margin:0;text-align:left;padding:15px 0}
+  .ls .xn2__f + .xn2__f{border-top:1px solid var(--ls-line)}
+  .ls .xn2__f::before{
+    content:"";position:absolute;left:-26px;top:21px;width:7px;height:7px;
+    border-radius:50%;background:#FFFFFF;border:1px solid #A9B4D0;
+  }
+  .ls .xn2__en{
+    display:block;font-size:10px;font-weight:700;letter-spacing:.13em;line-height:1.5;
+    color:var(--ls-mid);text-transform:uppercase;margin-bottom:5px;
+  }
+  .ls .xn2__ja{
+    display:block;font-size:16.5px;font-weight:700;line-height:1.5;letter-spacing:.02em;
+    color:var(--ls-ink);
+  }
+  .ls .xn2__one{
+    display:block;margin-top:7px;font-size:12.5px;line-height:1.75;letter-spacing:.02em;
+    color:var(--ls-mid);
+  }
 }
 
 

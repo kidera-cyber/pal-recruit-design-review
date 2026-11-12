@@ -135,7 +135,7 @@
      body に ls が付いたページだけに効く。共通CSSは変更していないので
      このファイルを読み込んでいない他ページには影響しない。
      元に戻すときは、この link と body の ls を外すだけでよい。 ===== -->
-<link rel="stylesheet" href="assets/css/lightsurface.css?v=20261111m">
+<link rel="stylesheet" href="assets/css/lightsurface.css?v=20261112a">
 <!-- ===== WHITE-EDITORIAL v1：採用サイト共通の白基調デザイン（A案）。
      本文・NEXT STEP・フッターの配色は assets/css/white-editorial.css が
      .we スコープで後勝ち上書きする。HTML の文言・リンクは変更していない。
@@ -283,56 +283,55 @@
      【文言】3領域名・補足文・注記・ABOUTリンクは従来どおり。英字ラベルと一行説明は
        同じページの9職種インデックス（data-cat / data-one）にある文字列をそのまま使用。
      【復元】git 履歴 df25bb0 の .xv のマークアップに戻せばよい。 ===== -->
+<!-- ============================================================
+     ===== XNET v2 START：CROSSOVER の相関図を画像に差し替え =====
+     v1 の三角形SVG（.xn__art）と、その周囲に置いていた3領域の
+     テキスト（.xn__fields）を撤去し、BPO・FDE・システムの関係を
+     1枚のビジュアルで示す。画像内に3領域の名称と役割が入っているため、
+     PCでは同じ文字をHTMLで重ねて出さない。
+     SPは画像内の文字が小さくなるので、そこだけ .xn2__fields を出す。
+     3領域の正式な記載は about.html#people に掲載しており、
+     そこへの導線（相関図の詳細をABOUTで見る）は v1 のまま残している。
+     構成：ラベル → 見出し → 説明文 → ビジュアル → ABOUT導線
+     ※ v1 の .xn 系クラスは home-w.html / home-wb.html が使うため残置
+     ============================================================ -->
 <section class="secC sec--soft" id="crossover">
   <div class="wrap">
-    <div class="xn reveal">
-      <div class="xn__head">
+    <div class="xn2 reveal">
+      <div class="xn2__head">
         <p class="kicker2"><span class="kicker2__en en">Crossover</span></p>
-        <h2 class="stitle xn__title">専門性が交わることで、仕事が動き出す。</h2>
-        <p class="xn__note"><b>3つの領域に上下関係はありません。</b>物流DXの進め方は案件ごとに違うため、部門間連携のかたちもそのつど変わります。</p>
-        <p class="xn__link"><a class="textlink textlink--sm" href="about.html#people">相関図の詳細をABOUTで見る</a></p>
+        <h2 class="stitle xn2__title">専門性が交わることで、仕事が動き出す。</h2>
+        <p class="xn2__note"><b>3つの領域に上下関係はありません。</b>物流DXの進め方は案件ごとに違うため、部門間連携のかたちもそのつど変わります。</p>
       </div>
 
-      <div class="xn__fig">
-        <div class="xn__stage">
-          <svg class="xn__art" viewBox="0 85 620 260" role="presentation" aria-hidden="true" focusable="false">
-            <!-- 3つの頂点は中心(310,255)から等距離（R=160）。どれも同じ条件に置いている。
-                 各ペアを、制御点を中心にした曲線で結ぶ。閉じた輪なので起点も頂点もない。
-                 3本は中心の手前で最接近し、その小さなすき間が「交わるところ」になる。 -->
-            <g fill="none" stroke="#C2CBE0" stroke-width="1.25" stroke-linecap="round">
-              <path d="M310 95 Q310 255 171 335"/>
-              <path d="M171 335 Q310 255 449 335"/>
-              <path d="M449 335 Q310 255 310 95"/>
-            </g>
-            <!-- 3領域の位置を示す点。3つとも同じ大きさ・同じ色 -->
-            <g fill="#FFFFFF" stroke="#A9B4D0" stroke-width="1.25">
-              <circle cx="310" cy="95" r="5.5"/>
-              <circle cx="171" cy="335" r="5.5"/>
-              <circle cx="449" cy="335" r="5.5"/>
-            </g>
-            <!-- 交わるところ。3本の曲線が囲むすき間のちょうど中心に置く -->
-            <circle cx="310" cy="255" r="12" fill="none" stroke="#CF131B" stroke-opacity=".22" stroke-width="1"/>
-            <circle cx="310" cy="255" r="4.5" fill="#CF131B"/>
-          </svg>
-          <ul class="xn__fields" role="list">
-            <li class="xn__f xn__f--a">
-              <span class="xn__en en">BPO / Operation</span>
-              <b class="xn__ja">BPO・現場運営</b>
-              <span class="xn__one">現場を安定させ、改善を進める</span>
-            </li>
-            <li class="xn__f xn__f--b">
-              <span class="xn__en en">Forward Deployed Engineer</span>
-              <b class="xn__ja">FDE</b>
-              <span class="xn__one">現場課題を技術につなぐ</span>
-            </li>
-            <li class="xn__f xn__f--c">
-              <span class="xn__en en">System / Product</span>
-              <b class="xn__ja">システム・プロダクト開発</b>
-              <span class="xn__one">現場で使われる仕組みをつくる</span>
-            </li>
-          </ul>
-        </div>
-      </div>
+      <figure class="xn2__fig">
+        <img class="xn2__img" src="../assets/images/home-crossover-bpo.webp"
+             srcset="../assets/images/home-crossover-bpo-760.webp 760w, ../assets/images/home-crossover-bpo-1200.webp 1200w, ../assets/images/home-crossover-bpo.webp 1672w"
+             sizes="(max-width:860px) 92vw, min(1100px, 92vw)"
+             width="1672" height="941" loading="lazy" decoding="async"
+             alt="BPO・現場運営（現場を安定させ、改善を進める）、FDE（現場課題を技術につなぐ）、システム・プロダクト開発（現場で使われる仕組みをつくる）の3領域が、赤い線で互いに結ばれている図">
+      </figure>
+
+      <!-- SP専用。画像内の文字が小さくなる幅でだけ表示する -->
+      <ul class="xn2__fields" role="list">
+        <li class="xn2__f">
+          <span class="xn2__en en">BPO / Operation</span>
+          <b class="xn2__ja">BPO・現場運営</b>
+          <span class="xn2__one">現場を安定させ、改善を進める</span>
+        </li>
+        <li class="xn2__f">
+          <span class="xn2__en en">Forward Deployed Engineer</span>
+          <b class="xn2__ja">FDE</b>
+          <span class="xn2__one">現場課題を技術につなぐ</span>
+        </li>
+        <li class="xn2__f">
+          <span class="xn2__en en">System / Product</span>
+          <b class="xn2__ja">システム・プロダクト開発</b>
+          <span class="xn2__one">現場で使われる仕組みをつくる</span>
+        </li>
+      </ul>
+
+      <p class="xn2__link"><a class="textlink textlink--sm" href="about.html#people">相関図の詳細をABOUTで見る</a></p>
     </div>
   </div>
 </section>

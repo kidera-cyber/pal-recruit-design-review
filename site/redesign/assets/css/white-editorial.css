@@ -308,7 +308,10 @@
 .we .gridbg{background-image:none}
 
 /* CROSSOVER の3領域図：#C2CBE0（白地に 1.74:1）では線が読めない。
-   図形のコントラスト 3:1 を満たす濃さへ上げる */
+   図形のコントラスト 3:1 を満たす濃さへ上げる。
+   ※ 正規HOMEは XNET v2 でこのSVGを画像に差し替えたため、この2行を
+      使うのは旧A/B比較用の home-w.html / home-wb.html だけになった。
+      その2ページを廃止する場合は、この2行も削除してよい。 */
 .we .xn__art path{stroke:#8D99C0}
 .we .xn__art circle{stroke:#6E7CA8}
 
