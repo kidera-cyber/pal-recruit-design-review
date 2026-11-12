@@ -79,10 +79,16 @@
 .pgal__meta{
   display:block;margin:0 0 10px;font-size:12.5px;line-height:1.7;color:var(--g-mid);
 }
-/* ⑤ インタビュー導線 */
+/* ⑤ インタビュー導線
+   カード全体がリンクという構造は変えていない。この行は、そのリンクが
+   どこへ行くのかを示す目印なので、下線を引いて「押せる」ことを分かるようにする。
+   下線は文字の装飾なので、カードの高さやPCの列構成には影響しない。 */
 .pgal__go{
   display:inline-flex;align-items:center;gap:8px;
-  font-size:13.5px;font-weight:700;color:var(--g-ink);transition:color .15s;
+  font-size:13.5px;font-weight:700;color:var(--g-ink);
+  text-decoration:underline;text-decoration-color:var(--g-line);
+  text-decoration-thickness:1.5px;text-underline-offset:5px;
+  transition:color .15s,text-decoration-color .15s;
 }
 .pgal__go i{position:relative;display:block;width:15px;height:9px}
 .pgal__go i::before{
@@ -94,13 +100,20 @@
   border-top:1.5px solid var(--g-ink);border-right:1.5px solid var(--g-ink);
   transform:rotate(45deg);transition:border-color .15s,transform .2s;
 }
-.pgal__a:hover .pgal__go{color:var(--g-red)}
+.pgal__a:hover .pgal__go{color:var(--g-red);text-decoration-color:var(--g-red)}
+/* 押した瞬間の反応。hover が無い端末でも、触れたことが分かる */
+.pgal__a:active{background:var(--g-soft)}
+.pgal__a:active .pgal__go{color:var(--g-red);text-decoration-color:var(--g-red)}
+.pgal__a:active .pgal__go i::before{background:var(--g-red);transform:translateX(3px)}
+.pgal__a:active .pgal__go i::after{border-color:var(--g-red);transform:rotate(45deg) translate(2px,2px)}
 .pgal__a:hover .pgal__go i::before{background:var(--g-red);transform:translateX(3px)}
 .pgal__a:hover .pgal__go i::after{border-color:var(--g-red);transform:rotate(45deg) translate(2px,2px)}
 
 @media(prefers-reduced-motion:reduce){
   .pgal__img,.pgal__go,.pgal__go i::before,.pgal__go i::after{transition:none}
   .pgal__a:hover .pgal__img{transform:none}
+  .pgal__a:active .pgal__go i::before,
+  .pgal__a:active .pgal__go i::after{transform:none}
 }
 
 /* カード幅が足りなくなったら3列 → 2列へ */
@@ -118,5 +131,12 @@
   .pgal__row{grid-template-columns:88px minmax(0,1fr);gap:14px}
   .pgal__copy{font-size:15.5px}
   .pgal__meta{font-size:13px}
-  .pgal__go{font-size:14px;padding:4px 0}
+  /* 指で押しやすいよう、行の高さを 44px 以上にする。
+     上に少し余白を取り、社員情報と見分けやすくする */
+  .pgal__go{
+    font-size:14.5px;min-height:44px;padding:10px 0 8px;
+    text-underline-offset:6px;
+  }
+  .pgal__go i{width:17px}
+  .pgal__go i::before{width:17px}
 }
