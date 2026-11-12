@@ -15,11 +15,12 @@
 <!-- ===== CONNECT v1：HOW ROLES CONNECT（#connect）専用。
      共通 style.css の .wflow は変更せず、このセクションだけを組み直す。 ===== -->
 <link rel="stylesheet" href="assets/css/work-connect.css?v=3">
-<!-- ===== BPO-V3 v1：#role-bpo（物流センター運営）パネル専用。
-     共通 style.css は変更せず、このパネルの中だけを組み直す。 ===== -->
-<link rel="stylesheet" href="assets/css/work-bpo.css?v=1">
-<!-- ===== BPO-DEEP v1：#role-bpo の「詳しい仕事内容」専用 ===== -->
-<link rel="stylesheet" href="assets/css/work-bpo-deep.css?v=1">
+<!-- ===== WORK-ROLES v1：9職種パネルの共通コンポーネント。
+     もと #role-bpo だけに当てていた work-bpo.css / work-bpo-deep.css を
+     .rpanel スコープへ広げて1本に統合した。規則の中身は BPO で承認済みの
+     ものと同じなので、BPO の見た目は変わらない。
+     共通 style.css は変更していない。 ===== -->
+<link rel="stylesheet" href="assets/css/work-roles.css?v=1">
 <!-- ===== WHITE-EDITORIAL v1：採用サイト共通の白基調デザイン（A案）。
      本文・NEXT STEP・フッターの配色は assets/css/white-editorial.css が
      .we スコープで後勝ち上書きする。HTML の文言・リンクは変更していない。
@@ -39,6 +40,27 @@
    （該当セクションは .wcx に置き換え、assets/css/work-connect.css が持つ） */
 @media (prefers-reduced-motion:reduce){ .reveal{opacity:1!important;transform:none!important} }
 </style>
+<!-- ===== WORK NOSCRIPT v1 START：JavaScript 無効時の情報アクセス保証 =====
+     JS が動かないと
+       ① .reveal{opacity:0}（system-h.css 178行）のままで本文が読めない
+       ② 職種タブが動かず、.is-active でない8職種のパネルが開けない
+     このページの中だけで閉じた対策にしてあるため、共通 style.css / app.js は
+     変更しておらず、ほかのページには影響しない。
+     ===== -->
+<noscript><style>
+  .reveal{opacity:1!important;transform:none!important;transition:none!important}
+  /* タブは押せないので隠し、9職種をすべて縦に並べて読めるようにする */
+  .rtabs,.rtabs--big{display:none}
+  .rpanel{display:block!important}
+  .rpanel + .rpanel{
+    margin-top:clamp(36px,4.4vw,56px);padding-top:clamp(28px,3.4vw,42px);
+    border-top:2px solid #262946;
+  }
+  /* 詳細は <details> なので JS なしでも開けるが、初期から開いておく */
+  .rpanel .bdeep__in{display:block!important}
+  .rpanel .bdeep__ic{display:none}
+</style></noscript>
+<!-- ===== WORK NOSCRIPT v1 END ===== -->
 </head>
 <body class="we">
 <div class="proto-bar">【試作・非公開】WORK｜Field Editorialデザイン適用版｜<b>デザイン検証用プレビュー｜本番サイト未反映</b>・文言は本番work/index.htmlと完全同一</div>
@@ -209,7 +231,14 @@
         <div class="rpanel__top"><svg class="rpanel__ic" aria-hidden="true"><use href="#ic-handy"></use></svg><div><h3 class="rpanel__n">衛生清掃・クレンリネス</h3><p class="rpanel__en en">Cleanliness</p><p class="rpanel__one">清掃を、計画と運用で支える</p></div></div>
         <div class="rpanel__body">
           <div class="rpanel__main"><p class="rpanel__ch">主な仕事</p>
-            <ul class="role-points"><li>食品プロセスセンターなどの日常清掃・特別清掃</li><li>汚れ方と頻度から考える清掃計画づくり</li><li>各現場の巡回と、清掃状態の確認</li><li>複数センターの進捗・作業終了報告の管理</li><li>見積・請求の作成と、協力会社との連絡</li></ul>
+            <!-- ===== WORK-ROLES v1：主な仕事を「番号／短い要約見出し／正式な仕事内容」の3段にした。
+                 要約見出し（dt の太字）は正式な業務名称ではなく、dd の正式な仕事内容を読むための見出し。
+                 4件目以降は削除せず、下の「そのほかの担当業務」に移してある。 ===== -->
+          <dl class="bpomain">
+            <div class="bpomain__i"><dt class="bpomain__h"><span class="bpomain__no en">01</span>日常清掃と特別清掃を担う</dt><dd class="bpomain__d">食品プロセスセンターなどの日常清掃・特別清掃</dd></div>
+            <div class="bpomain__i"><dt class="bpomain__h"><span class="bpomain__no en">02</span>清掃計画を立てる</dt><dd class="bpomain__d">汚れ方と頻度から考える清掃計画づくり</dd></div>
+            <div class="bpomain__i"><dt class="bpomain__h"><span class="bpomain__no en">03</span>現場を巡回して確認する</dt><dd class="bpomain__d">各現場の巡回と、清掃状態の確認</dd></div>
+          </dl>
           </div>
           <div class="rpanel__side"><p class="rpanel__ch">この仕事らしさ</p><p class="rpanel__t">清掃を実施するだけでなく、計画を考え、複数の現場の運営まで含めて支えること。</p>
             <p class="rpanel__ch">関わる相手</p><ul class="role-people"><li>各センターの現場</li><li>協力会社</li><li>取引先</li></ul>
@@ -218,18 +247,51 @@
         <div class="rdeep">
           <h4 class="rdeep__h">清掃をして終わり、ではない。</h4>
           <p class="rdeep__lead">食品プロセスセンターなどの現場で、日常清掃と特別清掃を行います。汚れの状態と頻度を確認して清掃計画を立て、現場との連携まで担当します。</p>
-          <p class="rpanel__ch">仕事の進め方</p>
-          <ol class="rdeep__flow">
-            <li><span class="en">01</span><b>現場で清掃する</b><p><span>日常清掃・特別清掃</span>食品プロセスセンターなどの現場で清掃を行う。</p></li>
-            <li><span class="en">02</span><b>汚れ方から計画を立てる</b><p><span>清掃計画をつくる</span>汚れの状態と頻度を確認し、どこをどの頻度で清掃するかを考える。</p></li>
-            <li><span class="en">03</span><b>現場を回って確かめる</b><p><span>巡回する</span>各現場を巡回し、清掃状態を確認する。</p><p><span>報告を管理する</span>複数センターの進捗と作業終了報告を管理する。</p></li>
-          </ol>
-          <p class="rdeep__note">見積・請求の作成や協力会社との連絡、クレンリネス課の運営、清掃案件の営業に関わる場合もあります。</p>
-          <p class="rpanel__ch">この仕事で大切にしていること</p>
-          <ul class="rdeep__pts">
-            <li><i>01</i><div><b>困りごとを早くつかむ</b><p>各センターの困りごとをいち早くキャッチし、改善につなげて信頼関係を築きます。</p></div></li>
-            <li><i>02</i><div><b>安全衛生は当然のこととして</b><p>安全衛生を前提としたうえで、現場の状態に常にアンテナを張ります。</p></div></li>
+          <!-- ===== WORK-ROLES v1：灰色の工程ボックス（.rdeep__flow）と .rdeep__pts を撤去し、
+               その原文を「仕事内容を詳しく見る」の中へ移した。1文字も削っていない。
+               開閉は1回だけ。入れ子のアコーディオンも JavaScript も使っていない。 ===== -->
+          <p class="rpanel__ch">そのほかの担当業務</p>
+          <ul class="bpoother">
+            <li>複数センターの進捗・作業終了報告の管理</li>
+            <li>見積・請求の作成と、協力会社との連絡</li>
           </ul>
+          <details class="bdeep">
+            <summary class="bdeep__s">
+              <span class="bdeep__st">仕事内容を詳しく見る</span>
+              <span class="bdeep__sm">仕事の進め方 ／ この仕事で大切にしていること</span>
+              <span class="bdeep__ic" aria-hidden="true"></span>
+            </summary>
+            <div class="bdeep__in">
+
+              <div class="bdeep__blk">
+                <p class="bdeep__lab en">HOW IT WORKS<span>仕事の進め方</span></p>
+                <ol class="bflow">
+                  <li class="bflow__i">
+                    <p class="bflow__h"><span class="bflow__no en">01</span>現場で清掃する</p>
+                    <dl class="bflow__d"><dt>日常清掃・特別清掃</dt><dd>食品プロセスセンターなどの現場で清掃を行う。</dd></dl>
+                  </li>
+                  <li class="bflow__i">
+                    <p class="bflow__h"><span class="bflow__no en">02</span>汚れ方から計画を立てる</p>
+                    <dl class="bflow__d"><dt>清掃計画をつくる</dt><dd>汚れの状態と頻度を確認し、どこをどの頻度で清掃するかを考える。</dd></dl>
+                  </li>
+                  <li class="bflow__i">
+                    <p class="bflow__h"><span class="bflow__no en">03</span>現場を回って確かめる</p>
+                    <dl class="bflow__d"><dt>巡回する</dt><dd>各現場を巡回し、清掃状態を確認する。</dd><dt>報告を管理する</dt><dd>複数センターの進捗と作業終了報告を管理する。</dd></dl>
+                  </li>
+                </ol>
+                <p class="bdeep__note">見積・請求の作成や協力会社との連絡、クレンリネス課の運営、清掃案件の営業に関わる場合もあります。</p>
+              </div>
+
+              <div class="bdeep__blk">
+                <p class="bdeep__lab en">MINDSET<span>この仕事で大切にしていること</span></p>
+                <ol class="bmind">
+                  <li class="bmind__i"><p class="bmind__h"><span class="bmind__no en">01</span>困りごとを早くつかむ</p><p class="bmind__t">各センターの困りごとをいち早くキャッチし、改善につなげて信頼関係を築きます。</p></li>
+                  <li class="bmind__i"><p class="bmind__h"><span class="bmind__no en">02</span>安全衛生は当然のこととして</p><p class="bmind__t">安全衛生を前提としたうえで、現場の状態に常にアンテナを張ります。</p></li>
+                </ol>
+              </div>
+
+            </div>
+          </details>
         </div>
         <div class="rpanel__foot"><a class="rcbtn rcbtn--main" href="people/cleaning.html">この仕事をしている社員の声を読む<i aria-hidden="true">→</i></a></div>
         <p class="rpanel__note">※ クレンリネスは現在募集していません。仕事内容の紹介として掲載しています。</p>
@@ -239,7 +301,14 @@
         <div class="rpanel__top"><svg class="rpanel__ic" aria-hidden="true"><use href="#ic2-fde"></use></svg><div><h3 class="rpanel__n">FDE</h3><p class="rpanel__en en">Forward Deployed Engineer</p><p class="rpanel__one">現場課題を技術につなぎ、実装まで進める仕事</p></div></div>
         <div class="rpanel__body">
           <div class="rpanel__main"><p class="rpanel__ch">主な仕事</p>
-            <ul class="role-points"><li>物流現場での業務課題のヒアリングと整理</li><li>課題を技術要件へ翻訳する</li><li>システム・設備・データとの接続を設計する</li><li>開発・改修と、現場での動作確認</li><li>運用後の問い合わせ対応と改善</li></ul>
+            <!-- ===== WORK-ROLES v1：主な仕事を「番号／短い要約見出し／正式な仕事内容」の3段にした。
+                 要約見出し（dt の太字）は正式な業務名称ではなく、dd の正式な仕事内容を読むための見出し。
+                 4件目以降は削除せず、下の「そのほかの担当業務」に移してある。 ===== -->
+          <dl class="bpomain">
+            <div class="bpomain__i"><dt class="bpomain__h"><span class="bpomain__no en">01</span>現場の課題を聞き、整理する</dt><dd class="bpomain__d">物流現場での業務課題のヒアリングと整理</dd></div>
+            <div class="bpomain__i"><dt class="bpomain__h"><span class="bpomain__no en">02</span>技術要件へ翻訳する</dt><dd class="bpomain__d">課題を技術要件へ翻訳する</dd></div>
+            <div class="bpomain__i"><dt class="bpomain__h"><span class="bpomain__no en">03</span>接続を設計する</dt><dd class="bpomain__d">システム・設備・データとの接続を設計する</dd></div>
+          </dl>
           </div>
           <div class="rpanel__side"><p class="rpanel__ch">この仕事らしさ</p><p class="rpanel__t">現場の課題を技術要件へ整理し、実際に動く仕組みまで持っていくこと。つくった仕組みが、現場に定着します。</p>
             <p class="rpanel__ch">関わる相手</p><ul class="role-people"><li>物流現場のスタッフ</li><li>BPO / 現場運営</li><li>システム / プロダクト企画</li></ul>
@@ -248,21 +317,57 @@
         <div class="rdeep">
           <h4 class="rdeep__h">仕様書だけでは、現場は動かない。だから、現場に入り込む。</h4>
           <p class="rdeep__lead">FDE（Forward Deployed Engineer）は、顧客の業務課題と技術の間をつなぐエンジニアの職種です。立ち位置は、顧客に近い場所。課題を整理して提案するだけでなく、技術を実際に使える形へ落とし込むところまで関わります。生み出すものは提案書や計画ではなく、現場で使われる仕組みです。</p>
-          <p class="rpanel__ch">仕事の流れ</p>
-          <ol class="rdeep__flow">
-            <li><span class="en">01</span><b>現場を知る</b><p><span>現場へ行く</span>倉庫や配送の現場に入り、実際の動きを見る。</p><p><span>話を聞く</span>現場責任者や作業者に、何に困っているかを聞く。</p></li>
-            <li><span class="en">02</span><b>課題を技術へつなぐ</b><p><span>課題を整理する</span>帳票外の判断や例外処理を書き出し、論点を絞る。</p><p><span>技術要件へ翻訳する</span>現場の言葉を、画面・帳票・データの要件に置き換える。</p></li>
-            <li><span class="en">03</span><b>仕組みをつくる</b><p><span>設計する</span>平常時の運用と、止まったときの切り替えを設計する。</p><p><span>実装する</span>エンジニアと組み、自社プロダクトを現場に合わせて形にする。</p></li>
-            <li><span class="en">04</span><b>使われ方を見て改善する</b><p><span>使われ方を見る</span>導入後に現場へ戻り、実際に使われているかを確認する。</p><p><span>改善する</span>訓練を重ね、手順とシステムを更新し続ける。</p></li>
-          </ol>
-          <p class="rdeep__note">設計・実装・運用は、システム / プロダクト企画やBPO・現場運営などの専門部門と分担して進めます。</p>
-          <p class="rpanel__ch">FDEが大切にしていること</p>
-          <ul class="rdeep__pts">
-            <li><i>01</i><div><b>例外処理を、業務観察から拾い上げる</b><p>仕様書に現れない現場の判断を可視化する。</p></div></li>
-            <li><i>02</i><div><b>暗黙知を、代替運用の設計へ</b><p>属人化していた手順を、ほかの人でも動かせる形にする。</p></div></li>
-            <li><i>03</i><div><b>効率化と、止まったときの切り替えを設計する</b><p>平常時の運用だけでなく、止まったときの手順まで含めて考える。</p></div></li>
-            <li><i>04</i><div><b>訓練を通じて、手順を更新し続ける</b><p>設計して終わりにせず、現場に伴走しながら手順を直していく。</p></div></li>
+          <!-- ===== WORK-ROLES v1：灰色の工程ボックス（.rdeep__flow）と .rdeep__pts を撤去し、
+               その原文を「仕事内容を詳しく見る」の中へ移した。1文字も削っていない。
+               開閉は1回だけ。入れ子のアコーディオンも JavaScript も使っていない。 ===== -->
+          <p class="rpanel__ch">そのほかの担当業務</p>
+          <ul class="bpoother">
+            <li>開発・改修と、現場での動作確認</li>
+            <li>運用後の問い合わせ対応と改善</li>
           </ul>
+          <details class="bdeep">
+            <summary class="bdeep__s">
+              <span class="bdeep__st">仕事内容を詳しく見る</span>
+              <span class="bdeep__sm">仕事の流れ ／ FDEが大切にしていること</span>
+              <span class="bdeep__ic" aria-hidden="true"></span>
+            </summary>
+            <div class="bdeep__in">
+
+              <div class="bdeep__blk">
+                <p class="bdeep__lab en">HOW IT WORKS<span>仕事の流れ</span></p>
+                <ol class="bflow">
+                  <li class="bflow__i">
+                    <p class="bflow__h"><span class="bflow__no en">01</span>現場を知る</p>
+                    <dl class="bflow__d"><dt>現場へ行く</dt><dd>倉庫や配送の現場に入り、実際の動きを見る。</dd><dt>話を聞く</dt><dd>現場責任者や作業者に、何に困っているかを聞く。</dd></dl>
+                  </li>
+                  <li class="bflow__i">
+                    <p class="bflow__h"><span class="bflow__no en">02</span>課題を技術へつなぐ</p>
+                    <dl class="bflow__d"><dt>課題を整理する</dt><dd>帳票外の判断や例外処理を書き出し、論点を絞る。</dd><dt>技術要件へ翻訳する</dt><dd>現場の言葉を、画面・帳票・データの要件に置き換える。</dd></dl>
+                  </li>
+                  <li class="bflow__i">
+                    <p class="bflow__h"><span class="bflow__no en">03</span>仕組みをつくる</p>
+                    <dl class="bflow__d"><dt>設計する</dt><dd>平常時の運用と、止まったときの切り替えを設計する。</dd><dt>実装する</dt><dd>エンジニアと組み、自社プロダクトを現場に合わせて形にする。</dd></dl>
+                  </li>
+                  <li class="bflow__i">
+                    <p class="bflow__h"><span class="bflow__no en">04</span>使われ方を見て改善する</p>
+                    <dl class="bflow__d"><dt>使われ方を見る</dt><dd>導入後に現場へ戻り、実際に使われているかを確認する。</dd><dt>改善する</dt><dd>訓練を重ね、手順とシステムを更新し続ける。</dd></dl>
+                  </li>
+                </ol>
+                <p class="bdeep__note">設計・実装・運用は、システム / プロダクト企画やBPO・現場運営などの専門部門と分担して進めます。</p>
+              </div>
+
+              <div class="bdeep__blk">
+                <p class="bdeep__lab en">MINDSET<span>FDEが大切にしていること</span></p>
+                <ol class="bmind">
+                  <li class="bmind__i"><p class="bmind__h"><span class="bmind__no en">01</span>例外処理を、業務観察から拾い上げる</p><p class="bmind__t">仕様書に現れない現場の判断を可視化する。</p></li>
+                  <li class="bmind__i"><p class="bmind__h"><span class="bmind__no en">02</span>暗黙知を、代替運用の設計へ</p><p class="bmind__t">属人化していた手順を、ほかの人でも動かせる形にする。</p></li>
+                  <li class="bmind__i"><p class="bmind__h"><span class="bmind__no en">03</span>効率化と、止まったときの切り替えを設計する</p><p class="bmind__t">平常時の運用だけでなく、止まったときの手順まで含めて考える。</p></li>
+                  <li class="bmind__i"><p class="bmind__h"><span class="bmind__no en">04</span>訓練を通じて、手順を更新し続ける</p><p class="bmind__t">設計して終わりにせず、現場に伴走しながら手順を直していく。</p></li>
+                </ol>
+              </div>
+
+            </div>
+          </details>
         </div>
         <div class="rpanel__foot">
           <a class="rcbtn rcbtn--main" href="people/fde.html">FDEとして働く社員の声を見る<i aria-hidden="true">→</i></a>
@@ -275,7 +380,14 @@
         <div class="rpanel__top"><svg class="rpanel__ic" aria-hidden="true"><use href="#ic2-system"></use></svg><div><h3 class="rpanel__n">システム・プロダクト開発</h3><p class="rpanel__en en">System / Product</p><p class="rpanel__one">現場で使われる仕組みをつくる</p></div></div>
         <div class="rpanel__body">
           <div class="rpanel__main"><p class="rpanel__ch">主な仕事</p>
-            <ul class="role-points"><li>現場ヒアリングと要件整理</li><li>物流センター向けAndroidアプリの設計・開発</li><li>OCR・バーコード読み取り、ダッシュボードの開発</li><li>倉庫での実機確認と、改善対応</li><li>現場フィードバックの反映と、活用推進</li></ul>
+            <!-- ===== WORK-ROLES v1：主な仕事を「番号／短い要約見出し／正式な仕事内容」の3段にした。
+                 要約見出し（dt の太字）は正式な業務名称ではなく、dd の正式な仕事内容を読むための見出し。
+                 4件目以降は削除せず、下の「そのほかの担当業務」に移してある。 ===== -->
+          <dl class="bpomain">
+            <div class="bpomain__i"><dt class="bpomain__h"><span class="bpomain__no en">01</span>要件を整理する</dt><dd class="bpomain__d">現場ヒアリングと要件整理</dd></div>
+            <div class="bpomain__i"><dt class="bpomain__h"><span class="bpomain__no en">02</span>アプリを設計・開発する</dt><dd class="bpomain__d">物流センター向けAndroidアプリの設計・開発</dd></div>
+            <div class="bpomain__i"><dt class="bpomain__h"><span class="bpomain__no en">03</span>読み取りと可視化をつくる</dt><dd class="bpomain__d">OCR・バーコード読み取り、ダッシュボードの開発</dd></div>
+          </dl>
           </div>
           <div class="rpanel__side"><p class="rpanel__ch">この仕事らしさ</p><p class="rpanel__t">つくって引き渡すのではなく、現場で使われる状態まで関わること。見えなかったデータが、判断を変えます。</p>
             <p class="rpanel__ch">関わる相手</p><ul class="role-people"><li>物流現場</li><li>FDE</li><li>プロダクト企画</li></ul>
@@ -284,19 +396,55 @@
         <div class="rdeep">
           <h4 class="rdeep__h">つくったものが、どう使われるかを見に行く。</h4>
           <p class="rdeep__lead">物流センターの現場で使われるプロダクトを、自社で企画・開発します。仕分け作業で使うAndroidアプリ、バーコードの読取、カンバンのOCR読取、出荷日ごとの採番、仕分け状況のダッシュボードなどを、現場の課題に合わせてつくり、リリース後も改善を続けます。</p>
-          <p class="rpanel__ch">仕事の進め方</p>
-          <ol class="rdeep__flow">
-            <li><span class="en">01</span><b>現場の要望を聞く</b><p><span>ヒアリングする</span>現場の要望を聞き、要件を整理する。</p></li>
-            <li><span class="en">02</span><b>設計・開発する</b><p><span>機能をつくる</span>Androidアプリ、読み取り機能、ダッシュボードなどを設計・開発する。</p></li>
-            <li><span class="en">03</span><b>倉庫で確かめる</b><p><span>実機で確認する</span>倉庫で実際に動かして確認し、改善に対応する。</p></li>
-            <li><span class="en">04</span><b>リリース後も直し続ける</b><p><span>反映する</span>現場からのフィードバックを機能追加や改善として反映する。</p><p><span>使われる状態にする</span>活用推進まで関わる。</p></li>
-          </ol>
-          <p class="rpanel__ch">この仕事で大切にしていること</p>
-          <ul class="rdeep__pts">
-            <li><i>01</i><div><b>止められない現場に出すということ</b><p>現場の作業は止められない一方で、改善のスピードも同時に求められます。不具合が出たときの切り戻しや修正方法を事前に用意したうえでリリースします。</p></div></li>
-            <li><i>02</i><div><b>使う人の顔が見える距離でつくる</b><p>つくって引き渡すのではなく、現場で使われる状態まで関わります。</p></div></li>
-            <li><i>03</i><div><b>FDEとの役割の違い</b><p>FDEは現場の課題を技術要件へ整理し、各部門と連携して実装・改善につなぐ役割です。System / Product は自社プロダクトそのものの企画・開発を担当します。同じ案件で連携します。</p></div></li>
+          <!-- ===== WORK-ROLES v1：灰色の工程ボックス（.rdeep__flow）と .rdeep__pts を撤去し、
+               その原文を「仕事内容を詳しく見る」の中へ移した。1文字も削っていない。
+               開閉は1回だけ。入れ子のアコーディオンも JavaScript も使っていない。 ===== -->
+          <p class="rpanel__ch">そのほかの担当業務</p>
+          <ul class="bpoother">
+            <li>倉庫での実機確認と、改善対応</li>
+            <li>現場フィードバックの反映と、活用推進</li>
           </ul>
+          <details class="bdeep">
+            <summary class="bdeep__s">
+              <span class="bdeep__st">仕事内容を詳しく見る</span>
+              <span class="bdeep__sm">仕事の進め方 ／ この仕事で大切にしていること</span>
+              <span class="bdeep__ic" aria-hidden="true"></span>
+            </summary>
+            <div class="bdeep__in">
+
+              <div class="bdeep__blk">
+                <p class="bdeep__lab en">HOW IT WORKS<span>仕事の進め方</span></p>
+                <ol class="bflow">
+                  <li class="bflow__i">
+                    <p class="bflow__h"><span class="bflow__no en">01</span>現場の要望を聞く</p>
+                    <dl class="bflow__d"><dt>ヒアリングする</dt><dd>現場の要望を聞き、要件を整理する。</dd></dl>
+                  </li>
+                  <li class="bflow__i">
+                    <p class="bflow__h"><span class="bflow__no en">02</span>設計・開発する</p>
+                    <dl class="bflow__d"><dt>機能をつくる</dt><dd>Androidアプリ、読み取り機能、ダッシュボードなどを設計・開発する。</dd></dl>
+                  </li>
+                  <li class="bflow__i">
+                    <p class="bflow__h"><span class="bflow__no en">03</span>倉庫で確かめる</p>
+                    <dl class="bflow__d"><dt>実機で確認する</dt><dd>倉庫で実際に動かして確認し、改善に対応する。</dd></dl>
+                  </li>
+                  <li class="bflow__i">
+                    <p class="bflow__h"><span class="bflow__no en">04</span>リリース後も直し続ける</p>
+                    <dl class="bflow__d"><dt>反映する</dt><dd>現場からのフィードバックを機能追加や改善として反映する。</dd><dt>使われる状態にする</dt><dd>活用推進まで関わる。</dd></dl>
+                  </li>
+                </ol>
+              </div>
+
+              <div class="bdeep__blk">
+                <p class="bdeep__lab en">MINDSET<span>この仕事で大切にしていること</span></p>
+                <ol class="bmind">
+                  <li class="bmind__i"><p class="bmind__h"><span class="bmind__no en">01</span>止められない現場に出すということ</p><p class="bmind__t">現場の作業は止められない一方で、改善のスピードも同時に求められます。不具合が出たときの切り戻しや修正方法を事前に用意したうえでリリースします。</p></li>
+                  <li class="bmind__i"><p class="bmind__h"><span class="bmind__no en">02</span>使う人の顔が見える距離でつくる</p><p class="bmind__t">つくって引き渡すのではなく、現場で使われる状態まで関わります。</p></li>
+                  <li class="bmind__i"><p class="bmind__h"><span class="bmind__no en">03</span>FDEとの役割の違い</p><p class="bmind__t">FDEは現場の課題を技術要件へ整理し、各部門と連携して実装・改善につなぐ役割です。System / Product は自社プロダクトそのものの企画・開発を担当します。同じ案件で連携します。</p></li>
+                </ol>
+              </div>
+
+            </div>
+          </details>
         </div>
         <div class="rpanel__foot">
           <a class="rcbtn rcbtn--main" href="people/system.html">この仕事をしている社員の声を読む<i aria-hidden="true">→</i></a>
@@ -308,7 +456,14 @@
         <div class="rpanel__top"><svg class="rpanel__ic" aria-hidden="true"><use href="#ic2-transport"></use></svg><div><h3 class="rpanel__n">配送・運行</h3><p class="rpanel__en en">DTS / Transport</p><p class="rpanel__one">安全・品質・時間を守って届ける</p></div></div>
         <div class="rpanel__body">
           <div class="rpanel__main"><p class="rpanel__ch">主な仕事</p>
-            <ul class="role-points"><li>配送業務・納品対応</li><li>車両点検と、運行前後の確認</li><li>安全運転・配送品質の維持</li><li>配車と運行状況の確認・調整</li><li>配送先・物流センターとの連携</li></ul>
+            <!-- ===== WORK-ROLES v1：主な仕事を「番号／短い要約見出し／正式な仕事内容」の3段にした。
+                 要約見出し（dt の太字）は正式な業務名称ではなく、dd の正式な仕事内容を読むための見出し。
+                 4件目以降は削除せず、下の「そのほかの担当業務」に移してある。 ===== -->
+          <dl class="bpomain">
+            <div class="bpomain__i"><dt class="bpomain__h"><span class="bpomain__no en">01</span>配送し、納品する</dt><dd class="bpomain__d">配送業務・納品対応</dd></div>
+            <div class="bpomain__i"><dt class="bpomain__h"><span class="bpomain__no en">02</span>車両と運行を確認する</dt><dd class="bpomain__d">車両点検と、運行前後の確認</dd></div>
+            <div class="bpomain__i"><dt class="bpomain__h"><span class="bpomain__no en">03</span>安全と品質を保つ</dt><dd class="bpomain__d">安全運転・配送品質の維持</dd></div>
+          </dl>
           </div>
           <div class="rpanel__side"><p class="rpanel__ch">この仕事らしさ</p><p class="rpanel__t">届けるだけでなく、安全・品質・時間を同時に守ること。組み直した計画が、そのとおり回ります。</p>
             <p class="rpanel__ch">関わる相手</p><ul class="role-people"><li>配送先</li><li>物流センター</li><li>ドライバー</li></ul>
@@ -317,20 +472,56 @@
         <div class="rdeep">
           <h4 class="rdeep__h">運ぶ人と、運行を組む人。</h4>
           <p class="rdeep__lead">DTS事業部・運送課には、実際に配送を担当するドライバーの仕事と、配車・運行を組む営業所の仕事があります。現在募集しているのは、千葉県船橋市のafs船橋センターを拠点とする4t・10tルート配送ドライバーです。</p>
-          <p class="rpanel__ch">配送ドライバーの仕事の流れ</p>
-          <ol class="rdeep__flow">
-            <li><span class="en">01</span><b>出勤・出発準備</b><p><span>点検する</span>営業所に出勤し、アルコールチェックと車両の点検を行う。</p></li>
-            <li><span class="en">02</span><b>積み込み・確認</b><p><span>確認する</span>用意されたカゴ車と、専用端末で配送先を確認する。</p><p><span>積み込む</span>カゴ車をトラックに積み込み、配送先へ出発する。</p></li>
-            <li><span class="en">03</span><b>店舗へ配送</b><p><span>降ろす</span>店舗に到着し、パワーゲートを使ってカゴ車を降ろす。</p></li>
-            <li><span class="en">04</span><b>回収・帰庫</b><p><span>回収する</span>納品後、サンテナやカゴ車を回収する。</p><p><span>戻る</span>すべてのルートを回り終えたら営業所に戻り、片付けて退勤する。</p></li>
-          </ol>
-          <p class="rdeep__note">※ 上は現在募集中の配送ドライバーの仕事です。営業所の管理の仕事（顧客とのやり取り、配車・配送計画、売上管理、ドライバー管理、新規営業）は、社員インタビューで紹介している役割で、この募集の仕事内容とは異なります。</p>
-          <p class="rpanel__ch">この仕事で大切にしていること</p>
-          <ul class="rdeep__pts">
-            <li><i>01</i><div><b>安全・品質・時間を同時に守る</b><p>届けるだけでなく、安全運転と配送品質、時間の3つを同時に守ります。</p></div></li>
-            <li><i>02</i><div><b>その日の配送が成立する組み方を決める（営業所の管理の役割）</b><p>どの車両をどう動かせば、その日の顧客の配送が成立するのか。営業所では、そこを決めることが仕事になります。</p></div></li>
-            <li><i>03</i><div><b>まずやってみて、相談する（営業所の管理の役割）</b><p>運行については、まずやってみる。そのうえで、本部長やほかの管理者に相談する。</p></div></li>
+          <!-- ===== WORK-ROLES v1：灰色の工程ボックス（.rdeep__flow）と .rdeep__pts を撤去し、
+               その原文を「仕事内容を詳しく見る」の中へ移した。1文字も削っていない。
+               開閉は1回だけ。入れ子のアコーディオンも JavaScript も使っていない。 ===== -->
+          <p class="rpanel__ch">そのほかの担当業務</p>
+          <ul class="bpoother">
+            <li>配車と運行状況の確認・調整</li>
+            <li>配送先・物流センターとの連携</li>
           </ul>
+          <details class="bdeep">
+            <summary class="bdeep__s">
+              <span class="bdeep__st">仕事内容を詳しく見る</span>
+              <span class="bdeep__sm">配送ドライバーの仕事の流れ ／ この仕事で大切にしていること</span>
+              <span class="bdeep__ic" aria-hidden="true"></span>
+            </summary>
+            <div class="bdeep__in">
+
+              <div class="bdeep__blk">
+                <p class="bdeep__lab en">HOW IT WORKS<span>配送ドライバーの仕事の流れ</span></p>
+                <ol class="bflow">
+                  <li class="bflow__i">
+                    <p class="bflow__h"><span class="bflow__no en">01</span>出勤・出発準備</p>
+                    <dl class="bflow__d"><dt>点検する</dt><dd>営業所に出勤し、アルコールチェックと車両の点検を行う。</dd></dl>
+                  </li>
+                  <li class="bflow__i">
+                    <p class="bflow__h"><span class="bflow__no en">02</span>積み込み・確認</p>
+                    <dl class="bflow__d"><dt>確認する</dt><dd>用意されたカゴ車と、専用端末で配送先を確認する。</dd><dt>積み込む</dt><dd>カゴ車をトラックに積み込み、配送先へ出発する。</dd></dl>
+                  </li>
+                  <li class="bflow__i">
+                    <p class="bflow__h"><span class="bflow__no en">03</span>店舗へ配送</p>
+                    <dl class="bflow__d"><dt>降ろす</dt><dd>店舗に到着し、パワーゲートを使ってカゴ車を降ろす。</dd></dl>
+                  </li>
+                  <li class="bflow__i">
+                    <p class="bflow__h"><span class="bflow__no en">04</span>回収・帰庫</p>
+                    <dl class="bflow__d"><dt>回収する</dt><dd>納品後、サンテナやカゴ車を回収する。</dd><dt>戻る</dt><dd>すべてのルートを回り終えたら営業所に戻り、片付けて退勤する。</dd></dl>
+                  </li>
+                </ol>
+                <p class="bdeep__note">※ 上は現在募集中の配送ドライバーの仕事です。営業所の管理の仕事（顧客とのやり取り、配車・配送計画、売上管理、ドライバー管理、新規営業）は、社員インタビューで紹介している役割で、この募集の仕事内容とは異なります。</p>
+              </div>
+
+              <div class="bdeep__blk">
+                <p class="bdeep__lab en">MINDSET<span>この仕事で大切にしていること</span></p>
+                <ol class="bmind">
+                  <li class="bmind__i"><p class="bmind__h"><span class="bmind__no en">01</span>安全・品質・時間を同時に守る</p><p class="bmind__t">届けるだけでなく、安全運転と配送品質、時間の3つを同時に守ります。</p></li>
+                  <li class="bmind__i"><p class="bmind__h"><span class="bmind__no en">02</span>その日の配送が成立する組み方を決める（営業所の管理の役割）</p><p class="bmind__t">どの車両をどう動かせば、その日の顧客の配送が成立するのか。営業所では、そこを決めることが仕事になります。</p></li>
+                  <li class="bmind__i"><p class="bmind__h"><span class="bmind__no en">03</span>まずやってみて、相談する（営業所の管理の役割）</p><p class="bmind__t">運行については、まずやってみる。そのうえで、本部長やほかの管理者に相談する。</p></li>
+                </ol>
+              </div>
+
+            </div>
+          </details>
         </div>
         <div class="rpanel__foot">
           <a class="rcbtn rcbtn--main" href="people/dts.html">運送部の社員インタビューを見る<i aria-hidden="true">→</i></a>
@@ -343,7 +534,14 @@
         <div class="rpanel__top"><svg class="rpanel__ic" aria-hidden="true"><use href="#ic-meeting"></use></svg><div><h3 class="rpanel__n">営業・事業開発</h3><p class="rpanel__en en">Engagement / Sales・BizDev</p><p class="rpanel__one">顧客課題を次の提案につなげる</p></div></div>
         <div class="rpanel__body">
           <div class="rpanel__main"><p class="rpanel__ch">主な仕事</p>
-            <ul class="role-points"><li>既存顧客への定期的な連絡と、関係づくり</li><li>新しい顧客との接点づくり</li><li>現場見学・課題のヒアリングと整理</li><li>新たな提案・事業機会づくり</li><li>現場・組織の状態把握と、各部門との連携</li><li>顧客課題と市場機会の整理</li><li>新しい事業・サービスの可能性を形にする</li></ul>
+            <!-- ===== WORK-ROLES v1：主な仕事を「番号／短い要約見出し／正式な仕事内容」の3段にした。
+                 要約見出し（dt の太字）は正式な業務名称ではなく、dd の正式な仕事内容を読むための見出し。
+                 4件目以降は削除せず、下の「そのほかの担当業務」に移してある。 ===== -->
+          <dl class="bpomain">
+            <div class="bpomain__i"><dt class="bpomain__h"><span class="bpomain__no en">01</span>既存顧客との関係をつくる</dt><dd class="bpomain__d">既存顧客への定期的な連絡と、関係づくり</dd></div>
+            <div class="bpomain__i"><dt class="bpomain__h"><span class="bpomain__no en">02</span>新しい接点をつくる</dt><dd class="bpomain__d">新しい顧客との接点づくり</dd></div>
+            <div class="bpomain__i"><dt class="bpomain__h"><span class="bpomain__no en">03</span>現場を見て、課題を整理する</dt><dd class="bpomain__d">現場見学・課題のヒアリングと整理</dd></div>
+          </dl>
           </div>
           <div class="rpanel__side"><p class="rpanel__ch">この仕事らしさ</p><p class="rpanel__t">要望の裏にある、本当の課題を探すこと。一つの相談が、プロジェクトになります。顧客課題や市場機会をもとに、新しい事業・サービスの可能性を形にすることもあります。</p>
             <p class="rpanel__ch">関わる相手</p><ul class="role-people"><li>顧客</li><li>センター長</li><li>FDE</li><li>BPO</li><li>システム / プロダクト</li><li>DTS</li><li>社内の各専門部門</li></ul>
@@ -352,25 +550,72 @@
         <div class="rdeep">
           <h4 class="rdeep__h">要望の裏にある、本当の課題を探す。</h4>
           <p class="rdeep__lead">顧客との接点をつくり、現場を見て課題を整理し、社内の専門部門へつなぐ仕事です。あわせて、顧客課題や市場機会をもとに新しい事業・サービスの可能性を検討する事業開発（BizDev）も、同じ枠組みのなかにあります。営業と事業開発は、それぞれの役割を持ちながら連携します。</p>
-          <p class="rpanel__ch">営業と事業開発、それぞれの役割</p>
-          <ol class="rdeep__flow">
-            <li><span class="en">SALES</span><b>Engagement / Sales</b><p><span>担うこと</span>顧客との関係づくりと課題の把握、提案機会の創出を担当する。</p></li>
-            <li><span class="en">BIZDEV</span><b>BizDev</b><p><span>担うこと</span>顧客課題や市場機会をもとに、新しい事業・サービスの可能性を検討し、形にする。</p></li>
-          </ol>
-          <p class="rpanel__ch">仕事の進め方</p>
-          <ol class="rdeep__flow">
-            <li><span class="en">01</span><b>接点をつくる</b><p><span>会う</span>会社紹介から始め、顧客を実際の現場に招く。</p><p><span>掘り起こす</span>休眠顧客・潜在顧客へ訪問・面談でアプローチする。</p></li>
-            <li><span class="en">02</span><b>現場を見て、課題を聞く</b><p><span>見学する</span>現場見学をしながら課題をヒアリングする。</p></li>
-            <li><span class="en">03</span><b>提案できる範囲を見極める</b><p><span>特定する</span>PALが提案できる範疇を特定する。</p><p><span>整理する</span>課題に必要なデータを分析し、初回提案の方向性を整理する。</p></li>
-            <li><span class="en">04</span><b>社内へつなぐ</b><p><span>トスアップする</span>設計部門や社内の提案専門組織へつなぐ。</p><p><span>還元する</span>顧客の反応をマーケティング部門へ戻し、施策の精度を高める。</p></li>
-          </ol>
-          <p class="rdeep__note">提案から現場導入までは、FDE・BPO・システム / プロダクト・DTSと分担して進めます。</p>
-          <p class="rpanel__ch">この仕事で大切にしていること</p>
-          <ul class="rdeep__pts">
-            <li><i>01</i><div><b>すぐ受注にならなくても、関係を続ける</b><p>長期的な視点でお客様との関係構築を続ける工夫を大切にしています。</p></div></li>
-            <li><i>02</i><div><b>現場と経営の両方の視点で見る</b><p>現場の課題だけでなく、経営的な視点での課題も深く理解します。</p></div></li>
-            <li><i>03</i><div><b>一次情報を社内へ戻す</b><p>現場で得た顧客の反応をマーケティング部門へ還元し、施策の精度を高めます。</p></div></li>
+          <!-- ===== WORK-ROLES v1：灰色の工程ボックス（.rdeep__flow）と .rdeep__pts を撤去し、
+               その原文を「仕事内容を詳しく見る」の中へ移した。1文字も削っていない。
+               開閉は1回だけ。入れ子のアコーディオンも JavaScript も使っていない。 ===== -->
+          <p class="rpanel__ch">そのほかの担当業務</p>
+          <ul class="bpoother">
+            <li>新たな提案・事業機会づくり</li>
+            <li>現場・組織の状態把握と、各部門との連携</li>
+            <li>顧客課題と市場機会の整理</li>
+            <li>新しい事業・サービスの可能性を形にする</li>
           </ul>
+          <details class="bdeep">
+            <summary class="bdeep__s">
+              <span class="bdeep__st">仕事内容を詳しく見る</span>
+              <span class="bdeep__sm">営業と事業開発、それぞれの役割 ／ 仕事の進め方 ／ この仕事で大切にしていること</span>
+              <span class="bdeep__ic" aria-hidden="true"></span>
+            </summary>
+            <div class="bdeep__in">
+
+              <div class="bdeep__blk">
+                <p class="bdeep__lab en">ROLES<span>営業と事業開発、それぞれの役割</span></p>
+                <ol class="bflow bflow--lab">
+                  <li class="bflow__i">
+                    <p class="bflow__h"><span class="bflow__no en">SALES</span>Engagement / Sales</p>
+                    <dl class="bflow__d"><dt>担うこと</dt><dd>顧客との関係づくりと課題の把握、提案機会の創出を担当する。</dd></dl>
+                  </li>
+                  <li class="bflow__i">
+                    <p class="bflow__h"><span class="bflow__no en">BIZDEV</span>BizDev</p>
+                    <dl class="bflow__d"><dt>担うこと</dt><dd>顧客課題や市場機会をもとに、新しい事業・サービスの可能性を検討し、形にする。</dd></dl>
+                  </li>
+                </ol>
+              </div>
+
+              <div class="bdeep__blk">
+                <p class="bdeep__lab en">HOW IT WORKS<span>仕事の進め方</span></p>
+                <ol class="bflow">
+                  <li class="bflow__i">
+                    <p class="bflow__h"><span class="bflow__no en">01</span>接点をつくる</p>
+                    <dl class="bflow__d"><dt>会う</dt><dd>会社紹介から始め、顧客を実際の現場に招く。</dd><dt>掘り起こす</dt><dd>休眠顧客・潜在顧客へ訪問・面談でアプローチする。</dd></dl>
+                  </li>
+                  <li class="bflow__i">
+                    <p class="bflow__h"><span class="bflow__no en">02</span>現場を見て、課題を聞く</p>
+                    <dl class="bflow__d"><dt>見学する</dt><dd>現場見学をしながら課題をヒアリングする。</dd></dl>
+                  </li>
+                  <li class="bflow__i">
+                    <p class="bflow__h"><span class="bflow__no en">03</span>提案できる範囲を見極める</p>
+                    <dl class="bflow__d"><dt>特定する</dt><dd>PALが提案できる範疇を特定する。</dd><dt>整理する</dt><dd>課題に必要なデータを分析し、初回提案の方向性を整理する。</dd></dl>
+                  </li>
+                  <li class="bflow__i">
+                    <p class="bflow__h"><span class="bflow__no en">04</span>社内へつなぐ</p>
+                    <dl class="bflow__d"><dt>トスアップする</dt><dd>設計部門や社内の提案専門組織へつなぐ。</dd><dt>還元する</dt><dd>顧客の反応をマーケティング部門へ戻し、施策の精度を高める。</dd></dl>
+                  </li>
+                </ol>
+                <p class="bdeep__note">提案から現場導入までは、FDE・BPO・システム / プロダクト・DTSと分担して進めます。</p>
+              </div>
+
+              <div class="bdeep__blk">
+                <p class="bdeep__lab en">MINDSET<span>この仕事で大切にしていること</span></p>
+                <ol class="bmind">
+                  <li class="bmind__i"><p class="bmind__h"><span class="bmind__no en">01</span>すぐ受注にならなくても、関係を続ける</p><p class="bmind__t">長期的な視点でお客様との関係構築を続ける工夫を大切にしています。</p></li>
+                  <li class="bmind__i"><p class="bmind__h"><span class="bmind__no en">02</span>現場と経営の両方の視点で見る</p><p class="bmind__t">現場の課題だけでなく、経営的な視点での課題も深く理解します。</p></li>
+                  <li class="bmind__i"><p class="bmind__h"><span class="bmind__no en">03</span>一次情報を社内へ戻す</p><p class="bmind__t">現場で得た顧客の反応をマーケティング部門へ還元し、施策の精度を高めます。</p></li>
+                </ol>
+              </div>
+
+            </div>
+          </details>
         </div>
         <div class="rpanel__foot">
           <a class="rcbtn rcbtn--main" href="people/sales.html">この仕事をしている社員の声を読む<i aria-hidden="true">→</i></a>
@@ -383,7 +628,14 @@
         <div class="rpanel__top"><svg class="rpanel__ic" aria-hidden="true"><use href="#ic2-data"></use></svg><div><h3 class="rpanel__n">マーケティング・コンテンツ制作</h3><p class="rpanel__en en">Marketing / Content</p><p class="rpanel__one">市場と現場の情報を、顧客との接点に変える</p></div></div>
         <div class="rpanel__body">
           <div class="rpanel__main"><p class="rpanel__ch">主な仕事</p>
-            <ul class="role-points"><li>コーポレートサイト・LPの企画、制作、運用、改善</li><li>コラム・動画・SNS・メールマガジンなどの企画・制作</li><li>広告・販促物の企画、制作、運用</li><li>アクセス解析や検索データをもとにした改善</li><li>問い合わせ・資料ダウンロードなどの反応分析</li><li>市場・顧客ニーズ・検索ニーズの情報収集</li><li>各部署へのヒアリングと情報整理</li><li>営業部門への反応共有・施策連携</li></ul>
+            <!-- ===== WORK-ROLES v1：主な仕事を「番号／短い要約見出し／正式な仕事内容」の3段にした。
+                 要約見出し（dt の太字）は正式な業務名称ではなく、dd の正式な仕事内容を読むための見出し。
+                 4件目以降は削除せず、下の「そのほかの担当業務」に移してある。 ===== -->
+          <dl class="bpomain">
+            <div class="bpomain__i"><dt class="bpomain__h"><span class="bpomain__no en">01</span>Webサイト・LPをつくり、改善する</dt><dd class="bpomain__d">コーポレートサイト・LPの企画、制作、運用、改善</dd></div>
+            <div class="bpomain__i"><dt class="bpomain__h"><span class="bpomain__no en">02</span>コンテンツを企画・制作する</dt><dd class="bpomain__d">コラム・動画・SNS・メールマガジンなどの企画・制作</dd></div>
+            <div class="bpomain__i"><dt class="bpomain__h"><span class="bpomain__no en">03</span>広告・販促物を運用する</dt><dd class="bpomain__d">広告・販促物の企画、制作、運用</dd></div>
+          </dl>
           </div>
           <div class="rpanel__side"><p class="rpanel__ch">この仕事らしさ</p><p class="rpanel__t">市場・顧客・現場から情報を集め、それをWebやコンテンツに落とし込み、新しい接点や営業機会へつなげていくこと。制作して終わりではなく、アクセスや反応を見ながら改善を続けます。</p>
             <p class="rpanel__ch">関わる相手</p>
@@ -397,14 +649,53 @@
           <p class="rdeep__lead">マーケティング・コンテンツ制作は、Webサイト・LP・コラム・動画・SNS・メールマガジン・広告などを企画し、制作・運用・改善まで担当する仕事です。</p>
           <p class="rdeep__lead">施策をつくる前には、顧客の反応や検索データ、市場の変化だけでなく、BPO・DTS・FDE・営業など社内各部署から現場の情報を集めます。</p>
           <p class="rdeep__lead">集めた情報を、誰に何をどう伝えるか整理し、Webやコンテンツとして形にしたうえで、公開後のアクセスや問い合わせの反応を見ながら改善していきます。担当する媒体と範囲は役割によって異なります。</p>
-          <p class="rpanel__ch">仕事の進め方</p>
-          <ol class="rdeep__flow">
-            <li><span class="en">01 INFORMATION</span><b>集める</b><p>顧客の反応、市場動向、検索データ、社内各部署から現場の情報を集める。</p></li>
-            <li><span class="en">02 STRUCTURE</span><b>整理する</b><p>誰に、何を、どう伝えるべきかを整理し、施策の目的を決める。</p></li>
-            <li><span class="en">03 PLAN</span><b>企画する</b><p>LP、Webサイト、コラム、動画、SNS、メルマガ、広告など、最適な手段を考える。</p></li>
-            <li><span class="en">04 CREATE</span><b>つくる・届ける</b><p>コンテンツを制作し、Web・広告・メールなどを通じて公開・配信する。</p></li>
-            <li><span class="en">05 IMPROVE</span><b>分析して改善する</b><p>アクセス、検索、問い合わせ、資料ダウンロードなどの反応を確認し、次の改善へつなげる。</p></li>
-          </ol>
+          <!-- ===== WORK-ROLES v1：灰色の工程ボックス（.rdeep__flow）と .rdeep__pts を撤去し、
+               その原文を「仕事内容を詳しく見る」の中へ移した。1文字も削っていない。
+               開閉は1回だけ。入れ子のアコーディオンも JavaScript も使っていない。 ===== -->
+          <p class="rpanel__ch">そのほかの担当業務</p>
+          <ul class="bpoother">
+            <li>アクセス解析や検索データをもとにした改善</li>
+            <li>問い合わせ・資料ダウンロードなどの反応分析</li>
+            <li>市場・顧客ニーズ・検索ニーズの情報収集</li>
+            <li>各部署へのヒアリングと情報整理</li>
+            <li>営業部門への反応共有・施策連携</li>
+          </ul>
+          <details class="bdeep">
+            <summary class="bdeep__s">
+              <span class="bdeep__st">仕事内容を詳しく見る</span>
+              <span class="bdeep__sm">仕事の進め方</span>
+              <span class="bdeep__ic" aria-hidden="true"></span>
+            </summary>
+            <div class="bdeep__in">
+
+              <div class="bdeep__blk">
+                <p class="bdeep__lab en">HOW IT WORKS<span>仕事の進め方</span></p>
+                <ol class="bflow bflow--lab">
+                  <li class="bflow__i">
+                    <p class="bflow__h"><span class="bflow__no en">01 INFORMATION</span>集める</p>
+                    <p class="bflow__t">顧客の反応、市場動向、検索データ、社内各部署から現場の情報を集める。</p>
+                  </li>
+                  <li class="bflow__i">
+                    <p class="bflow__h"><span class="bflow__no en">02 STRUCTURE</span>整理する</p>
+                    <p class="bflow__t">誰に、何を、どう伝えるべきかを整理し、施策の目的を決める。</p>
+                  </li>
+                  <li class="bflow__i">
+                    <p class="bflow__h"><span class="bflow__no en">03 PLAN</span>企画する</p>
+                    <p class="bflow__t">LP、Webサイト、コラム、動画、SNS、メルマガ、広告など、最適な手段を考える。</p>
+                  </li>
+                  <li class="bflow__i">
+                    <p class="bflow__h"><span class="bflow__no en">04 CREATE</span>つくる・届ける</p>
+                    <p class="bflow__t">コンテンツを制作し、Web・広告・メールなどを通じて公開・配信する。</p>
+                  </li>
+                  <li class="bflow__i">
+                    <p class="bflow__h"><span class="bflow__no en">05 IMPROVE</span>分析して改善する</p>
+                    <p class="bflow__t">アクセス、検索、問い合わせ、資料ダウンロードなどの反応を確認し、次の改善へつなげる。</p>
+                  </li>
+                </ol>
+              </div>
+
+            </div>
+          </details>
         </div>
         <p class="rpanel__note">※ マーケティング・コンテンツ制作は現在募集していません。仕事内容の紹介として掲載しています。</p>
       </article>
@@ -413,7 +704,14 @@
         <div class="rpanel__top"><svg class="rpanel__ic" aria-hidden="true"><use href="#ic-worker"></use></svg><div><h3 class="rpanel__n">人材派遣営業</h3><p class="rpanel__en en">Staffing Sales</p><p class="rpanel__one">人材の提案から、物流現場の改善につなげる</p></div></div>
         <div class="rpanel__body">
           <div class="rpanel__main"><p class="rpanel__ch">主な仕事</p>
-            <ul class="role-points"><li>求人を出している企業へのアプローチ</li><li>既存顧客からの他拠点紹介</li><li>欠員や業務ボトルネックのヒアリング</li><li>物流倉庫への人材派遣の提案</li><li>自社開発の勤怠管理システム・作業可視化システムの導入提案</li></ul>
+            <!-- ===== WORK-ROLES v1：主な仕事を「番号／短い要約見出し／正式な仕事内容」の3段にした。
+                 要約見出し（dt の太字）は正式な業務名称ではなく、dd の正式な仕事内容を読むための見出し。
+                 4件目以降は削除せず、下の「そのほかの担当業務」に移してある。 ===== -->
+          <dl class="bpomain">
+            <div class="bpomain__i"><dt class="bpomain__h"><span class="bpomain__no en">01</span>企業へアプローチする</dt><dd class="bpomain__d">求人を出している企業へのアプローチ</dd></div>
+            <div class="bpomain__i"><dt class="bpomain__h"><span class="bpomain__no en">02</span>既存顧客から広げる</dt><dd class="bpomain__d">既存顧客からの他拠点紹介</dd></div>
+            <div class="bpomain__i"><dt class="bpomain__h"><span class="bpomain__no en">03</span>欠員と詰まりを聞き取る</dt><dd class="bpomain__d">欠員や業務ボトルネックのヒアリング</dd></div>
+          </dl>
           </div>
           <div class="rpanel__side"><p class="rpanel__ch">この仕事らしさ</p><p class="rpanel__t">物流現場の人員課題に向き合いながら、勤怠管理や作業可視化の仕組みを活用し、自動化・省人化につながる提案にも関われること。</p>
             <p class="rpanel__ch">関わる相手</p><ul class="role-people"><li>物流倉庫の顧客企業</li><li>既存顧客</li><li>営業事務</li></ul>
@@ -422,21 +720,57 @@
         <div class="rdeep">
           <h4 class="rdeep__h">人材の提案だけで、終わらない。</h4>
           <p class="rdeep__lead">物流倉庫への人材派遣の法人営業です。労働力の提供にとどまらず、顧客の課題に応じて、社内の専門部署と連携しながらシステムの活用や省人化につながる提案までを行います。求職者対応は営業事務が担当しているため、営業は企業への提案に時間を使えます。</p>
-          <p class="rpanel__ch">仕事の進め方</p>
-          <ol class="rdeep__flow">
-            <li><span class="en">01</span><b>顧客との接点をつくる</b><p><span>案件を獲得する</span>求人を出している企業へアプローチする。</p><p><span>広げる</span>既存顧客から、ほかの拠点を紹介してもらう。</p></li>
-            <li><span class="en">02</span><b>現場の課題を聞く</b><p><span>欠員を確認する</span>人員の欠員状況を確認する。</p><p><span>詰まりを探す</span>業務上のボトルネックをヒアリングする。</p></li>
-            <li><span class="en">03</span><b>人材・仕組みを提案する</b><p><span>人材を提案する</span>顧客の人員課題に応じた人材派遣を提案する。</p><p><span>仕組みを提案する</span>課題に応じて、社内の専門部署と連携しながら、自社開発の勤怠管理や作業可視化のシステムを提案する。</p></li>
-            <li><span class="en">04</span><b>営業活動を管理・改善する</b><p><span>逆算する</span>目標から逆算した行動計画を立てる。</p><p><span>見直す</span>営業行動の量と質を高め、プロセス管理を自ら実践する。</p></li>
-          </ol>
-          <p class="rdeep__note">4段階は仕事の流れを理解しやすくするための整理で、すべての案件がこの順に進むわけではありません。</p>
-          <p class="rpanel__ch">この仕事で大切にしていること</p>
-          <ul class="rdeep__pts">
-            <li><i>01</i><div><b>人の課題を入口に、現場の課題を見る</b><p>欠員だけでなく、どこに時間がかかっているのかまで聞きにいきます。</p></div></li>
-            <li><i>02</i><div><b>自社のシステムを提案に使う</b><p>作業可視化システムなどで現場の状況をデータにし、社内の専門部署とともに自動化・省人化につながる提案へつなげます。</p></div></li>
-            <li><i>03</i><div><b>目標から逆算して動く</b><p>組織の営業行動量と質を高め、目標達成に向けたプロセス管理を自ら実践します。</p></div></li>
-            <li><i>04</i><div><b>店舗運営・労務管理の経験が活きる</b><p>店長・副店長などで労務管理を経験した方が、その経験を活かして働いています。</p></div></li>
+          <!-- ===== WORK-ROLES v1：灰色の工程ボックス（.rdeep__flow）と .rdeep__pts を撤去し、
+               その原文を「仕事内容を詳しく見る」の中へ移した。1文字も削っていない。
+               開閉は1回だけ。入れ子のアコーディオンも JavaScript も使っていない。 ===== -->
+          <p class="rpanel__ch">そのほかの担当業務</p>
+          <ul class="bpoother">
+            <li>物流倉庫への人材派遣の提案</li>
+            <li>自社開発の勤怠管理システム・作業可視化システムの導入提案</li>
           </ul>
+          <details class="bdeep">
+            <summary class="bdeep__s">
+              <span class="bdeep__st">仕事内容を詳しく見る</span>
+              <span class="bdeep__sm">仕事の進め方 ／ この仕事で大切にしていること</span>
+              <span class="bdeep__ic" aria-hidden="true"></span>
+            </summary>
+            <div class="bdeep__in">
+
+              <div class="bdeep__blk">
+                <p class="bdeep__lab en">HOW IT WORKS<span>仕事の進め方</span></p>
+                <ol class="bflow">
+                  <li class="bflow__i">
+                    <p class="bflow__h"><span class="bflow__no en">01</span>顧客との接点をつくる</p>
+                    <dl class="bflow__d"><dt>案件を獲得する</dt><dd>求人を出している企業へアプローチする。</dd><dt>広げる</dt><dd>既存顧客から、ほかの拠点を紹介してもらう。</dd></dl>
+                  </li>
+                  <li class="bflow__i">
+                    <p class="bflow__h"><span class="bflow__no en">02</span>現場の課題を聞く</p>
+                    <dl class="bflow__d"><dt>欠員を確認する</dt><dd>人員の欠員状況を確認する。</dd><dt>詰まりを探す</dt><dd>業務上のボトルネックをヒアリングする。</dd></dl>
+                  </li>
+                  <li class="bflow__i">
+                    <p class="bflow__h"><span class="bflow__no en">03</span>人材・仕組みを提案する</p>
+                    <dl class="bflow__d"><dt>人材を提案する</dt><dd>顧客の人員課題に応じた人材派遣を提案する。</dd><dt>仕組みを提案する</dt><dd>課題に応じて、社内の専門部署と連携しながら、自社開発の勤怠管理や作業可視化のシステムを提案する。</dd></dl>
+                  </li>
+                  <li class="bflow__i">
+                    <p class="bflow__h"><span class="bflow__no en">04</span>営業活動を管理・改善する</p>
+                    <dl class="bflow__d"><dt>逆算する</dt><dd>目標から逆算した行動計画を立てる。</dd><dt>見直す</dt><dd>営業行動の量と質を高め、プロセス管理を自ら実践する。</dd></dl>
+                  </li>
+                </ol>
+                <p class="bdeep__note">4段階は仕事の流れを理解しやすくするための整理で、すべての案件がこの順に進むわけではありません。</p>
+              </div>
+
+              <div class="bdeep__blk">
+                <p class="bdeep__lab en">MINDSET<span>この仕事で大切にしていること</span></p>
+                <ol class="bmind">
+                  <li class="bmind__i"><p class="bmind__h"><span class="bmind__no en">01</span>人の課題を入口に、現場の課題を見る</p><p class="bmind__t">欠員だけでなく、どこに時間がかかっているのかまで聞きにいきます。</p></li>
+                  <li class="bmind__i"><p class="bmind__h"><span class="bmind__no en">02</span>自社のシステムを提案に使う</p><p class="bmind__t">作業可視化システムなどで現場の状況をデータにし、社内の専門部署とともに自動化・省人化につながる提案へつなげます。</p></li>
+                  <li class="bmind__i"><p class="bmind__h"><span class="bmind__no en">03</span>目標から逆算して動く</p><p class="bmind__t">組織の営業行動量と質を高め、目標達成に向けたプロセス管理を自ら実践します。</p></li>
+                  <li class="bmind__i"><p class="bmind__h"><span class="bmind__no en">04</span>店舗運営・労務管理の経験が活きる</p><p class="bmind__t">店長・副店長などで労務管理を経験した方が、その経験を活かして働いています。</p></li>
+                </ol>
+              </div>
+
+            </div>
+          </details>
         </div>
         <div class="rpanel__foot"><a class="rcbtn rcbtn--main" href="jobs/openings/staffing-sales-leader.html">募集要項を見る<i aria-hidden="true">→</i></a></div>
         <p class="rpanel__note">応募条件・勤務地・給与は<a class="textlink textlink--sm" href="jobs/openings/staffing-sales-leader.html">募集要項</a>をご覧ください。</p>
@@ -446,7 +780,14 @@
         <div class="rpanel__top"><svg class="rpanel__ic" aria-hidden="true"><use href="#ic-office"></use></svg><div><h3 class="rpanel__n">コーポレート</h3><p class="rpanel__en en">Corporate</p><p class="rpanel__one">人・組織・会社運営を支える</p></div></div>
         <div class="rpanel__body">
           <div class="rpanel__main"><p class="rpanel__ch">主な仕事</p>
-            <ul class="role-points"><li>経理・総務・労務・法務など、事業と組織を支える仕事</li><li>採用などの人事業務（労務が担当）</li><li>社宅・社用車・通信・資産管理などの日常業務（総務）</li><li>社内申請のシステム化</li><li>業務フロー改善</li><li>関係部署との打ち合わせと、中長期的な課題への対応</li></ul>
+            <!-- ===== WORK-ROLES v1：主な仕事を「番号／短い要約見出し／正式な仕事内容」の3段にした。
+                 要約見出し（dt の太字）は正式な業務名称ではなく、dd の正式な仕事内容を読むための見出し。
+                 4件目以降は削除せず、下の「そのほかの担当業務」に移してある。 ===== -->
+          <dl class="bpomain">
+            <div class="bpomain__i"><dt class="bpomain__h"><span class="bpomain__no en">01</span>事業と組織を支える</dt><dd class="bpomain__d">経理・総務・労務・法務など、事業と組織を支える仕事</dd></div>
+            <div class="bpomain__i"><dt class="bpomain__h"><span class="bpomain__no en">02</span>人事業務を担う</dt><dd class="bpomain__d">採用などの人事業務（労務が担当）</dd></div>
+            <div class="bpomain__i"><dt class="bpomain__h"><span class="bpomain__no en">03</span>総務の日常業務を担う</dt><dd class="bpomain__d">社宅・社用車・通信・資産管理などの日常業務（総務）</dd></div>
+          </dl>
           </div>
           <div class="rpanel__side"><p class="rpanel__ch">この仕事らしさ</p><p class="rpanel__t">日常業務を支えながら、社内の仕組み自体も改善していくこと。</p>
             <p class="rpanel__ch">関わる相手</p><ul class="role-people"><li>各部署のメンバー</li><li>社員</li></ul>
@@ -455,18 +796,52 @@
         <div class="rdeep">
           <h4 class="rdeep__h">社員が働くための業務と、会社運営の業務。</h4>
           <p class="rdeep__lead">経理・総務・労務・法務の4領域があり、事業と組織を支える仕事です。採用などの人事業務は労務が担当しています。社員が日々働くために必要な業務と、会社運営に関わる業務の両方があり、担当する領域は部署や役割によって異なります。ここで紹介しているのは総務課の仕事です。</p>
-          <p class="rpanel__ch">仕事の進め方</p>
-          <ol class="rdeep__flow">
-            <li><span class="en">01</span><b>日常業務を管理する</b><p><span>進捗を見る</span>社宅・社用車・通信・各種保険・事故対応・資産管理などの進捗を管理する。</p></li>
-            <li><span class="en">02</span><b>会社運営の業務を進める</b><p><span>手続きを担う</span>会社の登記関連業務や、プライバシーマークの維持などを担当する。</p></li>
-            <li><span class="en">03</span><b>仕組みを改善する</b><p><span>直す</span>社内申請のシステム化や、業務フローの見直しに取り組む。</p></li>
-          </ol>
-          <p class="rdeep__note">ここで紹介しているのは総務課の業務です。</p>
-          <p class="rpanel__ch">この仕事で大切にしていること</p>
-          <ul class="rdeep__pts">
-            <li><i>01</i><div><b>離れた場所の人に、早く返す</b><p>リモート勤務や各拠点の現場担当者との連絡は基本的にチャットが中心となるため、できるだけ迅速に回答することを心がけています。</p></div></li>
-            <li><i>02</i><div><b>正確に進めたうえで、仕組みをつくる</b><p>日常業務を正確に進めるだけでなく、会社全体の生産性向上につながる仕組みづくりにも取り組みます。</p></div></li>
+          <!-- ===== WORK-ROLES v1：灰色の工程ボックス（.rdeep__flow）と .rdeep__pts を撤去し、
+               その原文を「仕事内容を詳しく見る」の中へ移した。1文字も削っていない。
+               開閉は1回だけ。入れ子のアコーディオンも JavaScript も使っていない。 ===== -->
+          <p class="rpanel__ch">そのほかの担当業務</p>
+          <ul class="bpoother">
+            <li>社内申請のシステム化</li>
+            <li>業務フロー改善</li>
+            <li>関係部署との打ち合わせと、中長期的な課題への対応</li>
           </ul>
+          <details class="bdeep">
+            <summary class="bdeep__s">
+              <span class="bdeep__st">仕事内容を詳しく見る</span>
+              <span class="bdeep__sm">仕事の進め方 ／ この仕事で大切にしていること</span>
+              <span class="bdeep__ic" aria-hidden="true"></span>
+            </summary>
+            <div class="bdeep__in">
+
+              <div class="bdeep__blk">
+                <p class="bdeep__lab en">HOW IT WORKS<span>仕事の進め方</span></p>
+                <ol class="bflow">
+                  <li class="bflow__i">
+                    <p class="bflow__h"><span class="bflow__no en">01</span>日常業務を管理する</p>
+                    <dl class="bflow__d"><dt>進捗を見る</dt><dd>社宅・社用車・通信・各種保険・事故対応・資産管理などの進捗を管理する。</dd></dl>
+                  </li>
+                  <li class="bflow__i">
+                    <p class="bflow__h"><span class="bflow__no en">02</span>会社運営の業務を進める</p>
+                    <dl class="bflow__d"><dt>手続きを担う</dt><dd>会社の登記関連業務や、プライバシーマークの維持などを担当する。</dd></dl>
+                  </li>
+                  <li class="bflow__i">
+                    <p class="bflow__h"><span class="bflow__no en">03</span>仕組みを改善する</p>
+                    <dl class="bflow__d"><dt>直す</dt><dd>社内申請のシステム化や、業務フローの見直しに取り組む。</dd></dl>
+                  </li>
+                </ol>
+                <p class="bdeep__note">ここで紹介しているのは総務課の業務です。</p>
+              </div>
+
+              <div class="bdeep__blk">
+                <p class="bdeep__lab en">MINDSET<span>この仕事で大切にしていること</span></p>
+                <ol class="bmind">
+                  <li class="bmind__i"><p class="bmind__h"><span class="bmind__no en">01</span>離れた場所の人に、早く返す</p><p class="bmind__t">リモート勤務や各拠点の現場担当者との連絡は基本的にチャットが中心となるため、できるだけ迅速に回答することを心がけています。</p></li>
+                  <li class="bmind__i"><p class="bmind__h"><span class="bmind__no en">02</span>正確に進めたうえで、仕組みをつくる</p><p class="bmind__t">日常業務を正確に進めるだけでなく、会社全体の生産性向上につながる仕組みづくりにも取り組みます。</p></li>
+                </ol>
+              </div>
+
+            </div>
+          </details>
         </div>
         <div class="rpanel__foot">
           <a class="rcbtn rcbtn--main" href="people/corporate.html">この仕事をしている社員の声を読む<i aria-hidden="true">→</i></a>

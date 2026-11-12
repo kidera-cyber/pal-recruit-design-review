@@ -1,0 +1,245 @@
+@charset "utf-8";
+/* ============================================================================
+   WORK｜9職種パネルの共通コンポーネント  WORK-ROLES v1
+
+   もとは #role-bpo（物流センター運営）だけに当てていた work-bpo.css と
+   work-bpo-deep.css を、セレクタを .rpanel へ広げて1本に統合したもの。
+   規則の中身は BPO で承認済みのものと同じなので、BPO の見た目は変わらない。
+   残り8職種が同じ規則を受け取り、9職種のデザインが揃う。
+
+   取り除いたのは、旧デザイン（.rdeep__flow の灰色ボックス／.rdeep__pts）
+   向けの規則だけ。9職種とも .bflow / .bmind へ移したため適用先が無い。
+
+   共通 site/assets/css/style.css は変更していない。
+   site/work/index.html はこのファイルを読み込まないので影響しない。
+
+   配色は White Editorial A案
+     白 #FFFFFF／濃紺 #262946／PALレッド #CF131B／本文 #53545A
+     補助 #6B6D81／罫線 #DAE1F2・#E7EBF4／面 #F7F8F9
+   ============================================================================ */
+
+.rpanel{
+  --b-ink:#262946;
+  --b-ink2:#464A6F;
+  --b-sub:#53545A;
+  --b-mid:#6B6D81;
+  --b-red:#CF131B;
+  --b-line:#DAE1F2;
+  --b-line2:#E7EBF4;
+}
+
+/* 小見出し（主な仕事／そのほかの担当業務／仕事の進め方 …）。
+   共通の 12px グレーは弱いので、赤い短線＋濃紺にする */
+.rpanel .rpanel__ch{
+  position:relative;padding-left:32px;margin-bottom:16px;
+  font-size:13px;font-weight:700;letter-spacing:.08em;color:var(--b-ink);
+  text-transform:none;
+}
+.rpanel .rpanel__ch::before{
+  content:"";position:absolute;left:0;top:.62em;width:22px;height:2px;background:var(--b-red);
+}
+
+/* ───────── ① 主な仕事 ───────── */
+.rpanel .bpomain{margin:0;padding:0;border-top:1px solid var(--b-line)}
+.rpanel .bpomain__i{
+  padding:clamp(15px,1.8vw,19px) 0;border-bottom:1px solid var(--b-line2);
+}
+.rpanel .bpomain__h{
+  display:flex;align-items:baseline;gap:14px;margin:0 0 6px;
+  font-size:clamp(16px,1.8vw,18px);font-weight:700;line-height:1.55;
+  letter-spacing:.01em;color:var(--b-ink);
+}
+.rpanel .bpomain__no{
+  flex:none;font:900 clamp(18px,2vw,21px)/1 Lato,sans-serif;
+  letter-spacing:.02em;color:var(--b-red);
+}
+.rpanel .bpomain__d{
+  margin:0 0 0 34px;font-size:14.5px;line-height:1.85;color:var(--b-sub);
+}
+
+/* この仕事らしさ／関わる相手（右カラム）は、主な仕事より一段弱く */
+.rpanel .rpanel__t{font-size:14px;line-height:1.9;color:var(--b-sub)}
+.rpanel .role-people li{font-size:14px;color:var(--b-ink)}
+
+/* ───────── そのほかの担当業務 ───────── */
+.rpanel .bpoother{
+  list-style:none;margin:0 0 26px;padding:0;border-top:1px solid var(--b-line2);
+}
+.rpanel .bpoother li{
+  position:relative;padding:12px 0 12px 28px;border-bottom:1px solid var(--b-line2);
+  font-size:15px;line-height:1.75;color:var(--b-ink);
+}
+.rpanel .bpoother li::before{
+  content:"";position:absolute;left:0;top:50%;width:15px;height:1px;
+  background:var(--b-red);transform:translateY(-50%);
+}
+.rpanel .bpoother li::after{
+  content:"";position:absolute;left:10px;top:50%;width:6px;height:6px;
+  border-top:1px solid var(--b-red);border-right:1px solid var(--b-red);
+  transform:translateY(-50%) rotate(45deg);
+}
+
+.rpanel .rdeep__note{
+  margin:0 0 clamp(24px,2.8vw,32px);padding-left:16px;
+  border-left:2px solid var(--b-line);
+  font-size:13.5px;line-height:1.85;color:var(--b-mid);
+}
+
+/* ───────── そのほかの読みやすさ ───────── */
+.rpanel .rdeep__h{font-size:clamp(17px,2vw,20px);line-height:1.5;color:var(--b-ink)}
+.rpanel .rdeep__lead{font-size:14.5px;line-height:1.9;color:var(--b-sub);max-width:46em}
+
+/* ───────── レスポンシブ ───────── */
+@media(max-width:1023px){
+  
+  
+  
+  
+  
+  
+  
+  
+}
+@media(max-width:760px){
+  
+  
+  
+  
+  
+  
+  .rpanel .bpomain__h{font-size:16px;gap:12px}
+  .rpanel .bpomain__d{margin-left:30px;font-size:14.5px}
+  .rpanel .bpoother li{font-size:14.5px}
+}
+
+.rpanel .bdeep{
+  margin:clamp(22px,2.6vw,28px) 0 0;
+  border:1px solid var(--b-line,#DAE1F2);border-radius:12px;background:#FFFFFF;
+}
+.rpanel .bdeep__s{
+  display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;
+  gap:3px 18px;padding:clamp(16px,2vw,20px) clamp(16px,2vw,24px);
+  cursor:pointer;list-style:none;
+}
+.rpanel .bdeep__s::-webkit-details-marker{display:none}
+.rpanel .bdeep__s:hover{background:#F7F8F9}
+.rpanel .bdeep[open] .bdeep__s{border-bottom:1px solid #E7EBF4}
+.rpanel .bdeep__st{grid-column:1;font-size:clamp(15.5px,1.7vw,17px);font-weight:700;color:#262946}
+.rpanel .bdeep__sm{grid-column:1;font-size:12.5px;line-height:1.7;color:#6B6D81}
+.rpanel .bdeep__ic{grid-area:1 / 2 / 3 / 3;position:relative;width:20px;height:20px}
+.rpanel .bdeep__ic::before,.rpanel .bdeep__ic::after{
+  content:"";position:absolute;left:50%;top:50%;background:#CF131B;transform:translate(-50%,-50%);
+}
+.rpanel .bdeep__ic::before{width:16px;height:2px}
+.rpanel .bdeep__ic::after{width:2px;height:16px;transition:transform .18s}
+.rpanel .bdeep[open] .bdeep__ic::after{transform:translate(-50%,-50%) scaleY(0)}
+.rpanel .bdeep__s:focus-visible{outline:2px solid #CF131B;outline-offset:-3px;border-radius:12px}
+
+.rpanel .bdeep__in{padding:clamp(20px,2.4vw,26px) clamp(16px,2vw,24px) clamp(22px,2.6vw,28px)}
+.rpanel .bdeep__blk + .bdeep__blk{margin-top:clamp(26px,3vw,34px)}
+
+/* 小さな英字ラベル＋日本語見出し */
+.rpanel .bdeep__lab{
+  display:flex;align-items:baseline;gap:13px;flex-wrap:wrap;margin:0 0 14px;
+  font:700 10.5px/1.4 Lato,sans-serif;letter-spacing:.17em;color:#CF131B;
+}
+.rpanel .bdeep__lab span{
+  font-family:inherit;font-size:14.5px;font-weight:700;letter-spacing:.04em;color:#262946;
+}
+
+/* ───────── 仕事の進め方：見出しを先に、説明はその下に ───────── */
+.rpanel .bflow{
+  list-style:none;margin:0;padding:0;
+  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:clamp(18px,2.2vw,24px) clamp(26px,3.2vw,44px);
+}
+.rpanel .bflow__i{padding-top:14px;border-top:1px solid #E7EBF4}
+.rpanel .bflow__h{
+  display:flex;align-items:baseline;gap:12px;margin:0 0 9px;
+  font-size:clamp(15px,1.7vw,16.5px);font-weight:700;line-height:1.55;color:#262946;
+}
+.rpanel .bflow__no{
+  flex:none;font:900 clamp(16px,1.8vw,19px)/1 Lato,sans-serif;color:#CF131B;
+}
+.rpanel .bflow__d{margin:0;padding-left:31px}
+.rpanel .bflow__d dt{
+  font-size:12.5px;font-weight:700;letter-spacing:.03em;color:#464A6F;margin-bottom:2px;
+}
+.rpanel .bflow__d dd{
+  margin:0 0 9px;font-size:13.5px;line-height:1.85;color:#53545A;
+}
+.rpanel .bflow__d dd:last-child{margin-bottom:0}
+
+/* 業務条件の注記。工程の説明の末尾に置く */
+.rpanel .bdeep__note{
+  margin:clamp(18px,2.2vw,22px) 0 0;padding-left:15px;
+  border-left:2px solid #DAE1F2;
+  font-size:13.5px;line-height:1.85;color:#6B6D81;
+}
+
+/* ───────── 大切にしていること ───────── */
+.rpanel .bmind{
+  list-style:none;margin:0;padding:0;
+  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:clamp(18px,2.2vw,24px) clamp(26px,3.2vw,44px);
+}
+.rpanel .bmind__i{padding-top:14px;border-top:1px solid #E7EBF4}
+.rpanel .bmind__h{
+  display:flex;align-items:baseline;gap:12px;margin:0 0 7px;
+  font-size:clamp(15px,1.7vw,16.5px);font-weight:700;line-height:1.55;color:#262946;
+}
+.rpanel .bmind__no{
+  flex:none;font:900 clamp(16px,1.8vw,19px)/1 Lato,sans-serif;color:#CF131B;
+}
+.rpanel .bmind__t{
+  margin:0;padding-left:31px;font-size:13.5px;line-height:1.85;color:#53545A;
+}
+
+/* ───────── CAREER への導線（控えめなテキストリンク1本） ───────── */
+.rpanel .bdeep__career{
+  margin:clamp(18px,2.2vw,24px) 0 0;
+}
+.rpanel .bdeep__career .textlink{font-size:14px;font-weight:700;color:#262946}
+.rpanel .bdeep__career .textlink:hover{color:#CF131B}
+
+@media print{ .rpanel .bdeep__in{display:block!important} }
+@media(prefers-reduced-motion:reduce){ .rpanel .bdeep__ic::after{transition:none} }
+@media(max-width:860px){
+  .rpanel .bflow,.rpanel .bmind{grid-template-columns:minmax(0,1fr);gap:16px}
+}
+@media(max-width:760px){
+  .rpanel .bdeep__s{padding:15px}
+  .rpanel .bdeep__st{font-size:15.5px}
+  .rpanel .bdeep__sm{font-size:12px}
+  .rpanel .bdeep__in{padding:18px 15px 22px}
+  .rpanel .bflow__d,.rpanel .bmind__t{padding-left:0}
+  .rpanel .bflow__h,.rpanel .bmind__h{gap:10px}
+}
+
+
+/* ============================================================
+   ===== WORK-ROLES v1 追加分 =====
+   BPO には無かった2つの形を、同じ視覚言語のまま受け止める。
+     bflow--lab  番号が「01 INFORMATION」「SALES」のように長い工程
+                 （マーケティング・コンテンツ制作／営業・事業開発の役割分担）
+     bflow__t    小見出し（dt）を持たない、説明文だけの工程
+   ============================================================ */
+
+/* 長いラベルは番号の位置に置かず、見出しの上へ独立させる */
+.rpanel .bflow--lab .bflow__h{flex-wrap:wrap}
+.rpanel .bflow--lab .bflow__no{
+  flex:0 0 100%;margin-bottom:7px;
+  font:700 10.5px/1.4 Lato,sans-serif;letter-spacing:.17em;color:#CF131B;
+}
+.rpanel .bflow--lab .bflow__d,
+.rpanel .bflow--lab .bflow__t{padding-left:0}
+
+/* 小見出しを持たない工程の説明文。bflow__d dd と同じ見え方に揃える */
+.rpanel .bflow__t{
+  margin:0;padding-left:31px;font-size:13.5px;line-height:1.85;color:#53545A;
+}
+
+@media(max-width:760px){
+  .rpanel .bflow__t{padding-left:0}
+}
+/* ===== WORK-ROLES v1 追加分 END ===== */
