@@ -18,6 +18,8 @@
 <!-- ===== BPO-V3 v1：#role-bpo（物流センター運営）パネル専用。
      共通 style.css は変更せず、このパネルの中だけを組み直す。 ===== -->
 <link rel="stylesheet" href="assets/css/work-bpo.css?v=1">
+<!-- ===== BPO-DEEP v1：#role-bpo の「詳しい仕事内容」専用 ===== -->
+<link rel="stylesheet" href="assets/css/work-bpo-deep.css?v=1">
 <!-- ===== WHITE-EDITORIAL v1：採用サイト共通の白基調デザイン（A案）。
      本文・NEXT STEP・フッターの配色は assets/css/white-editorial.css が
      .we スコープで後勝ち上書きする。HTML の文言・リンクは変更していない。
@@ -146,21 +148,56 @@
             <li>取引先との打ち合わせ、現場確認</li>
             <li>拠点間の調整と、改善施策の横展開</li>
           </ul>
-          <p class="rpanel__ch">仕事の進め方</p>
-          <ol class="rdeep__flow">
-            <li><span class="en">01</span><b>現場の状況を把握する</b><p><span>稼働を見る</span>各拠点の稼働状況を確認し、その日の作業量をつかむ。</p></li>
-            <li><span class="en">02</span><b>人員と作業を組む</b><p><span>人員を配置する</span>作業量に合わせて人員を配置する。</p><p><span>進捗を見る</span>作業の進み方を管理し、滞りがあれば手を打つ。</p></li>
-            <li><span class="en">03</span><b>数値で確かめる</b><p><span>品質と安全</span>作業品質と安全を保つための確認を行う。</p><p><span>生産性と収支</span>生産性・売上・原価を確認し、課題の優先順位を決める。</p></li>
-            <li><span class="en">04</span><b>改善につなげる</b><p><span>やり方を変える</span>作業方法の見直しや機械化を進める。</p><p><span>取引先と話す</span>取引先との打ち合わせや現場確認を重ね、改善提案につなげる。</p></li>
-          </ol>
-          <p class="rdeep__note">新しく受託する拠点では、立ち上げから関わることもあります。</p>
-          <p class="rpanel__ch">この仕事で大切にしていること</p>
-          <ul class="rdeep__pts">
-            <li><i>01</i><div><b>人を増やす前に、作業そのものを疑う</b><p>課題に対して人を増やすだけで解決するのではなく、作業そのものを変えられないか、機械やシステムに置き換えられないかを考えます。</p></div></li>
-            <li><i>02</i><div><b>現場のメンバーの意見から始める</b><p>現場で働くメンバーの意見を大切にしながら、既存のやり方にとらわれない改善を考えます。</p></div></li>
-            <li><i>03</i><div><b>数字と現場の両方から判断する</b><p>生産性や収支の数字と、現場で実際に起きていることの両方を見て決めます。</p></div></li>
-            <li><i>04</i><div><b>顧客と条件を話す（責任者候補の役割）</b><p>拠点によっては、クライアントとの物量・単価・オペレーションの交渉を通じて、拠点の収益改善を担当します。</p></div></li>
-          </ul>
+          <!-- ===== BPO-DEEP v1：大きな工程図（.rdeep__flow）を撤去し、その説明を
+               「詳しい仕事内容」の中へ移した。原文は1文字も削っていない。
+               ・工程の見出し4件と、その中の小見出し7件・説明文7件をそのまま収録
+               ・業務条件の注記は、工程の説明の末尾へ移した
+               ・開閉は1回だけ。入れ子のアコーディオンもJavaScriptも使っていない
+               復元元：git e50051c の work.html ===== -->
+          <details class="bdeep">
+            <summary class="bdeep__s">
+              <span class="bdeep__st">仕事内容を詳しく見る</span>
+              <span class="bdeep__sm">仕事の進め方 ／ この仕事で大切にしていること</span>
+              <span class="bdeep__ic" aria-hidden="true"></span>
+            </summary>
+            <div class="bdeep__in">
+
+              <div class="bdeep__blk">
+                <p class="bdeep__lab en">HOW IT WORKS<span>仕事の進め方</span></p>
+                <ol class="bflow">
+                  <li class="bflow__i">
+                    <p class="bflow__h"><span class="bflow__no en">01</span>現場の状況を把握する</p>
+                    <dl class="bflow__d"><dt>稼働を見る</dt><dd>各拠点の稼働状況を確認し、その日の作業量をつかむ。</dd></dl>
+                  </li>
+                  <li class="bflow__i">
+                    <p class="bflow__h"><span class="bflow__no en">02</span>人員と作業を組む</p>
+                    <dl class="bflow__d"><dt>人員を配置する</dt><dd>作業量に合わせて人員を配置する。</dd><dt>進捗を見る</dt><dd>作業の進み方を管理し、滞りがあれば手を打つ。</dd></dl>
+                  </li>
+                  <li class="bflow__i">
+                    <p class="bflow__h"><span class="bflow__no en">03</span>数値で確かめる</p>
+                    <dl class="bflow__d"><dt>品質と安全</dt><dd>作業品質と安全を保つための確認を行う。</dd><dt>生産性と収支</dt><dd>生産性・売上・原価を確認し、課題の優先順位を決める。</dd></dl>
+                  </li>
+                  <li class="bflow__i">
+                    <p class="bflow__h"><span class="bflow__no en">04</span>改善につなげる</p>
+                    <dl class="bflow__d"><dt>やり方を変える</dt><dd>作業方法の見直しや機械化を進める。</dd><dt>取引先と話す</dt><dd>取引先との打ち合わせや現場確認を重ね、改善提案につなげる。</dd></dl>
+                  </li>
+                </ol>
+                <p class="bdeep__note">新しく受託する拠点では、立ち上げから関わることもあります。</p>
+              </div>
+
+              <div class="bdeep__blk">
+                <p class="bdeep__lab en">MINDSET<span>この仕事で大切にしていること</span></p>
+                <ol class="bmind">
+                  <li class="bmind__i"><p class="bmind__h"><span class="bmind__no en">01</span>人を増やす前に、作業そのものを疑う</p><p class="bmind__t">課題に対して人を増やすだけで解決するのではなく、作業そのものを変えられないか、機械やシステムに置き換えられないかを考えます。</p></li>
+                  <li class="bmind__i"><p class="bmind__h"><span class="bmind__no en">02</span>現場のメンバーの意見から始める</p><p class="bmind__t">現場で働くメンバーの意見を大切にしながら、既存のやり方にとらわれない改善を考えます。</p></li>
+                  <li class="bmind__i"><p class="bmind__h"><span class="bmind__no en">03</span>数字と現場の両方から判断する</p><p class="bmind__t">生産性や収支の数字と、現場で実際に起きていることの両方を見て決めます。</p></li>
+                  <li class="bmind__i"><p class="bmind__h"><span class="bmind__no en">04</span>顧客と条件を話す（責任者候補の役割）</p><p class="bmind__t">拠点によっては、クライアントとの物量・単価・オペレーションの交渉を通じて、拠点の収益改善を担当します。</p></li>
+                </ol>
+              </div>
+
+            </div>
+          </details>
+          <p class="bdeep__career"><a class="textlink textlink--sm" href="career.html#career">PALでのキャリアを知る<i aria-hidden="true"></i></a></p>
         </div>
         <div class="rpanel__foot">
           <a class="rcbtn rcbtn--main" href="people/bpo.html">この仕事をしている社員の声を読む<i aria-hidden="true">→</i></a>

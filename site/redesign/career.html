@@ -16,8 +16,9 @@
      NEXT STEP（.entry）とフッター（.ftr）の配色は
      assets/css/white-editorial.css が .we スコープで後勝ち上書きする。
      文言・リンク・会社情報は変更していない。
-     戻すときは <body> の we と、この link の2行を外す。 ===== -->
+     戻すときは <body> の we と、この link の2行を外す。 の we と、この link の2行を外す。 ===== -->
 <link rel="stylesheet" href="assets/css/white-editorial.css?v=4">
+<link rel="stylesheet" href="assets/css/career-v2.css?v=2">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"採用情報","item":"../"},{"@type":"ListItem","position":2,"name":"キャリアを知る"}]}</script>
 <style>
 .proto-bar{background:#000;color:#fff;padding:10px 20px;font-size:12.5px;text-align:center;position:relative;z-index:600}
@@ -25,7 +26,7 @@
 @media (prefers-reduced-motion:reduce){ .reveal{opacity:1!important;transform:none!important} }
 </style>
 </head>
-<body class="we">
+<body class="we cv2">
 <div class="proto-bar">【試作・非公開】CAREER｜Field Editorialデザイン適用版｜<b>デザイン検証用プレビュー｜本番サイト未反映</b>・文言は本番career/index.htmlと完全同一</div>
 <a class="skip-link" href="#main">本文へスキップ</a>
 
@@ -93,23 +94,61 @@
       <p class="cpanel__h">センター長キャリア</p>
       <p class="cstory__lead">現場を知り、専門性を身につけ、任される範囲を広げていく。</p>
       <p class="cstory__sub">センター運営の実務を経験しながら、マネジメントや改善の力を身につけます。その先の広がり方は、一通りではありません。</p>
-      <ol class="cstory cstory--cards">
-        <li class="cstory__blk"><p class="cstory__no en">01</p><h4>まずは、現場を知る。</h4><p class="cstory__t">センター長候補として、現場運営の実務からスタートします。人員配置、進捗、品質・安全など、日々の現場を回す基本を身につけます。</p>
-          <ul class="cstory__items"><li><svg aria-hidden="true"><use href="#ic-manager"></use></svg>人員配置</li><li><svg aria-hidden="true"><use href="#ic-chart"></use></svg>進捗管理</li><li><svg aria-hidden="true"><use href="#ic-worker"></use></svg>品質・安全</li><li><svg aria-hidden="true"><use href="#ic2-improve"></use></svg>業務改善</li></ul>
-        </li>
-        <li class="cstory__blk"><p class="cstory__no en">02</p><h4>現場を動かす力を、専門性へ。</h4>
-          <ul class="cstory__skills"><li><b>現場マネジメント</b><p>人・配置・進捗を見ながら、安定した運営をつくる。</p></li><li><b>オペレーション改善</b><p>作業や導線を見直し、より良い方法へ変える。</p></li><li><b>数値管理</b><p>現場の状態を、数字でも捉える。</p></li><li><b>顧客との関係づくり</b><p>現場の状況を共有し、改善を一緒に進める。</p></li></ul>
-        </li>
-        <li class="cstory__blk"><p class="cstory__no en">03</p><h4>少しずつ、任される範囲が広がる。<em>一例</em></h4><p class="cstory__to">↓広がり方の一例は、下のキャリアマップに掲載しています。</p></li>
-      </ol>
-      <div class="cmap">
-        <ol class="cstory__steps">
-          <li><span class="cstory__sno en">STEP 1</span><b>センター長候補</b><p>現場運営の実務を担いながら、運営・管理を学ぶ</p></li>
-          <li><span class="cstory__sno en">STEP 2</span><b>センター長</b><p>担当拠点の運営を担い、現場が自走する状態をつくる</p></li>
-          <li class="cstep--branch"><span class="cstory__sno en">STEP 3</span><b>エリアマネージャー／営業等の他部署へ</b><p>複数拠点や営業など、役割を広げる道もある</p></li>
-          <li class="cstory__last cstep--branch"><span class="cstory__sno en">STEP 4</span><b>統括マネージャー<em class="cstep__eg">一例</em></b><p>複数拠点や運営領域を俯瞰し、より広い範囲を担う</p></li>
+      <!-- ===== CAREER-V2 v1：説明カード3枚 → キャリアマップを主役に。
+           01〜03 の説明は原文のまま「この道すじを詳しく読む」の中へ移した。
+           STEP の名称・説明・「一例」の注記はすべて原文のまま。 ===== -->
+      <p class="croad__to">↓広がり方の一例は、下のキャリアマップに掲載しています。</p>
+      <div class="croad">
+        <p class="croad__lab en">CAREER ROADMAP<span>センター長キャリアの一例</span></p>
+        <ol class="croad__l">
+          <li class="croad__i">
+            <p class="croad__no en">STEP 1</p>
+            <b class="croad__r">センター長候補</b>
+            <p class="croad__t">現場運営の実務を担いながら、運営・管理を学ぶ</p>
+          </li>
+          <li class="croad__i">
+            <p class="croad__no en">STEP 2</p>
+            <b class="croad__r">センター長</b>
+            <p class="croad__t">担当拠点の運営を担い、現場が自走する状態をつくる</p>
+          </li>
+          <li class="croad__i croad__i--br">
+            <p class="croad__no en">STEP 3</p>
+            <b class="croad__r">エリアマネージャー／営業等の他部署へ</b>
+            <p class="croad__t">複数拠点や営業など、役割を広げる道もある</p>
+          </li>
+          <li class="croad__i croad__i--br croad__i--eg">
+            <p class="croad__no en">STEP 4</p>
+            <b class="croad__r">統括マネージャー<em class="croad__eg">一例</em></b>
+            <p class="croad__t">複数拠点や運営領域を俯瞰し、より広い範囲を担う</p>
+          </li>
         </ol>
+        <p class="croad__note">STEP 3 から先は一本道ではありません。少しずつ、任される範囲が広がっていきます。</p>
       </div>
+
+      <div class="cskill">
+        <p class="cskill__lab en">SKILLS<span>この道すじで身につける専門性</span></p>
+        <ul class="cskill__l">
+          <li><b>現場マネジメント</b><span>人・配置・進捗</span></li>
+          <li><b>オペレーション改善</b><span>作業と導線の見直し</span></li>
+          <li><b>数値管理</b><span>現場を数字で捉える</span></li>
+          <li><b>顧客との関係づくり</b><span>改善を一緒に進める</span></li>
+        </ul>
+      </div>
+
+      <details class="cmore">
+        <summary class="cmore__s"><span class="cmore__st">この道すじを詳しく読む</span><span class="cmore__sm">現場を知る ／ 専門性へ ／ 任される範囲の広がり</span><span class="cmore__ic" aria-hidden="true"></span></summary>
+        <div class="cmore__in">
+          <ol class="cmore__l">
+            <li><p class="cmore__h"><span class="cmore__no en">01</span>まずは、現場を知る。</p>
+              <p class="cmore__t">センター長候補として、現場運営の実務からスタートします。人員配置、進捗、品質・安全など、日々の現場を回す基本を身につけます。</p>
+              <ul class="cmore__tags"><li>人員配置</li><li>進捗管理</li><li>品質・安全</li><li>業務改善</li></ul></li>
+            <li><p class="cmore__h"><span class="cmore__no en">02</span>現場を動かす力を、専門性へ。</p>
+              <dl class="cmore__d"><dt>現場マネジメント</dt><dd>人・配置・進捗を見ながら、安定した運営をつくる。</dd><dt>オペレーション改善</dt><dd>作業や導線を見直し、より良い方法へ変える。</dd><dt>数値管理</dt><dd>現場の状態を、数字でも捉える。</dd><dt>顧客との関係づくり</dt><dd>現場の状況を共有し、改善を一緒に進める。</dd></dl></li>
+            <li><p class="cmore__h"><span class="cmore__no en">03</span>少しずつ、任される範囲が広がる。<em class="cmore__eg">一例</em></p>
+              </li>
+          </ol>
+        </div>
+      </details>
     </div>
 
     <div class="cpanel" id="cp-eng" role="tabpanel" aria-labelledby="cp-tab-eng" hidden>
@@ -259,10 +298,24 @@
       <h2 class="stitle" style="font-size:clamp(23px,2.7vw,32px)">入社して、最初にすること。</h2>
       <p class="slead">入社したての人が、実際にどんな仕事をしているのか。最初に経験する場面です。</p>
     </div>
-    <ol class="scene reveal">
-      <li><span class="scene__no en">SCENE 01</span><b>会社と物流の全体像を知る</b><p>PALがどの事業をもち、物流の流れのどこを担っているのかを知ります。扱う荷物も現場の形も、顧客ごとに違います。</p></li>
-      <li><span class="scene__no en">SCENE 02</span><b>現場に入って、覚える</b><p>配属先や関わる現場に入り、作業の流れと人の動きを見ます。先輩の現場訪問や打ち合わせにも同行し、進め方を見ながら覚えます。</p></li>
-      <li><span class="scene__no en">SCENE 03</span><b>担当を持って、やってみる</b><p>先輩と一緒に担当範囲へ入り、まずは一部を自分で進めます。やってみて分からなかったところを、その都度確認します。</p></li>
+    <!-- ===== CAREER-V2 v1：3枚のカード → 1本のタイムラインへ。
+           SCENE の番号・見出し・説明文は原文のまま。 ===== -->
+    <ol class="ctl reveal">
+      <li class="ctl__i">
+        <p class="ctl__no en">SCENE 01</p>
+        <b class="ctl__h">会社と物流の全体像を知る</b>
+        <p class="ctl__t">PALがどの事業をもち、物流の流れのどこを担っているのかを知ります。扱う荷物も現場の形も、顧客ごとに違います。</p>
+      </li>
+      <li class="ctl__i">
+        <p class="ctl__no en">SCENE 02</p>
+        <b class="ctl__h">現場に入って、覚える</b>
+        <p class="ctl__t">配属先や関わる現場に入り、作業の流れと人の動きを見ます。先輩の現場訪問や打ち合わせにも同行し、進め方を見ながら覚えます。</p>
+      </li>
+      <li class="ctl__i">
+        <p class="ctl__no en">SCENE 03</p>
+        <b class="ctl__h">担当を持って、やってみる</b>
+        <p class="ctl__t">先輩と一緒に担当範囲へ入り、まずは一部を自分で進めます。やってみて分からなかったところを、その都度確認します。</p>
+      </li>
     </ol>
     <div class="sline reveal">
       <p class="sline__h">これまでの経験を活かしながら、足りない領域に時間を使います。</p>
@@ -279,11 +332,18 @@
       <h2 class="stitle" style="font-size:clamp(23px,2.7vw,32px)">専門性を深める。その先に、仕事の広がりがある。</h2>
       <p class="slead">職種ごとの道すじには、次の3つの側面があります。</p>
     </div>
-    <ol class="cdev reveal">
-      <li><span class="cdev__no en">01</span><svg class="cdev__ic" aria-hidden="true"><use href="#ic2-improve"></use></svg><h3>専門性を深める</h3><p>それぞれの職種で経験を積み、専門性を高めていきます。</p></li>
-      <li><span class="cdev__no en">02</span><svg class="cdev__ic" aria-hidden="true"><use href="#ic-manager"></use></svg><h3>役割を広げる</h3><p>担当する案件や改善活動、マネジメントなど、役割の幅を広げていきます。</p></li>
-      <li><span class="cdev__no en">03</span><svg class="cdev__ic" aria-hidden="true"><use href="#ic-meeting"></use></svg><h3>専門性を掛け合わせる</h3><p>異なる専門性を持つメンバーと協力し、新しい視点を取り入れていきます。</p></li>
-    </ol>
+    <!-- ===== CAREER-V2 v1：灰色カード3枚 → 1枚のインフォグラフィックへ。
+           3つは順序ではなく、別々の広がり方として横に並べている。
+           見出し・説明文は原文のまま。 ===== -->
+    <div class="cdir reveal">
+      <div class="cdir__fig"><svg class="cdir__g" viewBox="0 0 760 200" fill="none" aria-hidden="true"><circle cx="86" cy="100" r="9" fill="#CF131B"/><text x="86" y="132" text-anchor="middle" font-size="13" fill="#6B6D81" font-family="sans-serif">経験</text><path d="M104 100h96" stroke="#DAE1F2" stroke-width="1.6"/><rect x="200" y="56" width="104" height="13" rx="2" stroke="#8D99C0" stroke-width="1.4"/><rect x="200" y="76" width="104" height="13" rx="2" stroke="#8D99C0" stroke-width="1.4"/><rect x="200" y="96" width="104" height="13" rx="2" stroke="#CF131B" stroke-width="1.6" fill="#FCEEF0"/><rect x="200" y="116" width="104" height="13" rx="2" stroke="#CF131B" stroke-width="1.6" fill="#FCEEF0"/><path d="M252 136v18M247 149l5 6 5-6" stroke="#CF131B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="452" cy="100" r="20" stroke="#CF131B" stroke-width="1.8"/><circle cx="452" cy="100" r="36" stroke="#8D99C0" stroke-width="1.4" stroke-dasharray="5 5"/><circle cx="452" cy="100" r="52" stroke="#C2CBE0" stroke-width="1.3" stroke-dasharray="3 6"/><path d="M510 100h22M525 94l7 6-7 6" stroke="#CF131B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="640" cy="100" r="34" stroke="#8D99C0" stroke-width="1.4"/><circle cx="692" cy="100" r="34" stroke="#8D99C0" stroke-width="1.4"/><path d="M666 72.5a34 34 0 000 55 34 34 0 000-55z" fill="#FCEEF0" stroke="#CF131B" stroke-width="1.8"/></svg></div>
+      <ol class="cdir__l">
+        <li class="cdir__i"><p class="cdir__h"><span class="cdir__no en">01</span>専門性を深める</p><p class="cdir__t">それぞれの職種で経験を積み、専門性を高めていきます。</p></li>
+        <li class="cdir__i"><p class="cdir__h"><span class="cdir__no en">02</span>役割を広げる</p><p class="cdir__t">担当する案件や改善活動、マネジメントなど、役割の幅を広げていきます。</p></li>
+        <li class="cdir__i"><p class="cdir__h"><span class="cdir__no en">03</span>専門性を掛け合わせる</p><p class="cdir__t">異なる専門性を持つメンバーと協力し、新しい視点を取り入れていきます。</p></li>
+      </ol>
+      <p class="cdir__note">3つは順番ではなく、それぞれ違う広がり方です。</p>
+    </div>
     <p class="updated">このページの内容を確認した日：2026年10月9日</p>
   </div>
 </section>

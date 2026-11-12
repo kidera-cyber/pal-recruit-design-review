@@ -18,6 +18,9 @@
      文言・リンク・会社情報は変更していない。
      戻すときは <body> の we と、この link の2行を外す。 ===== -->
 <link rel="stylesheet" href="assets/css/white-editorial.css?v=4">
+<!-- ===== PEOPLE VALUES v1：#look（3つの価値観／6つの姿勢／3つの力）専用。
+     共通 style.css は変更せず、このセクションの中だけを組み直す。 ===== -->
+<link rel="stylesheet" href="assets/css/people-values.css?v=3">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"採用情報","item":"../"},{"@type":"ListItem","position":2,"name":"人を知る"}]}</script>
 <style>
 .proto-bar{background:#000;color:#fff;padding:10px 20px;font-size:12.5px;text-align:center;position:relative;z-index:600}
@@ -25,8 +28,7 @@
 @media (prefers-reduced-motion:reduce){ .reveal{opacity:1!important;transform:none!important} }
 /* ===== DEDUPE-PH v1：写真を外した行（03）だけ1カラムにして、
    右半分に大きな空白が残らないようにする。共通CSSは変更していない。 ===== */
-.vrow--noph{grid-template-columns:1fr;gap:0}
-.vrow--noph .vrow__b{max-width:780px}
+/* .vrow--noph は VALUES-EDITORIAL v1 で .vrow ごと使わなくなったため削除済み */
 </style>
 </head>
 <body class="we">
@@ -129,49 +131,76 @@
       <h2 class="stitle">PALが大切にすること、そこで働く人の姿勢。</h2>
       <p class="slead">PALが大切にする3つの価値観と、日々の仕事に表れる6つの姿勢。さらに、その姿勢を仕事で活かす3つの力をご紹介します。</p>
     </div>
-    <div class="vrows">
-      <div class="vrow c-01 reveal">
-        <figure class="vrow__ill vrow__ill--ph"><img src="../assets/images/person-fde.jpg" alt="物流センターでタブレットを手に、現場の状況を確認する社員" width="1600" height="1200" loading="lazy"></figure>
-        <div class="vrow__b"><p class="vrow__no en">01</p><h3>現場の当事者となる</h3><p>外から提案するのではなく、顧客の現場を請け負い、自分たちの責任で回す。だから、机上で終わらない課題に向き合えます。</p></div>
-      </div>
-      <div class="vrow c-02 vrow--rev reveal">
-        <figure class="vrow__ill vrow__ill--ph"><img src="../assets/images/person-corporate.jpg" alt="オフィスのテーブルで、立場の違うメンバーが資料を見ながら話し合う様子" width="1600" height="1200" loading="lazy"></figure>
-        <div class="vrow__b"><p class="vrow__no en">02</p><h3>個を尊重し、平等に接する</h3><p>上下や勤続年数で判断されない。互いを個として尊重し合う土台があるから、誰もが対等に意見を出せます。</p></div>
-      </div>
-      <!-- ===== DEDUPE-PH v1：03の写真（person-eng.jpg）を削除。
-           同じ写真を about.html のファーストビューでも使っており、重複するため。
-           ・削除したのはこの figure 1つだけ。見出し・本文・番号・リンクは変えていない
-           ・代わりの写真やイラストは足していない
-           ・写真が1枚減って右半分が空くので、この行だけ1カラム（.vrow--noph）にして
-             不自然な空白が残らないようにしている
-           ・画像ファイル person-eng.jpg は削除していない（about.html で使用中）
-           復元するときは、この figure を戻して .vrow--noph を外す。 ===== -->
-      <div class="vrow c-03 vrow--noph reveal">
-        <div class="vrow__b"><p class="vrow__no en">03</p><h3>自分の「手」で変えていく</h3><p>提案するだけでなく、自分たちが現場に立ち、データと技術で変えていく。考える・つくる・動かすが地続きです。</p></div>
-      </div>
-    </div>
+    <!-- ===== VALUES-EDITORIAL v1：3つの価値観。
+         実写写真2枚（person-fde.jpg／person-corporate.jpg）と左右交互のレイアウトを
+         やめ、番号と見出しを主役にした縦のエディトリアルにした。
+         見出し・説明文は原文のまま。画像ファイル自体は他ページで使うため残している。
+         復元元：git a4948a5 の people.html ===== -->
+    <ol class="pvx reveal">
+      <li class="pvx__i">
+        <p class="pvx__no en">01</p>
+        <div class="pvx__b">
+          <h3 class="pvx__h">現場の当事者となる</h3>
+          <p class="pvx__t">外から提案するのではなく、顧客の現場を請け負い、自分たちの責任で回す。だから、机上で終わらない課題に向き合えます。</p>
+        </div>
+      </li>
+      <li class="pvx__i">
+        <p class="pvx__no en">02</p>
+        <div class="pvx__b">
+          <h3 class="pvx__h">個を尊重し、平等に接する</h3>
+          <p class="pvx__t">上下や勤続年数で判断されない。互いを個として尊重し合う土台があるから、誰もが対等に意見を出せます。</p>
+        </div>
+      </li>
+      <li class="pvx__i">
+        <p class="pvx__no en">03</p>
+        <div class="pvx__b">
+          <h3 class="pvx__h">自分の「手」で変えていく</h3>
+          <p class="pvx__t">提案するだけでなく、自分たちが現場に立ち、データと技術で変えていく。考える・つくる・動かすが地続きです。</p>
+        </div>
+      </li>
+    </ol>
 
-    <div class="wlf reveal">
-      <div class="wlf__head">
+    <!-- ===== SIX MINDSETS v1：左説明・右一覧の表をやめ、2列×3段のエディトリアルへ。
+         6つの名称・説明文・リード文は原文のまま。 ===== -->
+    <div class="pm6 reveal">
+      <div class="pm6__head">
         <p class="slabel">Who we look for</p>
         <h3 class="look3__h">PALで働く人に、共通していること。</h3>
-        <p class="wlf__lead">採用基準のチェックリストではなく、日々の仕事のなかで実際によく見られる姿勢です。</p>
+        <p class="pm6__lead">採用基準のチェックリストではなく、日々の仕事のなかで実際によく見られる姿勢です。</p>
       </div>
-      <ol class="wlf__list">
-        <li class="wlf__i"><span class="wlf__no en">01</span><b class="wlf__h">挑戦する</b><span class="wlf__t">失敗を恐れず、まず動いてみる。</span></li>
-        <li class="wlf__i"><span class="wlf__no en">02</span><b class="wlf__h">自ら動く</b><span class="wlf__t">待つのではなく、自分から課題を見つける。</span></li>
-        <li class="wlf__i"><span class="wlf__no en">03</span><b class="wlf__h">未来を見る</b><span class="wlf__t">今だけでなく、その先まで考える。</span></li>
-        <li class="wlf__i"><span class="wlf__no en">04</span><b class="wlf__h">変化を楽しむ</b><span class="wlf__t">変化を、新しい可能性として捉える。</span></li>
-        <li class="wlf__i"><span class="wlf__no en">05</span><b class="wlf__h">学び続ける</b><span class="wlf__t">知らないことに好奇心を持つ。</span></li>
-        <li class="wlf__i"><span class="wlf__no en">06</span><b class="wlf__h">相手を尊重する</b><span class="wlf__t">立場を越えて、相手の考えに耳を傾ける。</span></li>
+      <ol class="pm6__list">
+        <li class="pm6__i"><p class="pm6__no en">01</p><b class="pm6__h">挑戦する</b><p class="pm6__t">失敗を恐れず、まず動いてみる。</p></li>
+        <li class="pm6__i"><p class="pm6__no en">02</p><b class="pm6__h">自ら動く</b><p class="pm6__t">待つのではなく、自分から課題を見つける。</p></li>
+        <li class="pm6__i"><p class="pm6__no en">03</p><b class="pm6__h">未来を見る</b><p class="pm6__t">今だけでなく、その先まで考える。</p></li>
+        <li class="pm6__i"><p class="pm6__no en">04</p><b class="pm6__h">変化を楽しむ</b><p class="pm6__t">変化を、新しい可能性として捉える。</p></li>
+        <li class="pm6__i"><p class="pm6__no en">05</p><b class="pm6__h">学び続ける</b><p class="pm6__t">知らないことに好奇心を持つ。</p></li>
+        <li class="pm6__i"><p class="pm6__no en">06</p><b class="pm6__h">相手を尊重する</b><p class="pm6__t">立場を越えて、相手の考えに耳を傾ける。</p></li>
       </ol>
     </div>
 
+    <!-- ===== THREE CAPABILITIES v1：薄灰カード3枚をやめ、
+         仕事のなかで何をする力なのかを示す図解つきの3列にした。
+         英字ラベル・名称・説明文は原文のまま。 ===== -->
     <h3 class="look3__h look__sub2">その姿勢を、仕事で活かすための3つの力。</h3>
-    <ul class="force3 reveal">
-      <li><svg aria-hidden="true"><use href="#ic2-fde"></use></svg><span class="force3__en en">STRUCTURE</span><b>構造で捉える</b><p>複雑な課題を整理し、本質を見る。</p></li>
-      <li><svg aria-hidden="true"><use href="#ic2-system"></use></svg><span class="force3__en en">TECHNOLOGY</span><b>テクノロジーフレンドリー</b><p>新しい技術を、まず使ってみる。</p></li>
-      <li><svg aria-hidden="true"><use href="#ic-meeting"></use></svg><span class="force3__en en">COMMUNICATION</span><b>コミュニケーション</b><p>立場を越えて、相手と向き合う。</p></li>
+    <ul class="pc3 reveal">
+      <li class="pc3__i">
+        <div class="pc3__fig"><svg class="pc3__g" viewBox="0 0 168 96" fill="none" aria-hidden="true"><rect x="6" y="14" width="13" height="13" rx="2" stroke="#C2CBE0" stroke-width="1.4"/><rect x="26" y="34" width="13" height="13" rx="2" stroke="#C2CBE0" stroke-width="1.4"/><rect x="4" y="52" width="13" height="13" rx="2" stroke="#C2CBE0" stroke-width="1.4"/><rect x="24" y="70" width="13" height="13" rx="2" stroke="#C2CBE0" stroke-width="1.4"/><rect x="8" y="33" width="13" height="13" rx="2" stroke="#C2CBE0" stroke-width="1.4"/><rect x="62" y="16" width="44" height="12" rx="2" stroke="#8D99C0" stroke-width="1.4"/><rect x="62" y="34" width="44" height="12" rx="2" stroke="#8D99C0" stroke-width="1.4"/><rect x="62" y="52" width="44" height="12" rx="2" stroke="#8D99C0" stroke-width="1.4"/><rect x="62" y="70" width="44" height="12" rx="2" stroke="#8D99C0" stroke-width="1.4"/><path d="M44 49h12M50 45l5 4-5 4" stroke="#C2CBE0" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M112 49h12M118 45l5 4-5 4" stroke="#CF131B" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/><rect x="130" y="40" width="34" height="18" rx="3" fill="#FCEEF0" stroke="#CF131B" stroke-width="1.8"/></svg></div>
+        <p class="pc3__en en">STRUCTURE</p>
+        <b class="pc3__h">構造で捉える</b>
+        <p class="pc3__t">複雑な課題を整理し、本質を見る。</p>
+      </li>
+      <li class="pc3__i">
+        <div class="pc3__fig"><svg class="pc3__g" viewBox="0 0 168 96" fill="none" aria-hidden="true"><path d="M10 78V30h30v48" stroke="#8D99C0" stroke-width="1.4"/><path d="M10 46h30M10 62h30" stroke="#C2CBE0" stroke-width="1.2"/><rect x="14" y="34" width="10" height="8" fill="#CF131B" opacity=".75"/><circle cx="84" cy="34" r="4" fill="#CF131B"/><circle cx="84" cy="54" r="4" stroke="#8D99C0" stroke-width="1.4"/><circle cx="84" cy="72" r="4" stroke="#8D99C0" stroke-width="1.4"/><rect x="124" y="26" width="36" height="28" rx="3" stroke="#8D99C0" stroke-width="1.4"/><path d="M130 46l7-8 6 5 9-11" stroke="#CF131B" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M136 54v8h12v-8" stroke="#C2CBE0" stroke-width="1.3"/><path d="M42 54h36M90 40h30" stroke="#CF131B" stroke-width="1.3" stroke-dasharray="4 4"/><path d="M120 68H92a4 4 0 01-4-4" stroke="#C2CBE0" stroke-width="1.3" stroke-dasharray="4 4"/><path d="M46 50l-5 4 5 4M116 36l5 4-5 4" stroke="#CF131B" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/><path d="M96 64l-5 4 5 4" stroke="#C2CBE0" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <p class="pc3__en en">TECHNOLOGY</p>
+        <b class="pc3__h">テクノロジーフレンドリー</b>
+        <p class="pc3__t">新しい技術を、まず使ってみる。</p>
+      </li>
+      <li class="pc3__i">
+        <div class="pc3__fig"><svg class="pc3__g" viewBox="0 0 168 96" fill="none" aria-hidden="true"><circle cx="28" cy="48" r="17" stroke="#8D99C0" stroke-width="1.4"/><circle cx="84" cy="48" r="17" stroke="#CF131B" stroke-width="1.6"/><circle cx="140" cy="48" r="17" stroke="#8D99C0" stroke-width="1.4"/><circle cx="28" cy="43" r="4" stroke="#C2CBE0" stroke-width="1.3"/><path d="M21 57a7 7 0 0114 0" stroke="#C2CBE0" stroke-width="1.3"/><circle cx="84" cy="43" r="4" stroke="#CF131B" stroke-width="1.3"/><path d="M77 57a7 7 0 0114 0" stroke="#CF131B" stroke-width="1.3"/><circle cx="140" cy="43" r="4" stroke="#C2CBE0" stroke-width="1.3"/><path d="M133 57a7 7 0 0114 0" stroke="#C2CBE0" stroke-width="1.3"/><path d="M49 48h14M105 48h14" stroke="#CF131B" stroke-width="1.4"/><path d="M53 44l-4 4 4 4M101 44l4 4-4 4M115 44l4 4-4 4M109 44l-4 4 4 4" stroke="#CF131B" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/><path d="M55 44l-4 4 4 4" stroke="#CF131B" stroke-width="0"/></svg></div>
+        <p class="pc3__en en">COMMUNICATION</p>
+        <b class="pc3__h">コミュニケーション</b>
+        <p class="pc3__t">立場を越えて、相手と向き合う。</p>
+      </li>
     </ul>
   </div>
 </section>

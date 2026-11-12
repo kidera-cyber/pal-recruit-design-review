@@ -1,0 +1,186 @@
+@charset "utf-8";
+/* ============================================================================
+   CAREER｜検証版の3箇所  CAREER-V2 v1
+   ① .croad / .cskill / .cmore  センター長キャリア（ロードマップを主役に）
+   ② .ctl                        入社後の3シーン（タイムライン）
+   ③ .cdir                       キャリアの3つの広がり（インフォグラフィック）
+   共通 style.css は変更していないので、正規 career.html には影響しない。
+   白 #FFFFFF／濃紺 #262946／赤 #CF131B／本文 #53545A／補助 #6B6D81／罫線 #DAE1F2
+   ============================================================================ */
+.cv2{--c-ink:#262946;--c-sub:#53545A;--c-mid:#6B6D81;--c-red:#CF131B;
+     --c-line:#DAE1F2;--c-line2:#E7EBF4;--c-soft:#F7F8F9}
+
+.cv2 .croad__lab,.cv2 .cskill__lab{
+  display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin:0 0 16px;
+  font:700 11px/1.4 Lato,sans-serif;letter-spacing:.18em;color:var(--c-red);
+}
+.cv2 .croad__lab span,.cv2 .cskill__lab span{
+  font-family:inherit;font-size:15px;font-weight:700;letter-spacing:.04em;color:var(--c-ink);
+}
+
+/* ───────── ① キャリアロードマップ ───────── */
+.cv2 .croad{margin:clamp(24px,3vw,32px) 0 0}
+.cv2 .croad__l{
+  list-style:none;margin:0;padding:46px 0 0;position:relative;
+  display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;
+}
+/* STEP をつなぐ線。STEP3 以降は破線にして「一本道ではない」ことを示す */
+.cv2 .croad__l::before{
+  content:"";position:absolute;left:12.5%;width:25%;top:30px;height:2px;background:var(--c-ink);
+}
+.cv2 .croad__l::after{
+  content:"";position:absolute;left:37.5%;right:12.5%;top:30px;height:0;
+  border-top:2px dashed var(--c-line);
+}
+.cv2 .croad__i{position:relative;padding:0 clamp(14px,1.8vw,22px) 0 0}
+.cv2 .croad__i + .croad__i{padding-left:clamp(14px,1.8vw,22px)}
+.cv2 .croad__no{
+  position:absolute;left:0;top:-46px;margin:0;
+  font:900 clamp(13px,1.5vw,15px)/1 Lato,sans-serif;letter-spacing:.08em;color:var(--c-red);
+}
+.cv2 .croad__no::after{
+  content:"";position:absolute;left:4px;top:calc(100% + 9px);
+  width:13px;height:13px;border-radius:50%;background:#FFFFFF;
+  border:3px solid var(--c-ink);box-sizing:border-box;
+}
+.cv2 .croad__i--br .croad__no::after{border-color:var(--c-line);border-style:solid}
+.cv2 .croad__r{
+  display:block;margin:0 0 9px;font-size:clamp(17px,1.9vw,21px);font-weight:700;
+  line-height:1.5;letter-spacing:.01em;color:var(--c-ink);
+}
+.cv2 .croad__eg{
+  display:inline-block;margin-left:8px;padding:2px 8px;border-radius:999px;
+  background:var(--c-soft);border:1px solid var(--c-line);
+  font-style:normal;font-size:11px;font-weight:700;color:var(--c-mid);vertical-align:2px;
+}
+.cv2 .croad__t{margin:0;font-size:14.5px;line-height:1.85;color:var(--c-sub)}
+.cv2 .croad__note{
+  margin:clamp(22px,2.6vw,28px) 0 0;padding-left:15px;border-left:2px solid var(--c-line);
+  font-size:13.5px;line-height:1.85;color:var(--c-mid);
+}
+
+/* ───────── 専門性（補足） ───────── */
+.cv2 .cskill{margin:clamp(34px,4vw,46px) 0 0;padding-top:clamp(22px,2.6vw,28px);
+  border-top:1px solid var(--c-line)}
+.cv2 .cskill__l{
+  list-style:none;margin:0;padding:0;
+  display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;
+}
+.cv2 .cskill__l li{padding:0 18px 0 0}
+.cv2 .cskill__l li + li{padding-left:18px;border-left:1px solid var(--c-line2)}
+.cv2 .cskill__l b{
+  display:block;margin-bottom:5px;font-size:clamp(15.5px,1.7vw,17px);font-weight:700;
+  line-height:1.5;color:var(--c-ink);
+}
+.cv2 .cskill__l span{font-size:13px;line-height:1.75;color:var(--c-mid)}
+
+/* ───────── 詳しく読む ───────── */
+.cv2 .cmore{margin:clamp(26px,3vw,34px) 0 0;border:1px solid var(--c-line);border-radius:12px}
+.cv2 .cmore__s{
+  display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:3px 18px;
+  padding:clamp(15px,1.9vw,19px) clamp(16px,2vw,22px);cursor:pointer;list-style:none;
+}
+.cv2 .cmore__s::-webkit-details-marker{display:none}
+.cv2 .cmore__s:hover{background:var(--c-soft)}
+.cv2 .cmore[open] .cmore__s{border-bottom:1px solid var(--c-line2)}
+.cv2 .cmore__st{grid-column:1;font-size:16px;font-weight:700;color:var(--c-ink)}
+.cv2 .cmore__sm{grid-column:1;font-size:12.5px;line-height:1.7;color:var(--c-mid)}
+.cv2 .cmore__ic{grid-area:1 / 2 / 3 / 3;position:relative;width:20px;height:20px}
+.cv2 .cmore__ic::before,.cv2 .cmore__ic::after{content:"";position:absolute;left:50%;top:50%;
+  background:var(--c-red);transform:translate(-50%,-50%)}
+.cv2 .cmore__ic::before{width:16px;height:2px}
+.cv2 .cmore__ic::after{width:2px;height:16px;transition:transform .18s}
+.cv2 .cmore[open] .cmore__ic::after{transform:translate(-50%,-50%) scaleY(0)}
+.cv2 .cmore__s:focus-visible{outline:2px solid var(--c-red);outline-offset:-3px;border-radius:12px}
+.cv2 .cmore__in{padding:clamp(18px,2.2vw,24px) clamp(16px,2vw,22px) clamp(20px,2.4vw,26px)}
+.cv2 .cmore__l{list-style:none;margin:0;padding:0;display:grid;gap:clamp(20px,2.4vw,26px)}
+.cv2 .cmore__l > li{padding-top:14px;border-top:1px solid var(--c-line2)}
+.cv2 .cmore__h{display:flex;align-items:baseline;gap:12px;margin:0 0 8px;
+  font-size:16px;font-weight:700;line-height:1.55;color:var(--c-ink)}
+.cv2 .cmore__no{flex:none;font:900 17px/1 Lato,sans-serif;color:var(--c-red)}
+.cv2 .cmore__eg{margin-left:8px;padding:2px 8px;border-radius:999px;background:var(--c-soft);
+  border:1px solid var(--c-line);font-style:normal;font-size:11px;font-weight:700;color:var(--c-mid)}
+.cv2 .cmore__t{margin:0;padding-left:29px;font-size:14px;line-height:1.9;color:var(--c-sub)}
+.cv2 .cmore__tags{list-style:none;margin:10px 0 0;padding:0 0 0 29px;display:flex;flex-wrap:wrap;gap:8px}
+.cv2 .cmore__tags li{padding:3px 11px;border:1px solid var(--c-line);border-radius:999px;
+  font-size:12.5px;color:var(--c-ink)}
+.cv2 .cmore__d{margin:0;padding-left:29px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:12px clamp(20px,2.6vw,36px)}
+.cv2 .cmore__d dt{font-size:14px;font-weight:700;color:var(--c-ink);margin-bottom:3px}
+.cv2 .cmore__d dd{margin:0;font-size:13.5px;line-height:1.85;color:var(--c-sub)}
+
+/* ───────── ② 入社後の3シーン：タイムライン ───────── */
+.cv2 .ctl{
+  list-style:none;margin:0;padding:44px 0 0;position:relative;
+  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;
+}
+.cv2 .ctl::before{
+  content:"";position:absolute;left:16.6667%;right:16.6667%;top:28px;height:2px;background:var(--c-ink);
+}
+.cv2 .ctl__i{position:relative;padding:0 clamp(16px,2vw,26px) 0 0}
+.cv2 .ctl__i + .ctl__i{padding-left:clamp(16px,2vw,26px);border-left:1px solid var(--c-line2)}
+.cv2 .ctl__no{
+  position:absolute;left:0;top:-44px;margin:0;
+  font:900 clamp(12px,1.4vw,14px)/1 Lato,sans-serif;letter-spacing:.1em;color:var(--c-red);
+}
+.cv2 .ctl__no::after{
+  content:"";position:absolute;left:6px;top:calc(100% + 9px);width:13px;height:13px;border-radius:50%;
+  background:#FFFFFF;border:3px solid var(--c-ink);box-sizing:border-box;
+}
+.cv2 .ctl__h{display:block;margin:0 0 10px;font-size:clamp(17px,1.9vw,20px);font-weight:700;
+  line-height:1.5;color:var(--c-ink)}
+.cv2 .ctl__t{margin:0;font-size:14.5px;line-height:1.9;color:var(--c-sub)}
+
+/* ───────── ③ キャリアの3つの広がり ───────── */
+.cv2 .cdir{margin:clamp(26px,3vw,34px) 0 0}
+.cv2 .cdir__fig{margin:0 0 clamp(18px,2.2vw,26px);line-height:0}
+.cv2 .cdir__g{display:block;width:100%;height:auto;max-width:860px;margin:0 auto}
+.cv2 .cdir__l{
+  list-style:none;margin:0;padding:0;border-top:1px solid var(--c-line);
+  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;
+}
+.cv2 .cdir__i{padding:clamp(20px,2.4vw,26px) clamp(18px,2.2vw,28px) 0 0}
+.cv2 .cdir__i + .cdir__i{padding-left:clamp(18px,2.2vw,28px);border-left:1px solid var(--c-line2)}
+.cv2 .cdir__h{display:flex;align-items:baseline;gap:12px;margin:0 0 8px;
+  font-size:clamp(16.5px,1.9vw,19px);font-weight:700;line-height:1.5;color:var(--c-ink)}
+.cv2 .cdir__no{flex:none;font:900 clamp(17px,1.9vw,20px)/1 Lato,sans-serif;color:var(--c-red)}
+.cv2 .cdir__t{margin:0;font-size:14.5px;line-height:1.9;color:var(--c-sub)}
+.cv2 .cdir__note{margin:clamp(20px,2.4vw,26px) 0 0;padding-left:15px;
+  border-left:2px solid var(--c-line);font-size:13.5px;line-height:1.85;color:var(--c-mid)}
+
+@media print{ .cv2 .cmore__in{display:block!important} }
+@media(prefers-reduced-motion:reduce){ .cv2 .cmore__ic::after{transition:none} }
+
+@media(max-width:1023px){
+  .cv2 .cskill__l{grid-template-columns:repeat(2,minmax(0,1fr));gap:18px 0}
+  .cv2 .cskill__l li:nth-child(odd){padding-left:0;border-left:none}
+  .cv2 .cmore__d{grid-template-columns:minmax(0,1fr)}
+}
+@media(max-width:860px){
+  /* ロードマップ・タイムラインを縦へ。左に番号と縦線 */
+  .cv2 .croad__l,.cv2 .ctl{grid-template-columns:minmax(0,1fr);row-gap:26px;padding:0 0 0 92px}
+  .cv2 .croad__l::before{left:16px;right:auto;top:10px;width:2px;height:40%}
+  .cv2 .croad__l::after{left:16px;right:auto;top:40%;bottom:14px;width:0;height:auto;
+    border-top:none;border-left:2px dashed var(--c-line)}
+  .cv2 .ctl::before{left:16px;right:auto;top:12px;bottom:14px;width:2px;height:auto}
+  .cv2 .croad__i,.cv2 .croad__i + .croad__i,
+  .cv2 .ctl__i,.cv2 .ctl__i + .ctl__i{padding:0;border-left:none}
+  .cv2 .croad__no,.cv2 .ctl__no{position:absolute;left:-92px;top:2px}
+  .cv2 .croad__no::after,.cv2 .ctl__no::after{left:66px;top:0}
+  .cv2 .cdir__l{grid-template-columns:minmax(0,1fr)}
+  .cv2 .cdir__i,.cv2 .cdir__i + .cdir__i{padding:20px 0;border-left:none}
+  .cv2 .cdir__i + .cdir__i{border-top:1px solid var(--c-line2)}
+}
+@media(max-width:760px){
+  .cv2 .croad__r{font-size:17px}
+  .cv2 .ctl__h{font-size:17px}
+  .cv2 .cskill__l{grid-template-columns:minmax(0,1fr)}
+  .cv2 .cskill__l li,.cv2 .cskill__l li + li{padding:0 0 14px;border-left:none}
+  .cv2 .cmore__t,.cv2 .cmore__tags,.cv2 .cmore__d{padding-left:0}
+}
+
+/* 原文「↓広がり方の一例は、下のキャリアマップに掲載しています。」は
+   ロードマップの直前に置く（文中の「下の」が成立する位置） */
+.cv2 .croad__to{
+  margin:clamp(20px,2.4vw,26px) 0 0;font-size:13.5px;line-height:1.85;color:var(--c-mid);
+}
