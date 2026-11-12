@@ -1,0 +1,87 @@
+@charset "utf-8";
+/* ============================================================================
+   PAL Recruit — White Editorial  v1（比較版・B案 Soft Contrast）
+
+   white-editorial.css（A案）の後に読み込む差分ファイル。
+   本文の白背景化（10〜20 節）は A案と共通で、ここでは NEXT STEP と
+   フッターの「配置・余白・CTA の見せ方」だけを差し替える。
+
+   A案との違い
+     NEXT STEP  左寄せ・CTA は左下       → 中央寄せ・上下を罫線で挟む・CTA を中央に大きく
+     フッター    白地・h3 の下に赤い短線  → 淡灰 #F7F8F9 地・上端に濃紺の区切り・
+                                           最下部に赤のアクセント・h3 は罫線なし
+   ============================================================================ */
+
+/* ============================================================
+   30B NEXT STEP ── 中央寄せ・上下の罫線で挟む
+   ============================================================ */
+.we .entry{
+  border-top:1px solid var(--w-line);
+  border-bottom:1px solid var(--w-line);
+  padding:clamp(66px,7vw,100px) 0;
+}
+.we .entry__inner,
+.we .entry--left .entry__inner{text-align:center}
+
+/* ラベル：中央に置き、短線を左右へ振る */
+.we .entry .entry__label{justify-content:center;margin-bottom:20px;letter-spacing:.2em}
+.we .entry .entry__label::after{
+  content:"";flex:none;width:26px;height:2px;background:var(--w-red);
+}
+
+.we .entry h2{font-size:clamp(25px,3.7vw,39px);line-height:1.42;margin-bottom:18px}
+.we .entry p{margin-left:auto;margin-right:auto;text-align:center}
+
+/* CTA：中央に並べ、A案より一回り大きくする */
+.we .entry__ctas,
+.we .entry--left .entry__ctas{justify-content:center;margin-top:clamp(30px,3.4vw,40px)}
+.we .entry .btn--red,
+.we .entry .btn--onnavy,
+.we .entry .btn--ghost,
+.we .entry .btn--off{padding:16px 34px;font-size:16px}
+
+.we .entry .applynote{
+  margin-left:auto;margin-right:auto;max-width:40em;
+  padding:12px 16px;border-left:none;border-top:1px solid var(--w-line2);
+  text-align:center;
+}
+.we .entry .entry__sec{margin-top:24px}
+
+/* ============================================================
+   40B フッター ── 淡灰の面・濃紺の区切り・赤のアクセント
+   ============================================================ */
+.we .ftr{
+  background:var(--w-soft);
+  border-top:2px solid var(--w-ink);
+  padding:clamp(52px,5.4vw,70px) 0 0;
+}
+
+/* 見出しは罫線を使わず、字間と色で立てる */
+.we .ftr h3{padding-bottom:0;letter-spacing:.2em;margin-bottom:18px}
+.we .ftr h3::after{display:none}
+
+/* 3カラムの幅配分を変え、会社情報側を広く取る */
+.we .ftr__top{grid-template-columns:1.9fr 1fr 1fr;gap:44px}
+
+/* 最下部：白い帯に戻し、下端に赤のアクセントを入れる */
+.we .ftr__bottom{
+  margin-top:clamp(38px,4.2vw,52px);
+  padding:20px 0 22px;
+  border-top:1px solid var(--w-line);
+  position:relative;
+}
+.we .ftr__bottom::after{
+  content:"";position:absolute;left:0;right:0;bottom:-22px;height:3px;background:var(--w-red);
+}
+.we .ftr{padding-bottom:22px}
+
+@media(max-width:760px){
+  .we .entry{padding:52px 0 48px}
+  .we .entry p{text-align:left}
+  .we .entry .entry__label{justify-content:flex-start}
+  .we .entry .btn--red,
+  .we .entry .btn--onnavy,
+  .we .entry .btn--ghost,
+  .we .entry .btn--off{padding:15px 24px;font-size:15.5px}
+  .we .ftr__top{grid-template-columns:1fr;gap:28px}
+}

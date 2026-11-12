@@ -1,0 +1,331 @@
+@charset "utf-8";
+/* ============================================================================
+   PAL Recruit — White Editorial  v1（比較版・A案）
+
+   目的
+     本文を白基調に統一し、ページ末尾の NEXT STEP（.entry）とフッター（.ftr）を
+     暗色の帯から白基調へ置き換える。
+
+   方針
+     ・HTML は書き換えない。<body> に .we を足し、このファイルを最後に読むだけ。
+       → 文言・リンク・会社情報・SEO 設定に一切手を触れない。
+     ・共通 CSS（site/assets/css/style.css）は変更しない。
+       style.css は redesign 以外のページも使っているため、.we の中だけで後勝ち
+       上書きする。
+     ・インライン style（フッターロゴの color:#fff など）は !important でのみ
+       上書きできる。該当箇所にはその旨を書いている。
+
+   目次
+     00 変数
+     10 本文の面：大面積の淡灰を白へ
+     11 セクションの区切り（罫線・ラベル・余白）
+     20 ABOUT：白地になって弱くなる図解・カードの補強
+     30 NEXT STEP（.entry）
+     40 フッター（.ftr）
+     50 レスポンシブ
+   ============================================================================ */
+
+.we{
+  --w-bg:#FFFFFF;
+  --w-soft:#F7F8F9;        /* 補助的な面にだけ使う淡灰 */
+  --w-ink:#262946;         /* 見出し・主要テキスト */
+  --w-ink2:#464A6F;        /* 副見出し */
+  --w-sub:#53545A;         /* 本文 */
+  --w-mid:#6B6D81;         /* 補助テキスト */
+  --w-red:#CF131B;
+  --w-red-d:#A50F16;
+  --w-red-t:#FCEEF0;
+  --w-line:#DAE1F2;        /* 主罫線 */
+  --w-line2:#E7EBF4;       /* 弱い罫線 */
+}
+
+/* ============================================================
+   10 本文の面：大面積の淡灰を白へ
+   ------------------------------------------------------------
+   指定元
+     site/assets/css/style.css   .sec--soft / .phead / .crumb … var(--gray-50)
+     redesign/…/pal-v2.css       .pv2 .secC.sec--soft … var(--v2-soft)
+     redesign/…/about.css        .a7 #people.sec … var(--p-g1)
+   ============================================================ */
+
+/* 共通：淡灰のセクション帯を白へ。区切りは 11 で作り直す */
+.we .sec--soft,
+.we .secC.sec--soft,
+.we.pv2 .secC.sec--soft{background:var(--w-bg)}
+
+/* HOME：淡灰セクションに敷かれていた装飾の面を消す
+   （pal-v2.css の .pv2 .secC.sec--soft::before は淡い大きな円形グラデーション） */
+.we.pv2 .secC.sec--soft::before{display:none}
+
+/* ABOUT：OUR PEOPLE & CULTURE の 2,081px の淡灰帯を白へ */
+.we.a7 #people.sec{background:var(--w-bg)}
+
+/* パンくず・ページ見出しの淡灰も白へ（区切りは下端の罫線が担う） */
+.we .crumb{background:var(--w-bg);border-bottom:1px solid var(--w-line2)}
+.we .phead{background:var(--w-bg)}
+
+/* ============================================================
+   11 セクションの区切り
+   ------------------------------------------------------------
+   背景の切り替えをやめた分、「余白 → 細い罫線 → 英字ラベル」の順で
+   切り替わりを示す。全セクションに同じ罫線は引かない。
+   罫線を引くのは「隣り合う2面が同じ白で、間に余白しかない」場所だけ。
+   ============================================================ */
+
+/* HOME：白になった .sec--soft の先頭だけ、上に細い罫線を引く */
+.we .secC.sec--soft{border-top:1px solid var(--w-line2)}
+.we .sec.sec--soft{border-top:1px solid var(--w-line2)}
+
+/* ABOUT：3セクションの間に細い罫線。セクション内の余白は既存のまま */
+.we.a7 #people.sec,
+.we.a7 #numbers.sec{border-top:1px solid var(--w-line2)}
+
+/* 英字ラベル（.slabel）の前に短い赤線を置き、セクションの開始を明示する。
+   既に ::before を持つ実装があるため、.we の中だけで付け替える */
+.we .slabel{position:relative}
+
+/* ============================================================
+   20 ABOUT：白地で弱くなる図解・カードの補強
+   ------------------------------------------------------------
+   #people を白にすると、中の白いカード（経験別2カード）と、
+   ネットワーク図のノードが地に溶ける。必要な箇所だけ輪郭を足す。
+   ============================================================ */
+
+/* 経験別の2カード：白カード＋白地 → 1px の罫線で面を起こす */
+.we.a7 .two-view__i{border:1px solid var(--w-line);border-radius:12px;overflow:hidden}
+/* カード上部のビジュアル帯は、地と区別できる最小限の淡灰にする */
+.we.a7 .two-view__mv{background:var(--w-soft);border-bottom:1px solid var(--w-line2)}
+.we.a7 .two-view__i--eng .two-view__mv{background:var(--w-soft)}
+
+/* ネットワーク図のノード（丸）：淡灰の中抜き → 白＋赤枠で輪郭を保つ */
+.we.a7 .p4cx li::before{background:var(--w-bg)}
+/* 接続線は白地でも読めるように不透明度を上げる */
+.we.a7 .p4ln{opacity:.78}
+.we.a7 .p4cx::before{opacity:.55}
+
+/* 社員イラストの地色（画像読み込み前の面）も白地に合わせる */
+.we.a7 .p4voice img{background:var(--w-soft)}
+
+/* WHO WE ARE：物流イラストは白地の線画のため、枠まで白にすると輪郭が地に溶ける。
+   「補助的な図解の中の淡灰」として #F7F8F9 を残し、イラストを立てる */
+.we.a7 .p4fig__box{background:var(--w-soft);border:1px solid var(--w-line)}
+
+/* 2つの概念の対比ブロック：右側の #FAFBFC は地との差がほぼ無いので
+   罫線側で区別する */
+.we.a7 .p4def > .p4def__i--site{background:var(--w-bg)}
+.we.a7 .p4def{border:1px solid var(--w-line)}
+
+/* ============================================================
+   30 NEXT STEP（.entry）── A案 White Editorial
+   ------------------------------------------------------------
+   指定元 site/assets/css/style.css 304-317 行
+     .entry{color:#fff; …}
+     .entry__media::after{background:rgba(10,11,18,.82)}  ← 暗い倉庫写真の覆い
+   ============================================================ */
+
+/* 倉庫写真を使った暗い帯をやめる。
+   img は loading="lazy" のため、display:none の親の中では読み込まれない */
+.we .entry__media{display:none}
+
+.we .entry{
+  background:var(--w-bg);
+  color:var(--w-ink);
+  border-top:1px solid var(--w-line);
+  padding:clamp(58px,6.2vw,88px) 0 clamp(56px,6vw,82px);
+}
+
+/* 左寄せのエディトリアル。.entry--left のページも同じ見え方になる。
+   暗い帯だった頃は中央寄せのため .wrap--narrow（920px）で良かったが、
+   左寄せにすると本文の .wrap（1180px）と左端がずれる。幅を揃える。 */
+.we .entry__inner,
+.we .entry--left .entry__inner{text-align:left}
+.we .entry .wrap--narrow{max-width:var(--maxw)}
+.we .entry h2{max-width:20em}
+
+/* 英字ラベル：赤 ＋ 先頭に 26px の赤い短線
+   pal-v2.css の .pv2 .entry .entry__label（濃紺地用の #FF8A8E）と同じ重みに
+   そろえ、後勝ちで置き換える */
+.we .entry .entry__label{
+  display:flex;align-items:center;gap:12px;
+  color:var(--w-red);font-size:11.5px;font-weight:700;letter-spacing:.17em;
+  margin-bottom:18px;
+}
+.we .entry .entry__label::before{
+  content:"";flex:none;width:26px;height:2px;background:var(--w-red);
+}
+
+.we .entry h2{
+  color:var(--w-ink);
+  font-size:clamp(24px,3.4vw,36px);font-weight:700;line-height:1.45;
+  letter-spacing:.005em;margin-bottom:16px;
+}
+.we .entry p{
+  color:var(--w-sub);
+  font-size:15.5px;line-height:1.9;margin-bottom:0;max-width:46em;
+}
+
+.we .entry__ctas{
+  margin-top:clamp(26px,3vw,34px);
+  justify-content:flex-start;gap:14px;
+}
+.we .entry--left .entry__ctas{justify-content:flex-start}
+
+/* 主CTA：赤塗り＋白文字 */
+.we .entry .btn--red{
+  background:var(--w-red);color:#FFFFFF;border:1px solid var(--w-red);
+}
+.we .entry .btn--red:hover{background:var(--w-red-d);border-color:var(--w-red-d)}
+
+/* 副CTA：白地＋濃紺の枠と文字（濃紺地用の .btn--onnavy / .btn--ghost を置換） */
+.we .entry .btn--onnavy,
+.we .entry .btn--ghost{
+  background:var(--w-bg);color:var(--w-ink);border:1px solid var(--w-ink);
+}
+.we .entry .btn--onnavy:hover,
+.we .entry .btn--ghost:hover{background:#F0F2F7}
+
+/* 準備中のボタン：opacity を下げて読めなくするのをやめ、
+   「押せない」ことを面と文字色で示す（文言は変えない） */
+.we .entry .btn--off{
+  opacity:1;background:#EFF1F6;color:#5B5E72;border:1px solid var(--w-line);
+  cursor:not-allowed;
+}
+.we .entry .btn--off:hover{background:#EFF1F6}
+
+/* 準備中の注記 */
+.we .entry .applynote{
+  margin-top:16px;padding-left:13px;border-left:2px solid var(--w-red-t);
+  color:var(--w-mid);font-size:12.5px;line-height:1.85;
+}
+
+/* テキストリンク：下線と矢印でリンクと分かるようにする。
+   pal-v2.css の .pv2 .entry .entry__sec a（白文字）を後勝ちで置き換える */
+.we .entry .entry__sec{margin-top:22px;font-size:14px}
+.we .entry .entry__sec a{
+  color:var(--w-ink);font-weight:700;
+  text-decoration:underline;text-decoration-color:var(--w-line);
+  text-underline-offset:4px;
+}
+.we .entry .entry__sec a::after{content:"→";margin-left:7px;color:var(--w-red);font-weight:700}
+/* SP で「募集中の職種を見る」の矢印だけが次の行に落ちるのを防ぐ。
+   リンク1本をひとまとまりとして折り返す */
+.we .entry .entry__sec a{display:inline-block;white-space:nowrap}
+.we .entry .entry__sec a:hover{color:var(--w-red);text-decoration-color:var(--w-red)}
+
+/* フォーカス表示（キーボード操作） */
+.we .entry a:focus-visible,
+.we .entry button:focus-visible,
+.we .ftr a:focus-visible{
+  outline:2px solid var(--w-red);outline-offset:3px;border-radius:4px;
+}
+
+/* ============================================================
+   40 フッター（.ftr）── A案 White Editorial
+   ------------------------------------------------------------
+   指定元 site/assets/css/style.css 320-332 行
+     .ftr{background:var(--navy-d);color:#c7c9d6}
+   HTML 側のインライン style（ロゴの color:#fff / background:#fff）は
+   !important でのみ上書きできる。該当は 3 か所だけ。
+   ============================================================ */
+
+.we .ftr{
+  background:var(--w-bg);
+  color:var(--w-sub);
+  border-top:1px solid var(--w-line);
+  padding:clamp(48px,5vw,64px) 0 24px;
+  font-size:13.5px;
+}
+
+/* ロゴ：インライン style の色を打ち消す */
+.we .ftr .logo{color:var(--w-ink)!important}
+.we .ftr .logo__mark{background:var(--w-ink)!important;color:#FFFFFF!important}
+.we .ftr .logo__txt small{color:var(--w-mid)!important}
+
+.we .ftr__about p{color:var(--w-sub);line-height:1.9;font-size:13px;max-width:34em}
+.we .ftr__info{font-size:12.5px;row-gap:6px}
+.we .ftr__info dt{color:var(--w-mid)}
+.we .ftr__info dd{color:var(--w-ink)}
+
+/* 見出し：濃紺 ＋ 下に 18px の赤い短線 */
+.we .ftr h3{
+  position:relative;color:var(--w-ink);font-size:11.5px;font-weight:700;
+  letter-spacing:.14em;margin-bottom:22px;padding-bottom:11px;
+}
+.we .ftr h3::after{
+  content:"";position:absolute;left:0;bottom:0;width:18px;height:2px;background:var(--w-red);
+}
+
+.we .ftr nav{gap:12px}
+.we .ftr nav a{color:var(--w-sub);text-decoration:none}
+.we .ftr nav a:hover{color:var(--w-red);text-decoration:underline;text-underline-offset:3px}
+.we .ftr .applyoff{color:var(--w-mid)}
+
+.we .ftr__bottom{
+  margin-top:clamp(36px,4vw,48px);padding-top:20px;
+  border-top:1px solid var(--w-line2);
+  color:var(--w-mid);font-size:12px;
+}
+.we .ftr__bottom a{color:var(--w-sub)!important;text-decoration:underline;text-underline-offset:3px}
+.we .ftr__bottom a:hover{color:var(--w-red)!important}
+/* コーポレートサイトのURLは <small> の中にあり 10px まで落ちていた。
+   白地では 1.30:1 で読めないため、親と同じ 12px に戻す */
+.we .ftr__bottom small{font-size:inherit}
+
+/* 右下に出る固定CTA。白い本文の上でも見えるよう、影を弱めて枠を足す */
+.we .sidecta{box-shadow:0 6px 18px rgba(38,41,70,.22)}
+
+/* ============================================================
+   50 レスポンシブ
+   ============================================================ */
+@media(max-width:760px){
+  /* リンクが2本あるページでは縦に積み、行頭をそろえる */
+  .we .entry .entry__sec{display:flex;flex-direction:column;gap:10px;align-items:flex-start}
+  .we .entry{padding:48px 0 44px}
+  .we .entry h2{font-size:clamp(21px,5.6vw,25px)}
+  .we .entry p{font-size:15px}
+  .we .entry__ctas{flex-direction:column;align-items:stretch}
+  .we .entry__ctas .btn{justify-content:center}
+  .we .ftr{padding:40px 0 20px}
+  .we .ftr h3{margin-bottom:16px}
+  .we .ftr__top{row-gap:30px}
+}
+
+/* ============================================================
+   21 HOME：白地で弱くなる装飾・図解の補強
+   ------------------------------------------------------------
+   指定元
+     redesign/…/corporate-system.css  .gridbg（方眼グリッド）
+     HOME 本文内の SVG  .xn__art（CROSSOVER の3領域図）/ .hybrole__map（職種マップ）
+   ============================================================ */
+
+/* 方眼グリッドは淡灰の面に質感を足すための装飾だった。
+   白地にすると「グリッドのある面」と「無い面」の境目が帯のように見えるため外す */
+.we .gridbg{background-image:none}
+
+/* CROSSOVER の3領域図：#C2CBE0（白地に 1.74:1）では線が読めない。
+   図形のコントラスト 3:1 を満たす濃さへ上げる */
+.we .xn__art path{stroke:#8D99C0}
+.we .xn__art circle{stroke:#6E7CA8}
+
+/* 職種マップの補助円も、白地で輪郭が残る濃さへ */
+.we .hybrole__map circle[stroke]{stroke:#C2CBE0}
+
+
+/* ============================================================
+   60 JavaScript が動かないときの保険
+   ------------------------------------------------------------
+   .entry__inner には 27ページすべてで .reveal が付いている。
+   .reveal の既定は opacity:0（system-h.css 178 / newtop-system.css 235）で、
+   IntersectionObserver が動かないと NEXT STEP ごと見えなくなる。
+   応募導線を消さないため、NEXT STEP とフッターの中だけ既定を可視にする。
+   （正式28ページ全体の .reveal 修正は fix/reveal-safe ブランチで別途検証中。
+     ここでの指定はその修正と競合しない：is-in が付けば通常どおり表示される）
+   ============================================================ */
+.we .entry .reveal,
+.we .entry.reveal,
+.we .ftr .reveal{opacity:1;transform:none}
+
+/* 動きを減らす設定の利用者には、もともと演出を出さない */
+@media(prefers-reduced-motion:reduce){
+  .we .entry *,.we .ftr *{transition:none!important;animation:none!important}
+}
