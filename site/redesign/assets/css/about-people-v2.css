@@ -1,0 +1,102 @@
+@charset "utf-8";
+/* ============================================================================
+   ABOUT「OUR PEOPLE & CULTURE」統合レイアウト（レビュー用）
+
+   about.css の後に読み込んで .p4net / .p4voice / .p4vh を打ち消し、
+   領域と人物をひとつにまとめた .xp を適用する。
+   about.css 本体は変更していないので、正規 about.html には影響しない。
+   ============================================================================ */
+/* 旧実装を隠す（レビュー用HTMLには要素自体が無いが、念のため） */
+.a7 .p4net,.a7 .p4voice,.a7 .p4vh{display:none}
+
+/* ============================================================================
+   ===== EXPERTISE × PEOPLE v1 START =====
+   OUR PEOPLE & CULTURE：3領域の図解（曲線＋赤い丸）と社員紹介の二段構造をやめ、
+   「領域 → 役割 → その領域で働く人 → その人の言葉」を1カラムにまとめた。
+   旧実装（.p4net / .p4voice / .p4vh）のCSSは削除済み。復元元 git a4948a5。
+   カードは使わず、白地に縦罫と余白で3列を分ける。
+   ============================================================================ */
+.a7 .xp{
+  list-style:none;margin:clamp(30px,3.6vw,44px) 0 0;padding:0;
+  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;
+  border-top:1px solid var(--p-line);
+}
+/* 行を揃えるため grid にする。flex + margin-top:auto だと
+   コメントの行数差で人物の上端がずれる（BPOだけ下がっていた） */
+.a7 .xp__i{
+  display:grid;grid-template-rows:auto auto auto 1fr;align-content:start;
+  padding:clamp(26px,3vw,34px) clamp(20px,2.4vw,30px) clamp(24px,2.8vw,30px) 0;
+}
+.a7 .xp__i + .xp__i{
+  padding-left:clamp(20px,2.4vw,30px);border-left:1px solid var(--p-line2);
+}
+
+/* 上部：英字ラベル／職種名／役割 */
+.a7 .xp__en{
+  margin:0 0 11px;font-family:var(--font-en,Lato,sans-serif);
+  font-size:12px;font-weight:700;letter-spacing:.13em;color:var(--p-red);
+}
+.a7 .xp__n{
+  margin:0 0 9px;font-size:clamp(18px,2.1vw,22px);font-weight:700;line-height:1.45;
+  letter-spacing:.01em;color:var(--p-ink);
+}
+.a7 .xp__r{
+  margin:0 0 clamp(22px,2.6vw,28px);font-size:14.5px;line-height:1.85;color:var(--p-sub);
+}
+
+/* 下部：人物とその言葉。カラムごと1つのリンクにする */
+.a7 .xp__p{
+  display:block;margin-top:0;padding-top:clamp(20px,2.4vw,26px);
+  border-top:1px solid var(--p-line2);
+  text-decoration:none;color:inherit;
+}
+.a7 .xp__img{
+  display:block;width:clamp(120px,11vw,150px);height:auto;
+  border-radius:12px;background:#F7F8FB;margin:0 0 clamp(16px,1.9vw,20px);
+  object-fit:cover;object-position:50% 8%;aspect-ratio:900 / 975;
+}
+.a7 .xp__q{
+  display:block;quotes:none;margin:0 0 13px;padding-left:15px;
+  border-left:2px solid var(--p-red);
+  font-size:clamp(15.5px,1.7vw,17px);font-weight:700;line-height:1.75;
+  letter-spacing:.01em;color:var(--p-ink);
+}
+.a7 .xp__q::before,.a7 .xp__q::after{content:none}
+.a7 .xp__c{
+  display:block;font-style:normal;font-size:13px;line-height:1.75;color:var(--p-mid);
+}
+.a7 .xp__c b{display:block;font-size:14.5px;font-weight:700;color:var(--p-ink);margin-bottom:2px}
+.a7 .xp__p:hover .xp__q{color:var(--p-red)}
+.a7 .xp__p:focus-visible{outline:2px solid var(--p-red);outline-offset:4px;border-radius:6px}
+
+/* 3領域が対等であることを示す一文。線や矢印は使わない */
+.a7 .xp__note{
+  margin:clamp(18px,2.2vw,24px) 0 0;padding-top:clamp(16px,2vw,20px);
+  border-top:1px solid var(--p-line);
+  font-size:13.5px;line-height:1.85;color:var(--p-mid);
+}
+
+@media(max-width:860px){
+  .a7 .xp{grid-template-columns:minmax(0,1fr);gap:0}
+  .a7 .xp__i,.a7 .xp__i + .xp__i{
+    display:block;padding:clamp(22px,4vw,26px) 0;border-left:none;
+  }
+  .a7 .xp__i + .xp__i{border-top:1px solid var(--p-line2)}
+  .a7 .xp__r{margin-bottom:18px}
+  /* SP は人物と言葉を横に並べ、縦の伸びを抑える。
+     氏名・所属は画像の下ではなく言葉の下へ置く（118px 幅では折り返しすぎるため） */
+  .a7 .xp__p{
+    display:grid;grid-template-columns:118px minmax(0,1fr);gap:4px 16px;align-items:start;
+    padding-top:18px;
+  }
+  .a7 .xp__img{width:118px;margin:0;grid-area:1 / 1 / 3 / 2}
+  .a7 .xp__q{grid-area:1 / 2 / 2 / 3}
+  .a7 .xp__c{grid-area:2 / 2 / 3 / 3}
+  .a7 .xp__q{font-size:15.5px;margin-bottom:10px;padding-left:13px}
+  .a7 .xp__c{font-size:12.5px}
+}
+@media(max-width:380px){
+  .a7 .xp__p{grid-template-columns:100px minmax(0,1fr);gap:13px}
+  .a7 .xp__img{width:100px}
+}
+/* ===== EXPERTISE × PEOPLE v1 END ===== */

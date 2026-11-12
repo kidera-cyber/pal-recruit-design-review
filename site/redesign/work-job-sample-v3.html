@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
-<title>【試作・非公開 v3】WORK 職種デザインサンプル｜物流センター運営｜株式会社PAL 採用サイト</title>
+<title>【試作・非公開 v4】WORK 職種デザインサンプル｜物流センター運営｜株式会社PAL 採用サイト</title>
 <meta name="description" content="株式会社PAL 採用サイト WORK の職種紹介デザインサンプル（非公開・検証用）。物流センター運営の情報を、配色と情報階層を再設計したレイアウトで表示する検証ページです。職種名・仕事内容・求人条件・リンクは work.html の原文から変更していません。">
 <link rel="canonical" href="work-job-sample-v3.html">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -12,13 +12,11 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&family=Noto+Sans+JP:wght@400;500;700;800&display=swap">
 <link rel="stylesheet" href="../assets/css/style.css">
 <link rel="stylesheet" href="assets/css/system-h.css">
-<link rel="stylesheet" href="assets/css/work-job-sample-v3.css?v=2">
+<link rel="stylesheet" href="assets/css/work-job-sample-v3.css?v=10">
 <noscript><style>.reveal,.wjs .reveal{opacity:1!important;transform:none!important}</style></noscript>
-<noscript><style>.wjs3 .v3vals__d{display:block!important}
-.wjs3 .v3vals__lb{cursor:default}</style></noscript>
 </head>
-<body class="wjs wjs3">
-<div class="proto-bar">【試作・非公開 v3】WORK 職種デザインサンプル｜<b>「主な仕事」と「詳しい仕事内容」を再設計</b>・工程図は承認版のまま・文言は原文のまま</div>
+<body class="wjs wjs3 wjs4">
+<div class="proto-bar">【試作・非公開 v4】WORK 職種デザインサンプル｜<b>HERO・主な仕事・詳しい仕事内容を再設計</b>・工程図は承認版のまま・文言は原文のまま</div>
 <a class="skip-link" href="#main">本文へスキップ</a>
 
 <svg xmlns="http://www.w3.org/2000/svg" style="display:none">
@@ -58,7 +56,7 @@
 <section class="wjs__hero">
   <div class="wrap">
     <div class="wjs__hin">
-      <span class="wjs__hic"><svg class="rpanel__ic" aria-hidden="true"><use href="#ic2-field"></use></svg></span>
+      <span class="wjs__hic v4hic"><svg aria-hidden="true"><use href="#ic2-field"></use></svg></span>
       <div class="wjs__htx">
         <p class="wjs__hen en">BPO / Operation</p>
         <h1 class="wjs__hn">物流センター運営</h1>
@@ -79,18 +77,24 @@
     <!-- v3：番号／短い要約見出し／正式な業務説明 の3段構成。
          要約見出しは正式な業務名称ではなく、下の正式な業務説明を読むための編集上の見出し。
          正式な業務説明（dd）は work.html の原文のまま。 -->
-    <dl class="v3main">
-      <div class="v3main__i">
-        <dt class="v3main__h"><span class="v3main__no en">01</span>現場の稼働を管理する</dt>
-        <dd class="v3main__d">各拠点の稼働状況の確認と、人員配置</dd>
+    <!-- v4：3つの業務領域を横に並べ、番号・アイコン・要約見出し・正式な仕事内容で示す。
+         アイコンは work.html のスプライトから、業務の内容に合うものを使っている
+         （人員配置＝作業者／品質と安全＝現場での確認／改善＝数値の推移）。 -->
+    <dl class="v4main">
+      <div class="v4main__i">
+        <p class="v4main__top"><span class="v4main__no en">01</span><span class="v4main__ic"><svg aria-hidden="true"><use href="#ic-worker"></use></svg></span></p>
+        <dt class="v4main__h">現場の稼働を管理する</dt>
+        <dd class="v4main__d">各拠点の稼働状況の確認と、人員配置</dd>
       </div>
-      <div class="v3main__i">
-        <dt class="v3main__h"><span class="v3main__no en">02</span>品質と安全を守る</dt>
-        <dd class="v3main__d">作業進捗・品質・安全の管理</dd>
+      <div class="v4main__i">
+        <p class="v4main__top"><span class="v4main__no en">02</span><span class="v4main__ic"><svg aria-hidden="true"><use href="#ic-handy"></use></svg></span></p>
+        <dt class="v4main__h">品質と安全を守る</dt>
+        <dd class="v4main__d">作業進捗・品質・安全の管理</dd>
       </div>
-      <div class="v3main__i">
-        <dt class="v3main__h"><span class="v3main__no en">03</span>数字をもとに改善する</dt>
-        <dd class="v3main__d">生産性・収支の確認と、業務改善の推進</dd>
+      <div class="v4main__i">
+        <p class="v4main__top"><span class="v4main__no en">03</span><span class="v4main__ic"><svg aria-hidden="true"><use href="#ic2-improve"></use></svg></span></p>
+        <dt class="v4main__h">数字をもとに改善する</dt>
+        <dd class="v4main__d">生産性・収支の確認と、業務改善の推進</dd>
       </div>
     </dl>
     <!-- v2：「このほかの担当業務は、下の『詳しい仕事内容』に掲載しています。」は、
@@ -119,57 +123,58 @@
   </div>
 </section>
 
-<!-- ⑤ DETAILS（v3：外側のアコーディオンを廃し、見出しは常時表示。
-     説明文だけをラジオで切り替える。階層は1段、1クリックで目的の説明に届く） -->
+<!-- ⑤ DETAILS（v4：外側の展開導線を1つに戻し、中は見出し主体の一覧にした。
+     入れ子のアコーディオンもラジオ切り替えもなく、1クリックで全文に届く。
+     JavaScript を使っていないので、無効な環境でも開ける） -->
 <section class="wjs__sec wjs__sec--more">
   <div class="wrap">
-    <h2 class="wjs__h2"><span class="wjs__h2en en">03</span>詳しい仕事内容</h2>
+    <details class="v4more">
+      <summary class="v4more__s">
+        <span class="v4more__st">仕事内容を詳しく見る</span>
+        <span class="v4more__sm">そのほかの担当業務 ／ この仕事で大切にしていること</span>
+        <span class="v4more__ic" aria-hidden="true"></span>
+      </summary>
+      <div class="v4more__in">
 
-    <!-- A：そのほかの担当業務（2項目・短いので常時表示） -->
-    <div class="v3other">
-      <p class="v3lab en">OTHER DUTIES<span>そのほかの担当業務</span></p>
-      <ul class="v3other__l">
-        <li>取引先との打ち合わせ、現場確認</li>
-        <li>拠点間の調整と、改善施策の横展開</li>
-      </ul>
-    </div>
+        <div class="v4blk">
+          <p class="v4lab en">OTHER DUTIES<span>そのほかの担当業務</span></p>
+          <ul class="v4duty">
+            <li>取引先との打ち合わせ、現場確認</li>
+            <li>拠点間の調整と、改善施策の横展開</li>
+          </ul>
+        </div>
 
-    <!-- B：この仕事で大切にしていること（見出し4つは常時表示、説明は選んだ1つを展開）
-         ラジオボタンで切り替えるため JavaScript は使わない。
-         キーボードは矢印キーで項目を移動できる。
-         JavaScript 無効時は <noscript> のスタイルで全説明文を開く。 -->
-    <div class="v3vals">
-      <p class="v3lab en">MINDSET<span>この仕事で大切にしていること</span></p>
-      <ol class="v3vals__l">
-        <li class="v3vals__i">
-          <input class="v3vals__r" type="radio" name="wjsval" id="wv1" checked>
-          <label class="v3vals__lb" for="wv1"><b class="v3vals__no en">01</b><span class="v3vals__t">人を増やす前に、作業そのものを疑う</span></label>
-          <div class="v3vals__d"><p>課題に対して人を増やすだけで解決するのではなく、作業そのものを変えられないか、機械やシステムに置き換えられないかを考えます。</p></div>
-        </li>
-        <li class="v3vals__i">
-          <input class="v3vals__r" type="radio" name="wjsval" id="wv2">
-          <label class="v3vals__lb" for="wv2"><b class="v3vals__no en">02</b><span class="v3vals__t">現場のメンバーの意見から始める</span></label>
-          <div class="v3vals__d"><p>現場で働くメンバーの意見を大切にしながら、既存のやり方にとらわれない改善を考えます。</p></div>
-        </li>
-        <li class="v3vals__i">
-          <input class="v3vals__r" type="radio" name="wjsval" id="wv3">
-          <label class="v3vals__lb" for="wv3"><b class="v3vals__no en">03</b><span class="v3vals__t">数字と現場の両方から判断する</span></label>
-          <div class="v3vals__d"><p>生産性や収支の数字と、現場で実際に起きていることの両方を見て決めます。</p></div>
-        </li>
-        <li class="v3vals__i">
-          <input class="v3vals__r" type="radio" name="wjsval" id="wv4">
-          <label class="v3vals__lb" for="wv4"><b class="v3vals__no en">04</b><span class="v3vals__t">顧客と条件を話す（責任者候補の役割）</span></label>
-          <div class="v3vals__d"><p>拠点によっては、クライアントとの物量・単価・オペレーションの交渉を通じて、拠点の収益改善を担当します。</p></div>
-        </li>
-      </ol>
-    </div>
+        <div class="v4blk">
+          <p class="v4lab en">MINDSET<span>この仕事で大切にしていること</span></p>
+          <ol class="v4mind">
+            <li class="v4mind__i">
+              <p class="v4mind__h"><span class="v4mind__no en">01</span>人を増やす前に、作業そのものを疑う</p>
+              <p class="v4mind__d">課題に対して人を増やすだけで解決するのではなく、作業そのものを変えられないか、機械やシステムに置き換えられないかを考えます。</p>
+            </li>
+            <li class="v4mind__i">
+              <p class="v4mind__h"><span class="v4mind__no en">02</span>現場のメンバーの意見から始める</p>
+              <p class="v4mind__d">現場で働くメンバーの意見を大切にしながら、既存のやり方にとらわれない改善を考えます。</p>
+            </li>
+            <li class="v4mind__i">
+              <p class="v4mind__h"><span class="v4mind__no en">03</span>数字と現場の両方から判断する</p>
+              <p class="v4mind__d">生産性や収支の数字と、現場で実際に起きていることの両方を見て決めます。</p>
+            </li>
+            <li class="v4mind__i">
+              <p class="v4mind__h"><span class="v4mind__no en">04</span>顧客と条件を話す（責任者候補の役割）</p>
+              <p class="v4mind__d">拠点によっては、クライアントとの物量・単価・オペレーションの交渉を通じて、拠点の収益改善を担当します。</p>
+            </li>
+          </ol>
+        </div>
+
+      </div>
+    </details>
   </div>
 </section>
 
 <!-- ⑥ NEXT ACTION -->
 <section class="wjs__sec wjs__sec--cta">
   <div class="wrap">
-    <h2 class="wjs__h2"><span class="wjs__h2en en">04</span>この仕事をもっと知る</h2>
+    <h2 class="wjs__h2"><span class="wjs__h2en en">03</span>この仕事をもっと知る</h2>
     <p class="wjs__ctal">
       <a class="wjs__cta wjs__cta--main" href="people/bpo.html">この仕事をしている社員の声を読む<i aria-hidden="true"></i></a>
       <a class="wjs__cta wjs__cta--sub" href="jobs/logistics-operation.html">募集要項を見る<i aria-hidden="true"></i></a>

@@ -289,121 +289,164 @@
 
 
 /* ============================================================================
-   v3 追加分
+   v4 追加分
    ----------------------------------------------------------------------------
-   30v3 「主な仕事」：番号／短い要約見出し／正式な業務説明 の3段
-   50v3 「詳しい仕事内容」：外側のアコーディオンを廃止。
-        A そのほかの担当業務（常時表示）
-        B 大切にしていること（見出し4つ常時表示＋説明はラジオで1つずつ）
-   ここで使う色は White Editorial A案と同じ
+   20v4 HERO        アイコンを濃紺の面に置き、職種の第一印象をつくる
+   30v4 主な仕事    番号・アイコン・要約見出し・正式な仕事内容の3領域を横に並べる
+   50v4 詳しい仕事内容
+                    「仕事内容を詳しく見る」ひとつの展開導線にまとめ、
+                    中は見出し主体の一覧にする（入れ子なし・JavaScript 不使用）
+   工程図「02 仕事の進め方」は承認済みのため 40 節のまま触っていない。
+   配色は White Editorial A案
      白 #FFFFFF / 濃紺 #262946 / 赤 #CF131B / 本文 #53545A
-     補助 #6B6D81 / 罫線 #DAE1F2 / 限定的な薄灰 #F7F8F9
+     補助 #6B6D81 / 罫線 #DAE1F2・#E7EBF4 / 面 #F7F8F9
    ============================================================================ */
 
-/* ───────── 30v3 主な仕事 ───────── */
-.wjs3 .v3main{margin:0;padding:0;border-top:1px solid var(--j-line)}
-.wjs3 .v3main__i{
-  display:grid;grid-template-columns:minmax(0,22em) minmax(0,1fr);
-  gap:4px clamp(28px,4vw,64px);align-items:baseline;
-  padding:clamp(20px,2.4vw,26px) 0;border-bottom:1px solid var(--j-line2);
+/* ───────── 20v4 HERO ───────── */
+.wjs4 .v4hic{
+  display:grid;place-items:center;
+  width:clamp(56px,6vw,72px);height:clamp(56px,6vw,72px);
+  background:var(--j-ink);border-radius:14px;color:#FFFFFF;
 }
-.wjs3 .v3main__h{
-  display:flex;align-items:baseline;gap:16px;margin:0;
-  font-size:clamp(17px,2vw,20px);font-weight:700;line-height:1.55;
+.wjs4 .v4hic svg{display:block;width:58%;height:58%}
+/* 濃紺の面の上では、アイコンの赤いアクセント線も白に寄せる */
+.wjs4 .v4hic svg .a{stroke:#FF8186}
+.wjs4 .wjs__hin{align-items:start}
+
+/* ───────── 30v4 主な仕事：3つの業務領域 ───────── */
+.wjs4 .v4main{
+  margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;
+  border-top:1px solid var(--j-line);
+}
+.wjs4 .v4main__i{
+  padding:clamp(22px,2.6vw,28px) clamp(18px,2.2vw,26px) clamp(20px,2.4vw,24px) 0;
+}
+.wjs4 .v4main__i + .v4main__i{
+  padding-left:clamp(18px,2.2vw,26px);border-left:1px solid var(--j-line2);
+}
+.wjs4 .v4main__top{
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+  margin:0 0 clamp(14px,1.8vw,18px);
+}
+.wjs4 .v4main__no{
+  font:900 clamp(22px,2.5vw,28px)/1 Lato,sans-serif;letter-spacing:.02em;color:var(--j-red);
+}
+.wjs4 .v4main__ic{
+  display:grid;place-items:center;flex:none;
+  width:42px;height:42px;border-radius:10px;
+  background:var(--j-g2);color:var(--j-ink);
+}
+.wjs4 .v4main__ic svg{display:block;width:24px;height:24px}
+.wjs4 .v4main__h{
+  margin:0 0 8px;font-size:clamp(16px,1.8vw,18px);font-weight:700;line-height:1.55;
   letter-spacing:.01em;color:var(--j-ink);
 }
-.wjs3 .v3main__no{
-  flex:none;font:900 clamp(20px,2.2vw,24px)/1 Lato,sans-serif;
-  letter-spacing:.02em;color:var(--j-red);
-}
-.wjs3 .v3main__d{
-  margin:0;font-size:15.5px;line-height:1.9;color:var(--j-sub);
+.wjs4 .v4main__d{
+  margin:0;font-size:14.5px;line-height:1.85;color:var(--j-sub);
 }
 
-/* この仕事らしさは「主な仕事」の視線を奪わないよう、一段弱くして下に置く */
-.wjs3 .wjs__like{margin-top:clamp(26px,3vw,34px);font-size:15px;color:var(--j-mid)}
-.wjs3 .wjs__likeh{color:var(--j-ink2)}
+/* この仕事らしさ：主な仕事の下に引用として置く */
+.wjs4 .wjs__like{margin-top:clamp(24px,2.8vw,32px);font-size:15px;color:var(--j-mid)}
+.wjs4 .wjs__likeh{color:var(--j-ink2)}
 
-/* ───────── 50v3 詳しい仕事内容 ───────── */
+/* ───────── 50v4 詳しい仕事内容 ───────── */
+.wjs4 .v4more{
+  border:1px solid var(--j-line);border-radius:12px;background:var(--j-w);
+}
+.wjs4 .v4more__s{
+  display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;
+  gap:4px 18px;padding:clamp(18px,2.2vw,22px) clamp(18px,2.2vw,26px);
+  cursor:pointer;list-style:none;
+}
+.wjs4 .v4more__s::-webkit-details-marker{display:none}
+.wjs4 .v4more__s:hover{background:var(--j-g2)}
+.wjs4 .v4more[open] .v4more__s{border-bottom:1px solid var(--j-line2)}
+.wjs4 .v4more__st{
+  grid-column:1;font-size:clamp(16px,1.8vw,18px);font-weight:700;color:var(--j-ink);
+}
+.wjs4 .v4more__sm{
+  grid-column:1;font-size:13px;line-height:1.7;color:var(--j-mid);
+}
+.wjs4 .v4more__ic{
+  grid-area:1 / 2 / 3 / 3;position:relative;width:22px;height:22px;
+}
+.wjs4 .v4more__ic::before,.wjs4 .v4more__ic::after{
+  content:"";position:absolute;left:50%;top:50%;background:var(--j-red);
+  transform:translate(-50%,-50%);
+}
+.wjs4 .v4more__ic::before{width:18px;height:2px}
+.wjs4 .v4more__ic::after{width:2px;height:18px;transition:transform .18s}
+.wjs4 .v4more[open] .v4more__ic::after{transform:translate(-50%,-50%) scaleY(0)}
+.wjs4 .v4more__s:focus-visible{outline:2px solid var(--j-red);outline-offset:-3px;border-radius:12px}
+
+.wjs4 .v4more__in{padding:clamp(22px,2.6vw,30px) clamp(18px,2.2vw,26px) clamp(24px,2.8vw,32px)}
+.wjs4 .v4blk + .v4blk{margin-top:clamp(28px,3.2vw,38px)}
+
 /* 小さな英字ラベル＋日本語見出し */
-.wjs3 .v3lab{
-  display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin:0 0 16px;
+.wjs4 .v4lab{
+  display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin:0 0 14px;
   font:700 11px/1.4 Lato,sans-serif;letter-spacing:.18em;color:var(--j-red);
 }
-.wjs3 .v3lab span{
+.wjs4 .v4lab span{
   font-family:inherit;font-size:15px;font-weight:700;letter-spacing:.04em;color:var(--j-ink);
 }
 
 /* A：そのほかの担当業務 */
-.wjs3 .v3other{margin:0 0 clamp(38px,4.4vw,56px)}
-.wjs3 .v3other__l{list-style:none;margin:0;padding:0;border-top:1px solid var(--j-line2)}
-.wjs3 .v3other__l li{
-  position:relative;padding:15px 0 15px 30px;border-bottom:1px solid var(--j-line2);
-  font-size:16px;line-height:1.75;color:var(--j-ink);
+.wjs4 .v4duty{list-style:none;margin:0;padding:0;border-top:1px solid var(--j-line2)}
+.wjs4 .v4duty li{
+  position:relative;padding:13px 0 13px 28px;border-bottom:1px solid var(--j-line2);
+  font-size:15.5px;line-height:1.75;color:var(--j-ink);
 }
-.wjs3 .v3other__l li::before{
-  content:"";position:absolute;left:0;top:50%;width:16px;height:1px;
+.wjs4 .v4duty li::before{
+  content:"";position:absolute;left:0;top:50%;width:15px;height:1px;
   background:var(--j-red);transform:translateY(-50%);
 }
-.wjs3 .v3other__l li::after{
-  content:"";position:absolute;left:11px;top:50%;width:7px;height:7px;
+.wjs4 .v4duty li::after{
+  content:"";position:absolute;left:10px;top:50%;width:6px;height:6px;
   border-top:1px solid var(--j-red);border-right:1px solid var(--j-red);
   transform:translateY(-50%) rotate(45deg);
 }
 
-/* B：大切にしていること */
-.wjs3 .v3vals__l{list-style:none;margin:0;padding:0;border-top:1px solid var(--j-line)}
-.wjs3 .v3vals__i{border-bottom:1px solid var(--j-line2)}
-.wjs3 .v3vals__r{position:absolute;width:1px;height:1px;margin:-1px;padding:0;
-  overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
-.wjs3 .v3vals__lb{
-  display:flex;align-items:baseline;gap:16px;cursor:pointer;
-  padding:17px 44px 17px 0;position:relative;
-  transition:color .15s;
+/* B：大切にしていること。2列にして一覧性を確保する */
+.wjs4 .v4mind{
+  list-style:none;margin:0;padding:0;
+  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:clamp(20px,2.4vw,26px) clamp(26px,3.2vw,44px);
 }
-.wjs3 .v3vals__no{
-  flex:none;font:900 clamp(19px,2.1vw,23px)/1 Lato,sans-serif;color:var(--j-red);
+.wjs4 .v4mind__i{padding-top:16px;border-top:1px solid var(--j-line2)}
+.wjs4 .v4mind__h{
+  display:flex;align-items:baseline;gap:13px;margin:0 0 8px;
+  font-size:clamp(15.5px,1.7vw,17px);font-weight:700;line-height:1.6;color:var(--j-ink);
 }
-.wjs3 .v3vals__t{
-  font-size:clamp(16px,1.8vw,18px);font-weight:700;line-height:1.6;color:var(--j-ink);
+.wjs4 .v4mind__no{
+  flex:none;font:900 clamp(17px,1.9vw,20px)/1 Lato,sans-serif;color:var(--j-red);
 }
-/* 開閉を示す印。閉じているときは＋、開いているときは− */
-.wjs3 .v3vals__lb::before,
-.wjs3 .v3vals__lb::after{
-  content:"";position:absolute;right:8px;top:calc(50% - 1px);background:var(--j-red);
-}
-.wjs3 .v3vals__lb::before{width:15px;height:2px;margin-right:0}
-.wjs3 .v3vals__lb::after{width:2px;height:15px;right:14.5px;top:calc(50% - 7.5px);transition:transform .18s}
-.wjs3 .v3vals__r:checked + .v3vals__lb::after{transform:scaleY(0)}
-.wjs3 .v3vals__lb:hover .v3vals__t{color:var(--j-red)}
-/* キーボード操作（ラジオのフォーカス）を見える形にする */
-.wjs3 .v3vals__r:focus-visible + .v3vals__lb{outline:2px solid var(--j-red);outline-offset:2px;border-radius:4px}
-
-.wjs3 .v3vals__d{display:none;padding:0 44px 20px 0}
-.wjs3 .v3vals__r:checked ~ .v3vals__d{display:block}
-.wjs3 .v3vals__d p{
-  margin:0;padding-left:18px;border-left:2px solid var(--j-line);
-  font-size:15px;line-height:1.95;color:var(--j-sub);max-width:46em;
+.wjs4 .v4mind__d{
+  margin:0;padding-left:33px;font-size:14px;line-height:1.9;color:var(--j-sub);
 }
 
-/* 印刷時と、動きを減らす設定のとき */
-@media print{ .wjs3 .v3vals__d{display:block!important} }
 @media(prefers-reduced-motion:reduce){
-  .wjs3 .v3vals__lb,.wjs3 .v3vals__lb::after{transition:none}
+  .wjs4 .v4more__ic::after{transition:none}
 }
-
 @media(max-width:860px){
-  .wjs3 .v3main__i{grid-template-columns:minmax(0,1fr);gap:9px;padding:18px 0}
-  .wjs3 .v3main__h{font-size:17px;gap:13px}
-  .wjs3 .v3main__no{font-size:20px}
-  .wjs3 .v3main__d{font-size:15px}
+  .wjs4 .v4main{grid-template-columns:minmax(0,1fr)}
+  .wjs4 .v4main__i,.wjs4 .v4main__i + .v4main__i{
+    padding:18px 0;border-left:none;
+  }
+  .wjs4 .v4main__i + .v4main__i{border-top:1px solid var(--j-line2)}
+  .wjs4 .v4main__top{margin-bottom:12px}
+  .wjs4 .v4mind{grid-template-columns:minmax(0,1fr);gap:18px}
 }
 @media(max-width:760px){
-  .wjs3 .v3lab{gap:4px 12px;margin-bottom:13px}
-  .wjs3 .v3other__l li{font-size:15.5px;padding:13px 0 13px 28px}
-  .wjs3 .v3vals__lb{padding:15px 38px 15px 0;gap:13px}
-  .wjs3 .v3vals__t{font-size:16px}
-  .wjs3 .v3vals__no{font-size:19px}
-  .wjs3 .v3vals__d{padding:0 0 18px}
-  .wjs3 .v3vals__d p{font-size:14.5px}
+  .wjs4 .v4hic{width:52px;height:52px;border-radius:12px}
+  .wjs4 .v4main__no{font-size:22px}
+  .wjs4 .v4main__ic{width:38px;height:38px}
+  .wjs4 .v4main__ic svg{width:21px;height:21px}
+  .wjs4 .v4main__h{font-size:16px}
+  .wjs4 .v4more__s{padding:16px}
+  .wjs4 .v4more__st{font-size:16px}
+  .wjs4 .v4more__sm{font-size:12.5px}
+  .wjs4 .v4more__in{padding:20px 16px 24px}
+  .wjs4 .v4duty li{font-size:15px;padding:12px 0 12px 26px}
+  .wjs4 .v4mind__d{padding-left:0;font-size:13.5px}
 }

@@ -1,0 +1,143 @@
+@charset "utf-8";
+/* ============================================================================
+   PEOPLE｜#look の3ブロック  PEOPLE VALUES v1
+
+   共通 site/assets/css/style.css の .vrow / .wlf / .force3 は
+   site/people/index.html も使っているため変更せず、#look の中だけを組み直す。
+
+   3つのブロックは役割が違うので、見え方も変える。
+     ① 3つの価値観  … PALの考え方。番号と大きな見出しを主役にした縦のエディトリアル
+     ② 6つの姿勢    … 人の行動特性。2列×3段。見出しは中くらい、説明を添える
+     ③ 3つの力      … 仕事で発揮する能力。図解を主役にした3列
+
+   配色は White Editorial A案
+     白 #FFFFFF／濃紺 #262946／赤 #CF131B／本文 #53545A
+     補助 #6B6D81／罫線 #DAE1F2・#E7EBF4
+   ============================================================================ */
+
+#look{
+  --l-ink:#262946;
+  --l-ink2:#464A6F;
+  --l-sub:#53545A;
+  --l-mid:#6B6D81;
+  --l-red:#CF131B;
+  --l-line:#DAE1F2;
+  --l-line2:#E7EBF4;
+  background:#FFFFFF;
+}
+
+/* ============================================================
+   ① 3つの価値観：番号を大きく、見出しを主役に
+   ============================================================ */
+#look .pvx{
+  list-style:none;margin:clamp(30px,3.6vw,44px) 0 0;padding:0;
+  border-top:1px solid var(--l-line);
+}
+#look .pvx__i{
+  display:grid;grid-template-columns:clamp(84px,9vw,130px) minmax(0,1fr);
+  gap:clamp(14px,2vw,28px);align-items:start;
+  padding:clamp(24px,2.8vw,32px) 0;
+  border-bottom:1px solid var(--l-line2);
+}
+#look .pvx__no{
+  margin:0;font:900 clamp(40px,5vw,62px)/1 Lato,sans-serif;
+  letter-spacing:.01em;color:var(--l-red);
+}
+#look .pvx__h{
+  margin:0 0 12px;font-size:clamp(22px,2.9vw,30px);font-weight:700;
+  line-height:1.45;letter-spacing:.01em;color:var(--l-ink);
+}
+#look .pvx__t{
+  margin:0;font-size:16px;line-height:1.95;color:var(--l-sub);max-width:40em;
+}
+
+/* ============================================================
+   ② 6つの姿勢：2列×3段
+   ============================================================ */
+#look .pm6{margin:clamp(40px,4.6vw,58px) 0 0}
+#look .pm6__head{margin-bottom:clamp(22px,2.6vw,30px)}
+#look .pm6__lead{
+  margin:10px 0 0;font-size:14.5px;line-height:1.9;color:var(--l-mid);max-width:44em;
+}
+#look .pm6__list{
+  list-style:none;margin:0;padding:0;
+  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:0 clamp(32px,4.4vw,68px);
+  border-top:1px solid var(--l-line);
+}
+#look .pm6__i{
+  display:grid;grid-template-columns:auto minmax(0,1fr);
+  gap:2px clamp(14px,1.8vw,20px);
+  padding:clamp(16px,1.9vw,20px) 0;
+  border-bottom:1px solid var(--l-line2);
+}
+#look .pm6__no{
+  grid-area:1 / 1 / 3 / 2;margin:0;
+  font:900 clamp(17px,1.9vw,21px)/1.25 Lato,sans-serif;color:var(--l-red);
+}
+#look .pm6__h{
+  grid-column:2;font-size:clamp(17px,1.9vw,20px);font-weight:700;
+  line-height:1.5;letter-spacing:.01em;color:var(--l-ink);
+}
+#look .pm6__t{
+  grid-column:2;margin:5px 0 0;font-size:15px;line-height:1.85;color:var(--l-sub);
+}
+
+/* ============================================================
+   ③ 3つの力：図解を主役に
+   ============================================================ */
+#look .look__sub2{
+  text-align:left;
+  margin:clamp(42px,4.8vw,62px) 0 clamp(20px,2.3vw,25px);
+  font-size:clamp(18px,2.1vw,22px);font-weight:700;line-height:1.5;color:var(--l-ink);
+}
+#look .pc3{
+  list-style:none;margin:0;padding:0;
+  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;
+  border-top:1px solid var(--l-line);
+}
+#look .pc3__i{
+  padding:clamp(22px,2.5vw,28px) clamp(20px,2.4vw,30px) clamp(20px,2.3vw,24px) 0;
+}
+#look .pc3__i + .pc3__i{
+  padding-left:clamp(20px,2.4vw,30px);border-left:1px solid var(--l-line2);
+}
+/* 図解。白地で成立し、3枚でテイストをそろえている */
+#look .pc3__fig{margin:0 0 clamp(15px,1.8vw,20px);line-height:0}
+#look .pc3__g{display:block;width:100%;height:auto;max-width:250px}
+#look .pc3__en{
+  margin:0 0 7px;font:700 11px/1 Lato,sans-serif;letter-spacing:.17em;color:var(--l-red);
+}
+#look .pc3__h{
+  display:block;margin:0 0 8px;font-size:clamp(16.5px,1.9vw,19px);font-weight:700;
+  line-height:1.5;letter-spacing:.01em;color:var(--l-ink);
+}
+#look .pc3__t{
+  margin:0;font-size:14.5px;line-height:1.85;color:var(--l-sub);
+}
+
+/* ============================================================
+   レスポンシブ
+   ============================================================ */
+@media(max-width:860px){
+  #look .pm6__list{grid-template-columns:minmax(0,1fr);gap:0}
+  #look .pc3{grid-template-columns:minmax(0,1fr)}
+  #look .pc3__i,#look .pc3__i + .pc3__i{
+    padding:clamp(22px,4vw,26px) 0;border-left:none;
+  }
+  #look .pc3__i + .pc3__i{border-top:1px solid var(--l-line2)}
+  #look .pc3__g{max-width:340px}
+}
+@media(max-width:760px){
+  #look .pvx__i{
+    grid-template-columns:minmax(0,1fr);gap:6px;padding:22px 0;
+  }
+  #look .pvx__no{font-size:36px;line-height:1}
+  #look .pvx__h{font-size:21px;margin-bottom:9px}
+  #look .pvx__t{font-size:15.5px}
+  #look .pm6__i{padding:16px 0;gap:2px 13px}
+  #look .pm6__h{font-size:17px}
+  #look .pm6__t{font-size:14.5px}
+  #look .pc3__h{font-size:17px}
+  #look .pc3__t{font-size:14.5px}
+}
