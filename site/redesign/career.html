@@ -25,6 +25,27 @@
 .proto-bar b{color:#ff8186}
 @media (prefers-reduced-motion:reduce){ .reveal{opacity:1!important;transform:none!important} }
 </style>
+<!-- ===== CAREER NOSCRIPT v1 START：JavaScript 無効時の情報アクセス保証 =====
+     JS が動かないと
+       ① .reveal{opacity:0}（system-h.css 178行）のままで 11 要素が読めない
+       ② 職種タブが動かず、BPO 以外の 5 領域が hidden のまま開けない
+     このページの中だけで閉じた対策にしてあるため、共通 style.css / app.js は
+     変更しておらず、ほかの 27 ページには影響しない。
+     ===== -->
+<noscript><style>
+  .reveal{opacity:1!important;transform:none!important;transition:none!important}
+  /* タブは押せないので隠し、6領域をすべて縦に並べて読めるようにする */
+  .cv2 .tabs--big{display:none}
+  .cv2 .cpanel[hidden]{display:block!important}
+  .cv2 .cpanel + .cpanel{
+    margin-top:clamp(36px,4.4vw,56px);padding-top:clamp(28px,3.4vw,42px);
+    border-top:1px solid #DAE1F2;
+  }
+  /* 詳細は <details> なので JS なしでも開ける。初期から開いておく */
+  .cv2 .cmore__in{display:block!important}
+  .cv2 .cmore__ic{display:none}
+</style></noscript>
+<!-- ===== CAREER NOSCRIPT v1 END ===== -->
 </head>
 <body class="we cv2">
 <div class="proto-bar">【試作・非公開】CAREER｜Field Editorialデザイン適用版｜<b>デザイン検証用プレビュー｜本番サイト未反映</b>・文言は本番career/index.htmlと完全同一</div>
