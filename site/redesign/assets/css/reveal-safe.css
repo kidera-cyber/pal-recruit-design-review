@@ -11,6 +11,11 @@
      ・画面に見えている要素は一度も隠さない → ちらつきが起きない
      ・隠すのは画面外だけ → 失敗しても読める位置の本文は必ず見えている
 
+   :not(.is-in) を付けている理由
+     既存ページにはインラインの IntersectionObserver があり、is-in を付ける。
+     新方式と二重に動いても、is-in が付いた時点で必ず表示されるようにして、
+     どちらのコードが先に動いても本文が隠れたままにならないようにする。
+
    フェードは is-in（表示側）にだけ掛ける。
    隠す側にトランジションを掛けると「出てから消える」挙動になるため。
    ============================================================ */
@@ -19,7 +24,7 @@
 .rvs-scope .reveal{opacity:1;transform:none;transition:none}
 
 /* JS初期化に成功し、かつ初期表示時に画面外だった要素だけを隠す */
-html.rvon .rvs-scope .reveal.rv-wait{
+html.rvon .rvs-scope .reveal.rv-wait:not(.is-in){
   opacity:0;transform:translateY(16px);transition:none;
 }
 /* 表示に転じるときだけフェードさせる */

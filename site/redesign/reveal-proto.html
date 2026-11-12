@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="../assets/css/style.css">
 <link rel="stylesheet" href="assets/css/system-h.css">
 <!-- 新方式。既存の .reveal 規則より後ろで読み込む -->
-<link rel="stylesheet" href="assets/css/reveal-safe.css?v=3">
+<link rel="stylesheet" href="assets/css/reveal-safe.css?v=4">
 <style>
   .pbar{background:#000;color:#fff;padding:10px 20px;font-size:12.5px;text-align:center}
   .pbar b{color:#ff8186}
@@ -40,6 +40,10 @@
     <a href="?mode=noio"   id="m-noio">IntersectionObserver 非対応</a>
     <a href="?mode=throw"  id="m-throw">初期化で例外</a>
     <a href="?mode=late"   id="m-late">JSが遅れて失敗</a>
+    <a href="?mode=dual"   id="m-dual">既存Observerと併走</a>
+    <a href="?mode=slow"   id="m-slow">遅い通信（JSが3秒遅延）</a>
+    <a href="?mode=early"  id="m-early">DOMContentLoaded前に初期化</a>
+    <a href="?mode=stop"   id="m-stop">スクロール監視が停止</a>
     <a href="?mode=old"    id="m-old">旧方式（比較用）</a>
   </nav>
   <div id="stat">測定中…</div>
@@ -78,6 +82,35 @@
   if(m === 'noio'){ try{ delete window.IntersectionObserver; }catch(e){ window.IntersectionObserver = undefined; } }
   if(m === 'throw'){ window.IntersectionObserver = function(){ throw new Error('simulated init failure'); }; }
   if(m === 'late'){ /* reveal-safe.js を読み込まない＝JSが届かなかった状況 */ }
+  if(m === 'dual'){
+    /* 既存28ページと同じインライン IntersectionObserver を再現し、新方式と併走させる */
+    window.__dualLog = [];
+    document.addEventListener('DOMContentLoaded', function(){
+      var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion:reduce)').matches;
+      var targets = document.querySelectorAll('.reveal');
+      if(reduce){ targets.forEach(function(el){ el.classList.add('is-in'); }); return; }
+      if('IntersectionObserver' in window && targets.length){
+        var io = new IntersectionObserver(function(entries){
+          entries.forEach(function(en){
+            if(en.isIntersecting){
+              en.target.classList.add('is-in');
+              window.__dualLog.push('old:is-in');
+              io.unobserve(en.target);
+            }
+          });
+        },{threshold:.12, rootMargin:'0px 0px -6% 0px'});
+        targets.forEach(function(t){ io.observe(t); });
+      } else { targets.forEach(function(t){ t.classList.add('is-in'); }); }
+    });
+  }
+  if(m === 'stop'){
+    /* 監視だけが止まった状況：IO は生成できるが一度も発火しない */
+    var NativeIO = window.IntersectionObserver;
+    window.IntersectionObserver = function(cb, opt){
+      var o = new NativeIO(function(){}, opt);
+      return {observe:function(el){ o.observe(el); }, unobserve:function(){}, disconnect:function(){ o.disconnect(); }};
+    };
+  }
   if(m === 'old'){
     /* 旧方式を再現：.reveal を既定で隠し、is-in が来るまで読めない状態にする */
     var s=document.createElement('style');
@@ -88,8 +121,17 @@
 })();
 </script>
 <script>
-  if(window.__mode !== 'late' && window.__mode !== 'old'){
-    document.write('<scr'+'ipt src="assets/js/reveal-safe.js?v=3" defer><\/scr'+'ipt>');
+  if(window.__mode === 'slow'){
+    /* 遅い通信：3秒後に読み込む */
+    setTimeout(function(){
+      var s=document.createElement('script'); s.src='assets/js/reveal-safe.js?v=4&slow=1';
+      document.body.appendChild(s);
+    }, 3000);
+  }else if(window.__mode === 'early'){
+    /* DOMContentLoaded 前に実行（defer なし・同期読み込み） */
+    document.write('<scr'+'ipt src="assets/js/reveal-safe.js?v=4"><\/scr'+'ipt>');
+  }else if(window.__mode !== 'late' && window.__mode !== 'old'){
+    document.write('<scr'+'ipt src="assets/js/reveal-safe.js?v=4" defer><\/scr'+'ipt>');
   }
 </script>
 
