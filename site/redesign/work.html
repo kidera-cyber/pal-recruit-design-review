@@ -12,6 +12,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&family=Noto+Sans+JP:wght@400;500;700;800;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../assets/css/style.css">
 <link rel="stylesheet" href="assets/css/system-h.css">
+<!-- ===== CONNECT v1：HOW ROLES CONNECT（#connect）専用。
+     共通 style.css の .wflow は変更せず、このセクションだけを組み直す。 ===== -->
+<link rel="stylesheet" href="assets/css/work-connect.css?v=3">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"採用情報","item":"../"},{"@type":"ListItem","position":2,"name":"仕事を知る"}]}</script>
 <style>
 .proto-bar{background:#000;color:#fff;padding:10px 20px;font-size:12.5px;text-align:center;position:relative;z-index:600}
@@ -21,8 +24,8 @@
 .ws-hero::before{content:"";position:absolute;right:0;top:0;bottom:0;width:38%;background:linear-gradient(180deg,var(--gray-50),transparent);z-index:0;display:none}
 @media(min-width:1000px){ .ws-hero::before{display:block} }
 .ws-hero .wrap{position:relative;z-index:1}
-.wflow__st{transition:border-color .2s}
-.wflow__st:hover{border-color:var(--red)}
+/* .wflow__st のホバー指定は CONNECT v1 で不要になった
+   （該当セクションは .wcx に置き換え、assets/css/work-connect.css が持つ） */
 @media (prefers-reduced-motion:reduce){ .reveal{opacity:1!important;transform:none!important} }
 </style>
 </head>
@@ -417,26 +420,58 @@
   </div>
 </section>
 
-<section class="sec sec--tight" id="connect">
+<!-- ===== CONNECT v1：HOW ROLES CONNECT を作り直した。
+     旧実装は共通 style.css の .wflow（薄灰カード4枚／12.5pxの赤いリンク）。
+     その .wflow は site/work/index.html も使っているため共通CSSは変更せず、
+     このセクションだけクラス名を .wcx に変え、assets/css/work-connect.css で組んだ。
+     見出し・リード・工程名・説明文・職種名・リンク先はすべて原文のまま。
+     旧実装に戻すときは git cacc5cb の work.html を参照。 ===== -->
+<section class="sec sec--tight wcxsec" id="connect">
   <div class="wrap">
     <div class="shead reveal" style="margin-bottom:24px">
       <p class="slabel">How roles connect</p>
       <h2 class="stitle" style="font-size:clamp(22px,2.6vw,31px)">職種は、つながって一つの仕事になる。</h2>
       <p class="slead">課題を見つける人、現場で動く形にする人、専門領域で支える人。関わる場面は違っても、ひとつの流れのなかでつながっています。</p>
     </div>
-    <ol class="wflow reveal">
-      <li class="wflow__st"><p class="wflow__no en">01</p><b>顧客の課題を見つける</b>
-        <ul class="wflow__p"><li><a href="#role-sales">Engagement / Sales・BizDev</a></li><li><a href="#role-mkt">Marketing / Content</a></li><li><a href="#role-staffing">人材派遣営業</a></li></ul>
+
+    <ol class="wcx reveal">
+      <li class="wcx__st">
+        <p class="wcx__no en">01</p>
+        <b class="wcx__h">顧客の課題を見つける</b>
+        <ul class="wcx__p">
+          <li><a href="#role-sales">Engagement / Sales・BizDev<i class="wcx__ar" aria-hidden="true"></i></a></li>
+          <li><a href="#role-mkt">Marketing / Content<i class="wcx__ar" aria-hidden="true"></i></a></li>
+          <li><a href="#role-staffing">人材派遣営業<i class="wcx__ar" aria-hidden="true"></i></a></li>
+        </ul>
       </li>
-      <li class="wflow__st"><p class="wflow__no en">02</p><b>技術で解ける形にする</b>
-        <ul class="wflow__p"><li><a href="#role-fde">FDE</a></li><li><a href="#role-system">System / Product</a></li></ul>
+      <li class="wcx__st">
+        <p class="wcx__no en">02</p>
+        <b class="wcx__h">技術で解ける形にする</b>
+        <ul class="wcx__p">
+          <li><a href="#role-fde">FDE<i class="wcx__ar" aria-hidden="true"></i></a></li>
+          <li><a href="#role-system">System / Product<i class="wcx__ar" aria-hidden="true"></i></a></li>
+        </ul>
       </li>
-      <li class="wflow__st"><p class="wflow__no en">03</p><b>現場で動かす</b>
-        <ul class="wflow__p"><li><a href="#role-bpo">BPO / 現場運営</a></li><li><a href="#role-clean">Cleanliness</a></li><li><a href="#role-dts">DTS / 運送・運行</a></li></ul>
+      <li class="wcx__st">
+        <p class="wcx__no en">03</p>
+        <b class="wcx__h">現場で動かす</b>
+        <ul class="wcx__p">
+          <li><a href="#role-bpo">BPO / 現場運営<i class="wcx__ar" aria-hidden="true"></i></a></li>
+          <li><a href="#role-clean">Cleanliness<i class="wcx__ar" aria-hidden="true"></i></a></li>
+          <li><a href="#role-dts">DTS / 運送・運行<i class="wcx__ar" aria-hidden="true"></i></a></li>
+        </ul>
       </li>
-      <li class="wflow__st wflow__st--loop"><p class="wflow__no en">04</p><b>運用し、改善する</b><p class="wflow__t">現場で出た声が、次の提案と改善に戻っていきます。</p></li>
+      <li class="wcx__st wcx__st--loop">
+        <p class="wcx__no en">04</p>
+        <b class="wcx__h">運用し、改善する</b>
+        <p class="wcx__t">現場で出た声が、次の提案と改善に戻っていきます。</p>
+      </li>
     </ol>
-    <p class="wflow__base"><span class="en">SUPPORT</span><a href="#role-corp">Corporate</a>が、各部門の働く環境を支えます。</p>
+
+    <div class="wcx__base">
+      <p class="wcx__baselab en">SUPPORT</p>
+      <p class="wcx__basetx"><a class="wcx__baselink" href="#role-corp">Corporate</a>が、各部門の働く環境を支えます。</p>
+    </div>
   </div>
 </section>
 </main>

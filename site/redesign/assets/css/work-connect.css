@@ -1,0 +1,144 @@
+@charset "utf-8";
+/* ============================================================================
+   WORK｜HOW ROLES CONNECT（#connect）  CONNECT v1
+
+   旧実装の問題
+     共通 site/assets/css/style.css 481-489 行の .wflow
+       .wflow__st  … var(--gray-50) の薄灰カードを4枚並べる
+       .wflow__p a … 12.5px の赤文字。リンクに見えず、クリック領域も文字幅だけ
+       .wflow__base … SUPPORT と Corporate が隙間なく並ぶ
+
+   直し方
+     共通 style.css は site/work/index.html も使っているため変更しない。
+     work.html の該当セクションだけクラス名を .wcx に変え、このファイルで組む。
+     文言・工程名・職種名・リンク先はすべて原文のまま。
+
+   配色は White Editorial A案に合わせる
+     白 #FFFFFF／濃紺 #262946／PALレッド #CF131B／本文 #53545A
+     補助 #6B6D81／罫線 #DAE1F2・#E7EBF4／限定的な薄灰 #F7F8F9
+   ============================================================================ */
+
+.wcxsec{
+  --c-ink:#262946;
+  --c-ink2:#464A6F;
+  --c-sub:#53545A;
+  --c-mid:#6B6D81;
+  --c-red:#CF131B;
+  --c-line:#DAE1F2;
+  --c-line2:#E7EBF4;
+  --c-soft:#F7F8F9;
+  background:#FFFFFF;
+}
+
+/* ───────── 4工程：薄灰カードをやめ、番号・見出し・細い縦罫で並べる ───────── */
+.wcx{
+  list-style:none;margin:clamp(26px,3vw,34px) 0 0;padding:0;
+  display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;
+  border-top:1px solid var(--c-line);
+}
+.wcx__st{
+  padding:clamp(22px,2.6vw,30px) clamp(16px,2vw,26px) clamp(22px,2.6vw,28px) 0;
+}
+.wcx__st + .wcx__st{
+  padding-left:clamp(16px,2vw,26px);border-left:1px solid var(--c-line2);
+}
+
+.wcx__no{
+  margin:0 0 10px;color:var(--c-red);
+  font:900 clamp(22px,2.4vw,27px)/1 Lato,sans-serif;letter-spacing:.02em;
+}
+.wcx__h{
+  display:block;margin:0 0 16px;
+  font-size:clamp(15.5px,1.7vw,17px);font-weight:700;line-height:1.55;
+  letter-spacing:.01em;color:var(--c-ink);
+}
+/* 04 だけはリンクではなく説明文 */
+.wcx__t{
+  margin:0;font-size:14px;line-height:1.9;color:var(--c-sub);
+}
+
+/* ───────── 職種リンク ─────────
+   ・濃紺 15px（旧：赤 12.5px）
+   ・行全体がクリック領域。高さは44px以上を確保してSPでも押しやすくする
+   ・右端の矢印で「このページの職種紹介へ移動する」ことを示す
+     （この9本はすべて同じページ内のアンカーで、募集要項へは飛ばない）        */
+.wcx__p{list-style:none;margin:0;padding:0;display:grid;gap:4px}
+.wcx__p a{
+  display:flex;align-items:center;justify-content:space-between;gap:10px;
+  min-height:44px;padding:9px 11px 9px 12px;margin-left:-12px;
+  border:1px solid transparent;border-radius:8px;
+  font-size:15px;font-weight:700;line-height:1.5;
+  color:var(--c-ink);text-decoration:none;
+  transition:background-color .15s,border-color .15s,color .15s;
+}
+.wcx__p a:hover{
+  background:var(--c-soft);border-color:var(--c-line);color:var(--c-red);
+}
+.wcx__p a:focus-visible{
+  outline:2px solid var(--c-red);outline-offset:2px;
+}
+
+/* 矢印：下向き（同じページの下方へ移動する） */
+.wcx__ar{
+  flex:none;position:relative;width:14px;height:14px;
+}
+.wcx__ar::before{
+  content:"";position:absolute;left:6px;top:1px;width:1.5px;height:12px;
+  background:var(--c-mid);transition:background-color .15s;
+}
+.wcx__ar::after{
+  content:"";position:absolute;left:3px;top:6px;width:7px;height:7px;
+  border-right:1.5px solid var(--c-mid);border-bottom:1.5px solid var(--c-mid);
+  transform:rotate(45deg);transition:border-color .15s;
+}
+.wcx__p a:hover .wcx__ar::before{background:var(--c-red)}
+.wcx__p a:hover .wcx__ar::after{border-color:var(--c-red)}
+
+/* ───────── SUPPORT / Corporate ─────────
+   旧実装は <span class="en">SUPPORT</span><a>Corporate</a> が隣接し、
+   「SUPPORTCorporate」と一続きに読めていた。
+   英字ラベルを独立した行に上げ、本文と役割を分ける。                     */
+.wcx__base{
+  margin:clamp(26px,3vw,34px) 0 0;padding:clamp(18px,2.2vw,24px) 0 0;
+  border-top:1px solid var(--c-line);
+}
+.wcx__baselab{
+  margin:0 0 9px;color:var(--c-red);
+  font:700 11px/1 Lato,sans-serif;letter-spacing:.2em;
+}
+.wcx__basetx{
+  margin:0;font-size:15px;line-height:1.85;color:var(--c-sub);
+}
+.wcx__baselink{
+  margin-right:2px;padding:2px 2px 3px;
+  font-weight:700;color:var(--c-ink);text-decoration:underline;
+  text-decoration-color:var(--c-line);text-underline-offset:4px;
+  transition:color .15s,text-decoration-color .15s;
+}
+.wcx__baselink:hover{color:var(--c-red);text-decoration-color:var(--c-red)}
+.wcx__baselink:focus-visible{outline:2px solid var(--c-red);outline-offset:2px;border-radius:4px}
+
+/* ───────── レスポンシブ ───────── */
+@media(max-width:1023px){
+  .wcx{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .wcx__st{padding:22px 18px 22px 0}
+  .wcx__st + .wcx__st{padding-left:18px}
+  .wcx__st:nth-child(odd){padding-left:0;border-left:none}
+  .wcx__st:nth-child(n+3){border-top:1px solid var(--c-line2)}
+}
+@media(max-width:760px){
+  .wcx{grid-template-columns:minmax(0,1fr)}
+  .wcx__st,
+  .wcx__st + .wcx__st,
+  .wcx__st:nth-child(odd){padding:20px 0;border-left:none;padding-left:0}
+  .wcx__st + .wcx__st{border-top:1px solid var(--c-line2)}
+  .wcx__st:nth-child(n+3){border-top:1px solid var(--c-line2)}
+  .wcx__no{font-size:22px;margin-bottom:8px}
+  .wcx__h{font-size:16px;margin-bottom:12px}
+  .wcx__p a{font-size:15px;min-height:48px;padding:11px 12px;margin-left:-12px}
+  .wcx__basetx{font-size:14.5px}
+}
+
+@media(prefers-reduced-motion:reduce){
+  .wcx__p a,.wcx__ar::before,.wcx__ar::after,.wcx__baselink{transition:none}
+}
