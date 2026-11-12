@@ -28,7 +28,7 @@
 <!-- ===== ABOUT-D5 v1：about-figures.css は .abt スコープで、
      このページの body に abt が無いため1行も効かない。読み込まない。 ===== -->
 <!-- ===== ABOUT-D5 v1：この検証ページ専用。全セレクタ .a7 スコープ ===== -->
-<link rel="stylesheet" href="assets/css/about.css?v=20261113h">
+<link rel="stylesheet" href="assets/css/about.css?v=20261113i">
 <!-- ===== WHITE-EDITORIAL v1：採用サイト共通の白基調デザイン（A案）。
      本文・NEXT STEP・フッターの配色は assets/css/white-editorial.css が
      .we スコープで後勝ち上書きする。HTML の文言・リンクは変更していない。
@@ -115,6 +115,18 @@
           <span class="p4dot" style="--x:15.0%;--y:72.0%;--i:2"><i aria-hidden="true">2</i></span>
           <span class="p4dot" style="--x:84.0%;--y:58.0%;--i:3"><i aria-hidden="true">3</i></span>
           <span class="p4dot" style="--x:47.5%;--y:31.0%;--i:4"><i aria-hidden="true">4</i></span>
+          <!-- ===== FDE-SPAN v1 START =====
+               FDE は BPO 付近の1点（ドット1）だけでなく、顧客（経営）と中央をつなぐ線、
+               中央のシステム・設備側、中央と DTS をつなぐ線の接続点にも関わる。
+               既存の赤い点線はそのままで、その上のノード位置に小さなマーカーだけを足した。
+               線は増やしていない。座標は画像に対する % なので、PC・SPで位置がずれない。
+               説明文を持たせず「FDE」の一語だけにして、ラベル1（FDE 現場と技術をつなぐ）と
+               重複させない。読み上げはラベル1が担うため aria-hidden にしている。
+               ===== -->
+          <span class="p4fde p4fde--up"   style="--x:31.1%;--y:36.4%;--i:5" aria-hidden="true"><b>FDE</b></span>
+          <span class="p4fde p4fde--down" style="--x:52.9%;--y:52.3%;--i:6" aria-hidden="true"><b>FDE</b></span>
+          <span class="p4fde p4fde--up"   style="--x:62.7%;--y:53.7%;--i:7" aria-hidden="true"><b>FDE</b></span>
+          <!-- ===== FDE-SPAN v1 END ===== -->
           </div>
         </div>
         <div class="p4marks">
@@ -228,12 +240,10 @@
       <li class="p4vb__i" style="--k:2"><span class="p4vb__no">03</span><b class="p4vb__t">自分の「手」で変えていく</b></li>
     </ol>
 
-    <!-- 応募条件は職種で異なる。採用の重要情報なので小さくしない。 -->
-    <div class="p4ap pv">
-      <div class="p4ap__g">
-        <p>FDEとセンター長／候補では、入社時の高いITスキルを必須としていません。技術力よりも人物面を最優先しています。</p>
-        <p>一方で、自社開発 Web・アプリエンジニアは、何らかのWeb系システム開発の実務経験を応募条件としています。</p>
-      </div>
+    <!-- 応募条件は職種で異なる。採用の重要情報なので小さくしない。
+         ===== APPLY NOTE v2：ITスキル要否と開発経験の2文を HTML ごと削除済み
+              （CSS非表示ではない）。救済情報：git show daccc14:site/redesign/about.html ===== -->
+    <div class="p4ap p4ap--solo pv">
       <p class="p4ap__f">応募条件は職種ごとに異なるため、<a href="jobs.html">各募集要項</a>をご確認ください。</p>
     </div>
   </div>

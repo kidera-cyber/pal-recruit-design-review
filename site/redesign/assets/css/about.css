@@ -245,6 +245,35 @@
   color:var(--p-red);font-family:var(--font-en,inherit);
 }
 
+/* ============================================================
+   ===== FDE-SPAN v1 START =====
+   FDE が BPO だけでなく、顧客（経営）・中央のシステム／設備・DTS の
+   各接続点にも関わることを示す小さなマーカー。
+   ・背景画像と既存の赤い点線はそのまま。線は1本も増やしていない
+   ・既存の .p4dot より一回り小さく、番号も持たせない
+     （番号付き＝4つの領域、という読み方を壊さないため）
+   ・文字は「FDE」の一語だけ。ラベル1（FDE／現場と技術をつなぐ）の
+     説明文は繰り返さない
+   ・座標は画像に対する % なので、PC・SP・横スクロール時も位置が動かない
+   FDE をほかの部署の上位に見せないよう、面で囲ったり大きく出したりしない。
+   ============================================================ */
+.a7 .p4fde{
+  position:absolute;left:var(--x);top:var(--y);
+  width:13px;height:13px;margin:-6.5px 0 0 -6.5px;
+  border-radius:50%;background:#FFFFFF;border:2px solid var(--p-red);
+  box-sizing:border-box;z-index:2;pointer-events:none;
+}
+.a7 .p4fde b{
+  position:absolute;left:50%;transform:translateX(-50%);
+  display:block;padding:3px 7px 4px;white-space:nowrap;
+  font-family:var(--font-en,inherit);font-size:10px;font-weight:700;
+  letter-spacing:.07em;line-height:1;color:var(--p-red);
+  background:#FFFFFF;border:1px solid var(--p-red);border-radius:999px;
+}
+.a7 .p4fde--up b{bottom:calc(100% + 6px)}
+.a7 .p4fde--down b{top:calc(100% + 6px)}
+/* ===== FDE-SPAN v1 END ===== */
+
 /* --- ラベル --- */
 .a7 .p4marks{position:absolute;inset:0;pointer-events:none;z-index:3}
 .a7 .p4lab{
@@ -269,10 +298,12 @@
 
 /* --- 動き：d5anim が付いたときだけ。付かなければ完成状態で静止 --- */
 .d5anim .a7 .p4lab,
+.d5anim .a7 .p4fde,
 .d5anim .a7 .p4dot{opacity:0}
 .d5anim .a7 .p4ln{stroke-dasharray:var(--l,40);stroke-dashoffset:var(--l,40)}
 
-.d5anim .a7 .p4fig.in .p4dot{
+.d5anim .a7 .p4fig.in .p4dot,
+.d5anim .a7 .p4fig.in .p4fde{
   opacity:1;transition:opacity .3s ease;transition-delay:calc(var(--i) * .18s);
 }
 .d5anim .a7 .p4fig.in .p4ln{
@@ -341,6 +372,10 @@
   .a7 .p4lines{display:none}
   .a7 .p4dot{width:17px;height:17px;margin:-8.5px 0 0 -8.5px;border-width:1.5px}
   .a7 .p4dot i{font-size:9px}
+  .a7 .p4fde{width:11px;height:11px;margin:-5.5px 0 0 -5.5px;border-width:1.5px}
+  .a7 .p4fde b{font-size:8.5px;letter-spacing:.04em;padding:2px 5px 3px}
+  .a7 .p4fde--up b{bottom:calc(100% + 4px)}
+  .a7 .p4fde--down b{top:calc(100% + 4px)}
   /* ラベルは画像の下に番号付きの一覧として置く */
   .a7 .p4marks{position:static;inset:auto;display:grid;gap:8px;margin-top:14px}
   .a7 .p4lab{
@@ -357,7 +392,7 @@
 }
 /* ───────── reduced-motion：完成状態で静止 ───────── */
 @media (prefers-reduced-motion:reduce){
-  .a7 .p4lab,.a7 .p4dot{opacity:1!important;animation:none!important;transition:none!important}
+  .a7 .p4lab,.a7 .p4dot,.a7 .p4fde{opacity:1!important;animation:none!important;transition:none!important}
   .a7 .p4ln{stroke-dasharray:none!important;stroke-dashoffset:0!important}
 }
 /* ===== ABOUT / WHO WE ARE MAP v2 END ===== */
@@ -667,6 +702,12 @@
   background:#F7F8FA;border-radius:8px;padding:14px 16px;
 }
 .a7 .p4ap__f a{color:var(--p-red);font-weight:700;text-decoration:underline;text-underline-offset:2px}
+/* ===== APPLY NOTE v2：ITスキル要否と開発経験の2文（.p4ap__g）を HTML から
+   削除したため、残った案内1枚を1カラムで置く。左の空き列が出ないようにする。
+   .p4ap__g のルールは、ほかの about 派生ページが使っているため残置。
+   救済情報：git show daccc14:site/redesign/about.html ===== */
+.a7 .p4ap--solo{grid-template-columns:minmax(0,1fr)}
+.a7 .p4ap--solo .p4ap__f{max-width:560px}
 
 /* ============================================================
    ===== ABOUT / NUMBERS B v1 START =====
