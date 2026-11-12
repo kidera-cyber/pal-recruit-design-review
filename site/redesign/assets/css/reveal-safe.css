@@ -1,0 +1,54 @@
+/* ============================================================
+   ===== REVEAL-SAFE v2 =====
+   方針：重要コンテンツは初期状態で可視。
+         JSが初期化に成功した場合だけ、画面外の要素に演出を足す。
+
+   旧方式との違い
+     旧 : .reveal{opacity:0}          既定が不可視。JSが救出しないと読めない
+     新 : .reveal は常に可視が既定。JSが rv-wait を付けた要素だけ隠す
+
+   隠す対象を「初期表示時に画面外にある要素」に限定する理由
+     ・画面に見えている要素は一度も隠さない → ちらつきが起きない
+     ・隠すのは画面外だけ → 失敗しても読める位置の本文は必ず見えている
+
+   フェードは is-in（表示側）にだけ掛ける。
+   隠す側にトランジションを掛けると「出てから消える」挙動になるため。
+   ============================================================ */
+
+/* 既定：常に可視。共通CSSの .reveal{opacity:0} をスコープ内で打ち消す */
+.rvs-scope .reveal{opacity:1;transform:none;transition:none}
+
+/* JS初期化に成功し、かつ初期表示時に画面外だった要素だけを隠す */
+html.rvon .rvs-scope .reveal.rv-wait{
+  opacity:0;transform:translateY(16px);transition:none;
+}
+/* 表示に転じるときだけフェードさせる */
+html.rvon .rvs-scope .reveal.rv-in{
+  opacity:1;transform:none;
+  transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.2,1);
+}
+
+/* 演出の最終状態を確定させる。
+   トランジションが進まない環境（背景タブ・ヘッドレス・省電力など）では
+   rv-in だけでは opacity が途中値で止まるため、一定時間後に rv-done を付けて
+   最終状態を強制する。通常環境ではフェード完了後に付くので見た目は変わらない。 */
+html.rvon .rvs-scope .reveal.rv-done{
+  opacity:1!important;transform:none!important;transition:none!important;
+}
+
+/* reduced-motion：rv-wait は付かない想定。二重の保険として強制可視 */
+@media (prefers-reduced-motion:reduce){
+  .rvs-scope .reveal,
+  html.rvon .rvs-scope .reveal.rv-wait{
+    opacity:1!important;transform:none!important;transition:none!important;
+  }
+}
+
+/* 印刷：本文・図解はすべて表示する */
+@media print{
+  .rvs-scope .reveal,
+  html.rvon .rvs-scope .reveal.rv-wait{
+    opacity:1!important;transform:none!important;transition:none!important;
+  }
+}
+/* ===== REVEAL-SAFE v2 END ===== */

@@ -1,0 +1,172 @@
+/* ============================================================
+   ===== CAREER-D v1 =====
+   CAREER 刷新版D 専用。body.c4 が付いたページにだけ効く。
+   共通CSS（style.css / system-h.css）は変更していない。
+
+   デザイン基準は TOP home.html の実測値
+     ラッパー 1180px ／ 英字ラベル 11.5px w700 ls.16em #262946
+     見出し 29px w700 #262946 ／ リード 15px lh1.8 #53545A
+     セクション余白 104px ／ 背景 #FFFFFF ⇄ #F2F3F6
+     ボタン 白地・1px #CF131B 枠・赤文字
+   ============================================================ */
+.c4{
+  --c-red:#CF131B; --c-ink:#262946; --c-mid:#6B6D81; --c-sub:#53545A;
+  --c-bg:#FFFFFF; --c-bg2:#F2F3F6; --c-line:#DAE1F2;
+}
+
+/* ---- セクション ---- */
+.c4 .sec{padding:104px 0;background:var(--c-bg)}
+.c4 #path{background:var(--c-bg2)}
+.c4 .wrap{max-width:1180px;margin:0 auto;padding-inline:40px}
+
+/* ---- 見出しブロック ---- */
+.c4 .c4h{max-width:860px;margin-bottom:40px}
+.c4 .c4h .slabel{font-size:11.5px;font-weight:700;letter-spacing:.16em;color:var(--c-ink);
+  text-transform:uppercase;margin:0 0 10px;padding-left:0;position:static}
+.c4 .c4h .slabel::before{display:none}
+.c4 .c4h .stitle{font-size:29px;font-weight:700;line-height:1.55;letter-spacing:.02em;
+  color:var(--c-ink);margin:0}
+.c4 .c4h .slead{margin:16px 0 0;font-size:15px;line-height:1.8;color:var(--c-sub)}
+
+/* ---- 01 入社してからの道すじ：横一列の流れ図 ---- */
+.c4 .c4j{list-style:none;margin:0;padding:0;display:grid;gap:0;
+  grid-template-columns:repeat(4,1fr);position:relative}
+.c4 .c4j::before{content:"";position:absolute;left:6%;right:6%;top:30px;height:1px;
+  background:var(--c-line)}
+.c4 .c4j li{position:relative;padding:0 18px 0 0}
+.c4 .c4j li::before{content:"";position:absolute;left:0;top:25px;width:11px;height:11px;
+  border-radius:50%;background:#fff;border:2px solid var(--c-red)}
+.c4 .c4j__n{display:block;font:900 12px/1 Lato,sans-serif;letter-spacing:.14em;
+  color:var(--c-red);margin-bottom:12px}
+.c4 .c4j__l{display:block;margin-top:26px;font-size:11.5px;font-weight:700;
+  letter-spacing:.08em;color:var(--c-mid)}
+.c4 .c4j li b{display:block;margin:7px 0 8px;font-size:16px;font-weight:700;
+  line-height:1.6;color:var(--c-ink)}
+.c4 .c4j li p{margin:0;font-size:13.5px;line-height:1.85;color:var(--c-sub)}
+
+/* ---- 02 比較図 ---- */
+.c4 .c4m{border-top:1px solid var(--c-ink);background:#fff}
+.c4 .c4m__head{display:grid;grid-template-columns:1.15fr 1fr 1fr 1.5fr;gap:0;
+  padding:12px 0;border-bottom:1px solid var(--c-line)}
+.c4 .c4m__head span{font-size:11px;font-weight:700;letter-spacing:.14em;color:var(--c-mid);
+  padding:0 18px}
+.c4 .c4m__row{display:grid;grid-template-columns:1.15fr 1fr 1fr 1.5fr;gap:0;
+  border-bottom:1px solid var(--c-line);padding:22px 0}
+.c4 .c4m__role{padding:0 18px}
+.c4 .c4m__rt{display:block;font-size:15.5px;font-weight:700;line-height:1.55;color:var(--c-ink)}
+.c4 .c4m__rl{display:block;margin-top:7px;font-size:12.5px;line-height:1.8;color:var(--c-mid)}
+.c4 .c4m__c{padding:0 18px;border-left:1px solid var(--c-line)}
+.c4 .c4m__h{display:none}
+.c4 .c4m__c p{margin:0;font-size:13.5px;line-height:1.85;color:var(--c-sub)}
+.c4 .c4m__c--w p{color:var(--c-ink)}
+.c4 .c4m__c--w b{font-weight:500}
+.c4 .c4m__c--w i{font-style:normal;color:var(--c-red);margin:0 5px}
+.c4 .c4m__tag{display:inline-block;margin-left:8px;padding:2px 9px;border-radius:9999px;
+  font-size:11px;font-weight:700;color:var(--c-mid);background:var(--c-bg2);
+  border:1px solid var(--c-line);vertical-align:2px}
+.c4 .c4m__tag--br{color:var(--c-red);background:#FCEEF0;border-color:#F3C9CD}
+.c4 .c4m__br{display:block;margin-top:7px;padding-left:15px;position:relative;
+  font-size:12.5px;line-height:1.8;color:var(--c-mid)}
+.c4 .c4m__br::before{content:"";position:absolute;left:0;top:.82em;width:8px;height:1px;
+  background:var(--c-red)}
+.c4 .c4m__flow{color:var(--c-sub)}
+
+/* ---- 02 職種ごとの詳細 ---- */
+.c4 .c4ds{margin-top:36px;display:grid;gap:10px}
+.c4 .c4d{border:1px solid var(--c-line);border-radius:10px;background:#fff}
+.c4 .c4d summary{list-style:none;cursor:pointer;padding:18px 22px;display:flex;
+  flex-wrap:wrap;align-items:baseline;gap:4px 14px}
+.c4 .c4d summary::-webkit-details-marker{display:none}
+.c4 .c4d summary::before{content:"＋";margin-right:10px;color:var(--c-red);
+  font-weight:700;font-size:13px}
+.c4 .c4d[open] summary::before{content:"－"}
+.c4 .c4d summary b{font-size:15px;font-weight:700;color:var(--c-ink)}
+.c4 .c4d summary span{font-size:12.5px;color:var(--c-mid)}
+.c4 .c4d__in{padding:4px 22px 24px;border-top:1px solid var(--c-line);margin-top:2px}
+.c4 .c4d__in h3{font-size:17px;font-weight:700;line-height:1.6;color:var(--c-ink);margin:20px 0 8px}
+.c4 .c4d__in h4{font-size:14.5px;font-weight:700;line-height:1.7;color:var(--c-ink);margin:22px 0 7px}
+.c4 .c4d__in p{font-size:13.5px;line-height:1.9;color:var(--c-sub);margin:0 0 10px}
+.c4 .c4d__in ul,.c4 .c4d__in ol{margin:0 0 12px;padding-left:1.1em}
+.c4 .c4d__in li{font-size:13.5px;line-height:1.9;color:var(--c-sub);margin-bottom:5px}
+.c4 .c4d__in a{color:var(--c-red);text-decoration:underline;text-underline-offset:2px}
+
+/* ---- 03 3つの側面 ---- */
+.c4 .c4v{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);
+  gap:0;border-top:1px solid var(--c-ink)}
+.c4 .c4v li{padding:26px 24px 26px 0;border-bottom:1px solid var(--c-line)}
+.c4 .c4v li+li{padding-left:28px;border-left:1px solid var(--c-line)}
+.c4 .c4v__n{display:block;font:900 24px/1 Lato,sans-serif;color:var(--c-red);margin-bottom:12px}
+.c4 .c4v li b{display:block;font-size:16.5px;font-weight:700;color:var(--c-ink);margin-bottom:8px}
+.c4 .c4v li p{margin:0;font-size:13.5px;line-height:1.9;color:var(--c-sub)}
+
+/* ---- 注記・導線 ---- */
+.c4 .c4note{margin:18px 0 0;font-size:12.5px;line-height:1.9;color:var(--c-mid)}
+.c4 .c4note a{color:var(--c-mid);text-decoration:underline;text-underline-offset:2px}
+.c4 .c4note a:hover{color:var(--c-red)}
+.c4 .c4note--cau{padding:14px 16px;background:var(--c-bg2);border-radius:8px;margin-top:14px}
+.c4 .c4acts{display:flex;flex-wrap:wrap;align-items:center;gap:14px 24px;margin:34px 0 0}
+.c4 .c4acts .btn--ghost{background:#fff;color:var(--c-red);border:1px solid var(--c-red);
+  border-radius:9999px;padding:16px 20px 16px 30px;font-size:15.5px;font-weight:500;
+  text-decoration:none;display:inline-flex;align-items:center;gap:10px}
+.c4 .c4acts .btn--ghost .btn__ico{font-size:9px}
+.c4 .c4link{font-size:14px;font-weight:500;color:var(--c-ink);text-decoration:none;
+  border-bottom:1px solid var(--c-line);padding-bottom:2px}
+.c4 .c4link:hover{color:var(--c-red);border-color:var(--c-red)}
+
+/* ---- タブレット ---- */
+@media (max-width:1023px){
+  .c4 .sec{padding:76px 0}
+  .c4 .wrap{padding-inline:28px}
+  .c4 .c4j{grid-template-columns:repeat(2,1fr);row-gap:34px}
+  .c4 .c4j::before{display:none}
+  .c4 .c4j li{padding-left:24px;padding-right:12px}
+  .c4 .c4j li::before{top:4px}
+  .c4 .c4j__l{margin-top:0}
+  .c4 .c4j__n{margin-bottom:6px}
+}
+
+/* ---- スマートフォン ---- */
+@media (max-width:767px){
+  .c4 .sec{padding:60px 0}
+  .c4 .wrap{padding-inline:20px}
+  .c4 .c4h{margin-bottom:28px}
+  .c4 .c4h .stitle{font-size:23px;line-height:1.5}
+  .c4 .c4j{grid-template-columns:1fr;row-gap:26px}
+  .c4 .c4j li{padding:0 0 0 22px}
+  .c4 .c4j li b{font-size:15.5px}
+
+  .c4 .c4m{border-top:none}
+  .c4 .c4m__head{display:none}
+  .c4 .c4m__row{grid-template-columns:1fr;padding:20px 0;gap:14px}
+  .c4 .c4m__role{padding:0}
+  .c4 .c4m__c{padding:0;border-left:none;border-top:1px dashed var(--c-line);padding-top:12px}
+  .c4 .c4m__h{display:block;font-size:11px;font-weight:700;letter-spacing:.14em;
+    color:var(--c-mid);margin-bottom:6px}
+
+  .c4 .c4v{grid-template-columns:1fr;border-top:none}
+  .c4 .c4v li{padding:20px 0}
+  .c4 .c4v li+li{padding-left:0;border-left:none}
+  .c4 .c4v__n{font-size:20px;margin-bottom:8px}
+
+  .c4 .c4d summary{padding:15px 16px}
+  .c4 .c4d__in{padding:4px 16px 20px}
+  .c4 .c4acts{gap:12px 18px}
+  .c4 .c4acts .btn--ghost{width:100%;justify-content:center;padding:15px 20px}
+}
+/* ===== CAREER-D v1 END ===== */
+
+/* ===== CAREER-D v1.1 START：冒頭補足・強みタグ・比較図の小見出し ===== */
+.c4 .c4sub{margin:10px 0 0;font-size:13.5px;line-height:1.85;color:var(--c-mid)}
+.c4 .c4tags{list-style:none;display:flex;flex-wrap:wrap;gap:8px;margin:0 0 34px;padding:0}
+.c4 .c4tags li{font-size:12.5px;font-weight:500;color:var(--c-ink);background:#fff;
+  border:1px solid var(--c-line);border-radius:9999px;padding:7px 15px}
+.c4 .c4mh{font-size:16.5px;font-weight:700;color:var(--c-ink);margin:0 0 14px}
+@media (max-width:767px){.c4 .c4tags{gap:7px;margin-bottom:24px}.c4 .c4tags li{font-size:12px;padding:6px 12px}}
+/* ===== CAREER-D v1.1 END ===== */
+
+/* ===== CAREER-D v1.2 START：ページ見出し ===== */
+.c4 .c4t{font-size:clamp(26px,3.4vw,38px);font-weight:700;line-height:1.45;
+  letter-spacing:.02em;color:var(--c-ink);margin:0}
+.c4 .c4h--sub{margin-top:52px}
+@media (max-width:767px){.c4 .c4h--sub{margin-top:38px}}
+/* ===== CAREER-D v1.2 END ===== */

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>【技術検証】reveal 表示保証プロトタイプ｜株式会社PAL 採用サイト</title>
+<meta name="description" content="株式会社PAL 採用サイトの .reveal 表示不具合に対する新方式の技術検証ページ（非公開・検証用）。既存ページは変更していません。">
+<link rel="canonical" href="reveal-proto.html">
+<link rel="stylesheet" href="../assets/css/style.css">
+<link rel="stylesheet" href="assets/css/system-h.css">
+<!-- 新方式。既存の .reveal 規則より後ろで読み込む -->
+<link rel="stylesheet" href="assets/css/reveal-safe.css?v=3">
+<style>
+  .pbar{background:#000;color:#fff;padding:10px 20px;font-size:12.5px;text-align:center}
+  .pbar b{color:#ff8186}
+  .pwrap{max-width:900px;margin:0 auto;padding:0 24px}
+  .pmode{display:flex;flex-wrap:wrap;gap:8px;margin:24px 0 8px}
+  .pmode a{font-size:12.5px;padding:7px 13px;border:1px solid #DAE1F2;border-radius:9999px;color:#262946;text-decoration:none}
+  .pmode a.on{background:#262946;color:#fff;border-color:#262946}
+  #stat{font:12px/1.8 ui-monospace,Menlo,monospace;background:#F2F3F6;border:1px solid #DAE1F2;
+        border-radius:8px;padding:14px 16px;margin:10px 0 40px;white-space:pre-wrap;color:#262946}
+  .blk{border:1px solid #DAE1F2;border-radius:10px;padding:26px 28px;margin:0 0 20px;background:#fff}
+  .blk h2{font-size:19px;font-weight:700;color:#262946;margin:0 0 8px}
+  .blk p{font-size:14.5px;line-height:1.9;color:#53545A;margin:0}
+  .blk .n{display:inline-block;font:700 11.5px/1 Lato,sans-serif;letter-spacing:.16em;
+          color:#CF131B;margin-bottom:9px}
+  .spacer{height:70vh}
+</style>
+</head>
+<body class="rvs-scope">
+<div class="pbar">【技術検証・非公開】reveal 表示保証プロトタイプ｜<b>既存28ページは未変更</b>・共通CSS/JSへの適用は承認後</div>
+
+<main class="pwrap" id="main">
+  <h1 style="font-size:26px;font-weight:700;color:#262946;margin:34px 0 6px">reveal 表示保証の技術検証</h1>
+  <p style="font-size:14.5px;line-height:1.9;color:#53545A;margin:0">既定を可視にし、JSが初期化に成功したときだけ隠す方式を検証します。下のモードで異常系を再現できます。</p>
+
+  <nav class="pmode">
+    <a href="?mode=normal" id="m-normal">通常</a>
+    <a href="?mode=noio"   id="m-noio">IntersectionObserver 非対応</a>
+    <a href="?mode=throw"  id="m-throw">初期化で例外</a>
+    <a href="?mode=late"   id="m-late">JSが遅れて失敗</a>
+    <a href="?mode=old"    id="m-old">旧方式（比較用）</a>
+  </nav>
+  <div id="stat">測定中…</div>
+
+  <div class="blk reveal"><span class="n">BLOCK 01</span><h2>画面内にある最初のブロック</h2><p>初期化直後に表示される必要があります。ここが透明のままなら初期化タイミングの保証に失敗しています。</p></div>
+  <div class="blk reveal"><span class="n">BLOCK 02</span><h2>画面内の2つ目</h2><p>IntersectionObserver が発火しない環境でも、総点検で救済されます。</p></div>
+  <div class="blk reveal"><span class="n">BLOCK 03</span><h2>境界付近のブロック</h2><p>ビューポート下端にかかる位置。rootMargin の設定によって挙動が変わります。</p></div>
+  <div class="spacer"></div>
+  <div class="blk reveal"><span class="n">BLOCK 04</span><h2>スクロールして現れる</h2><p>通常時はここでフェードインの演出が残っていることを確認します。</p></div>
+  <div class="blk reveal"><span class="n">BLOCK 05</span><h2>連続するブロック</h2><p>個別に監視され、個別に表示されます。</p></div>
+  <div class="spacer"></div>
+  <div class="blk reveal"><span class="n">BLOCK 06</span><h2>さらに下</h2><p>タブを切り替えて戻ったとき、表示漏れがないことを確認します。</p></div>
+  <div class="blk reveal"><span class="n">BLOCK 07</span><h2>7つ目</h2><p>戻る操作（bfcache）からの復帰にも対応します。</p></div>
+  <div class="blk reveal"><span class="n">BLOCK 08</span><h2>8つ目</h2><p>印刷時はすべて表示されます。</p></div>
+  <div class="spacer"></div>
+  <div class="blk reveal"><span class="n">BLOCK 09</span><h2>9つ目</h2><p>リサイズ・画面回転でも救済されます。</p></div>
+  <div class="blk reveal"><span class="n">BLOCK 10</span><h2>10</h2><p>実ページの要素数（6〜17個）に近い密度で検証しています。</p></div>
+  <div class="blk reveal"><span class="n">BLOCK 11</span><h2>11</h2><p>—</p></div>
+  <div class="blk reveal"><span class="n">BLOCK 12</span><h2>12</h2><p>—</p></div>
+  <div class="blk reveal"><span class="n">BLOCK 13</span><h2>13</h2><p>—</p></div>
+  <div class="blk reveal"><span class="n">BLOCK 14</span><h2>14</h2><p>—</p></div>
+  <div class="blk reveal"><span class="n">BLOCK 15</span><h2>15</h2><p>—</p></div>
+  <div class="blk reveal"><span class="n">BLOCK 16</span><h2>16</h2><p>—</p></div>
+  <div class="blk reveal"><span class="n">BLOCK 17</span><h2>最後のブロック</h2><p>people/cleaning.html と同じ16〜17要素の密度です。</p></div>
+  <div style="height:40px"></div>
+</main>
+
+<noscript><style>.rvs-scope .reveal{opacity:1!important;transform:none!important}</style></noscript>
+
+<!-- 異常系の再現。検証ページだけの仕掛けで、本適用時には入れない -->
+<script>
+(function(){
+  var m = (location.search.match(/mode=([a-z]+)/) || [])[1] || 'normal';
+  window.__mode = m;
+  var a = document.getElementById('m-'+m); if(a) a.className='on';
+  if(m === 'noio'){ try{ delete window.IntersectionObserver; }catch(e){ window.IntersectionObserver = undefined; } }
+  if(m === 'throw'){ window.IntersectionObserver = function(){ throw new Error('simulated init failure'); }; }
+  if(m === 'late'){ /* reveal-safe.js を読み込まない＝JSが届かなかった状況 */ }
+  if(m === 'old'){
+    /* 旧方式を再現：.reveal を既定で隠し、is-in が来るまで読めない状態にする */
+    var s=document.createElement('style');
+    s.textContent='.rvs-scope .reveal{opacity:0;transform:translateY(16px);transition:opacity .7s ease,transform .7s}'+
+                  '.rvs-scope .reveal.is-in{opacity:1;transform:none}';
+    document.head.appendChild(s);
+  }
+})();
+</script>
+<script>
+  if(window.__mode !== 'late' && window.__mode !== 'old'){
+    document.write('<scr'+'ipt src="assets/js/reveal-safe.js?v=3" defer><\/scr'+'ipt>');
+  }
+</script>
+
+<script>
+/* 計測パネル（検証ページ専用） */
+(function(){
+  function tick(){
+    var t = document.querySelectorAll('.rvs-scope .reveal');
+    var vis=0, inview=0, inviewHidden=0, wait=0, vh=window.innerHeight;
+    for(var i=0;i<t.length;i++){
+      var o=parseFloat(getComputedStyle(t[i]).opacity);
+      var r=t[i].getBoundingClientRect();
+      var isIn=(r.top<vh && r.bottom>0);
+      if(o>0.99) vis++;
+      if(t[i].classList.contains('rv-wait')) wait++;
+      if(isIn){ inview++; if(o<0.99) inviewHidden++; }
+    }
+    window.__rv={mode:window.__mode,total:t.length,visible:vis,inView:inview,
+                 inViewHidden:inviewHidden,waiting:wait,
+                 rvon:document.documentElement.classList.contains('rvon'),
+                 shown:document.querySelectorAll('.rv-in').length};
+    var el=document.getElementById('stat');
+    if(el) el.textContent=
+      'モード              : '+window.__mode+'\n'+
+      'html.rvon          : '+(window.__rv.rvon?'あり（初期化成功・演出あり）':'なし（全表示）')+'\n'+
+      '.reveal 要素数     : '+t.length+'\n'+
+      '表示中（opacity 1）: '+vis+' / '+t.length+'\n'+
+      '演出待ち（rv-wait）: '+wait+'\n'+
+      '画面内の要素       : '+inview+'\n'+
+      '★画面内で非表示    : '+inviewHidden+(inviewHidden?'  ← 表示不具合':'  （問題なし）');
+  }
+  setInterval(tick,250); tick();
+  window.addEventListener('scroll',tick,{passive:true});
+})();
+</script>
+</body>
+</html>
