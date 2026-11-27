@@ -1,0 +1,131 @@
+/* ============================================================
+   ===== PAL FORM v1 START =====
+   ENTRY（職種別エントリー）／CONTACT（採用に関するお問い合わせ）の
+   フォーム専用スタイル。既存の style.css / white-editorial.css /
+   system-h.css の上に重ねる追加レイヤーで、既存ルールは上書きしない。
+   スコープは .pform / .pentry / .psteps 配下のみ。
+   戻すときは、この CSS の link 1行を外せば従来表示に戻る。
+   ============================================================ */
+
+:root{
+  --pf-red:#E60012;
+  --pf-ink:#111418;
+  --pf-mute:#5b636c;
+  --pf-line:#dfe3e8;
+  --pf-bg:#f6f7f9;
+}
+
+/* ---------- ステップ表示 ---------- */
+.psteps{display:flex;gap:0;list-style:none;margin:0 0 28px;padding:0;counter-reset:pstep}
+.psteps li{flex:1 1 0;position:relative;text-align:center;font-size:12.5px;font-weight:700;color:var(--pf-mute);padding-top:34px;letter-spacing:.02em}
+.psteps li::before{counter-increment:pstep;content:counter(pstep);position:absolute;top:0;left:50%;transform:translateX(-50%);
+  width:26px;height:26px;border-radius:50%;background:#fff;border:1.5px solid var(--pf-line);color:var(--pf-mute);
+  font-size:12px;line-height:23px;font-weight:800}
+.psteps li::after{content:"";position:absolute;top:13px;left:calc(-50% + 20px);width:calc(100% - 40px);height:1.5px;background:var(--pf-line)}
+.psteps li:first-child::after{display:none}
+.psteps li.is-current{color:var(--pf-ink)}
+.psteps li.is-current::before{background:var(--pf-red);border-color:var(--pf-red);color:#fff}
+.psteps li.is-done::before{background:var(--pf-ink);border-color:var(--pf-ink);color:#fff;content:"✓";font-size:13px}
+
+/* ---------- 対象求人のカード ---------- */
+.pjob{border:1px solid var(--pf-line);border-left:4px solid var(--pf-red);background:#fff;border-radius:4px;padding:18px 20px;margin:0 0 26px}
+.pjob__code{font-size:11.5px;font-weight:800;letter-spacing:.08em;color:var(--pf-red);margin:0 0 6px}
+.pjob__t{font-size:19px;font-weight:800;line-height:1.4;margin:0 0 10px;color:var(--pf-ink)}
+.pjob__dl{display:grid;grid-template-columns:5.5em 1fr;gap:4px 14px;margin:0;font-size:13.5px}
+.pjob__dl dt{color:var(--pf-mute);font-weight:700}
+.pjob__dl dd{margin:0;color:var(--pf-ink)}
+.pjob__more{margin:12px 0 0;font-size:13px}
+
+/* ---------- フォーム本体 ---------- */
+.pform{margin:0}
+.pform__row{border-top:1px solid var(--pf-line);padding:20px 0}
+.pform__row:last-of-type{border-bottom:1px solid var(--pf-line)}
+.pform__lab{display:block;font-size:14px;font-weight:800;color:var(--pf-ink);margin:0 0 8px;letter-spacing:.01em}
+.pform__req,.pform__opt{display:inline-block;margin-left:8px;font-size:10.5px;font-weight:800;letter-spacing:.06em;
+  padding:2px 7px;border-radius:2px;vertical-align:2px}
+.pform__req{background:var(--pf-red);color:#fff}
+.pform__opt{background:#eef1f4;color:var(--pf-mute)}
+.pform__help{font-size:12.5px;color:var(--pf-mute);margin:0 0 8px;line-height:1.7}
+
+.pform input[type=text],.pform input[type=email],.pform input[type=tel],.pform select,.pform textarea{
+  width:100%;box-sizing:border-box;font:inherit;font-size:16px;line-height:1.6;color:var(--pf-ink);
+  background:#fff;border:1.5px solid var(--pf-line);border-radius:4px;padding:12px 14px;
+  -webkit-appearance:none;appearance:none}
+.pform select{background-image:linear-gradient(45deg,transparent 50%,var(--pf-mute) 50%),linear-gradient(135deg,var(--pf-mute) 50%,transparent 50%);
+  background-position:calc(100% - 20px) 50%,calc(100% - 14px) 50%;background-size:6px 6px,6px 6px;background-repeat:no-repeat;padding-right:40px}
+.pform textarea{min-height:140px;resize:vertical}
+.pform input:focus,.pform select:focus,.pform textarea:focus{outline:3px solid rgba(230,0,18,.22);outline-offset:1px;border-color:var(--pf-red)}
+.pform .is-invalid input,.pform .is-invalid select,.pform .is-invalid textarea{border-color:var(--pf-red);background:#fff6f6}
+.pform__err{display:none;margin:8px 0 0;font-size:13px;font-weight:700;color:var(--pf-red)}
+.pform__row.is-invalid .pform__err{display:block}
+
+/* 同意 */
+.pform__consent{display:flex;gap:12px;align-items:flex-start;font-size:14px;line-height:1.75}
+.pform__consent input[type=checkbox]{width:20px;height:20px;margin:2px 0 0;flex:0 0 auto;accent-color:var(--pf-red)}
+
+/* ハニーポット（人には見せない） */
+.pform__hp{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* ---------- 確認ステップ ---------- */
+.pconfirm{border-top:1px solid var(--pf-line);margin:0 0 26px}
+.pconfirm div{display:grid;grid-template-columns:10em 1fr;gap:14px;border-bottom:1px solid var(--pf-line);padding:16px 0}
+.pconfirm dt{font-size:13.5px;font-weight:800;color:var(--pf-mute);margin:0}
+.pconfirm dd{margin:0;font-size:15px;color:var(--pf-ink);word-break:break-word;white-space:pre-wrap}
+.pconfirm dd:empty::after{content:"（未入力）";color:var(--pf-mute);font-size:13.5px}
+
+/* ---------- 操作ボタン ---------- */
+.pacts{display:flex;gap:14px;flex-wrap:wrap;margin:28px 0 0}
+.pacts .btn{min-width:200px;justify-content:center}
+.pacts .btn[disabled]{opacity:.45;cursor:not-allowed}
+
+/* ---------- 画面間の切替 ---------- */
+.pstep{display:none}
+.pstep.is-active{display:block}
+
+/* 見出しへプログラムでフォーカスを移したときの枠は控えめにする
+   （キーボード操作で直接フォーカスしたときは、はっきり出す） */
+.pentry h2[tabindex="-1"]:focus{outline:2px solid rgba(230,0,18,.18);outline-offset:6px;border-radius:2px}
+.pentry h2[tabindex="-1"]:focus:not(:focus-visible){outline-color:transparent}
+
+/* ---------- 通知（エラー／プレビュー） ---------- */
+.pnote{border:1.5px solid var(--pf-line);background:var(--pf-bg);border-radius:4px;padding:16px 18px;margin:0 0 24px;font-size:13.5px;line-height:1.8;color:var(--pf-ink)}
+.pnote b{display:block;font-size:14px;margin:0 0 4px}
+.pnote--warn{border-color:var(--pf-red);background:#fff6f6}
+.pnote--warn b{color:var(--pf-red)}
+.pnote ul{margin:8px 0 0;padding-left:1.2em}
+.pnote--err{display:none}
+.pnote--err.is-on{display:block}
+
+/* ---------- 完了ページ ---------- */
+.pdone{text-align:center;padding:12px 0 0}
+.pdone__code{display:inline-block;border:1.5px solid var(--pf-line);border-radius:4px;background:#fff;
+  padding:14px 26px;margin:0 0 24px;font-size:13px;color:var(--pf-mute);font-weight:700}
+.pdone__code b{display:block;font-size:26px;letter-spacing:.06em;color:var(--pf-ink);margin-top:4px;font-family:Lato,system-ui,sans-serif}
+
+/* ---------- エントリー一覧 ---------- */
+.pfilter{display:flex;flex-wrap:wrap;gap:12px;margin:0 0 24px}
+.pfilter label{display:flex;flex-direction:column;gap:6px;font-size:12px;font-weight:800;color:var(--pf-mute);min-width:180px;flex:1 1 180px}
+.pfilter select{font:inherit;font-size:15px;padding:11px 14px;border:1.5px solid var(--pf-line);border-radius:4px;background:#fff;color:var(--pf-ink);-webkit-appearance:none;appearance:none}
+.pcount{font-size:13.5px;color:var(--pf-mute);margin:0 0 18px;font-weight:700}
+.pelist{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px}
+.pecard{border:1px solid var(--pf-line);border-radius:4px;background:#fff;padding:20px;display:flex;flex-direction:column}
+.pecard__cat{font-size:11.5px;font-weight:800;letter-spacing:.06em;color:var(--pf-red);margin:0 0 6px}
+.pecard__t{font-size:17px;font-weight:800;line-height:1.45;margin:0 0 10px;color:var(--pf-ink)}
+.pecard__dl{display:grid;grid-template-columns:4.5em 1fr;gap:3px 12px;margin:0 0 16px;font-size:13px}
+.pecard__dl dt{color:var(--pf-mute);font-weight:700}
+.pecard__dl dd{margin:0}
+.pecard__acts{margin-top:auto;display:flex;flex-direction:column;gap:9px}
+.pecard__acts .btn{justify-content:center}
+.pecard__sec{font-size:13px;text-align:center}
+
+@media (max-width:760px){
+  .psteps li{font-size:11px}
+  .pjob__dl,.pecard__dl{grid-template-columns:5em 1fr}
+  .pconfirm div{grid-template-columns:1fr;gap:6px}
+  .pacts .btn{min-width:0;width:100%}
+  .pelist{grid-template-columns:1fr}
+}
+@media (prefers-reduced-motion:reduce){
+  .pform *,.pstep{transition:none!important;animation:none!important}
+}
+/* ===== PAL FORM v1 END ===== */

@@ -17,7 +17,7 @@
      assets/css/white-editorial.css が .we スコープで後勝ち上書きする。
      文言・リンク・会社情報は変更していない。
      戻すときは <body> の we と、この link の2行を外す。 ===== -->
-<link rel="stylesheet" href="assets/css/white-editorial.css?v=4">
+<link rel="stylesheet" href="assets/css/white-editorial.css?v=5">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
 {"@type":"Question","name":"新卒採用とキャリア採用、どちらも募集していますか？","acceptedAnswer":{"@type":"Answer","text":"現在、新卒採用は行っておりません。新卒採用を開始する際は、採用サイトの募集要項にてご案内いたします。キャリア採用については、現在募集中の職種を募集要項からご確認ください。"}},
 {"@type":"Question","name":"未経験でも応募できますか？物流業界の経験は必要ですか？","acceptedAnswer":{"@type":"Answer","text":"職種によって異なります。FDEとセンター長／候補は技術力よりも人物面を最優先しているため、未経験の方も応募いただけます。SE・データ・物流の知識は入社後に習得していく前提です。一方でシステム / プロダクト開発は、何らかのWeb系システム開発の実務経験を必須としています。職種ごとの条件は各募集要項をご確認ください。"}},
@@ -48,7 +48,9 @@
       <a href="jobs.html">募集職種<small>JOBS</small></a>
       <a href="faq.html" aria-current="page" class="is-current">FAQ<small>Q&amp;A</small></a>
     </nav>
-    <button class="btn btn--red hdr__cta btn--off" type="button" disabled>ENTRY</button>
+    <!-- ===== ENTRY CTA v2 START：準備中のボタンを、求人ごとのエントリーページへの導線に差し替え ===== -->
+    <a class="btn btn--red hdr__cta" href="entry/index.html" data-cta="header">ENTRY</a>
+    <!-- ===== ENTRY CTA v2 END ===== -->
     <button class="hdr__toggle" id="navToggle" aria-expanded="false" aria-controls="drawer" aria-label="メニューを開く"><span></span><span></span><span></span>MENU</button>
   </div>
 </header>
@@ -60,7 +62,10 @@
   <a href="career.html">キャリア<span>CAREER</span></a>
   <a href="jobs.html">募集職種<span>JOBS</span></a>
   <a href="faq.html" aria-current="page" class="is-current">FAQ<span>Q&amp;A</span></a>
-  <button class="btn btn--red btn--off" type="button" disabled>エントリーする</button>
+  <!-- ===== ENTRY CTA v2 START：準備中のボタンを、求人ごとのエントリーページへの導線に差し替え ===== -->
+  <a class="btn btn--red" href="entry/index.html" data-cta="drawer">エントリーする</a>
+  <a class="btn btn--ghost" href="contact.html" data-cta="drawer-contact">採用に関するお問い合わせ</a>
+  <!-- ===== ENTRY CTA v2 END ===== -->
 </div>
 
 <main id="main">
@@ -272,7 +277,7 @@
     <h2>ここにない条件は、<br>各募集要項に掲載しています。</h2>
     <p>募集中の職種と条件は募集要項に掲載しています。選考時のWeb面接にも対応しています。</p>
     <div class="entry__ctas"><a class="btn btn--red btn--lg" href="jobs.html">募集中の職種を見る<span class="btn__ico" aria-hidden="true">▶</span></a></div>
-    <p class="entry__sec"><span class="applyoff">応募する（準備中）</span></p>
+    <p class="entry__sec"><a href="entry/index.html" data-cta="faq-bottom">エントリーする</a>　/　<a href="contact.html" data-cta="faq-bottom-contact">採用に関するお問い合わせ</a></p>
   </div>
 </section>
 
@@ -284,7 +289,7 @@
         <p>株式会社PAL｜DXソリューションカンパニー。「物流をコストから、戦略資産に。」を掲げ、分断された物流現場・システム・設備・データをつなぎ、物流DXの設計・実装・運用・改善までを担います。</p>
         <dl class="ftr__info"><dt>会社名</dt><dd>株式会社PAL</dd><dt>設立</dt><dd>2000年12月</dd><dt>代表</dt><dd>辻 有吾</dd><dt>資本金</dt><dd>9,000万円</dd><dt>従業員</dt><dd>120名<br>アルバイト・パートを含めると約1,600名</dd><dt>拠点</dt><dd>大阪本社 / 東京オフィス</dd></dl>
       </div>
-      <div><h3>RECRUIT</h3><nav aria-label="採用サイト内ナビゲーション"><a href="about.html">PALを知る</a><a href="work.html">仕事を知る</a><a href="career.html">キャリアパス</a><a href="people.html">社員インタビュー・1日の流れ</a><a href="jobs.html">募集要項</a><a href="faq.html">よくある質問</a><span class="applyoff">エントリー（準備中）</span></nav></div>
+      <div><h3>RECRUIT</h3><nav aria-label="採用サイト内ナビゲーション"><a href="about.html">PALを知る</a><a href="work.html">仕事を知る</a><a href="career.html">キャリアパス</a><a href="people.html">社員インタビュー・1日の流れ</a><a href="jobs.html">募集要項</a><a href="faq.html">よくある質問</a><a href="entry/index.html" data-cta="footer">エントリー</a><a href="contact.html" data-cta="footer-contact">採用に関するお問い合わせ</a></nav></div>
       <div><h3>COMPANY</h3><nav aria-label="コーポレートサイトへのリンク">
         <a href="https://www.pal-style.co.jp/about/mission/" target="_blank" rel="noopener">ミッション・バリュー</a>
         <a href="https://www.pal-style.co.jp/about/message/" target="_blank" rel="noopener">トップメッセージ</a>

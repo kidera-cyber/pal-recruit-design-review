@@ -17,7 +17,7 @@
      assets/css/white-editorial.css が .we スコープで後勝ち上書きする。
      文言・リンク・会社情報は変更していない。
      戻すときは <body> の we と、この link の2行を外す。 ===== -->
-<link rel="stylesheet" href="../../assets/css/white-editorial.css?v=4">
+<link rel="stylesheet" href="../../assets/css/white-editorial.css?v=5">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"採用情報","item":"../../../"},{"@type":"ListItem","position":2,"name":"募集職種","item":"../../"},{"@type":"ListItem","position":3,"name":"人事・採用メイン／大阪"}]}</script>
 <style>
 .proto-bar{background:#000;color:#fff;padding:10px 20px;font-size:12.5px;text-align:center;position:relative;z-index:600}
@@ -40,7 +40,9 @@
       <a href="../../../jobs/" aria-current="page" class="is-current">募集職種<small>JOBS</small></a>
       <a href="../../../faq/">FAQ<small>Q&amp;A</small></a>
     </nav>
-    <button class="btn btn--red hdr__cta btn--off" type="button" disabled>ENTRY</button>
+    <!-- ===== ENTRY CTA v2 START：準備中のボタンを、求人ごとのエントリーページへの導線に差し替え ===== -->
+    <a class="btn btn--red hdr__cta" href="../../entry/index.html" data-cta="header">ENTRY</a>
+    <!-- ===== ENTRY CTA v2 END ===== -->
     <button class="hdr__toggle" id="navToggle" aria-expanded="false" aria-controls="drawer" aria-label="メニューを開く"><span></span><span></span><span></span>MENU</button>
   </div>
 </header>
@@ -52,7 +54,10 @@
   <a href="../../../career/">キャリア<span>CAREER</span></a>
   <a href="../../../jobs/" aria-current="page" class="is-current">募集職種<span>JOBS</span></a>
   <a href="../../../faq/">FAQ<span>Q&amp;A</span></a>
-  <button class="btn btn--red btn--off" type="button" disabled>エントリーする</button>
+  <!-- ===== ENTRY CTA v2 START：準備中のボタンを、求人ごとのエントリーページへの導線に差し替え ===== -->
+  <a class="btn btn--red" href="../../entry/index.html" data-cta="drawer">エントリーする</a>
+  <a class="btn btn--ghost" href="../../contact.html" data-cta="drawer-contact">採用に関するお問い合わせ</a>
+  <!-- ===== ENTRY CTA v2 END ===== -->
 </div>
 
 <main id="main">
@@ -137,7 +142,10 @@
     <p class="entry__label en">NEXT STEP</p>
     <h2>人事・採用メイン<br>／大阪</h2>
     <p>仕事内容と勤務条件は、このページに掲載しています。</p>
-    <div class="entry__ctas"><button class="btn btn--red btn--lg btn--off" type="button" disabled>この求人に応募する</button></div>
+    <div class="entry__ctas"><!-- ===== ENTRY CTA v2 START：準備中のボタンを、求人ごとのエントリーページへの導線に差し替え ===== -->
+      <a class="btn btn--red btn--lg" href="../../entry/hr.html" data-cta="job-detail" data-job-slug="hr">この求人に応募する</a>
+      <!-- ===== ENTRY CTA v2 END ===== --></div>
+    <p class="entry__sec" style="margin-bottom:6px"><a href="../../contact.html" data-cta="job-detail-contact">応募の前に質問する（採用に関するお問い合わせ）</a></p>
     <p class="entry__sec"><a href="../../jobs.html">ほかの募集中の求人を見る</a></p>
   </div>
 </section>
@@ -151,7 +159,7 @@
         <p>株式会社PAL｜DXソリューションカンパニー。「物流をコストから、戦略資産に。」を掲げ、分断された物流現場・システム・設備・データをつなぎ、物流DXの設計・実装・運用・改善までを担います。</p>
         <dl class="ftr__info"><dt>会社名</dt><dd>株式会社PAL</dd><dt>設立</dt><dd>2000年12月</dd><dt>代表</dt><dd>辻 有吾</dd><dt>資本金</dt><dd>9,000万円</dd><dt>従業員</dt><dd>120名<br>アルバイト・パートを含めると約1,600名</dd><dt>拠点</dt><dd>大阪本社 / 東京オフィス</dd></dl>
       </div>
-      <div><h3>RECRUIT</h3><nav aria-label="採用サイト内ナビゲーション"><a href="../../../about/">PALを知る</a><a href="../../../work/">仕事を知る</a><a href="../../../career/">キャリアパス</a><a href="../../../people/">社員インタビュー・1日の流れ</a><a href="../../../jobs/">募集要項</a><a href="../../../faq/">よくある質問</a><span class="applyoff">エントリー（準備中）</span></nav></div>
+      <div><h3>RECRUIT</h3><nav aria-label="採用サイト内ナビゲーション"><a href="../../../about/">PALを知る</a><a href="../../../work/">仕事を知る</a><a href="../../../career/">キャリアパス</a><a href="../../../people/">社員インタビュー・1日の流れ</a><a href="../../../jobs/">募集要項</a><a href="../../../faq/">よくある質問</a><a href="../../entry/index.html" data-cta="footer">エントリー</a><a href="../../contact.html" data-cta="footer-contact">採用に関するお問い合わせ</a></nav></div>
       <div><h3>COMPANY</h3><nav aria-label="コーポレートサイトへのリンク">
         <a href="https://www.pal-style.co.jp/about/mission/" target="_blank" rel="noopener">ミッション・バリュー</a>
         <a href="https://www.pal-style.co.jp/about/message/" target="_blank" rel="noopener">トップメッセージ</a>

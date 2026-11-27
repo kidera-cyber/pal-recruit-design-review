@@ -344,3 +344,27 @@
    ロゴをそのまま置き、サイズと余白をヘッダーと揃える。
    ============================================================ */
 .we .ftr .logo__img{height:28px}
+
+/* ============================================================
+   ===== ENTRY CTA v2 START =====
+   「準備中」の無効ボタンを、エントリーページへのリンク（<a>）に
+   差し替えたことによる表示の調整。
+   ・<button> と違い <a> は inline なので、幅指定が効くよう display を補う
+   ・jcard__apply はグレーの無効表示だったので、有効な CTA の配色に変える
+   ・ドロワー内は .drawer a（0,1,1）が .btn（0,1,0）に勝ってしまうため、
+     .drawer a.btn（0,2,1）で後勝ち上書きする
+   既存ルールは消していない。戻すときはこのブロックごと削除する。
+   ============================================================ */
+.jcard__apply{display:block;background:var(--red,#E60012);color:#fff;transition:.15s}
+.jcard__apply:hover{background:var(--red-d,#c00010);color:#fff}
+.we .jcard__apply{background:var(--red,#E60012);color:#fff}
+
+.drawer a.btn{display:inline-flex;justify-content:center;border-bottom:0;padding:14px 24px;margin-top:10px}
+.drawer a.btn--red{background:var(--red,#E60012);color:#fff}
+.drawer a.btn--ghost{background:var(--gray-100,#f1f3f6);color:var(--ink,#111418)}
+
+.ftr nav a[data-cta="footer"],.ftr nav a[data-cta="footer-contact"]{color:#d4d5e0}
+.we .ftr nav a[data-cta="footer"],.we .ftr nav a[data-cta="footer-contact"]{color:inherit}
+
+a.hdr__cta{display:inline-flex;text-decoration:none}
+/* ===== ENTRY CTA v2 END ===== */

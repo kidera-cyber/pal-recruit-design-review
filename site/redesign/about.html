@@ -33,7 +33,7 @@
      本文・NEXT STEP・フッターの配色は assets/css/white-editorial.css が
      .we スコープで後勝ち上書きする。HTML の文言・リンクは変更していない。
      戻すときは <body> の we と、この link の2行を外すだけでよい。 ===== -->
-<link rel="stylesheet" href="assets/css/white-editorial.css?v=4">
+<link rel="stylesheet" href="assets/css/white-editorial.css?v=5">
 <!-- ===== EXPERTISE×PEOPLE v1：OUR PEOPLE & CULTURE の3領域＋社員紹介を
      1つの3カラムへ統合する。about.css 本体は変更していない。 ===== -->
 <link rel="stylesheet" href="assets/css/about-people-v2.css?v=4">
@@ -54,7 +54,9 @@
       <a href="jobs.html">募集職種<small>JOBS</small></a>
       <a href="faq.html">FAQ<small>Q&amp;A</small></a>
     </nav>
-    <button class="btn btn--red hdr__cta btn--off" type="button" disabled>ENTRY</button>
+    <!-- ===== ENTRY CTA v2 START：準備中のボタンを、求人ごとのエントリーページへの導線に差し替え ===== -->
+    <a class="btn btn--red hdr__cta" href="entry/index.html" data-cta="header">ENTRY</a>
+    <!-- ===== ENTRY CTA v2 END ===== -->
     <button class="hdr__toggle" id="navToggle" aria-expanded="false" aria-controls="drawer" aria-label="メニューを開く"><span></span><span></span><span></span>MENU</button>
   </div>
 </header>
@@ -66,7 +68,10 @@
   <a href="career.html">キャリア<span>CAREER</span></a>
   <a href="jobs.html">募集職種<span>JOBS</span></a>
   <a href="faq.html">FAQ<span>Q&amp;A</span></a>
-  <button class="btn btn--red btn--off" type="button" disabled>エントリーする</button>
+  <!-- ===== ENTRY CTA v2 START：準備中のボタンを、求人ごとのエントリーページへの導線に差し替え ===== -->
+  <a class="btn btn--red" href="entry/index.html" data-cta="drawer">エントリーする</a>
+  <a class="btn btn--ghost" href="contact.html" data-cta="drawer-contact">採用に関するお問い合わせ</a>
+  <!-- ===== ENTRY CTA v2 END ===== -->
 </div>
 
 <main id="main">
@@ -316,7 +321,7 @@
           <dt>会社名</dt><dd>株式会社PAL</dd><dt>設立</dt><dd>2000年12月</dd><dt>代表</dt><dd>辻 有吾</dd><dt>資本金</dt><dd>9,000万円</dd><dt>従業員</dt><dd>120名<br>アルバイト・パートを含めると約1,600名</dd><dt>拠点</dt><dd>大阪本社 / 東京オフィス</dd>
         </dl>
       </div>
-      <div><h3>RECRUIT</h3><nav aria-label="採用サイト内ナビゲーション"><a href="about.html">PALを知る</a><a href="work.html">仕事を知る</a><a href="career.html">キャリアパス</a><a href="people.html">社員インタビュー・1日の流れ</a><a href="jobs.html">募集要項</a><a href="faq.html">よくある質問</a><span class="applyoff">エントリー（準備中）</span></nav></div>
+      <div><h3>RECRUIT</h3><nav aria-label="採用サイト内ナビゲーション"><a href="about.html">PALを知る</a><a href="work.html">仕事を知る</a><a href="career.html">キャリアパス</a><a href="people.html">社員インタビュー・1日の流れ</a><a href="jobs.html">募集要項</a><a href="faq.html">よくある質問</a><a href="entry/index.html" data-cta="footer">エントリー</a><a href="contact.html" data-cta="footer-contact">採用に関するお問い合わせ</a></nav></div>
       <div><h3>COMPANY</h3><nav aria-label="コーポレートサイトへのリンク">
         <a href="https://www.pal-style.co.jp/about/mission/" target="_blank" rel="noopener">ミッション・バリュー</a>
         <a href="https://www.pal-style.co.jp/about/message/" target="_blank" rel="noopener">トップメッセージ</a>

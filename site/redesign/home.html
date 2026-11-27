@@ -140,7 +140,7 @@
      本文・NEXT STEP・フッターの配色は assets/css/white-editorial.css が
      .we スコープで後勝ち上書きする。HTML の文言・リンクは変更していない。
      戻すときは <body> の we と、この link の2行を外すだけでよい。 ===== -->
-<link rel="stylesheet" href="assets/css/white-editorial.css?v=4">
+<link rel="stylesheet" href="assets/css/white-editorial.css?v=5">
 <!-- ===== PAL-HOME-FV v1：HOMEのFV専用。.palfv の内側だけに効く ===== -->
 <link rel="stylesheet" href="assets/css/pal-home-fv.css?v=20261127b">
 </head>
@@ -163,7 +163,9 @@
       <a href="jobs.html">募集職種<small>JOBS</small></a>
       <a href="faq.html">FAQ<small>Q&amp;A</small></a>
     </nav>
-    <button class="btn btn--red hdr__cta btn--off" type="button" disabled>ENTRY</button>
+    <!-- ===== ENTRY CTA v2 START：準備中のボタンを、求人ごとのエントリーページへの導線に差し替え ===== -->
+    <a class="btn btn--red hdr__cta" href="entry/index.html" data-cta="header">ENTRY</a>
+    <!-- ===== ENTRY CTA v2 END ===== -->
     <button class="hdr__toggle" id="navToggle" aria-expanded="false" aria-controls="drawer" aria-label="メニューを開く">
       <span></span><span></span><span></span>MENU
     </button>
@@ -177,7 +179,10 @@
   <a href="career.html">キャリア<span>CAREER</span></a>
   <a href="jobs.html">募集職種<span>JOBS</span></a>
   <a href="faq.html">FAQ<span>Q&amp;A</span></a>
-  <button class="btn btn--red btn--off" type="button" disabled>エントリーする</button>
+  <!-- ===== ENTRY CTA v2 START：準備中のボタンを、求人ごとのエントリーページへの導線に差し替え ===== -->
+  <a class="btn btn--red" href="entry/index.html" data-cta="drawer">エントリーする</a>
+  <a class="btn btn--ghost" href="contact.html" data-cta="drawer-contact">採用に関するお問い合わせ</a>
+  <!-- ===== ENTRY CTA v2 END ===== -->
 </div>
 
 <main id="main">
@@ -606,9 +611,11 @@
     <p>現場・技術・営業・輸送・コーポレート。さまざまな専門性を持つメンバーを募集しています。</p>
     <div class="entry__ctas">
       <a class="btn btn--onnavy btn--lg" href="jobs.html">募集中の職種を見る<span class="btn__ico" aria-hidden="true">▶</span></a>
-      <button class="btn btn--red btn--lg btn--off" type="button" disabled>応募する</button>
+      <!-- ===== ENTRY CTA v2 START：準備中のボタンを、求人ごとのエントリーページへの導線に差し替え ===== -->
+      <a class="btn btn--red btn--lg" href="entry/index.html" data-cta="home-joinpal">エントリーする<span class="btn__ico" aria-hidden="true">▶</span></a>
+      <!-- ===== ENTRY CTA v2 END ===== -->
     </div>
-    <p class="applynote">※ 現在、各求人の応募先URLは準備中です。採用担当の承認後、ボタンから直接応募できるようになります。</p>
+    <p class="entry__sec"><a href="contact.html" data-cta="home-contact">採用に関するお問い合わせ</a></p>
     <p class="entry__sec"><a href="people.html">PALで働く人を見る</a></p>
   </div>
 </section>
@@ -640,7 +647,7 @@
           <a href="people.html">社員インタビュー・1日の流れ</a>
           <a href="jobs.html">募集要項</a>
           <a href="faq.html">よくある質問</a>
-          <span class="applyoff">エントリー（準備中）</span>
+          <a href="entry/index.html" data-cta="footer">エントリー</a><a href="contact.html" data-cta="footer-contact">採用に関するお問い合わせ</a>
         </nav>
       </div>
       <div>
