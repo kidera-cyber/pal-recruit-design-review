@@ -14,7 +14,11 @@
   // PRM がローカルで同一オリジン配信している場合のみ「送信できる」
   var host = location.hostname;
   var isLocalHost = (host === 'localhost' || host === '127.0.0.1' || host === '[::1]' || host === '::1');
-  var servedByPrm = isLocalHost && location.pathname.indexOf('/recruit/') === 0;
+  // PRM が同一オリジンで配信している2つの経路。
+  //   /recruit/… 採用サイトの作業コピー（読み取り専用）
+  //   /verify/…  PRM が生成するローカル検証用サイト
+  var servedByPrm = isLocalHost
+    && (location.pathname.indexOf('/recruit/') === 0 || location.pathname.indexOf('/verify/') === 0);
   var API = servedByPrm ? '' : null;   // null = プレビュー（送信不可）
 
   var PF = w.PALFORM = {
@@ -175,7 +179,7 @@
     form.addEventListener('input', function () {
       if (started) return;
       started = true;
-      PF.track(kind === 'entry' ? 'application_form_start' : 'contact_form_start',
+      PF.track(kind === 'entry' ? 'apply_start' : 'contact_form_start',
                { form_kind: kind, job_code: jobCode || undefined });
     }, true);
 
@@ -219,7 +223,7 @@
       }
       paintConfirm(collect());
       steps.go(1);
-      PF.track(kind === 'entry' ? 'application_form_confirm' : 'contact_form_confirm',
+      PF.track(kind === 'entry' ? 'apply_confirm' : 'contact_form_confirm',
                { form_kind: kind, job_code: jobCode || undefined });
     });
 

@@ -20,9 +20,22 @@
 import json, html, os, sys, re
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-SITE = os.path.join(ROOT, 'site', 'redesign')
-DATA = os.path.join(SITE, 'entry', 'jobs.json')
+
+
+def _opt(name, default):
+    """--name <値> を取り出す。指定がなければ default。"""
+    if name in sys.argv:
+        i = sys.argv.index(name)
+        if i + 1 < len(sys.argv):
+            return sys.argv[i + 1]
+    return default
+
+
+# --root で出力先を差し替えられる（PRM の公開処理が検証用サイトへ生成するために使う）
+SITE = os.path.abspath(_opt('--root', os.path.join(ROOT, 'site', 'redesign')))
+DATA = os.path.abspath(_opt('--data', os.path.join(SITE, 'entry', 'jobs.json')))
 CHECK = '--check' in sys.argv
+JSON_OUT = '--json' in sys.argv      # 結果を JSON で出す（PRM から呼ぶとき）
 
 E = html.escape
 
@@ -579,6 +592,19 @@ def main():
     write('contact-complete.html', complete_page('contact'), results)
 
     ng = [r for r in results if r[1] in ('DIFF', 'MISSING')]
+    if JSON_OUT:
+        print(json.dumps({
+            'ok': not (CHECK and ng),
+            'root': SITE,
+            'data': DATA,
+            'jobs': len(jobs),
+            'files': [{'path': rel, 'state': st} for rel, st in results],
+            'changed': [rel for rel, st in results if st in ('created', 'updated')],
+            'ng': [rel for rel, st in ng],
+        }, ensure_ascii=False))
+        if CHECK and ng:
+            sys.exit(1)
+        return
     for rel, st in results:
         print(f'  {st:8} {rel}')
     print(f'{len(results)} files / jobs={len(jobs)}')
