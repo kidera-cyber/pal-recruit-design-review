@@ -1,24 +1,38 @@
 @charset "utf-8";
 /* ============================================================
-   ===== PAL-HOME-FV v1 =====
+   ===== PAL-HOME-FV v2 =====
    HOME（newtop-c-v2.html → home.html）のファーストビュー専用CSS。
 
-   出典：PAL_recruit_FV_background_v2.html（承認済みの完成版FV）
-   移植方針
-     ・セレクタはすべて .palfv 配下に限定する。
-       元データの header / nav / body / h1 / .hero など、サイト全体へ効く
-       グローバル指定は一切持ち込まない。
-     ・クラス名は palfv__ 接頭辞へ付け替える（.line .small .medium .map .meta
-       などは既存サイトと衝突しうるため）。
-     ・@keyframes 名と SVG の id も palfv- 接頭辞を付けて重複を避ける。
-   既存の .heroC 系CSS（pal-v2.css / lightsurface.css）は変更していない。
-   section から heroC クラスを外したため、それらは適用されない。
+   v1（承認済みFVの移植）からの変更点はモーションのみ。
+   配色・タイポグラフィ・レイアウト・最終的な位置は v1 のまま変えていない。
+
+   設計方針
+     1) 静的なCSS（このファイルの通常の宣言）は「アニメーション終了後の完成状態」。
+        オープニングは @keyframes の from だけを書き、animation-fill-mode:backwards で
+        開始前の状態を作る。
+        こうすると prefers-reduced-motion で animation を切っても、
+        完成状態のキャッチコピー・背景・CTAがそのまま出る。
+     2) 繰り返しのアニメーションは、止めたときに初期状態へ戻るよう
+        「静的＝見えない／通常」になるよう作る（animation:none で自然に止まる）。
+     3) 背景SVGはレイヤーごとの <g> に分かれており（palfv-l-*）、
+        パララックスは JS が CSS変数へ書き込む。CSSは transform を読むだけ。
+     4) 動かすのは transform / opacity / stroke-dashoffset に限定する。
+        レイアウトを再計算するプロパティはアニメーションしない。
    ============================================================ */
 
 .palfv{
   --palfv-red:#e60012;
   --palfv-ink:#111;
   --palfv-hdr:96px;                 /* 既存ヘッダーの実高さ。JSで実測して上書きする */
+
+  /* 背景レイヤーの移動量（JSが毎フレーム書き込む。既定は0＝静止） */
+  --palfv-far-x:0px;  --palfv-far-y:0px;
+  --palfv-pla-x:0px;  --palfv-pla-y:0px;
+  --palfv-pan-x:0px;  --palfv-pan-y:0px;
+  --palfv-cir-x:0px;  --palfv-cir-y:0px;
+  --palfv-net-x:0px;  --palfv-net-y:0px;
+  --palfv-sc:0;                     /* FVのスクロール進捗 0〜1 */
+
   position:relative;
   isolation:isolate;
   overflow:hidden;
@@ -31,23 +45,144 @@
   color:var(--palfv-ink);
 }
 
-/* 背景：物流施設の設計図風グラフィック（SVG） */
+/* ============================================================
+   背景：物流施設の設計図風グラフィック（SVG）
+   ============================================================ */
 .palfv .palfv__map{
   position:absolute;inset:0;width:100%;height:100%;
   z-index:-3;opacity:.75;pointer-events:none;
+  animation:palfv-bgin 1.1s .04s backwards cubic-bezier(.22,1,.3,1);
+}
+@keyframes palfv-bgin{from{opacity:0}}
+
+/* レイヤーごとの奥行き移動（遠景ほど動かさない）。
+   スクロール時は全レイヤーが少しだけ上へ逃げる。 */
+.palfv .palfv-l-far  {transform:translate(var(--palfv-far-x),calc(var(--palfv-far-y) - var(--palfv-sc) * 10px))}
+.palfv .palfv-l-plant{transform:translate(var(--palfv-pla-x),calc(var(--palfv-pla-y) - var(--palfv-sc) * 18px))}
+.palfv .palfv-l-panel{transform:translate(var(--palfv-pan-x),calc(var(--palfv-pan-y) - var(--palfv-sc) * 22px))}
+.palfv .palfv-l-circ {transform:translate(var(--palfv-cir-x),calc(var(--palfv-cir-y) - var(--palfv-sc) * 20px))}
+.palfv .palfv-l-net,
+.palfv .palfv-l-sig  {transform:translate(var(--palfv-net-x),calc(var(--palfv-net-y) - var(--palfv-sc) * 30px))}
+
+/* --- A. 物流施設の設計図が少しずつ描かれる --- */
+/* pathLength="1" を振ってあるので、線の実長に関係なく同じ速さで描ける。 */
+.palfv .palfv-draw{stroke-dasharray:1;stroke-dashoffset:0;
+  animation:palfv-draw 1.45s backwards cubic-bezier(.25,.9,.3,1)}
+@keyframes palfv-draw{from{stroke-dashoffset:1}}
+.palfv .palfv-l-plant > g:nth-child(1) .palfv-draw{animation-delay:.10s}
+.palfv .palfv-l-plant > g:nth-child(2) .palfv-draw{animation-delay:.26s}
+.palfv .palfv-l-plant > g:nth-child(3) .palfv-draw{animation-delay:.18s}
+.palfv .palfv-l-plant > g:nth-child(4) .palfv-draw{animation-delay:.34s}
+.palfv .palfv-draw:nth-of-type(3n)  {animation-duration:1.7s}
+.palfv .palfv-draw:nth-of-type(4n+1){animation-duration:1.25s}
+
+/* 寸法線だけは、ゆっくり描画と消失を繰り返す（背景全体は消さない） */
+.palfv .palfv-dim{animation:palfv-dim 9s 2.2s ease-in-out infinite alternate}
+@keyframes palfv-dim{from{opacity:.25}to{opacity:1}}
+.palfv .palfv-l-plant > g:nth-child(2) .palfv-dim{animation-duration:11s;animation-delay:3.4s}
+.palfv .palfv-l-plant > g:nth-child(3) .palfv-dim{animation-duration:7.5s;animation-delay:4.8s}
+.palfv .palfv-l-plant > g:nth-child(4) .palfv-dim{animation-duration:10s;animation-delay:2.9s}
+
+/* --- B. データネットワークの流動（線に沿って信号が走る） --- */
+/* 静止時は opacity:0。止めれば自然に消えるので、停止状態に点が残らない。 */
+.palfv .palfv-sig{opacity:0}
+@keyframes palfv-sig{
+  0%  {stroke-dashoffset:1;opacity:0}
+  10% {opacity:.95}
+  88% {opacity:.95}
+  100%{stroke-dashoffset:0;opacity:0}
+}
+.palfv .palfv-sig-0{animation:palfv-sig 5.4s 1.5s linear infinite}
+.palfv .palfv-sig-1{animation:palfv-sig 6.8s 2.6s linear infinite}
+.palfv .palfv-sig-2{animation:palfv-sig 4.6s 3.4s linear infinite}  /* PALレッドの1本 */
+.palfv .palfv-sig-3{animation:palfv-sig 7.6s 1.9s linear infinite}
+.palfv .palfv-sig-4{animation:palfv-sig 6.1s 4.2s linear infinite}
+.palfv .palfv-sig-5{animation:palfv-sig 8s   3.0s linear infinite}
+
+/* --- C. ネットワーク接続ポイント（順番に静かに点灯する） --- */
+.palfv .palfv-node{transform-box:fill-box;transform-origin:center}
+@keyframes palfv-node{
+  0%,100%{opacity:.55;transform:scale(1)}
+  50%    {opacity:1;  transform:scale(1.28)}
+}
+.palfv .palfv-node-0{animation:palfv-node 3.6s 1.6s ease-in-out infinite}
+.palfv .palfv-node-1{animation:palfv-node 4.4s 2.3s ease-in-out infinite}
+.palfv .palfv-node-2{animation:palfv-node 5.2s 1.9s ease-in-out infinite}
+.palfv .palfv-node-3{animation:palfv-node 4.0s 3.1s ease-in-out infinite}
+.palfv .palfv-node-4{animation:palfv-node 5.8s 2.7s ease-in-out infinite}
+.palfv .palfv-node-5{animation:palfv-node 4.8s 3.8s ease-in-out infinite}
+
+/* --- D. データパネル（横線が少しずつ伸縮し、2枚だけ走査線が通る） --- */
+.palfv .palfv-bar{transform-box:fill-box;transform-origin:left center}
+@keyframes palfv-bar{from{transform:scaleX(.42)}to{transform:scaleX(1)}}
+.palfv .palfv-bar-0{animation:palfv-bar 5.2s 1.8s ease-in-out infinite alternate}
+.palfv .palfv-bar-1{animation:palfv-bar 6.4s 2.5s ease-in-out infinite alternate}
+.palfv .palfv-bar-2{animation:palfv-bar 4.6s 3.2s ease-in-out infinite alternate}
+.palfv .palfv-bar-3{animation:palfv-bar 7.8s 2.1s ease-in-out infinite alternate}
+.palfv .palfv-bar-4{animation:palfv-bar 8.6s 3.9s ease-in-out infinite alternate}
+.palfv .palfv-l-panel > g:nth-child(even) .palfv-bar{animation-duration:9s}
+
+.palfv .palfv-scan{opacity:0;transform-box:fill-box;transform-origin:center;
+  animation:palfv-scan 7.5s 2.4s linear infinite}
+.palfv .palfv-l-panel > g:nth-child(5) .palfv-scan{animation-duration:9.5s;animation-delay:5s}
+@keyframes palfv-scan{
+  0%  {transform:translateY(0);opacity:0}
+  12% {opacity:.85}
+  80% {opacity:.85}
+  100%{transform:translateY(38px);opacity:0}
 }
 
-.palfv .palfv__inner{position:relative;width:min(1040px,100%);margin:auto}
+/* --- E. テクニカルサークル（外周の一部がゆっくり回る） --- */
+.palfv .palfv-ring,
+.palfv .palfv-ring2{transform-box:fill-box;transform-origin:center}
+@keyframes palfv-spin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+@keyframes palfv-spin-r{from{transform:rotate(0)}to{transform:rotate(-360deg)}}
+.palfv .palfv-ring-0 {animation:palfv-spin   24s 1.4s linear infinite}
+.palfv .palfv-ring-1 {animation:palfv-spin-r 30s 1.4s linear infinite}
+.palfv .palfv-ring-2 {animation:palfv-spin   18s 1.4s linear infinite}
+.palfv .palfv-ring2-0{animation:palfv-spin-r 29s 1.4s linear infinite}
+.palfv .palfv-ring2-1{animation:palfv-spin   21s 1.4s linear infinite}
+.palfv .palfv-ring2-2{animation:palfv-spin-r 26s 1.4s linear infinite}
 
-/* 英語サブコピー */
+/* 背景レイヤーの登場。設計図は描画演出があるので、それ以外を軽くフェードさせる */
+.palfv .palfv-l-far  {animation:palfv-bgin .9s .05s backwards ease-out}
+.palfv .palfv-l-net  {animation:palfv-bgin .9s .22s backwards ease-out}
+.palfv .palfv-l-panel{animation:palfv-bgin .9s .34s backwards ease-out}
+.palfv .palfv-l-circ {animation:palfv-bgin .9s .40s backwards ease-out}
+
+.palfv .palfv__inner{
+  position:relative;width:min(1040px,100%);margin:auto;
+  transform:translateY(calc(var(--palfv-sc) * -46px));
+  opacity:calc(1 - var(--palfv-sc) * .55);
+}
+
+/* ============================================================
+   英語サブコピー
+   ============================================================ */
 .palfv .palfv__eyebrow{
   font:700 11px Arial,sans-serif;letter-spacing:.24em;
   display:flex;align-items:center;gap:12px;
   margin:0 0 22px 4%;color:#333;
+  animation:palfv-rise .5s .08s backwards cubic-bezier(.22,1,.3,1);
 }
-.palfv .palfv__eyebrow::before{content:"";width:32px;height:2px;background:var(--palfv-red)}
+.palfv .palfv__eyebrow::before{
+  content:"";width:32px;height:2px;background:var(--palfv-red);
+  transform-origin:left center;
+  animation:palfv-wipe .44s .06s backwards cubic-bezier(.22,1,.3,1);
+}
+@keyframes palfv-rise{from{opacity:0;transform:translateY(10px)}}
+/* 主要CTAと下部メタは「完全に透明にはしない」出現にする。
+   ・初回アニメーション中でも読めて、押せる（求職者の閲覧を妨げない）
+   ・opacity:0 の要素は LCP の計測対象から外れる。ここを 0 から始めると
+     LCP が 0.25秒 → 1.45秒 に悪化することを実測で確認したため、
+     薄く見えている状態から立ち上げる。 */
+@keyframes palfv-slide{from{opacity:.4;transform:translateY(14px)}}
+@keyframes palfv-wipe{from{transform:scaleX(0)}}
 
-/* メインキャッチコピー */
+/* ============================================================
+   メインキャッチコピー（キネティックタイポグラフィ）
+   最終的な位置・字形・配色は v1 と同一。出現のしかただけを足している。
+   ============================================================ */
 .palfv .palfv__title{
   margin:0;
   font-size:clamp(48px,9.3vw,139px);
@@ -64,31 +199,67 @@
 .palfv .palfv__small{font-size:.50em;letter-spacing:-.08em;font-weight:800}
 .palfv .palfv__medium{font-size:.72em;letter-spacing:-.09em}
 
-/* 文字内動画マスク（Canvas） */
+/* 下から上へのマスク出現。3行に時間差をつけ、適度に重ねる。
+   1文字ずつのタイピング演出はしない。 */
+@keyframes palfv-maskup{from{clip-path:inset(0 0 104% 0);transform:translateY(.14em)}}
+@keyframes palfv-maskx {from{clip-path:inset(0 0 104% 0);transform:translate(-.05em,.12em)}}
+.palfv .palfv__line:nth-child(1){animation:palfv-maskup .52s .14s backwards cubic-bezier(.19,1,.22,1)}
+.palfv .palfv__line:nth-child(2){animation:palfv-maskx  .54s .32s backwards cubic-bezier(.19,1,.22,1)}
+.palfv .palfv__line:nth-child(3){animation:palfv-maskup .52s .50s backwards cubic-bezier(.19,1,.22,1)}
+
+/* ============================================================
+   文字内動画マスク（Canvas）
+   ============================================================ */
 .palfv .palfv__glyph{display:inline-block;position:relative;letter-spacing:-.09em}
-.palfv .palfv__glyph canvas{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.palfv .palfv__glyph canvas{
+  position:absolute;inset:0;width:100%;height:100%;pointer-events:none;
+  opacity:0;transition:opacity .55s ease;
+}
 /* Canvasに文字が描けたときだけ本文を透明にする。
    動画が読み込めない・再生できない環境では is-ready が付かないため、
-   文字はそのまま黒／赤で読める。 */
+   文字はそのまま黒／赤で読める。
+   オープニング中は文字を黒／赤のまま見せ、そのあと映像へ引き継ぐ。 */
+.palfv .palfv__glyph > span{transition:color .55s ease}
 .palfv .palfv__glyph.is-ready > span{color:transparent}
+.palfv .palfv__glyph.is-ready canvas{opacity:1}
 
-/* 赤い斜めのアクセントライン */
-/* 基準は .palfv__head（h1だけを包むブロック）。
-   元データは .hero-inner 基準だったが、CTA・事業説明を足して inner が高くなるため、
-   文字に対する相対位置が変わってしまう。h1 基準なら元の見た目を保てる。 */
+/* ============================================================
+   赤い斜めのアクセントライン
+   基準は .palfv__head（h1だけを包むブロック）。
+   ============================================================ */
 .palfv .palfv__head{position:relative}
 .palfv .palfv__slash{
   position:absolute;z-index:1;left:18%;top:28.2%;width:76%;height:12.1%;
   background:var(--palfv-red);
   clip-path:polygon(0 79%,100% 0,21% 100%);
   transform-origin:left center;
-  animation:palfv-slash .85s cubic-bezier(.19,1,.22,1) both;
+  animation:palfv-slash .72s .72s backwards cubic-bezier(.19,1,.22,1);
   pointer-events:none;opacity:.95;
 }
-@keyframes palfv-slash{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes palfv-slash{from{transform:scaleX(0)}}
 
-/* 既存の採用導線（CTA2本＋事業説明）。元FVから引き継いでいる */
-.palfv .palfv__act{position:relative;z-index:2;margin:30px 4% 0}
+/* 初回のあとも、8〜12秒おきに細いアクセントが左から右へ一度だけ走る。
+   親の clip-path に収まるので、赤いライン自体の形は変わらない。 */
+.palfv .palfv__slash::after{
+  content:"";position:absolute;inset:0;opacity:0;
+  background:linear-gradient(100deg,
+    rgba(255,255,255,0) 38%, rgba(255,255,255,.92) 50%, rgba(255,255,255,0) 62%);
+  animation:palfv-sheen 10.5s 3.2s linear infinite;
+}
+@keyframes palfv-sheen{
+  0%,86% {transform:translateX(-135%);opacity:0}
+  88%    {opacity:.9}
+  99%    {opacity:.9}
+  100%   {transform:translateX(135%);opacity:0}
+}
+
+/* ============================================================
+   既存の採用導線（CTA2本＋事業説明）
+   ============================================================ */
+.palfv .palfv__act{
+  position:relative;z-index:2;margin:30px 4% 0;
+  animation:palfv-slide .58s .10s backwards cubic-bezier(.22,1,.3,1);
+}
 .palfv .palfv__ctas{display:flex;flex-wrap:wrap;gap:12px}
 .palfv .palfv__act .heroflags-caption{margin-top:14px}
 
@@ -97,6 +268,7 @@
   display:flex;justify-content:space-between;align-items:center;
   margin:24px 4% 0;border-top:1px solid #ddd;padding-top:15px;
   font:700 10px Arial,sans-serif;letter-spacing:.16em;color:#555;
+  animation:palfv-slide .58s .18s backwards cubic-bezier(.22,1,.3,1);
 }
 .palfv .palfv__meta strong{color:var(--palfv-red)}
 
@@ -105,6 +277,8 @@
   position:absolute;bottom:16px;left:50%;transform:translateX(-50%);
   font:700 10px Arial,sans-serif;letter-spacing:.2em;text-align:center;
   color:inherit;text-decoration:none;z-index:3;
+  opacity:calc(1 - var(--palfv-sc) * 1.6);
+  animation:palfv-rise .48s .92s backwards cubic-bezier(.22,1,.3,1);
 }
 .palfv .palfv__scroll i{
   display:block;width:1px;height:29px;margin:9px auto 0;
@@ -112,20 +286,23 @@
 }
 .palfv .palfv__scroll i::after{
   content:"";position:absolute;inset:0;background:var(--palfv-red);
-  animation:palfv-scroll 1.7s infinite;
+  transform:translateY(-100%);
+  animation:palfv-scroll 1.7s 1.1s infinite;
 }
 @keyframes palfv-scroll{from{transform:translateY(-100%)}to{transform:translateY(100%)}}
 
 .palfv .palfv__side{
   position:absolute;right:3vw;bottom:25px;
   font:10px Arial,sans-serif;letter-spacing:.12em;color:#777;z-index:3;
+  animation:palfv-rise .48s .94s backwards ease-out;
 }
 
-/* 動画の再生・停止 */
+/* アニメーションの再生・停止 */
 .palfv .palfv__motion{
   position:absolute;left:3vw;bottom:20px;z-index:3;
   border:1px solid #ddd;background:#fff;color:#444;
   padding:7px 11px;cursor:pointer;font:inherit;font-size:11px;
+  animation:palfv-rise .48s .94s backwards ease-out;
 }
 .palfv .palfv__motion:hover{border-color:#bbb}
 .palfv .palfv__motion:focus-visible,
@@ -134,7 +311,25 @@
 /* マスク用の動画本体は画面に出さない */
 .palfv .palfv-media{display:none}
 
-/* 画面の高さが低いノートPC */
+/* ============================================================
+   停止状態：繰り返しのアニメーションだけを止める。
+   オープニング（1回再生・fill-mode:backwards）は完成状態のまま残る。
+   ============================================================ */
+.palfv.is-static .palfv-sig,
+.palfv.is-static .palfv-node,
+.palfv.is-static .palfv-bar,
+.palfv.is-static .palfv-scan,
+.palfv.is-static .palfv-dim,
+.palfv.is-static .palfv-ring,
+.palfv.is-static .palfv-ring2,
+.palfv.is-static .palfv__slash::after,
+.palfv.is-static .palfv__scroll i::after{animation:none}
+.palfv.is-static .palfv-ring,
+.palfv.is-static .palfv-ring2{stroke-dasharray:none}
+
+/* ============================================================
+   画面の高さが低いノートPC
+   ============================================================ */
 @media (min-width:1000px) and (max-height:800px){
   .palfv{padding-top:32px;padding-bottom:58px}
   .palfv .palfv__title{font-size:clamp(75px,min(9.3vw,17vh),139px)}
@@ -143,7 +338,10 @@
   .palfv .palfv__meta{margin-top:18px}
 }
 
-/* スマートフォン */
+/* ============================================================
+   スマートフォン
+   マウス追従はJS側で無効化する。描画負荷を下げるため信号は3本に絞る。
+   ============================================================ */
 @media (max-width:760px){
   .palfv{--palfv-hdr:72px;padding:46px 4vw 95px}
   .palfv .palfv__inner{max-width:520px}
@@ -159,10 +357,22 @@
   .palfv .palfv__side{display:none}
   .palfv .palfv__motion{bottom:20px;font-size:10px}
   .palfv .palfv__map{opacity:.58}
+  .palfv .palfv-sig-1,
+  .palfv .palfv-sig-4,
+  .palfv .palfv-sig-5{display:none}
+  .palfv .palfv-scan{display:none}
+  .palfv .palfv-ring2{animation:none}
 }
 
-/* アニメーションを減らす設定。元データのグローバル指定は持ち込まず、FV内部に限定する */
+/* ============================================================
+   動きを減らす設定
+   静的なCSSが完成状態なので、animation を切るだけで
+   「完成したキャッチコピー・背景・CTA」が最初から表示される。
+   ============================================================ */
 @media (prefers-reduced-motion:reduce){
-  .palfv,.palfv *,.palfv *::before,.palfv *::after{animation:none!important}
+  .palfv,.palfv *,.palfv *::before,.palfv *::after{
+    animation:none!important;transition:none!important;
+  }
+  .palfv .palfv-ring,.palfv .palfv-ring2{stroke-dasharray:none}
 }
-/* ===== PAL-HOME-FV v1 END ===== */
+/* ===== PAL-HOME-FV v2 END ===== */
